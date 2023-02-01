@@ -46,17 +46,25 @@
 		{
 			"name": "Create",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Description\",\r\n    \"price\": 500000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/properties/1",
+					"raw": "localhost:8080/properties",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"properties",
-						"1"
+						"properties"
 					]
 				}
 			},
