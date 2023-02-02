@@ -48,6 +48,7 @@ public class PropertyService {
 
     public Long createProperty(PropertyDTO propertyDTO) {
         PropertyEntity propertyEntry = propertyDTOToPropertyEntity.convert(propertyDTO);
+        propertyEntry.getSchoolEntity().setProperty(propertyEntry);
         PropertyEntity propertyResponse = propertyRepositoryJPA.save(propertyEntry);
         return propertyResponse.getPropertyId();
     }

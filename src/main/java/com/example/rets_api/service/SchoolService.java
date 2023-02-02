@@ -1,8 +1,6 @@
 package com.example.rets_api.service;
 
-import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.SchoolDTO;
-import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.entity.SchoolEntity;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
