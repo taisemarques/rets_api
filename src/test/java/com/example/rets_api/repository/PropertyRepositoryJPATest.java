@@ -1,6 +1,7 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.SchoolEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,23 @@ public class PropertyRepositoryJPATest {
         assertThat(propertySaved).hasFieldOrPropertyWithValue("description", propertyToSave.getDescription());
         assertThat(propertySaved).hasFieldOrPropertyWithValue("price", propertyToSave.getPrice());
     }
+
+    @Test
+    public void should_store_a_PropertyAndSchool() {
+        PropertyEntity propertyToSave = new PropertyEntity();
+        propertyToSave.setDescription("Description");
+        propertyToSave.setPrice(valueOf(460000));
+        SchoolEntity schoolEntity = new SchoolEntity();
+        schoolEntity.setPrimarySchool("primarySchool");
+        schoolEntity.setJrHigh("jrHighSchool");
+        propertyToSave.setSchoolEntity(schoolEntity);
+        schoolEntity.setProperty(propertyToSave);
+        PropertyEntity propertySaved = propertyRepository.save(propertyToSave);
+        assertThat(propertySaved.getPropertyId()).isNotNull();
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("description", propertyToSave.getDescription());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("price", propertyToSave.getPrice());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.primarySchool", schoolEntity.getPrimarySchool());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.jrHigh", schoolEntity.getJrHigh());
+    }
+
 }
