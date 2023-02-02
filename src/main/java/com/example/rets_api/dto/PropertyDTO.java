@@ -10,6 +10,6 @@ public class PropertyDTO {
 
     private String description;
     private Long price;
-    private SchoolEntity schoolEntity;
+    private SchoolDTO schoolDTO;
 
 }
