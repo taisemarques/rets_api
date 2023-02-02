@@ -28,6 +28,9 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPrice()))
             query = query.where(property.price.eq(filterParams.getPrice()));
 
+        if(nonNull((filterParams.getSchoolEntity())))
+            query = query.where(property.schoolEntity.eq(filterParams.getSchoolEntity()));
+
         return query.orderBy(property.propertyId.asc()).fetch();
     }
 }

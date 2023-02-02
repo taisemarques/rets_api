@@ -27,6 +27,7 @@ public class PropertyService {
         PropertyEntity retsEntity = new PropertyEntity();
         retsEntity.setDescription(in.getDescription());
         retsEntity.setPrice(in.getPrice());
+        retsEntity.setSchoolEntity(in.getSchoolEntity());
         return retsEntity;
     };
 
@@ -34,6 +35,7 @@ public class PropertyService {
             PropertyDTO.builder()
             .description(in.getDescription())
             .price(in.getPrice())
+            .schoolEntity(in.getSchoolEntity())
             .build();
 
     private List<PropertyDTO> listPropertiesEntityToListPropertiesDTO(List<PropertyEntity> propertiesEntity){
