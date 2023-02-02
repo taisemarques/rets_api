@@ -1,5 +1,6 @@
 package com.example.rets_api.dto;
 
+import com.example.rets_api.entity.SchoolEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,5 +10,6 @@ public class PropertyDTO {
 
     private String description;
     private Long price;
+    private SchoolDTO schoolDTO;
 
 }
