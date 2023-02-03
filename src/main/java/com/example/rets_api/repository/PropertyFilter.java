@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Setter
 @Getter
@@ -12,4 +14,7 @@ public class PropertyFilter {
     private Long price = null;
     private String description = null;
     private SchoolEntity schoolEntity = null;
+    private int bedroomsQty = 0;
+    private int bathroomsQty = 0;
+
 }

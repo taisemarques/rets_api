@@ -2,6 +2,7 @@ package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.entity.QPropertyEntity;
+import com.example.rets_api.entity.QRoomEntity;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -19,8 +20,13 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
     public List<PropertyEntity> fetchAll(PropertyFilter filterParams) {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
+        QRoomEntity room = QRoomEntity.roomEntity;
 
-        JPQLQuery<PropertyEntity> query = from(property);
+
+        // Joining tables
+        JPQLQuery<PropertyEntity> query = from(property)
+                .join(room).on(property.roomList.contains(room));
+
 
         if(nonNull(filterParams.getDescription()))
             query = query.where(property.description.likeIgnoreCase(filterParams.getDescription()));
@@ -31,6 +37,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull((filterParams.getSchoolEntity())))
             query = query.where(property.schoolEntity.eq(filterParams.getSchoolEntity()));
 
-        return query.orderBy(property.propertyId.asc()).fetch();
+
+        return query.groupBy(room.roomType).fetch();
     }
 }
