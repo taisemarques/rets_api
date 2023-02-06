@@ -13,7 +13,8 @@ import java.util.List;
 public class PropertyFilter {
     private Long price = null;
     private String description = null;
-    private SchoolEntity schoolEntity = null;
+    private String primarySchool = null;
+    private String jrHigh = null;
     private int bedroomsQty = 0;
     private int bathroomsQty = 0;
 

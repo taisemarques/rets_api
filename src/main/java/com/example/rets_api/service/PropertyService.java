@@ -1,6 +1,7 @@
 package com.example.rets_api.service;
 
 import com.example.rets_api.converter.RoomConverter;
+import com.example.rets_api.converter.SchoolConverter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyFilter;
@@ -18,21 +19,19 @@ public class PropertyService {
 
     private PropertyRepositoryJPA propertyRepositoryJPA;
     private PropertyRepositoryQuerydsl propertyRepositoryQuerydsl;
-    private SchoolService schoolService;
 
 
-    public PropertyService(PropertyRepositoryJPA propertyRepositoryJPA, PropertyRepositoryQuerydsl propertyRepositoryQuerydsl,
-                           SchoolService schoolService){
+
+    public PropertyService(PropertyRepositoryJPA propertyRepositoryJPA, PropertyRepositoryQuerydsl propertyRepositoryQuerydsl){
         this.propertyRepositoryJPA = propertyRepositoryJPA;
         this.propertyRepositoryQuerydsl = propertyRepositoryQuerydsl;
-        this.schoolService = schoolService;
     }
 
     private Converter<PropertyDTO, PropertyEntity> propertyDTOToPropertyEntity = in -> {
         PropertyEntity retsEntity = new PropertyEntity();
         retsEntity.setDescription(in.getDescription());
         retsEntity.setPrice(in.getPrice());
-        retsEntity.setSchoolEntity(schoolService.schoolDTOToSchoolEntity.convert(in.getSchoolDTO()));
+        retsEntity.setSchoolEntity(SchoolConverter.schoolDTOToSchoolEntity.convert(in.getSchoolDTO()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomDTOList()));
         return retsEntity;
     };
@@ -41,7 +40,7 @@ public class PropertyService {
             PropertyDTO.builder()
             .description(in.getDescription())
             .price(in.getPrice())
-            .schoolDTO(schoolService.schoolEntityToSchoolDTO.convert(in.getSchoolEntity()))
+            .schoolDTO(SchoolConverter.schoolEntityToSchoolDTO.convert(in.getSchoolEntity()))
             .roomDTOList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
             .build();
 
