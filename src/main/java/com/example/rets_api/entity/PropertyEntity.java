@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "property_table")
 @Data
 public class PropertyEntity {
 
@@ -31,6 +31,7 @@ public class PropertyEntity {
     private List<RoomEntity> roomList;
 
 
+
     @PrePersist
      void updateRoomQuantity(){
         bedroomsQty = 0;
@@ -54,7 +55,6 @@ public class PropertyEntity {
                 ", price=" + price +
                 ", bedroomsQty=" + bedroomsQty +
                 ", bathroomsQty=" + bathroomsQty +
-                ", schoolList=" + schoolList +
                 ", roomList=" + roomList +
                 '}';
     }

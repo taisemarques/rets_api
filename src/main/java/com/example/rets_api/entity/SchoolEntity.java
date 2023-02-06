@@ -5,14 +5,13 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "school_table")
 @Data
 public class SchoolEntity {
 
     @Id
     @GeneratedValue
     @Column(name = "school_id")
-
     private Long schoolId;
 
     private String primarySchool;

@@ -4,21 +4,20 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "property_school")
 @Data
 public class PropertySchoolEntity {
 
-    @EmbeddedId
+    @Id
+    @GeneratedValue
     @Column(name="propertySchool_id")
     private Long propertySchoolId;
 
-    @ManyToOne
-    @MapsId("propertyId")
+    @ManyToOne(targetEntity = PropertyEntity.class)
     @JoinColumn(name = "property_id")
     private Long propertyId;
 
-    @ManyToOne
-    @MapsId("schoolId")
+    @ManyToOne(targetEntity = SchoolEntity.class)
     @JoinColumn(name = "school_id")
     private Long schoolId;
 

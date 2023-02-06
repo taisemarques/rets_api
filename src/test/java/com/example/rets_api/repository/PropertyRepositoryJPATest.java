@@ -39,20 +39,20 @@ public class PropertyRepositoryJPATest {
 
     @Test
     public void should_store_a_PropertyAndSchool() {
-//        PropertyEntity propertyToSave = new PropertyEntity();
-//        propertyToSave.setDescription("Description");
-//        propertyToSave.setPrice(valueOf(460000));
-//        SchoolEntity schoolEntity = new SchoolEntity();
-//        schoolEntity.setPrimarySchool("primarySchool");
-//        schoolEntity.setJrHigh("jrHighSchool");
+        PropertyEntity propertyToSave = new PropertyEntity();
+        propertyToSave.setDescription("Description");
+        propertyToSave.setPrice(valueOf(460000));
+        SchoolEntity schoolEntity = new SchoolEntity();
+        schoolEntity.setPrimarySchool("primarySchool");
+        schoolEntity.setJrHigh("jrHighSchool");
 //        propertyToSave.setSchoolList(schoolEntity);
 //        schoolEntity.setPropertyList(propertyToSave);
-//        PropertyEntity propertySaved = propertyRepository.save(propertyToSave);
-//        assertThat(propertySaved.getPropertyId()).isNotNull();
-//        assertThat(propertySaved).hasFieldOrPropertyWithValue("description", propertyToSave.getDescription());
-//        assertThat(propertySaved).hasFieldOrPropertyWithValue("price", propertyToSave.getPrice());
-//        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.primarySchool", schoolEntity.getPrimarySchool());
-//        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.jrHigh", schoolEntity.getJrHigh());
+        PropertyEntity propertySaved = propertyRepository.save(propertyToSave);
+        assertThat(propertySaved.getPropertyId()).isNotNull();
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("description", propertyToSave.getDescription());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("price", propertyToSave.getPrice());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.primarySchool", schoolEntity.getPrimarySchool());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolEntity.jrHigh", schoolEntity.getJrHigh());
     }
 
 }
