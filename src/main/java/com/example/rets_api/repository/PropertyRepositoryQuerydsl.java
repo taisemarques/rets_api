@@ -1,6 +1,5 @@
 package com.example.rets_api.repository;
 
-import com.example.rets_api.converter.SchoolConverter;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.querydsl.core.BooleanBuilder;
@@ -23,14 +22,11 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
-        QPropertySchoolEntity propertySchool = QPropertySchoolEntity.propertySchoolEntity;
-
 
         // Joining tables
-        JPQLQuery<PropertyEntity> query = from(property)
-                .join(room).on(property.roomList.contains(room));
-//                .join(propertySchool).on(propertySchool.propertyId.eq(property.propertyId))
-//                .join(school).on(propertySchool.propertyId.eq(property.schoolList.));
+        JPQLQuery<PropertyEntity> query = from(property).distinct()
+                .join(room).on(property.roomList.contains(room))
+                .join(school).on(property.schoolList.contains(school));
 
 
         if(nonNull(filterParams.getDescription()))
@@ -42,7 +38,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull((filterParams.getSchoolList()))){
             BooleanBuilder builder = new BooleanBuilder();
             for(SchoolDTO schoolDTO: filterParams.getSchoolList()){
-                builder = builder.or(property.schoolList.contains(SchoolConverter.schoolDTOToSchoolEntity.convert(schoolDTO)));
+                builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
             }
             query = query.where(builder);
         }
@@ -53,7 +49,6 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(filterParams.getBathroomsQty() > 0)
             query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
 
-
-        return query.groupBy(room.roomType).fetch();
+        return query.fetch();
     }
 }

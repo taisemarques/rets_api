@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "76d98e9d-ba93-4c57-8242-89857128f56d",
+		"_postman_id": "4fade851-f970-4f4c-9c85-78e3a76a8a96",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "13137083"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -27,18 +26,29 @@
 		},
 		{
 			"name": "Get by Filter",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 50330001,\r\n    \"schoolList\": [{\r\n        \"primary\": \"primary school 1\",\r\n        \"jrHigh\": \"jrHigh\"\r\n    },\r\n    {\r\n        \"primary\": \"abc\",\r\n        \"jrHigh\": \"abc\"\r\n    }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/properties/1",
+					"raw": "localhost:8080/properties",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"properties",
-						"1"
+						"properties"
 					]
 				}
 			},
@@ -51,7 +61,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\": \"Description12\",\r\n    \"price\": 5033000,\r\n    \"schoolDTO\": {\r\n        \"primary\": \"primary school\",\r\n        \"jrHigh\": \"jrHigh\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"description\": \"Description13\",\r\n    \"price\": 50330001,\r\n    \"schoolDTOList\": [\r\n        {\r\n            \"primary\": \"primary school 1\",\r\n            \"jrHigh\": \"jrHigh\"\r\n        },\r\n        {\r\n            \"primary\": \"primary school 2\",\r\n            \"jrHigh\": \"High\"\r\n        }\r\n    ],\r\n    \"roomDTOList\": [\r\n        {\r\n            \"type\": \"BEDROOM\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"BEDROOM\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"BATHROOM\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
