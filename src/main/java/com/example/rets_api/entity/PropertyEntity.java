@@ -3,9 +3,7 @@ package com.example.rets_api.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Data
@@ -21,8 +19,10 @@ public class PropertyEntity {
 
     private Long price;
 
-    @Transient
-    private Map<RoomEntity.RoomType, Integer> roomQuantityMap = new HashMap<>();
+    private int bedroomsQty;
+
+    private int bathroomsQty;
+
 
     @OneToOne(mappedBy="property", cascade = CascadeType.ALL)
     private SchoolEntity schoolEntity;
@@ -31,27 +31,31 @@ public class PropertyEntity {
     private List<RoomEntity> roomList;
 
 
-    @PostLoad
-     void populateRoomQuantityMap(){
+    @PrePersist
+     void updateRoomQuantity(){
+        bedroomsQty = 0;
+        bathroomsQty = 0;
 
-        for(RoomEntity room : roomList){
-            int count = 1;
-            RoomEntity.RoomType key = room.getRoomType();
-            if(roomQuantityMap.keySet().contains(key)){
-                count = roomQuantityMap.get(key)+1;
+        for(RoomEntity room: roomList){
+            if(room.getRoomType().equals(RoomEntity.RoomType.BEDROOM)){
+                bedroomsQty++;
             }
-            roomQuantityMap.put(key, count);
+            if(room.getRoomType().equals(RoomEntity.RoomType.BATHROOM)){
+                bathroomsQty++;
+            }
         }
-
     }
 
     @Override
     public String toString() {
-        return "Property{" +
+        return "PropertyEntity{" +
                 "propertyId=" + propertyId +
-                ", description =" + description +
-                ", price =" + price +
-                ", school =" + schoolEntity + "}" ;
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", bedroomsQty=" + bedroomsQty +
+                ", bathroomsQty=" + bathroomsQty +
+                ", schoolEntity=" + schoolEntity +
+                ", roomList=" + roomList +
+                '}';
     }
-
 }
