@@ -10,6 +10,7 @@ import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class PropertyService {
         PropertyEntity retsEntity = new PropertyEntity();
         retsEntity.setDescription(in.getDescription());
         retsEntity.setPrice(in.getPrice());
-        retsEntity.setSchoolEntity(SchoolConverter.schoolDTOToSchoolEntity.convert(in.getSchoolDTO()));
+        retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolDTOList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomDTOList()));
         return retsEntity;
     };
@@ -40,7 +41,7 @@ public class PropertyService {
             PropertyDTO.builder()
             .description(in.getDescription())
             .price(in.getPrice())
-            .schoolDTO(SchoolConverter.schoolEntityToSchoolDTO.convert(in.getSchoolEntity()))
+            .schoolDTOList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
             .roomDTOList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
             .build();
 
@@ -54,11 +55,12 @@ public class PropertyService {
 
 
     public Long createProperty(PropertyDTO propertyDTO) {
-        PropertyEntity propertyEntry = propertyDTOToPropertyEntity.convert(propertyDTO);
-        propertyEntry.getSchoolEntity().setProperty(propertyEntry);
-        propertyEntry.getRoomList().stream()
-                .forEach(roomEntity -> roomEntity.setProperty(propertyEntry));
-        PropertyEntity propertyResponse = propertyRepositoryJPA.save(propertyEntry);
+        PropertyEntity propertyEntity = propertyDTOToPropertyEntity.convert(propertyDTO);
+        propertyEntity.getSchoolList().stream()
+                .forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(propertyEntity)));
+        propertyEntity.getRoomList().stream()
+                .forEach(roomEntity -> roomEntity.setProperty(propertyEntity));
+        PropertyEntity propertyResponse = propertyRepositoryJPA.save(propertyEntity);
         return propertyResponse.getPropertyId();
     }
 

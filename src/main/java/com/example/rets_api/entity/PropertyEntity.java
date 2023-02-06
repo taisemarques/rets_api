@@ -24,8 +24,8 @@ public class PropertyEntity {
     private int bathroomsQty;
 
 
-    @OneToOne(mappedBy="property", cascade = CascadeType.ALL)
-    private SchoolEntity schoolEntity;
+    @ManyToMany(mappedBy= "propertyList", cascade = CascadeType.ALL)
+    private List<SchoolEntity> schoolList;
 
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
@@ -54,7 +54,7 @@ public class PropertyEntity {
                 ", price=" + price +
                 ", bedroomsQty=" + bedroomsQty +
                 ", bathroomsQty=" + bathroomsQty +
-                ", schoolEntity=" + schoolEntity +
+                ", schoolList=" + schoolList +
                 ", roomList=" + roomList +
                 '}';
     }

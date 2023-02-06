@@ -3,6 +3,7 @@ package com.example.rets_api.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,9 +19,12 @@ public class SchoolEntity {
 
     private String jrHigh;
 
-    @OneToOne
-    @JoinColumn(name = "property_id")
-    private PropertyEntity property;
+    @ManyToMany
+    @JoinTable(name = "property_school",
+            joinColumns = @JoinColumn(name = "school_id"),
+            inverseJoinColumns = @JoinColumn(name = "property_id"))
+    private List<PropertyEntity> propertyList;
+
 
     @Override
     public String toString() {
@@ -28,7 +32,7 @@ public class SchoolEntity {
                 "schoolId=" + schoolId +
                 ", primarySchool='" + primarySchool + '\'' +
                 ", jrHigh='" + jrHigh + '\'' +
-                ", property=" + property +
+                ", propertyList=" + propertyList +
                 '}';
     }
 }

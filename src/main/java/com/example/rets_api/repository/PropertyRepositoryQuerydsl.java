@@ -1,9 +1,9 @@
 package com.example.rets_api.repository;
 
-import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.entity.QPropertyEntity;
-import com.example.rets_api.entity.QRoomEntity;
-import com.example.rets_api.entity.QSchoolEntity;
+import com.example.rets_api.converter.SchoolConverter;
+import com.example.rets_api.dto.SchoolDTO;
+import com.example.rets_api.entity.*;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -23,12 +23,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
+        QPropertySchoolEntity propertySchool = QPropertySchoolEntity.propertySchoolEntity;
 
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property)
-                .join(room).on(property.roomList.contains(room))
-                .join(school).on(property.schoolEntity.property.propertyId.eq(school.property.propertyId));
+                .join(room).on(property.roomList.contains(room));
+//                .join(propertySchool).on(propertySchool.propertyId.eq(property.propertyId))
+//                .join(school).on(propertySchool.propertyId.eq(property.schoolList.));
 
 
         if(nonNull(filterParams.getDescription()))
@@ -37,11 +39,13 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPrice()))
             query = query.where(property.price.eq(filterParams.getPrice()));
 
-        if(nonNull((filterParams.getPrimarySchool())))
-            query = query.where(property.schoolEntity.primarySchool.eq(filterParams.getPrimarySchool()));
-
-        if(nonNull((filterParams.getJrHigh())))
-            query = query.where(property.schoolEntity.jrHigh.eq(filterParams.getJrHigh()));
+        if(nonNull((filterParams.getSchoolList()))){
+            BooleanBuilder builder = new BooleanBuilder();
+            for(SchoolDTO schoolDTO: filterParams.getSchoolList()){
+                builder = builder.or(property.schoolList.contains(SchoolConverter.schoolDTOToSchoolEntity.convert(schoolDTO)));
+            }
+            query = query.where(builder);
+        }
 
         if(filterParams.getBedroomsQty() > 0)
             query = query.where(property.bedroomsQty.eq(filterParams.getBedroomsQty()));

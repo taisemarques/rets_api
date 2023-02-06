@@ -11,7 +11,7 @@ public class PropertyDTO {
 
     private String description;
     private Long price;
-    private SchoolDTO schoolDTO;
+    private List<SchoolDTO> schoolDTOList;
     private List<RoomDTO> roomDTOList;
 
 }
