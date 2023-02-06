@@ -35,7 +35,10 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
             query = query.where(property.price.eq(filterParams.getPrice()));
 
         if(nonNull((filterParams.getSchoolEntity())))
-            query = query.where(property.schoolEntity.eq(filterParams.getSchoolEntity()));
+            query = query.where(property.schoolEntity.primarySchool.eq(filterParams.getSchoolEntity().getPrimarySchool()));
+
+        if(nonNull((filterParams.getSchoolEntity())))
+            query = query.where(property.schoolEntity.jrHigh.eq(filterParams.getSchoolEntity().getJrHigh()));
 
 
         return query.groupBy(room.roomType).fetch();
