@@ -30,8 +30,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         JPQLQuery<PropertyEntity> query = from(property)
                 .join(room).on(property.roomList.contains(room));
 //                .join(propertySchool).on(propertySchool.propertyId.eq(property.propertyId))
-//                .join(school).on(propertySchool.propertyId.eq(property.schoolList.));
-
+//                .join(school).on(propertySchool.schoolId.eq(property.schoolList.any().schoolId));
 
         if(nonNull(filterParams.getDescription()))
             query = query.where(property.description.likeIgnoreCase(filterParams.getDescription()));

@@ -45,8 +45,8 @@ public class PropertyRepositoryJPATest {
         SchoolEntity schoolEntity = new SchoolEntity();
         schoolEntity.setPrimarySchool("primarySchool");
         schoolEntity.setJrHigh("jrHighSchool");
-        propertyToSave.setSchoolList(schoolEntity);
-        schoolEntity.setPropertyList(propertyToSave);
+//        propertyToSave.setSchoolList(schoolEntity);
+//        schoolEntity.setPropertyList(propertyToSave);
         PropertyEntity propertySaved = propertyRepository.save(propertyToSave);
         assertThat(propertySaved.getPropertyId()).isNotNull();
         assertThat(propertySaved).hasFieldOrPropertyWithValue("description", propertyToSave.getDescription());
