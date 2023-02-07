@@ -36,14 +36,16 @@ public class PropertyRepositoryQuerydslTest {
     @Test
     public void should_store_an_Property() {
         PropertyDTO propertydto = PropertyDTO.builder()
-                .description("Description")
-                .price(valueOf(500000))
+                .age(5)
+                .horseFacilities("horsefacilities")
+                //TODO: need to add all fields
                 .build();
         Long idBook = propertyService.createProperty(propertydto);
 
         PropertyFilter propertyFilter = new PropertyFilter();
-        propertyFilter.setPrice(valueOf(500000));
-        propertyFilter.setDescription("Description");
+        propertyFilter.setAge(5);
+        propertyFilter.setHorseFacilities("horsefacilities");
+        //TODO: need to add all fields
         List<PropertyEntity> properties = propertyRepositoryQuerydsl.fetchAll(propertyFilter);
         assertThat(properties.size() == 1);
     }

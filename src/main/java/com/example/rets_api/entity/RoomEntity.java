@@ -1,21 +1,18 @@
 package com.example.rets_api.entity;
 
-import lombok.Data;
+import lombok.*;
+
+import static com.example.rets_api.entity.Enums.*;
 
 import javax.persistence.*;
 
-@Entity
-@Data
+@Entity(name = "room")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class RoomEntity {
-
-    public enum RoomType {
-        BEDROOM,
-        MASTER_BEDROOM,
-        LIVING_ROOM,
-        KITCHEN,
-        BATHROOM,
-        OFFICE
-    }
 
     @Id
     @GeneratedValue
@@ -23,22 +20,35 @@ public class RoomEntity {
     private Long roomId;
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
-    private float width;
+
+    @Enumerated(EnumType.STRING)
+    private Indicator indicator;
+
+    private String dimensions;
+
     private float length;
+
+    @Enumerated(EnumType.STRING)
+    private LenghWidthUnit lenghUnit;
+
+    private float width;
+
+    @Enumerated(EnumType.STRING)
+    private LenghWidthUnit widthUnit;
+
     private float area;
+
+    @Enumerated(EnumType.STRING)
+    private AreaUnit areaUnit;
+
+    @Enumerated(EnumType.STRING)
+    private AreaType areaType;
+
+    @Enumerated(EnumType.STRING)
+    private BathSize bathSize;
 
     @ManyToOne
     @JoinColumn(name = "property_id")
     private PropertyEntity property;
 
-
-    @Override
-    public String toString() {
-        return "RoomEntity{" +
-                "roomType=" + roomType +
-                ", width=" + width +
-                ", length=" + length +
-                ", area=" + area +
-                '}';
-    }
 }

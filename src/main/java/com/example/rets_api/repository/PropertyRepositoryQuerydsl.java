@@ -30,11 +30,13 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .join(room).on(property.roomList.contains(room))
                 .join(school).on(property.schoolList.contains(school));
 
-        if(nonNull(filterParams.getDescription()))
-            query = query.where(property.description.likeIgnoreCase(filterParams.getDescription()));
+        if(filterParams.getAge() > 0)
+            query = query.where(property.age.eq(filterParams.getAge()));
 
-        if(nonNull(filterParams.getPrice()))
-            query = query.where(property.price.eq(filterParams.getPrice()));
+        if(nonNull(filterParams.getHorseFacilities()))
+            query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getHorseFacilities()));
+
+        //TODO: need to add all fields
 
         if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();

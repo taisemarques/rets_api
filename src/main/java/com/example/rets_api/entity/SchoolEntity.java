@@ -1,12 +1,16 @@
 package com.example.rets_api.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "school_table")
-@Data
+@Entity(name = "school")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class SchoolEntity {
 
     @Id
@@ -24,15 +28,5 @@ public class SchoolEntity {
             inverseJoinColumns = @JoinColumn(name = "property_id"))
     private List<PropertyEntity> propertyList;
 
-
-    @Override
-    public String toString() {
-        return "SchoolEntity{" +
-                "schoolId=" + schoolId +
-                ", primarySchool='" + primarySchool + '\'' +
-                ", jrHigh='" + jrHigh + '\'' +
-                ", propertyList=" + propertyList +
-                '}';
-    }
 }
 

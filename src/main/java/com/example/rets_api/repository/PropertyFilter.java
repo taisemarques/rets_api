@@ -12,9 +12,10 @@ import java.util.List;
 @Setter
 @Getter
 public class PropertyFilter {
-    private Long price = null;
-    private String description = null;
+    private int age = 0;
+    private String horseFacilities = null;
     private List<SchoolDTO> schoolList = null;
+    //TODO: need to add all fields
     private int bedroomsQty = 0;
     private int bathroomsQty = 0;
 

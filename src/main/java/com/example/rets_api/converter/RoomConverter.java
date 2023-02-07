@@ -6,9 +6,11 @@ import org.springframework.core.convert.converter.Converter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
 
 public class RoomConverter {
     public static Converter<RoomDTO, RoomEntity> roomDTOToRoomEntity = in -> {
+        if(isNull(in)) return null;
         RoomEntity roomEntity = new RoomEntity();
         roomEntity.setRoomType(in.getType());
         roomEntity.setLength(in.getLength());
@@ -17,13 +19,15 @@ public class RoomConverter {
         return roomEntity;
     };
 
-    public static Converter<RoomEntity, RoomDTO> roomEntityToRoomDTO = in ->
-            RoomDTO.builder()
-                    .type(in.getRoomType())
-                    .width(in.getWidth())
-                    .length(in.getLength())
-                    .area(in.getArea())
-                    .build();
+    public static Converter<RoomEntity, RoomDTO> roomEntityToRoomDTO = in -> {
+        if (isNull(in)) return null;
+        return RoomDTO.builder()
+                .type(in.getRoomType())
+                .width(in.getWidth())
+                .length(in.getLength())
+                .area(in.getArea())
+                .build();
+    };
 
     public static List<RoomDTO> listRoomEntityToListRoomDTO(List<RoomEntity> roomEntityList) {
         return roomEntityList.stream()
