@@ -55,6 +55,7 @@ public class PropertyEntity {
                 ", price=" + price +
                 ", bedroomsQty=" + bedroomsQty +
                 ", bathroomsQty=" + bathroomsQty +
+                ", schoolList=" + schoolList +
                 ", roomList=" + roomList +
                 '}';
     }
