@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Repository
 public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
@@ -28,17 +30,22 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .join(room).on(property.roomList.contains(room))
                 .join(school).on(property.schoolList.contains(school));
 
-
         if(nonNull(filterParams.getDescription()))
             query = query.where(property.description.likeIgnoreCase(filterParams.getDescription()));
 
         if(nonNull(filterParams.getPrice()))
             query = query.where(property.price.eq(filterParams.getPrice()));
 
-        if(nonNull((filterParams.getSchoolList()))){
+        if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();
-            for(SchoolDTO schoolDTO: filterParams.getSchoolList()){
-                builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+            for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
+                if(!isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
+                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+                } else if(isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
+                        builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
+                } else if(!isNull(schoolDTO.getPrimary()) && isNull(schoolDTO.getJrHigh())){
+                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                }
             }
             query = query.where(builder);
         }

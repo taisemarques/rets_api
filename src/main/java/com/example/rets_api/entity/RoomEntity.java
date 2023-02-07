@@ -27,10 +27,6 @@ public class RoomEntity {
     private float length;
     private float area;
 
-//    @ManyToOne
-//    @JoinColumn(name = "rooms_id")
-//    private RoomsEntity roomsEntity;
-
     @ManyToOne
     @JoinColumn(name = "property_id")
     private PropertyEntity property;

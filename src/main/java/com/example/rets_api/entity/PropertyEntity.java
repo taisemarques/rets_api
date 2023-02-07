@@ -3,6 +3,7 @@ package com.example.rets_api.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity(name = "property_table")
@@ -12,7 +13,6 @@ public class PropertyEntity {
     @Id
     @GeneratedValue
     @Column(name="property_id")
-
     private Long propertyId;
 
     private String description;
@@ -23,16 +23,18 @@ public class PropertyEntity {
 
     private int bathroomsQty;
 
-
     @ManyToMany(mappedBy= "propertyList", cascade = CascadeType.ALL)
     private List<SchoolEntity> schoolList;
 
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
-
-
     @PrePersist
+    void updateBeforeSave(){
+        updateRoomQuantity();
+        updateNestedObjects();
+    }
+
      void updateRoomQuantity(){
         bedroomsQty = 0;
         bathroomsQty = 0;
@@ -45,6 +47,13 @@ public class PropertyEntity {
                 bathroomsQty++;
             }
         }
+    }
+
+    private void updateNestedObjects(){
+        schoolList.stream()
+                .forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
+        roomList.stream()
+                .forEach(roomEntity -> roomEntity.setProperty(this));
     }
 
     @Override

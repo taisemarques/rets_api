@@ -51,15 +51,8 @@ public class PropertyService {
                 .collect(Collectors.toList());
     }
 
-
-
-
     public Long createProperty(PropertyDTO propertyDTO) {
         PropertyEntity propertyEntity = propertyDTOToPropertyEntity.convert(propertyDTO);
-        propertyEntity.getSchoolList().stream()
-                .forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(propertyEntity)));
-        propertyEntity.getRoomList().stream()
-                .forEach(roomEntity -> roomEntity.setProperty(propertyEntity));
         PropertyEntity propertyResponse = propertyRepositoryJPA.save(propertyEntity);
         return propertyResponse.getPropertyId();
     }
