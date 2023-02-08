@@ -30,12 +30,14 @@ public class RoomConverter {
     };
 
     public static List<RoomDTO> listRoomEntityToListRoomDTO(List<RoomEntity> roomEntityList) {
+        if (isNull(roomEntityList)) return null;
         return roomEntityList.stream()
                 .map(roomDTO -> roomEntityToRoomDTO.convert(roomDTO))
                 .collect(Collectors.toList());
     }
 
     public static List<RoomEntity> listRoomDTOToListRoomEntity(List<RoomDTO> roomDTOList) {
+        if (isNull(roomDTOList)) return null;
         return roomDTOList.stream()
                 .map(roomEntity -> roomDTOToRoomEntity.convert(roomEntity))
                 .collect(Collectors.toList());

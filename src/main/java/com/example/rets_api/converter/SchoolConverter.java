@@ -27,12 +27,14 @@ public class SchoolConverter {
     };
 
     public static List<SchoolDTO> listSchoolEntityToListSchoolDTO(List<SchoolEntity> schoolEntityList) {
+        if (isNull(schoolEntityList)) return null;
         return schoolEntityList.stream()
                 .map(schoolDTO -> schoolEntityToSchoolDTO.convert(schoolDTO))
                 .collect(Collectors.toList());
     }
 
     public static List<SchoolEntity> listSchoolDTOToListSchoolEntity(List<SchoolDTO> schoolDTOList) {
+        if (isNull(schoolDTOList)) return null;
         return schoolDTOList.stream()
                 .map(schoolEntity -> schoolDTOToSchoolEntity.convert(schoolEntity))
                 .collect(Collectors.toList());
