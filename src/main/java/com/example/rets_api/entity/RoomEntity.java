@@ -29,12 +29,12 @@ public class RoomEntity {
     private float length;
 
     @Enumerated(EnumType.STRING)
-    private LenghWidthUnit lenghUnit;
+    private LengthWidthUnit lengthUnit;
 
     private float width;
 
     @Enumerated(EnumType.STRING)
-    private LenghWidthUnit widthUnit;
+    private LengthWidthUnit widthUnit;
 
     private float area;
 

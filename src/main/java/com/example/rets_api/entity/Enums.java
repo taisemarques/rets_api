@@ -14,7 +14,7 @@ public class Enums {
         LAUNDRY
     }
 
-    public enum LenghWidthUnit {
+    public enum LengthWidthUnit {
         FEET,
         METERS,
         ACRES,

@@ -17,11 +17,11 @@ public class RoomDTO {
 
     private float length;
 
-    private LenghWidthUnit lenghUnit;
+    private LengthWidthUnit lengthUnit;
 
     private float width;
 
-    private LenghWidthUnit widthUnit;
+    private LengthWidthUnit widthUnit;
 
     private float area;
 
