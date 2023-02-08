@@ -1,13 +1,20 @@
 package com.example.rets_api.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
-@Entity(name = "property_table")
-@Data
+import static com.example.rets_api.entity.Enums.*;
+import static java.util.Objects.isNull;
+
+@Entity(name = "property")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PropertyEntity {
 
     @Id
@@ -15,9 +22,44 @@ public class PropertyEntity {
     @Column(name="property_id")
     private Long propertyId;
 
-    private String description;
+    private int age;
 
-    private Long price;
+    private String horseFacilities;
+
+    private Indicator horseFacilitiesIndicator;
+
+    private String hotTub;
+
+    private Indicator hotTubIndicator;
+
+    private String tennisCourt;
+
+    private Indicator tennisCourtIndicator;
+
+    private String inclusions;
+
+    private String energyInformation;
+
+    private String constructionMaterial;
+
+    private String disabilityFeatures;
+
+    private Indicator disabilityFeaturesIndicator;
+
+    private String securityFeatures;
+
+    private Indicator securityFeaturesIndicator;
+
+    private Boolean propertyTypeRental;
+
+    private Boolean propertyTypeFarm;
+
+    private Boolean propertyTypeCondo;
+
+    private Boolean propertyTypeTownHouse;
+
+    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
+    private FinancialDataEntity financialData;
 
     private int bedroomsQty;
 
@@ -40,10 +82,10 @@ public class PropertyEntity {
         bathroomsQty = 0;
 
         for(RoomEntity room: roomList){
-            if(room.getRoomType().equals(RoomEntity.RoomType.BEDROOM)){
+            if(room.getRoomType().equals(RoomType.MAIN_FLOOR_BEDROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)){
                 bedroomsQty++;
             }
-            if(room.getRoomType().equals(RoomEntity.RoomType.BATHROOM)){
+            if(room.getRoomType().equals(RoomType.MAIN_FLOOR_BATHROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)){
                 bathroomsQty++;
             }
         }
@@ -54,18 +96,7 @@ public class PropertyEntity {
                 .forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         roomList.stream()
                 .forEach(roomEntity -> roomEntity.setProperty(this));
+        if(!isNull(financialData)) financialData.setProperty(this);
     }
 
-    @Override
-    public String toString() {
-        return "PropertyEntity{" +
-                "propertyId=" + propertyId +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", bedroomsQty=" + bedroomsQty +
-                ", bathroomsQty=" + bathroomsQty +
-                ", schoolList=" + schoolList +
-                ", roomList=" + roomList +
-                '}';
-    }
 }
