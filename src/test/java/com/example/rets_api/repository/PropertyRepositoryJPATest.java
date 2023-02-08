@@ -28,7 +28,7 @@ public class PropertyRepositoryJPATest {
         List<PropertyEntity> authors = propertyRepository.findAll();
 
         //Validating
-        assertThat(authors).isEmpty();
+        assertTrue(authors.isEmpty());
     }
 
     @Test
