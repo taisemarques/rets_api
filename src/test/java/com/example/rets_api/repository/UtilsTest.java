@@ -10,7 +10,7 @@ public class UtilsTest {
     public static PropertyEntity createPropertyEntityWithBasicFields(){
         PropertyEntity propertyEntity = new PropertyEntity();
         propertyEntity.setAge(5);
-        propertyEntity.setHorseFacilities("");
+        propertyEntity.setHorseFacilities("horseFacilities");
         propertyEntity.setHorseFacilitiesIndicator(Indicator.NO);
         propertyEntity.setHotTub("HotTub");
         propertyEntity.setHotTubIndicator(Indicator.YES);
