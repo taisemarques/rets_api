@@ -1,5 +1,6 @@
 package com.example.rets_api.repository;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.querydsl.core.BooleanBuilder;
@@ -36,7 +37,53 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getHorseFacilities()))
             query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getHorseFacilities()));
 
-        //TODO: need to add all fields
+        if(nonNull(filterParams.getHorseFacilitiesIndicator()))
+            query = query.where(property.horseFacilitiesIndicator.eq(filterParams.getHorseFacilitiesIndicator()));
+
+        if(nonNull(filterParams.getHotTub()))
+            query = query.where(property.hotTub.likeIgnoreCase(filterParams.getHotTub()));
+
+        if(nonNull(filterParams.getHotTubIndicator()))
+            query = query.where(property.hotTubIndicator.eq(filterParams.getHotTubIndicator()));
+
+        if(nonNull(filterParams.getTennisCourt()))
+            query = query.where(property.tennisCourt.likeIgnoreCase(filterParams.getTennisCourt()));
+
+        if(nonNull(filterParams.getTennisCourtIndicator()))
+            query = query.where(property.tennisCourtIndicator.eq(filterParams.getTennisCourtIndicator()));
+
+        if(nonNull(filterParams.getInclusions()))
+            query = query.where(property.inclusions.likeIgnoreCase(filterParams.getInclusions()));
+
+        if(nonNull(filterParams.getEnergyInformation()))
+            query = query.where(property.energyInformation.likeIgnoreCase(filterParams.getEnergyInformation()));
+
+        if(nonNull(filterParams.getConstructionMaterial()))
+            query = query.where(property.constructionMaterial.likeIgnoreCase(filterParams.getConstructionMaterial()));
+
+        if(nonNull(filterParams.getDisabilityFeatures()))
+            query = query.where(property.disabilityFeatures.likeIgnoreCase(filterParams.getDisabilityFeatures()));
+
+        if(nonNull(filterParams.getDisabilityFeaturesIndicator()))
+            query = query.where(property.disabilityFeaturesIndicator.eq(filterParams.getDisabilityFeaturesIndicator()));
+
+        if(nonNull(filterParams.getSecurityFeatures()))
+            query = query.where(property.securityFeatures.likeIgnoreCase(filterParams.getSecurityFeatures()));
+
+        if(nonNull(filterParams.getSecurityFeaturesIndicator()))
+            query = query.where(property.securityFeaturesIndicator.eq(filterParams.getSecurityFeaturesIndicator()));
+
+        if(nonNull(filterParams.getPropertyTypeRental()))
+            query = query.where(property.propertyTypeRental.eq(filterParams.getPropertyTypeRental()));
+
+        if(nonNull(filterParams.getPropertyTypeCondo()))
+            query = query.where(property.propertyTypeCondo.eq(filterParams.getPropertyTypeCondo()));
+
+        if(nonNull(filterParams.getPropertyTypeFarm()))
+            query = query.where(property.propertyTypeFarm.eq(filterParams.getPropertyTypeFarm()));
+
+        if(nonNull(filterParams.getPropertyTypeTownHouse()))
+            query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
         if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();
@@ -52,10 +99,10 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
             query = query.where(builder);
         }
 
-        if(filterParams.getBedroomsQty() > 0)
+        if(filterParams.getBedroomsQty() >= 0)
             query = query.where(property.bedroomsQty.eq(filterParams.getBedroomsQty()));
 
-        if(filterParams.getBathroomsQty() > 0)
+        if(filterParams.getBathroomsQty() >= 0)
             query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
 
         return query.fetch();
