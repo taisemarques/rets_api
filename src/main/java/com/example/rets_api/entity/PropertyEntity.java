@@ -81,20 +81,22 @@ public class PropertyEntity {
         bedroomsQty = 0;
         bathroomsQty = 0;
 
-        for(RoomEntity room: roomList){
-            if(room.getRoomType().equals(RoomType.MAIN_FLOOR_BEDROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)){
-                bedroomsQty++;
-            }
-            if(room.getRoomType().equals(RoomType.MAIN_FLOOR_BATHROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)){
-                bathroomsQty++;
+        if(!isNull(roomList)) {
+            for (RoomEntity room : roomList) {
+                if (room.getRoomType().equals(RoomType.MAIN_FLOOR_BEDROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)) {
+                    bedroomsQty++;
+                }
+                if (room.getRoomType().equals(RoomType.MAIN_FLOOR_BATHROOM) || room.getRoomType().equals(RoomType.MASTER_BEDROOM)) {
+                    bathroomsQty++;
+                }
             }
         }
     }
 
     private void updateNestedObjects(){
-        schoolList.stream()
+        if(!isNull(schoolList)) schoolList.stream()
                 .forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
-        roomList.stream()
+        if(!isNull(roomList)) roomList.stream()
                 .forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
     }

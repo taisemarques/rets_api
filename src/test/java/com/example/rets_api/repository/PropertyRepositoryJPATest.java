@@ -1,17 +1,16 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.entity.RoomEntity;
-import com.example.rets_api.entity.SchoolEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static com.example.rets_api.repository.UtilsTest.createRoom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static com.example.rets_api.entity.Enums.RoomType;
 
@@ -24,69 +23,77 @@ public class PropertyRepositoryJPATest {
 
     @Test
     public void should_find_no_Property_if_repository_is_empty(){
+        //Searching
         List<PropertyEntity> authors = propertyRepository.findAll();
+
+        //Validating
         assertThat(authors).isEmpty();
     }
 
     @Test
     public void should_store_a_Property() {
-        PropertyEntity propertyToSave = new PropertyEntity();
-        propertyToSave.setAge(5);
-        propertyToSave.setHorseFacilities("");
-        //TODO: need to add all fields
+        //Creating Property
+        PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
-        assertThat(propertySaved.getPropertyId()).isNotNull();
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("age", propertyToSave.getAge());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("horseFacilities", propertyToSave.getHorseFacilities());
+
+        //Validating
+        checkAllBasicFieldsFromProperty(propertySaved);
     }
 
     @Test
     public void should_store_a_PropertyAndSchoolAndRoom() {
-        PropertyEntity propertyToSave = new PropertyEntity();
-        propertyToSave.setAge(10);
-        propertyToSave.setHorseFacilities("horseFacilities");
-        //TODO: need to add all fields
+        //Creating property
+        PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
 
-        SchoolEntity schoolEntity = new SchoolEntity();
-        schoolEntity.setPrimarySchool("primarySchool");
-        schoolEntity.setJrHigh("jrHighSchool");
+        //Setting school
+        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchool("primarySchool", "jrHighSchool")));
 
-        List<SchoolEntity> schoolEntityList = new ArrayList<>();
-        schoolEntityList.add(schoolEntity);
-        propertyToSave.setSchoolList(schoolEntityList);
-
-        List<PropertyEntity> propertyEntityList = new ArrayList<>();
-        propertyEntityList.add(propertyToSave);
-        schoolEntity.setPropertyList(propertyEntityList);
-
-        RoomEntity livingRoom = new RoomEntity();
-        livingRoom.setArea(45);
-        livingRoom.setRoomType(RoomType.LIVING_ROOM);
-        livingRoom.setLength(5);
-        livingRoom.setWidth(9);
-
-        RoomEntity bedroom = new RoomEntity();
-        bedroom.setWidth(5);
-        bedroom.setLength(6);
-        bedroom.setArea(30);
-        bedroom.setRoomType(RoomType.MAIN_FLOOR_BEDROOM);
-
-        List<RoomEntity> rooms = new ArrayList<>();
-        rooms.add(livingRoom);
-        rooms.add(bedroom);
-
-        propertyToSave.setRoomList(rooms);
+        //Setting rooms
+        propertyToSave.setRoomList(Arrays.asList(createRoom(RoomType.LIVING_ROOM), createRoom(RoomType.MAIN_FLOOR_BEDROOM)));
         propertyToSave.setBedroomsQty(1);
 
+        //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
-        assertThat(propertySaved.getPropertyId()).isNotNull();
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("age", propertyToSave.getAge());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("horseFacilities", propertyToSave.getHorseFacilities());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("schoolList", propertyToSave.getSchoolList());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("roomList", propertyToSave.getRoomList());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("bedroomsQty", propertyToSave.getBedroomsQty());
-        assertThat(propertySaved).hasFieldOrPropertyWithValue("bathroomsQty", propertyToSave.getBathroomsQty());
 
+        //Validating Property basic fields
+        checkAllBasicFieldsFromProperty(propertySaved);
+
+        //Validating School
+        assertThat(propertySaved.getSchoolList()).isNotNull();
+        assertThat(propertySaved.getSchoolList().size() == propertyToSave.getSchoolList().size());
+        assertThat(propertySaved.getSchoolList().get(0).getPrimarySchool() == propertyToSave.getSchoolList().get(0).getPrimarySchool());
+        assertThat(propertySaved.getSchoolList().get(0).getJrHigh() == propertyToSave.getSchoolList().get(0).getPrimarySchool());
+
+        //Validating Rooms
+        assertThat(propertySaved.getRoomList()).isNotNull();
+        assertThat(propertySaved.getRoomList().size() == propertyToSave.getRoomList().size());
+        assertThat(propertySaved.getRoomList().get(0).getRoomType() == propertyToSave.getRoomList().get(0).getRoomType());
+        assertThat(propertySaved.getRoomList().get(1).getRoomType() == propertyToSave.getRoomList().get(1).getRoomType());
+
+    }
+
+    public void checkAllBasicFieldsFromProperty(PropertyEntity property){
+        assertThat(property.getPropertyId()).isNotNull();
+        assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());
+        assertThat(property).hasFieldOrPropertyWithValue("horseFacilities", property.getHorseFacilities());
+        assertThat(property).hasFieldOrPropertyWithValue("horseFacilitiesIndicator", property.getHorseFacilitiesIndicator());
+        assertThat(property).hasFieldOrPropertyWithValue("hotTub", property.getHotTub());
+        assertThat(property).hasFieldOrPropertyWithValue("hotTubIndicator", property.getHotTubIndicator());
+        assertThat(property).hasFieldOrPropertyWithValue("tennisCourt", property.getTennisCourt());
+        assertThat(property).hasFieldOrPropertyWithValue("tennisCourtIndicator", property.getTennisCourtIndicator());
+        assertThat(property).hasFieldOrPropertyWithValue("inclusions", property.getInclusions());
+        assertThat(property).hasFieldOrPropertyWithValue("energyInformation", property.getEnergyInformation());
+        assertThat(property).hasFieldOrPropertyWithValue("constructionMaterial", property.getConstructionMaterial());
+        assertThat(property).hasFieldOrPropertyWithValue("disabilityFeatures", property.getDisabilityFeatures());
+        assertThat(property).hasFieldOrPropertyWithValue("disabilityFeaturesIndicator", property.getDisabilityFeaturesIndicator());
+        assertThat(property).hasFieldOrPropertyWithValue("securityFeatures", property.getSecurityFeatures());
+        assertThat(property).hasFieldOrPropertyWithValue("securityFeaturesIndicator", property.getSecurityFeaturesIndicator());
+        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeRental", property.getPropertyTypeRental());
+        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeFarm", property.getPropertyTypeFarm());
+        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeCondo", property.getPropertyTypeCondo());
+        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeTownHouse", property.getPropertyTypeTownHouse());
     }
 
 }
