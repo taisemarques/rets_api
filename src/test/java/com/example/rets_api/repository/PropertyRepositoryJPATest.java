@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createRoom;
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.example.rets_api.entity.Enums.RoomType;
+import static com.example.rets_api.resource.Enums.RoomType;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)

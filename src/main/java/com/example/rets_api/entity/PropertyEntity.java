@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.rets_api.entity.Enums.*;
+import static com.example.rets_api.resource.Enums.*;
 import static java.util.Objects.isNull;
 
 @Entity(name = "property")

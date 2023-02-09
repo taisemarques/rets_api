@@ -1,6 +1,6 @@
 package com.example.rets_api.dto;
 
-import com.example.rets_api.entity.Enums.*;
+import com.example.rets_api.resource.Enums.*;
 import lombok.Builder;
 import lombok.Data;
 

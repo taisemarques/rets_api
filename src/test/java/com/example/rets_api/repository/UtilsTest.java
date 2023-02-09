@@ -1,6 +1,6 @@
 package com.example.rets_api.repository;
 
-import com.example.rets_api.entity.Enums.*;
+import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.entity.RoomEntity;
 import com.example.rets_api.entity.SchoolEntity;

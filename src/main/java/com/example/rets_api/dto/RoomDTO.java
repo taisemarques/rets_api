@@ -3,7 +3,7 @@ package com.example.rets_api.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import static com.example.rets_api.entity.Enums.*;
+import static com.example.rets_api.resource.Enums.*;
 
 @Data
 @Builder

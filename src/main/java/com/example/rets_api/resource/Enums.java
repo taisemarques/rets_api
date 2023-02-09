@@ -1,4 +1,4 @@
-package com.example.rets_api.entity;
+package com.example.rets_api.resource;
 
 public class Enums {
 
@@ -11,63 +11,71 @@ public class Enums {
         DEN,
         OFFICE,
         GAME,
-        LAUNDRY
+        LAUNDRY,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum LengthWidthUnit {
         FEET,
         METERS,
         ACRES,
-        HECTARES
+        HECTARES,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum AreaUnit {
         SQ_FEET,
         SQ_METERS,
         ACRES,
-        HECTARES
+        HECTARES,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum WeightUnit {
         LBS,
-        KILO
+        KILO,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum AreaType {
         INTEGER,
         FLOAT,
-        TEXT
+        TEXT,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum Indicator {
         UNKNOWN,
         YES,
         NO,
-        DEFAULT_IND_VALUE
+        DEFAULT_ENUM_VALUE
     }
 
     public enum BathSize {
         FULL,
         HALF,
         THREE_QUARTER,
-        DEFAULT_BATH_SIZE
+        DEFAULT_ENUM_VALUE
     }
 
     public enum NumberType {
         INTEGER,
-        FLOAT
+        FLOAT,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum RentalPeriod {
         DAY,
         WEEK,
         MONTH,
-        YEAR
+        YEAR,
+        DEFAULT_ENUM_VALUE
     }
 
     public enum Operator {
         GREATER_THEN,
-        LESS_THEN
+        LESS_THEN,
+        DEFAULT_ENUM_VALUE
     }
 
 }

@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import static com.example.rets_api.entity.Enums.*;
+import static com.example.rets_api.resource.Enums.*;
 
 @Entity(name = "financial_data")
 @Setter
