@@ -37,8 +37,8 @@ public class PropertyService {
 
     public List<PropertyDTO> getPropertiesByParams(PropertyFilter propertyFilter){
         List<PropertyEntity> propertyEntities = propertyRepositoryQuerydsl.fetchAll(propertyFilter);
-        List<PropertyDTO> book = PropertyConverter.listPropertiesEntityToListPropertiesDTO(propertyEntities);
-        return book;
+        List<PropertyDTO> propertiesDTO = PropertyConverter.listPropertiesEntityToListPropertiesDTO(propertyEntities);
+        return propertiesDTO;
     }
 
 }

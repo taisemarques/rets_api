@@ -29,8 +29,8 @@ public class RetsController {
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<PropertyDTO> getBooksById(@PathVariable("id") Long idproperty){
-        return ResponseEntity.ok(propertyService.getPropertyById(idproperty));
+    public ResponseEntity<PropertyDTO> getPropertiesById(@PathVariable("id") Long propertyId){
+        return ResponseEntity.ok(propertyService.getPropertyById(propertyId));
     }
 
 }

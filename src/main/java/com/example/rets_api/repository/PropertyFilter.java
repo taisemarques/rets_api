@@ -3,14 +3,12 @@ package com.example.rets_api.repository;
 import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.Enums.*;
-import com.example.rets_api.entity.RoomEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-import static com.example.rets_api.entity.Enums.BathSize.DEFAULT_BATH_SIZE;
 import static com.example.rets_api.entity.Enums.Indicator.DEFAULT_IND_VALUE;
 
 @NoArgsConstructor
@@ -23,7 +21,8 @@ public class PropertyFilter {
 
     private int age = 0;
     private String horseFacilities = DEFAULT_STRING_VALUE;
-    private List<SchoolDTO> schoolList = null;
+    private List<SchoolDTO> schoolDTOList = null;
+    private List<RoomDTO> roomDTOList = null;
     private int bedroomsQty = DEFAULT_ROOM_QTY;
     private int bathroomsQty = DEFAULT_ROOM_QTY;
 

@@ -1,4 +1,5 @@
 package com.example.rets_api.repository;
+import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.querydsl.core.BooleanBuilder;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.example.rets_api.entity.Enums.BathSize.DEFAULT_BATH_SIZE;
 import static com.example.rets_api.entity.Enums.Indicator.DEFAULT_IND_VALUE;
 import static com.example.rets_api.repository.PropertyFilter.DEFAULT_STRING_VALUE;
 import static java.util.Objects.isNull;
@@ -85,9 +87,18 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
-        if(!isEmpty(filterParams.getSchoolList())){
+        if(!isEmpty(filterParams.getRoomDTOList())){
             BooleanBuilder builder = new BooleanBuilder();
-            for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
+            for(RoomDTO roomDTO: filterParams.getRoomDTOList()){
+                if(!roomDTO.getBathSize().equals(DEFAULT_BATH_SIZE))
+                    builder = builder.and(room.bathSize.eq(roomDTO.getBathSize()));
+            }
+            query = query.where(builder);
+        }
+
+        if(!isEmpty(filterParams.getSchoolDTOList())){
+            BooleanBuilder builder = new BooleanBuilder();
+            for(SchoolDTO schoolDTO: filterParams.getSchoolDTOList()) {
                 if(!isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
                     builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
                 } else if(isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
