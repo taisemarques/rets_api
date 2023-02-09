@@ -42,13 +42,15 @@ public class Enums {
     public enum Indicator {
         UNKNOWN,
         YES,
-        NO
+        NO,
+        DEFAULT_IND_VALUE
     }
 
     public enum BathSize {
         FULL,
         HALF,
-        THREE_QUARTER
+        THREE_QUARTER,
+        DEFAULT_BATH_SIZE
     }
 
     public enum NumberType {

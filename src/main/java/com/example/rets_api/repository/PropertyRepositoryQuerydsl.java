@@ -1,6 +1,4 @@
 package com.example.rets_api.repository;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.querydsl.core.BooleanBuilder;
@@ -10,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.example.rets_api.entity.Enums.Indicator.DEFAULT_IND_VALUE;
+import static com.example.rets_api.repository.PropertyFilter.DEFAULT_STRING_VALUE;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -34,43 +34,43 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
 
-        if(nonNull(filterParams.getHorseFacilities()))
+        if(!filterParams.getHorseFacilities().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getHorseFacilities()));
 
-        if(nonNull(filterParams.getHorseFacilitiesIndicator()))
+        if(!filterParams.getHorseFacilitiesIndicator().equals(DEFAULT_IND_VALUE))
             query = query.where(property.horseFacilitiesIndicator.eq(filterParams.getHorseFacilitiesIndicator()));
 
-        if(nonNull(filterParams.getHotTub()))
+        if(!filterParams.getHotTub().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.hotTub.likeIgnoreCase(filterParams.getHotTub()));
 
-        if(nonNull(filterParams.getHotTubIndicator()))
+        if(!filterParams.getHotTubIndicator().equals(DEFAULT_IND_VALUE))
             query = query.where(property.hotTubIndicator.eq(filterParams.getHotTubIndicator()));
 
-        if(nonNull(filterParams.getTennisCourt()))
+        if(!filterParams.getTennisCourt().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.tennisCourt.likeIgnoreCase(filterParams.getTennisCourt()));
 
-        if(nonNull(filterParams.getTennisCourtIndicator()))
+        if(!filterParams.getTennisCourtIndicator().equals(DEFAULT_IND_VALUE))
             query = query.where(property.tennisCourtIndicator.eq(filterParams.getTennisCourtIndicator()));
 
-        if(nonNull(filterParams.getInclusions()))
+        if(!filterParams.getInclusions().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.inclusions.likeIgnoreCase(filterParams.getInclusions()));
 
-        if(nonNull(filterParams.getEnergyInformation()))
+        if(!filterParams.getEnergyInformation().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.energyInformation.likeIgnoreCase(filterParams.getEnergyInformation()));
 
-        if(nonNull(filterParams.getConstructionMaterial()))
+        if(!filterParams.getConstructionMaterial().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.constructionMaterial.likeIgnoreCase(filterParams.getConstructionMaterial()));
 
-        if(nonNull(filterParams.getDisabilityFeatures()))
+        if(!filterParams.getDisabilityFeatures().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.disabilityFeatures.likeIgnoreCase(filterParams.getDisabilityFeatures()));
 
-        if(nonNull(filterParams.getDisabilityFeaturesIndicator()))
+        if(!filterParams.getDisabilityFeaturesIndicator().equals(DEFAULT_IND_VALUE))
             query = query.where(property.disabilityFeaturesIndicator.eq(filterParams.getDisabilityFeaturesIndicator()));
 
-        if(nonNull(filterParams.getSecurityFeatures()))
+        if(!filterParams.getSecurityFeatures().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.securityFeatures.likeIgnoreCase(filterParams.getSecurityFeatures()));
 
-        if(nonNull(filterParams.getSecurityFeaturesIndicator()))
+        if(!filterParams.getSecurityFeaturesIndicator().equals(DEFAULT_IND_VALUE))
             query = query.where(property.securityFeaturesIndicator.eq(filterParams.getSecurityFeaturesIndicator()));
 
         if(nonNull(filterParams.getPropertyTypeRental()))

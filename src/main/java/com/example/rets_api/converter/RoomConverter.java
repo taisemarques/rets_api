@@ -16,6 +16,13 @@ public class RoomConverter {
         roomEntity.setLength(in.getLength());
         roomEntity.setWidth(in.getWidth());
         roomEntity.setArea(in.getArea());
+        roomEntity.setDimensions(in.getDimensions());
+        roomEntity.setBathSize(in.getBathSize());
+        roomEntity.setIndicator(in.getIndicator());
+        roomEntity.setLengthUnit(in.getLengthUnit());
+        roomEntity.setWidthUnit(in.getWidthUnit());
+        roomEntity.setAreaUnit(in.getAreaUnit());
+        roomEntity.setAreaType(in.getAreaType());
         return roomEntity;
     };
 
@@ -26,6 +33,13 @@ public class RoomConverter {
                 .width(in.getWidth())
                 .length(in.getLength())
                 .area(in.getArea())
+                .indicator(in.getIndicator())
+                .dimensions(in.getDimensions())
+                .lengthUnit(in.getLengthUnit())
+                .widthUnit(in.getWidthUnit())
+                .areaType(in.getAreaType())
+                .areaUnit(in.getAreaUnit())
+                .bathSize(in.getBathSize())
                 .build();
     };
 

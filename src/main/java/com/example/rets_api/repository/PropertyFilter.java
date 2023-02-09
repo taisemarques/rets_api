@@ -1,46 +1,55 @@
 package com.example.rets_api.repository;
 
+import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.Enums.*;
+import com.example.rets_api.entity.RoomEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
+import static com.example.rets_api.entity.Enums.BathSize.DEFAULT_BATH_SIZE;
+import static com.example.rets_api.entity.Enums.Indicator.DEFAULT_IND_VALUE;
+
 @NoArgsConstructor
 @Setter
 @Getter
 public class PropertyFilter {
+
+    static final int DEFAULT_ROOM_QTY = -1;
+    static final String DEFAULT_STRING_VALUE = "DEFAULT_STRING_VALUE";
+
     private int age = 0;
-    private String horseFacilities = null;
+    private String horseFacilities = DEFAULT_STRING_VALUE;
     private List<SchoolDTO> schoolList = null;
-    private int bedroomsQty = -1;
-    private int bathroomsQty = -1;
+    private int bedroomsQty = DEFAULT_ROOM_QTY;
+    private int bathroomsQty = DEFAULT_ROOM_QTY;
 
-    private Indicator horseFacilitiesIndicator = null;
+    private Indicator horseFacilitiesIndicator = DEFAULT_IND_VALUE;
 
-    private String hotTub = null;
+    private String hotTub = DEFAULT_STRING_VALUE;
 
-    private Indicator hotTubIndicator = null;
+    private Indicator hotTubIndicator = DEFAULT_IND_VALUE;
 
-    private String tennisCourt = null;
+    private String tennisCourt = DEFAULT_STRING_VALUE;
 
-    private Indicator tennisCourtIndicator = null;
+    private Indicator tennisCourtIndicator = DEFAULT_IND_VALUE;
 
-    private String inclusions = null;
+    private String inclusions = DEFAULT_STRING_VALUE;
 
-    private String energyInformation = null;
+    private String energyInformation = DEFAULT_STRING_VALUE;
 
-    private String constructionMaterial = null;
+    private String constructionMaterial = DEFAULT_STRING_VALUE;
 
-    private String disabilityFeatures = null;
+    private String disabilityFeatures = DEFAULT_STRING_VALUE;
 
-    private Indicator disabilityFeaturesIndicator = null;
+    private Indicator disabilityFeaturesIndicator = DEFAULT_IND_VALUE;
 
-    private String securityFeatures = null;
+    private String securityFeatures = DEFAULT_STRING_VALUE;
 
-    private Indicator securityFeaturesIndicator = null;
+    private Indicator securityFeaturesIndicator = DEFAULT_IND_VALUE;
 
     private Boolean propertyTypeRental = null;
 
