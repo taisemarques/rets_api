@@ -47,14 +47,14 @@
   "rentalAmountUnit": null
 },
 
-"schoolDTOList": [
+"schoolList": [
   {
     "primary": "",
     "jrHigh": ""
   }
 ],
 
-"roomDTOList": [
+"roomList": [
   {
     "type": "MAIN_FLOOR_BEDROOM",
     "indicator": null,
