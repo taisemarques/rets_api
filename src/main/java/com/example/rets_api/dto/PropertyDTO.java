@@ -11,6 +11,7 @@ import java.util.List;
 public class PropertyDTO {
 
     private int age;
+
     private String horseFacilities;
 
     private Indicator horseFacilitiesIndicator;
@@ -47,8 +48,8 @@ public class PropertyDTO {
 
     private FinancialDataDTO financialData;
 
-    private List<SchoolDTO> schoolDTOList;
+    private List<SchoolDTO> schoolList;
 
-    private List<RoomDTO> roomDTOList;
+    private List<RoomDTO> roomList;
 
 }

@@ -30,8 +30,8 @@ public class PropertyConverter {
         retsEntity.setPropertyTypeCondo(in.getPropertyTypeCondo());
         retsEntity.setPropertyTypeTownHouse(in.getPropertyTypeTownHouse());
         retsEntity.setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(in.getFinancialData()));
-        retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolDTOList()));
-        retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomDTOList()));
+        retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
+        retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
         return retsEntity;
     };
 
@@ -53,11 +53,11 @@ public class PropertyConverter {
                     .securityFeaturesIndicator(in.getSecurityFeaturesIndicator())
                     .propertyTypeRental(in.getPropertyTypeRental())
                     .propertyTypeFarm(in.getPropertyTypeFarm())
-                    .propertyTypeFarm(in.getPropertyTypeFarm())
+                    .propertyTypeCondo(in.getPropertyTypeCondo())
                     .propertyTypeTownHouse(in.getPropertyTypeTownHouse())
                     .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
-                    .schoolDTOList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
-                    .roomDTOList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                    .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
+                    .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
                     .build();
 
     public static List<PropertyDTO> listPropertiesEntityToListPropertiesDTO(List<PropertyEntity> propertiesEntity){

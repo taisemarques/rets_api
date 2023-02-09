@@ -51,4 +51,14 @@ public class RoomEntity {
     @JoinColumn(name = "property_id")
     private PropertyEntity property;
 
+    public Boolean isBedroom(){
+        return ( (roomType.equals(RoomType.MAIN_FLOOR_BEDROOM) || roomType.equals(RoomType.MASTER_BEDROOM) )
+                && indicator.equals(Indicator.YES));
+    }
+
+    public Boolean isBathroom(){
+        return ( (roomType.equals(RoomType.MAIN_FLOOR_BATHROOM) || roomType.equals(RoomType.MASTER_BEDROOM) )
+                && indicator.equals(Indicator.YES));
+    }
+
 }
