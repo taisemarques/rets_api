@@ -29,8 +29,13 @@ public class RetsController {
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<PropertyDTO> getPropertiesById(@PathVariable("id") Long propertyId){
+    public ResponseEntity<PropertyDTO> getPropertyById(@PathVariable("id") Long propertyId){
         return ResponseEntity.ok(propertyService.getPropertyById(propertyId));
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<PropertyDTO>> getAllProperties(){
+        return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import static java.util.Objects.isNull;
@@ -41,4 +42,9 @@ public class PropertyService {
         return propertiesDTO;
     }
 
+    public List<PropertyDTO> getAllProperties() {
+        List<PropertyEntity> propertyEntities = propertyRepositoryJPA.findAll();
+        List<PropertyDTO> propertiesDTO = PropertyConverter.listPropertiesEntityToListPropertiesDTO(propertyEntities);
+        return propertiesDTO;
+    }
 }
