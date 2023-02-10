@@ -3,10 +3,8 @@ package com.example.rets_api.entity;
 import com.example.rets_api.resource.Enums.*;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "lotData")
 @Setter
@@ -21,14 +19,17 @@ public class LotDataEntity {
     @Column(name = "lotData_id")
     private Long lotDataId;
 
-    private String CornerLot;
-    private Indicator CornerLotIndicator;
+    private String cornerLot;
+    private Indicator cornerLotIndicator;
 
-    private String CuldeSac;
-    private Indicator CuldeSacIndicator;
+    private String culdeSac;
+    private Indicator culdeSacIndicator;
 
-    private String GolfCourseLot;
-    private Indicator GolfCourseLotIndicator;
+    private String golfCourseLot;
+    private Indicator golfCourseLotIndicator;
+
+    @OneToMany(mappedBy = "lotData")
+    private List<PropertyEntity> propertyList;
 
 
 

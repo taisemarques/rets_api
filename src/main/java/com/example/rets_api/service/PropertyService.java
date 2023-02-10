@@ -27,8 +27,8 @@ public class PropertyService {
         return propertyResponse.getPropertyId();
     }
 
-    public PropertyDTO getPropertyById(Long idBook) {
-        PropertyEntity propertyResponse = propertyRepositoryJPA.getById(idBook);
+    public PropertyDTO getPropertyById(Long propertyId) {
+        PropertyEntity propertyResponse = propertyRepositoryJPA.getById(propertyId);
         PropertyDTO response = isNull(propertyResponse)?
                 PropertyDTO.builder().build():
                 PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse);

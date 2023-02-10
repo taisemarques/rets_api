@@ -1,6 +1,6 @@
 package com.example.rets_api.dto;
 
-import com.example.rets_api.resource.Enums;
+import com.example.rets_api.resource.Enums.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,12 +8,12 @@ import lombok.Data;
 @Builder
 public class LotDataDTO {
 
-    private String CornerLot;
-    private Enums.Indicator CornerLotIndicator;
+    private String cornerLot;
+    private Indicator cornerLotIndicator;
 
-    private String CuldeSac;
-    private Enums.Indicator CuldeSacIndicator;
+    private String culdeSac;
+    private Indicator culdeSacIndicator;
 
-    private String GolfCourseLot;
-    private Enums.Indicator GolfCourseLotIndicator;
+    private String golfCourseLot;
+    private Indicator golfCourseLotIndicator;
 }

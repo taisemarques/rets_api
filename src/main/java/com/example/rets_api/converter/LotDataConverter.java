@@ -15,16 +15,20 @@ public class LotDataConverter {
         retsEntity.setCornerLotIndicator(in.getCornerLotIndicator());
         retsEntity.setCuldeSac(in.getCuldeSac());
         retsEntity.setCuldeSacIndicator(in.getCuldeSacIndicator());
+        retsEntity.setGolfCourseLot(in.getGolfCourseLot());
+        retsEntity.setGolfCourseLotIndicator(in.getGolfCourseLotIndicator());
         return retsEntity;
     };
 
     public static Converter<LotDataEntity, LotDataDTO> lotDataEntityToLotDataDTO = in -> {
         if (isNull(in)) return null;
         return LotDataDTO.builder()
-                .CornerLot(in.getCornerLot())
-                .CornerLotIndicator(in.getCornerLotIndicator())
-                .CuldeSac(in.getCuldeSac())
-                .CuldeSacIndicator(in.getCuldeSacIndicator())
+                .cornerLot(in.getCornerLot())
+                .cornerLotIndicator(in.getCornerLotIndicator())
+                .culdeSac(in.getCuldeSac())
+                .culdeSacIndicator(in.getCuldeSacIndicator())
+                .golfCourseLot(in.getGolfCourseLot())
+                .golfCourseLotIndicator(in.getGolfCourseLotIndicator())
                 .build();
     };
 }
