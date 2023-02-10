@@ -43,14 +43,14 @@ public class RoomConverterTest {
     }
 
     @Test
-    public void entityToDTO_EmptyFinancialDataConverter_ShouldReturnEmpty(){
+    public void entityToDTO_EmptyRoomConverter_ShouldReturnEmpty(){
         RoomEntity roomEntity = new RoomEntity();
         RoomDTO roomDTO = RoomConverter.roomEntityToRoomDTO.convert(roomEntity);
         checkNullAllFields_RoomDTO(roomDTO);
     }
 
     @Test
-    public void entityToDTO_FinancialDataConverter_ShouldReturnCompleteObject(){
+    public void entityToDTO_RoomConverter_ShouldReturnCompleteObject(){
         RoomEntity roomEntity = UtilsTest.createRoomEntity(RoomType.MASTER_BEDROOM);
         RoomDTO roomDTO = RoomConverter.roomEntityToRoomDTO.convert(roomEntity);
         checkAllFields_Room(roomEntity, roomDTO);
