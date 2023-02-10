@@ -33,10 +33,17 @@ public class UtilsTest {
 
     public static RoomEntity createRoomEntity(RoomType roomType){
         RoomEntity room = new RoomEntity();
-        room.setArea(45);
         room.setRoomType(roomType);
+        room.setIndicator(Indicator.YES);
+        room.setDimensions("dimensions");
         room.setLength(5);
+        room.setLengthUnit(LengthWidthUnit.METERS);
         room.setWidth(9);
+        room.setWidthUnit(LengthWidthUnit.METERS);
+        room.setArea(45);
+        room.setAreaUnit(AreaUnit.SQ_METERS);
+        room.setAreaType(AreaType.FLOAT);
+        room.setBathSize(BathSize.THREE_QUARTER);
         return room;
     }
 
