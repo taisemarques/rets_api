@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "68539c32-125c-49f4-8804-53985312edfd",
+		"_postman_id": "4fade851-f970-4f4c-9c85-78e3a76a8a96",
 		"name": "Rets_Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,31 +26,15 @@
 		},
 		{
 			"name": "Get by Filter",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "localhost:8080/properties/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create",
-			"request": {
-				"method": "POST",
-				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\": \"Description\",\r\n    \"price\": 500000\r\n}",
+					"raw": "{\r\n    \"bedroomsQty\": 2,\r\n    \"bathroomsQty\": 1,\r\n    \"propertyTypeFarm\": false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,6 +49,62 @@
 					"port": "8080",
 					"path": [
 						"properties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Property with all Fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"UNKNOWN\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"NO\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"NO\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"NO\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primary school 13\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        },\r\n        {\r\n            \"primary\": \"primary school 23\",\r\n            \"jrHigh\": \"High2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/properties/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"properties",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Property",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"age\": 10,\r\n    \"financialData\": {\r\n        \"rentalAmount\": 5000\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primary school 13\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        },\r\n        {\r\n            \"primary\": \"primary school 23\",\r\n            \"jrHigh\": \"High2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/properties/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"properties",
+						""
 					]
 				}
 			},

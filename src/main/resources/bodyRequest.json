@@ -1,0 +1,72 @@
+{
+"age": 0,
+
+"horseFacilities": "",
+
+"horseFacilitiesIndicator": null,
+
+"hotTub": "",
+
+"hotTubIndicator": null,
+
+"tennisCourt": "",
+
+"tennisCourtIndicator": null,
+
+"inclusions": "",
+
+"energyInformation": "",
+
+"constructionMaterial": "",
+
+"disabilityFeatures": "",
+
+"disabilityFeaturesIndicator": null,
+
+"securityFeatures": "",
+
+"securityFeaturesIndicator": null,
+
+"propertyTypeRental": false,
+
+"propertyTypeFarm": false,
+
+"propertyTypeCondo": false,
+
+"propertyTypeTownHouse": false,
+
+"financialData": {
+  "leaseOption": "",
+  "leaseIndicator": null,
+  "tradeOption": "",
+  "tradeIndicator": null,
+  "rentalAmount": 0,
+  "rentalAmountType": null,
+  "rentalAmountCurrencyCode": "",
+  "rentalAmountPeriod": null,
+  "rentalAmountUnit": null
+},
+
+"schoolList": [
+  {
+    "primary": "",
+    "jrHigh": ""
+  }
+],
+
+"roomList": [
+  {
+    "type": "MAIN_FLOOR_BEDROOM",
+    "indicator": null,
+    "dimensions": "",
+    "length": 0,
+    "lengthUnit": null,
+    "width": 0,
+    "widthUnit": null,
+    "area": 0,
+    "areaUnit": null,
+    "areaType": null,
+    "bathSize": null
+  }
+]
+}

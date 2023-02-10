@@ -1,7 +1,7 @@
 package com.example.rets_api.controller;
 
 import com.example.rets_api.dto.PropertyDTO;
-import com.example.rets_api.repository.PropertyFilter;
+import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +29,8 @@ public class RetsController {
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<PropertyDTO> getBooksById(@PathVariable("id") Long idproperty){
-        return ResponseEntity.ok(propertyService.getPropertyById(idproperty));
+    public ResponseEntity<PropertyDTO> getPropertiesById(@PathVariable("id") Long propertyId){
+        return ResponseEntity.ok(propertyService.getPropertyById(propertyId));
     }
 
 }
