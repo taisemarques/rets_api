@@ -7,8 +7,8 @@ import lombok.Data;
 @Builder
 public class SchoolDTO {
 
-    String primary = null;
+    private String primary;
 
-    String jrHigh = null;
+    private String jrHigh;
 
 }
