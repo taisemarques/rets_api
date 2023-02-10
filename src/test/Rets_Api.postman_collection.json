@@ -55,6 +55,36 @@
 			"response": []
 		},
 		{
+			"name": "Get by all Filters",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"age\": 10,\n \"bedroomsQty\": 2,\n \"bathroomsQty\": 1,\n \"horseFacilities\": \"\",\n \"horseFacilitiesIndicator\": \"YES\",\n \"hotTub\": \"\",\n \"hotTubIndicator\": \"NO\",\n \"tennisCourt\": \"\",\n \"tennisCourtIndicator\": \"UNKNOWN\",\n \"inclusions\": \"\",\n \"energyInformation\": \"\",\n \"constructionMaterial\": \"\",\n \"disabilityFeatures\": \"\",\n \"disabilityFeaturesIndicator\": \"YES\",\n \"securityFeatures\": \"\",\n \"securityFeaturesIndicator\": \"YES\",\n \"propertyTypeRental\": false,\n \"propertyTypeCondo\": true,\n \"propertyTypeTownHouse\": false,\n \"propertyTypeFarm\": false,\n \"schoolList\": [\n{\n\"primary\": \"primary school 1\",\n\"jrHigh\": \"high school\"\n}\n],\n \"bathSizes\": [\"FULL\", \"HALF\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/properties",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"properties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Property with all Fields",
 			"request": {
 				"method": "POST",
