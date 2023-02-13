@@ -68,6 +68,7 @@ public class PropertyConverter {
     };
 
     public static List<PropertyDTO> listPropertiesEntityToListPropertiesDTO(List<PropertyEntity> propertiesEntity){
+        if(isNull(propertiesEntity)) return null;
         return propertiesEntity.stream()
                 .map(propertyDTO -> propertyEntityToPropertyDTO.convert(propertyDTO))
                 .collect(Collectors.toList());
