@@ -4,6 +4,7 @@ package com.example.rets_api.repository;
 import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
+import com.example.rets_api.resource.PropertyFilter;
 
 import static java.util.Arrays.asList;
 
@@ -34,6 +35,12 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        return propertyEntity;
+    }
+
+    public static PropertyEntity createPropertyEntityResponseAndID(Long id){
+        PropertyEntity propertyEntity = createPropertyEntityWithBasicFields();
+        propertyEntity.setPropertyId(id);
         return propertyEntity;
     }
 
@@ -153,6 +160,16 @@ public class UtilsTest {
                 .rentalAmountUnit(AreaUnit.SQ_METERS)
                 .build();
 
+    }
+
+    //Filter
+
+    public static PropertyFilter createDefaultPropertyFilter(){
+        PropertyFilter propertyFilter = new PropertyFilter();
+        propertyFilter.setAge(10);
+        propertyFilter.setBathroomsQty(2);
+        propertyFilter.setBedroomsQty(3);
+        return propertyFilter;
     }
 
 }

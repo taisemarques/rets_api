@@ -108,7 +108,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeTownHouse());
     }
 
-    private void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
+    public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
         assertEquals(propertyEntity.getAge(), propertyDTO.getAge());
         assertEquals(propertyEntity.getHorseFacilities(), propertyDTO.getHorseFacilities());
         assertEquals(propertyEntity.getHorseFacilitiesIndicator(), propertyDTO.getHorseFacilitiesIndicator());
