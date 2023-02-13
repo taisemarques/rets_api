@@ -32,6 +32,7 @@ public class PropertyConverter {
         retsEntity.setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(in.getFinancialData()));
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
+        retsEntity.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(in.getViewData()));
         return retsEntity;
     };
 
@@ -58,6 +59,7 @@ public class PropertyConverter {
                     .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
                     .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
                     .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                    .viewData(ViewDataConverter.viewDataEntityToViewDataDTO.convert(in.getViewData()))
                     .build();
 
     public static List<PropertyDTO> listPropertiesEntityToListPropertiesDTO(List<PropertyEntity> propertiesEntity){
