@@ -5,7 +5,6 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
-import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
@@ -37,7 +36,6 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicyEntity(), propertyDTO.getAnimalPolicy());
     }
 
     //Entity To DTO
@@ -63,7 +61,6 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicyEntity(), propertyDTO.getAnimalPolicy());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
@@ -108,7 +105,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeTownHouse());
     }
 
-    private void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
+    public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
         assertEquals(propertyEntity.getAge(), propertyDTO.getAge());
         assertEquals(propertyEntity.getHorseFacilities(), propertyDTO.getHorseFacilities());
         assertEquals(propertyEntity.getHorseFacilitiesIndicator(), propertyDTO.getHorseFacilitiesIndicator());

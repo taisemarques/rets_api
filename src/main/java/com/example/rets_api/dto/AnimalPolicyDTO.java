@@ -4,6 +4,8 @@ import com.example.rets_api.resource.Enums.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class AnimalPolicyDTO {
@@ -15,4 +17,6 @@ public class AnimalPolicyDTO {
     private Long weightLimit;
 
     private WeightUnit weightUnit;
+
+    private List<PropertyDTO> properties;
 }

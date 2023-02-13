@@ -34,8 +34,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .join(room).on(property.roomList.contains(room))
                 .join(school).on(property.schoolList.contains(school))
-                .join(financialData).on(property.eq(financialData.property))
-                .join(animalPolicy).on(property.eq(animalPolicy.property));
+                .join(financialData).on(property.eq(financialData.property));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -130,9 +129,6 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(!filterParams.getLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(financialData.leaseIndicator.eq(filterParams.getLeaseIndicator()));
-
-        if(!filterParams.getAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(animalPolicy.animalsPermitted.eq(filterParams.getAnimalPermitted()));
 
         return query.fetch();
     }

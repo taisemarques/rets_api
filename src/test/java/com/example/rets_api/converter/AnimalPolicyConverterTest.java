@@ -5,6 +5,7 @@ import com.example.rets_api.entity.AnimalPolicyEntity;
 import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
+import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -30,6 +31,8 @@ public class AnimalPolicyConverterTest {
         AnimalPolicyDTO animalPolicyDTO = UtilsTest.createAnimalPolicyDTO();
         AnimalPolicyEntity animalPolicyEntity = AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(animalPolicyDTO);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
+        checkAllFields_Property(animalPolicyEntity.getProperties().get(0), animalPolicyDTO.getProperties().get(0));
+
     }
 
     //Entity To DTO
@@ -41,17 +44,18 @@ public class AnimalPolicyConverterTest {
     }
 
     @Test
-    public void entityToDTO_EmptyFinancialDataConverter_ShouldReturnEmpty(){
+    public void entityToDTO_EmptyAnimalPolicyConverter_ShouldReturnEmpty(){
         AnimalPolicyEntity animalPolicyEntity = new AnimalPolicyEntity();
         AnimalPolicyDTO animalPolicyDTO = AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(animalPolicyEntity);
         checkNullAllFields_AnimalPolicyDTO(animalPolicyDTO);
     }
 
     @Test
-    public void entityToDTO_FinancialDataConverter_ShouldReturnCompleteObject(){
+    public void entityToDTO_AnimalPolicyConverter_ShouldReturnCompleteObject(){
         AnimalPolicyEntity animalPolicyEntity = UtilsTest.createAnimalPolicy("permitted");
         AnimalPolicyDTO animalPolicyDTO = AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(animalPolicyEntity);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
+        checkAllFields_Property(animalPolicyEntity.getProperties().get(0), animalPolicyDTO.getProperties().get(0));
     }
 
     private void checkNullAllFields_AnimalPolicy(AnimalPolicyEntity animalPolicy){
@@ -59,6 +63,7 @@ public class AnimalPolicyConverterTest {
         assertNull(animalPolicy.getPermittedTypes());
         assertNull(animalPolicy.getWeightLimit());
         assertNull(animalPolicy.getWeightUnit());
+        assertNull(animalPolicy.getProperties());
     }
 
     public static void checkAllFields_AnimalPolicy(AnimalPolicyEntity animalPolicyEntity, AnimalPolicyDTO animalPolicyDTO){
@@ -74,6 +79,7 @@ public class AnimalPolicyConverterTest {
         assertNull(animalPolicyDTO.getPermittedTypes());
         assertNull(animalPolicyDTO.getWeightLimit());
         assertNull(animalPolicyDTO.getWeightUnit());
+        assertNull(animalPolicyDTO.getProperties());
     }
 
 

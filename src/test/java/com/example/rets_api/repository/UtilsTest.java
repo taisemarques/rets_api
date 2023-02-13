@@ -7,6 +7,8 @@ import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.dto.*;
 
 
+import java.util.Collections;
+
 import static java.util.Arrays.asList;
 
 public class UtilsTest {
@@ -36,7 +38,6 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
-        propertyEntity.setAnimalPolicyEntity(createAnimalPolicy("permitted"));
         return propertyEntity;
     }
 
@@ -62,6 +63,7 @@ public class UtilsTest {
         animalPolicy.setPermittedTypes(permittedType);
         animalPolicy.setWeightUnit(WeightUnit.KILO);
         animalPolicy.setWeightLimit(10L);
+        animalPolicy.setProperties(Collections.singletonList(createPropertyEntityWithBasicFields()));
         return animalPolicy;
     }
 
@@ -110,7 +112,6 @@ public class UtilsTest {
             .financialData(createFinancialDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
-            .animalPolicy(createAnimalPolicyDTO())
             .build();
     }
 
@@ -149,6 +150,7 @@ public class UtilsTest {
                 .animalsPermitted(Indicator.YES)
                 .weightUnit(WeightUnit.KILO)
                 .weightLimit(10L)
+                .properties(asList(createPropertyDTOWithBasicFields()))
                 .build();
     }
 

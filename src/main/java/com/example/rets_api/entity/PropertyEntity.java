@@ -71,8 +71,9 @@ public class PropertyEntity {
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
-    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
-    private AnimalPolicyEntity animalPolicyEntity;
+    @ManyToOne
+    @JoinColumn(name = "animal_policy_id")
+    private AnimalPolicyEntity animalPolicy;
 
 
     @PrePersist
@@ -101,7 +102,6 @@ public class PropertyEntity {
         if(!isNull(schoolList)) schoolList.forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
-        if(!isNull(animalPolicyEntity)) animalPolicyEntity.setProperty(this);
     }
 
 }

@@ -14,6 +14,7 @@ public class AnimalPolicyConverter {
         animalPolicyEntity.setPermittedTypes(in.getPermittedTypes());
         animalPolicyEntity.setWeightLimit(in.getWeightLimit());
         animalPolicyEntity.setWeightUnit(in.getWeightUnit());
+        animalPolicyEntity.setProperties(PropertyConverter.listPropertyDTOToListPropertyEntity(in.getProperties()));
         return animalPolicyEntity;
     };
 
@@ -24,6 +25,7 @@ public class AnimalPolicyConverter {
                 .permittedTypes(in.getPermittedTypes())
                 .weightLimit(in.getWeightLimit())
                 .weightUnit(in.getWeightUnit())
+                .properties(PropertyConverter.listPropertiesEntityToListPropertiesDTO(in.getProperties()))
                 .build();
     };
 }

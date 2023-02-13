@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static com.example.rets_api.resource.Enums.*;
 
 @Entity(name = "animal_policy")
@@ -27,8 +29,7 @@ public class AnimalPolicyEntity {
 
     private WeightUnit weightUnit;
 
-    @OneToOne
-    @JoinColumn(name = "property_id")
-    private PropertyEntity property;
+    @OneToMany(mappedBy= "animalPolicy", cascade = CascadeType.ALL)
+    private List<PropertyEntity> properties;
 
 }

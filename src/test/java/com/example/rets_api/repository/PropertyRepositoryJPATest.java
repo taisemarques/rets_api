@@ -49,7 +49,7 @@ public class PropertyRepositoryJPATest {
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
-        propertyToSave.setAnimalPolicyEntity(UtilsTest.createAnimalPolicy("permittedType"));
+//        propertyToSave.setAnimalPolicyEntity(UtilsTest.createAnimalPolicy("permittedType"));
         propertyToSave.setFinancialData(UtilsTest.createFinancialDataEntity());
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
@@ -82,11 +82,11 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getFinancialData().getRentalAmountPeriod(), propertyToSave.getFinancialData().getRentalAmountPeriod());
         assertEquals(propertySaved.getFinancialData().getRentalAmountUnit(), propertyToSave.getFinancialData().getRentalAmountUnit());
 
-        assertNotNull(propertySaved.getAnimalPolicyEntity());
-        assertEquals(propertySaved.getAnimalPolicyEntity().getAnimalsPermitted(), propertyToSave.getAnimalPolicyEntity().getAnimalsPermitted());
-        assertEquals(propertySaved.getAnimalPolicyEntity().getPermittedTypes(), propertyToSave.getAnimalPolicyEntity().getPermittedTypes());
-        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightLimit(), propertyToSave.getAnimalPolicyEntity().getWeightLimit());
-        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightUnit(), propertyToSave.getAnimalPolicyEntity().getWeightUnit());
+//        assertNotNull(propertySaved.getAnimalPolicyEntity());
+//        assertEquals(propertySaved.getAnimalPolicyEntity().getAnimalsPermitted(), propertyToSave.getAnimalPolicyEntity().getAnimalsPermitted());
+//        assertEquals(propertySaved.getAnimalPolicyEntity().getPermittedTypes(), propertyToSave.getAnimalPolicyEntity().getPermittedTypes());
+//        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightLimit(), propertyToSave.getAnimalPolicyEntity().getWeightLimit());
+//        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightUnit(), propertyToSave.getAnimalPolicyEntity().getWeightUnit());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

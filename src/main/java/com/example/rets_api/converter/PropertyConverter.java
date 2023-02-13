@@ -1,7 +1,9 @@
 package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.RoomEntity;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.List;
@@ -35,7 +37,6 @@ public class PropertyConverter {
         retsEntity.setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(in.getFinancialData()));
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
-        retsEntity.setAnimalPolicyEntity(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         return retsEntity;
     };
 
@@ -63,7 +64,6 @@ public class PropertyConverter {
                 .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
                 .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
                 .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
-                .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicyEntity()))
                 .build();
     };
 
@@ -71,6 +71,13 @@ public class PropertyConverter {
         if(isNull(propertiesEntity)) return null;
         return propertiesEntity.stream()
                 .map(propertyDTO -> propertyEntityToPropertyDTO.convert(propertyDTO))
+                .collect(Collectors.toList());
+    }
+
+    public static List<PropertyEntity> listPropertyDTOToListPropertyEntity(List<PropertyDTO> propertiesDTO) {
+        if (isNull(propertiesDTO)) return null;
+        return propertiesDTO.stream()
+                .map(propertyEntity -> propertyDTOToPropertyEntity.convert(propertyEntity))
                 .collect(Collectors.toList());
     }
 }
