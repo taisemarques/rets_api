@@ -1,6 +1,5 @@
 package com.example.rets_api.resource;
 
-import com.example.rets_api.dto.LotDataDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -75,7 +75,7 @@ public class LotDataConverterTest {
         assertNull(lotDataDTO.getCuldeSacIndicator());
     }
 
-    private void checkAllFields_LotData(LotDataEntity lotDataEntity, LotDataDTO lotDataDTO){
+    public static void checkAllFields_LotData(LotDataEntity lotDataEntity, LotDataDTO lotDataDTO){
         assertEquals(lotDataEntity.getCornerLot(), lotDataDTO.getCornerLot());
         assertEquals(lotDataEntity.getCornerLotIndicator(), lotDataDTO.getCornerLotIndicator());
         assertEquals(lotDataEntity.getGolfCourseLot(), lotDataDTO.getGolfCourseLot());

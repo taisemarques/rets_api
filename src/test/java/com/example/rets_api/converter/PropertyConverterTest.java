@@ -1,8 +1,6 @@
 package com.example.rets_api.converter;
 
-import com.example.rets_api.dto.LotDataDTO;
 import com.example.rets_api.dto.PropertyDTO;
-import com.example.rets_api.entity.LotDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
@@ -10,6 +8,7 @@ import org.junit.Test;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
+import static com.example.rets_api.converter.LotDataConverterTest.checkAllFields_LotData;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -38,6 +37,7 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
+        checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
     }
 
     //Entity To DTO
@@ -63,6 +63,7 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
+        checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){

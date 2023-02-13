@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "lotData")
+@Entity(name = "lot_data")
 @Setter
 @Getter
 @AllArgsConstructor
