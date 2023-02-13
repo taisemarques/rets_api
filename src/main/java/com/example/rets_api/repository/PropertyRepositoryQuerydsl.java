@@ -8,6 +8,7 @@ import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 import static com.example.rets_api.resource.Constants.*;
@@ -26,14 +27,24 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
+        QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
+        QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
+
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .join(room).on(property.roomList.contains(room))
-                .join(school).on(property.schoolList.contains(school));
+                .join(school).on(property.schoolList.contains(school))
+                .join(financialData).on(property.eq(financialData.property))
+                .join(animalPolicy).on(property.eq(animalPolicy.property));
 
+        System.out.println(query);
+        System.out.println(filterParams.getAge());
         if(filterParams.getAge() > 0)
+            System.out.println(filterParams.getAge());
             query = query.where(property.age.eq(filterParams.getAge()));
+
+        System.out.println(query);
 
         if(!filterParams.getHorseFacilities().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getHorseFacilities()));
@@ -119,6 +130,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(filterParams.getBathroomsQty() >= 0)
             query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
+
+        if(!filterParams.getLeaseOption().equals(DEFAULT_STRING_VALUE))
+            query = query.where(financialData.leaseOption.eq(filterParams.getLeaseOption()));
+
+        if(!filterParams.getLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(financialData.leaseIndicator.eq(filterParams.getLeaseIndicator()));
+
+        if(!filterParams.getAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(animalPolicy.animalsPermitted.eq(filterParams.getAnimalPermitted()));
 
         return query.fetch();
     }

@@ -1,9 +1,7 @@
 package com.example.rets_api.repository;
 
+import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
-import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.entity.RoomEntity;
-import com.example.rets_api.entity.SchoolEntity;
 
 public class UtilsTest {
 
@@ -36,8 +34,33 @@ public class UtilsTest {
         room.setRoomType(roomType);
         room.setLength(5);
         room.setWidth(9);
+        room.setIndicator(Indicator.YES);
         return room;
     }
+
+    public static AnimalPolicyEntity createAnimalPolicy(String permittedType){
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes(permittedType);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        animalPolicy.setWeightLimit(10L);
+        return animalPolicy;
+    }
+
+    public static FinancialDataEntity createFinancialDataEntity(String leaseOption) {
+        FinancialDataEntity financialData = new FinancialDataEntity();
+        financialData.setLeaseOption(leaseOption);
+        financialData.setLeaseIndicator(Indicator.YES);
+        financialData.setRentalAmount(200L);
+        financialData.setRentalAmountCurrencyCode("CAN");
+        financialData.setRentalAmountPeriod(RentalPeriod.MONTH);
+        financialData.setRentalAmountType(NumberType.FLOAT);
+        financialData.setRentalAmountUnit(AreaUnit.SQ_FEET);
+        financialData.setTradeIndicator(Indicator.YES);
+        financialData.setTradeOption("tradeOption");
+        return financialData;
+    }
+
 
     public static SchoolEntity createSchool(String primary, String jrHigh){
         SchoolEntity school = new SchoolEntity();
