@@ -1,9 +1,17 @@
 package com.example.rets_api.repository;
 
+
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 
+import com.example.rets_api.dto.*;
+
+
+import static java.util.Arrays.asList;
+
 public class UtilsTest {
+
+    //Entity
 
     public static PropertyEntity createPropertyEntityWithBasicFields(){
         PropertyEntity propertyEntity = new PropertyEntity();
@@ -25,14 +33,19 @@ public class UtilsTest {
         propertyEntity.setPropertyTypeFarm(false);
         propertyEntity.setPropertyTypeCondo(false);
         propertyEntity.setPropertyTypeTownHouse(true);
+        propertyEntity.setFinancialData(createFinancialDataEntity());
+        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
+        propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         return propertyEntity;
     }
 
-    public static RoomEntity createRoom(RoomType roomType){
+    public static RoomEntity createRoomEntity(RoomType roomType){
         RoomEntity room = new RoomEntity();
-        room.setArea(45);
         room.setRoomType(roomType);
+        room.setIndicator(Indicator.YES);
+        room.setDimensions("dimensions");
         room.setLength(5);
+        room.setLengthUnit(LengthWidthUnit.METERS);
         room.setWidth(9);
         room.setIndicator(Indicator.YES);
         return room;
@@ -47,26 +60,91 @@ public class UtilsTest {
         return animalPolicy;
     }
 
-    public static FinancialDataEntity createFinancialDataEntity(String leaseOption) {
-        FinancialDataEntity financialData = new FinancialDataEntity();
-        financialData.setLeaseOption(leaseOption);
-        financialData.setLeaseIndicator(Indicator.YES);
-        financialData.setRentalAmount(200L);
-        financialData.setRentalAmountCurrencyCode("CAN");
-        financialData.setRentalAmountPeriod(RentalPeriod.MONTH);
-        financialData.setRentalAmountType(NumberType.FLOAT);
-        financialData.setRentalAmountUnit(AreaUnit.SQ_FEET);
-        financialData.setTradeIndicator(Indicator.YES);
-        financialData.setTradeOption("tradeOption");
-        return financialData;
-    }
-
-
-    public static SchoolEntity createSchool(String primary, String jrHigh){
+    public static SchoolEntity createSchoolEntity(String primary, String jrHigh){
         SchoolEntity school = new SchoolEntity();
         school.setPrimarySchool(primary);
         school.setJrHigh(jrHigh);
         return school;
+    }
+
+    public static FinancialDataEntity createFinancialDataEntity(){
+        FinancialDataEntity financialDataEntity = new FinancialDataEntity();
+        financialDataEntity.setLeaseOption("leaseOption");
+        financialDataEntity.setLeaseIndicator(Indicator.NO);
+        financialDataEntity.setTradeOption("tradeOption");
+        financialDataEntity.setRentalAmount(Long.valueOf(1000));
+        financialDataEntity.setRentalAmountType(NumberType.INTEGER);
+        financialDataEntity.setRentalAmountCurrencyCode("rentalAmountCurrencyCode");
+        financialDataEntity.setRentalAmountPeriod(RentalPeriod.YEAR);
+        financialDataEntity.setRentalAmountUnit(AreaUnit.SQ_METERS);
+        return financialDataEntity;
+    }
+
+    //DTO
+
+    public static PropertyDTO createPropertyDTOWithBasicFields(){
+        return PropertyDTO.builder()
+            .age(5)
+            .horseFacilities("horseFacilities")
+            .horseFacilitiesIndicator(Indicator.NO)
+            .hotTub("HotTub")
+            .hotTubIndicator(Indicator.YES)
+            .tennisCourt("Tennis")
+            .tennisCourtIndicator(Indicator.UNKNOWN)
+            .inclusions("Inclusions")
+            .energyInformation("Energy")
+            .constructionMaterial("Material")
+            .disabilityFeatures("Disability")
+            .disabilityFeaturesIndicator(Indicator.YES)
+            .securityFeatures("Security")
+            .securityFeaturesIndicator(Indicator.YES)
+            .propertyTypeRental(true)
+            .propertyTypeFarm(false)
+            .propertyTypeCondo(false)
+            .propertyTypeTownHouse(true)
+            .financialData(createFinancialDataDTO())
+            .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
+            .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
+            .animalPolicy(createAnimalPolicyDTO())
+            .build();
+    }
+
+    public static RoomDTO createRoomDTO(RoomType roomType){
+        return RoomDTO.builder()
+            .area(45)
+            .type(roomType)
+            .length(5)
+            .width(9)
+            .build();
+    }
+
+    public static SchoolDTO createSchoolDTO(String primary, String jrHigh){
+        return SchoolDTO.builder()
+            .primary(primary)
+            .jrHigh(jrHigh)
+            .build();
+    }
+
+    public static FinancialDataDTO createFinancialDataDTO(){
+        return FinancialDataDTO.builder()
+                .leaseOption("leaseOption")
+                .leaseIndicator(Indicator.NO)
+                .tradeOption("tradeOption")
+                .rentalAmount(Long.valueOf(1000))
+                .rentalAmountType(NumberType.INTEGER)
+                .rentalAmountCurrencyCode("rentalAmountCurrencyCode")
+                .rentalAmountPeriod(RentalPeriod.YEAR)
+                .rentalAmountUnit(AreaUnit.SQ_METERS)
+                .build();
+    }
+
+    public static AnimalPolicyDTO createAnimalPolicyDTO(){
+        return AnimalPolicyDTO.builder()
+                .permittedTypes("permittted")
+                .animalsPermitted(Indicator.YES)
+                .weightUnit(WeightUnit.KILO)
+                .weightLimit(10L)
+                .build();
     }
 
 }

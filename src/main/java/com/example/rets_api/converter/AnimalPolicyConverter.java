@@ -1,9 +1,7 @@
 package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.AnimalPolicyDTO;
-import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.entity.AnimalPolicyEntity;
-import com.example.rets_api.entity.FinancialDataEntity;
 import org.springframework.core.convert.converter.Converter;
 
 import static java.util.Objects.isNull;

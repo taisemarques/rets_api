@@ -21,6 +21,10 @@ public class FinancialDataConverter {
         financialDataEntity.setRentalAmountPeriod(in.getRentalAmountPeriod());
         financialDataEntity.setRentalAmountUnit(in.getRentalAmountUnit());
         return financialDataEntity;
+
+
+
+
     };
 
     public static Converter<FinancialDataEntity, FinancialDataDTO> financialDataEntityToFinancialDataDTO = in -> {
