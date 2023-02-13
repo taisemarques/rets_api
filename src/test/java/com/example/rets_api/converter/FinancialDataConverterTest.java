@@ -79,7 +79,7 @@ public class FinancialDataConverterTest {
         assertNull(financialData.getRentalAmountUnit());
     }
 
-    private void checkAllFields_FinancialData(FinancialDataEntity financialDataEntity, FinancialDataDTO financialDataDTO) {
+    public static void checkAllFields_FinancialData(FinancialDataEntity financialDataEntity, FinancialDataDTO financialDataDTO) {
         assertEquals(financialDataEntity.getLeaseOption(), financialDataDTO.getLeaseOption());
         assertEquals(financialDataEntity.getLeaseIndicator(), financialDataDTO.getLeaseIndicator());
         assertEquals(financialDataEntity.getTradeOption(), financialDataDTO.getTradeOption());

@@ -5,6 +5,9 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
+import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
+import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
+import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -30,6 +33,9 @@ public class PropertyConverterTest {
         PropertyDTO propertyDTO = UtilsTest.createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntity = PropertyConverter.propertyDTOToPropertyEntity.convert(propertyDTO);
         checkAllFields_Property(propertyEntity, propertyDTO);
+        checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
+        checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
+        checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
     }
 
     //Entity To DTO
@@ -52,10 +58,13 @@ public class PropertyConverterTest {
         PropertyEntity propertyEntity = UtilsTest.createPropertyEntityWithBasicFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
+        checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
+        checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
+        checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
-        assertNull(propertyEntity.getAge());
+        assertEquals(propertyEntity.getAge(), 0);
         assertNull(propertyEntity.getHorseFacilities());
         assertNull(propertyEntity.getHorseFacilitiesIndicator());
         assertNull(propertyEntity.getHotTub());
@@ -76,7 +85,7 @@ public class PropertyConverterTest {
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
-        assertNull(propertyDTO.getAge());
+        assertEquals(propertyDTO.getAge(),0);
         assertNull(propertyDTO.getHorseFacilities());
         assertNull(propertyDTO.getHorseFacilitiesIndicator());
         assertNull(propertyDTO.getHotTub());

@@ -4,6 +4,8 @@ import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 
+import static java.util.Arrays.asList;
+
 public class UtilsTest {
 
     //Entity
@@ -28,6 +30,9 @@ public class UtilsTest {
         propertyEntity.setPropertyTypeFarm(false);
         propertyEntity.setPropertyTypeCondo(false);
         propertyEntity.setPropertyTypeTownHouse(true);
+        propertyEntity.setFinancialData(createFinancialDataEntity());
+        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
+        propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         return propertyEntity;
     }
 
@@ -89,6 +94,9 @@ public class UtilsTest {
             .propertyTypeFarm(false)
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
+            .financialData(createFinancialDataDTO())
+            .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
+            .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .build();
     }
 

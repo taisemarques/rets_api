@@ -56,7 +56,7 @@ public class RoomConverterTest {
         checkAllFields_Room(roomEntity, roomDTO);
     }
 
-    public static void checkNullAllFields_RoomEntity(RoomEntity roomEntity){
+    private static void checkNullAllFields_RoomEntity(RoomEntity roomEntity){
         assertNull(roomEntity.getRoomType());
         assertNull(roomEntity.getIndicator());
         assertNull(roomEntity.getDimensions());
@@ -70,7 +70,7 @@ public class RoomConverterTest {
         assertNull(roomEntity.getBathSize());
     }
 
-    public static void checkNullAllFields_RoomDTO(RoomDTO roomDTO){
+    private static void checkNullAllFields_RoomDTO(RoomDTO roomDTO){
         assertNull(roomDTO.getType());
         assertNull(roomDTO.getIndicator());
         assertNull(roomDTO.getDimensions());
@@ -84,7 +84,7 @@ public class RoomConverterTest {
         assertNull(roomDTO.getBathSize());
     }
 
-    private static void checkAllFields_Room(RoomEntity roomEntity, RoomDTO roomDTO) {
+    public static void checkAllFields_Room(RoomEntity roomEntity, RoomDTO roomDTO) {
         assertEquals(roomEntity.getRoomType(), roomDTO.getType());
         assertEquals(roomEntity.getIndicator(), roomDTO.getIndicator());
         assertEquals(roomEntity.getDimensions(), roomDTO.getDimensions());

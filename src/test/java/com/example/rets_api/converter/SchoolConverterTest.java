@@ -64,7 +64,7 @@ public class SchoolConverterTest {
         assertNull(schoolDTO.getJrHigh());
     }
 
-    private void checkAllFields_School(SchoolEntity schoolEntity, SchoolDTO schoolDTO) {
+    public static void checkAllFields_School(SchoolEntity schoolEntity, SchoolDTO schoolDTO) {
         assertEquals(schoolEntity.getPrimarySchool(), schoolDTO.getPrimary());
         assertEquals(schoolEntity.getJrHigh(), schoolDTO.getJrHigh());
     }
