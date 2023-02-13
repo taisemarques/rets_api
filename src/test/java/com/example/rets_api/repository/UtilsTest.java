@@ -36,6 +36,7 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setAnimalPolicyEntity(createAnimalPolicy("permitted"));
         return propertyEntity;
     }
 
@@ -47,6 +48,10 @@ public class UtilsTest {
         room.setLength(5);
         room.setLengthUnit(LengthWidthUnit.METERS);
         room.setWidth(9);
+        room.setArea(45);
+        room.setAreaUnit(AreaUnit.SQ_METERS);
+        room.setAreaType(AreaType.FLOAT);
+        room.setBathSize(BathSize.THREE_QUARTER);
         room.setIndicator(Indicator.YES);
         return room;
     }

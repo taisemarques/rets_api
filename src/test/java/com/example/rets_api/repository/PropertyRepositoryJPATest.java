@@ -72,8 +72,21 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
 
         assertNotNull(propertySaved.getFinancialData());
-        assertNotNull(propertySaved.getAnimalPolicyEntity());
+        assertEquals(propertySaved.getFinancialData().getLeaseIndicator(), propertyToSave.getFinancialData().getLeaseIndicator());
+        assertEquals(propertySaved.getFinancialData().getLeaseOption(), propertyToSave.getFinancialData().getLeaseOption());
+        assertEquals(propertySaved.getFinancialData().getRentalAmount(), propertyToSave.getFinancialData().getRentalAmount());
+        assertEquals(propertySaved.getFinancialData().getRentalAmountCurrencyCode(), propertyToSave.getFinancialData().getRentalAmountCurrencyCode());
+        assertEquals(propertySaved.getFinancialData().getRentalAmountType(), propertyToSave.getFinancialData().getRentalAmountType());
+        assertEquals(propertySaved.getFinancialData().getTradeIndicator(), propertyToSave.getFinancialData().getTradeIndicator());
+        assertEquals(propertySaved.getFinancialData().getTradeOption(), propertyToSave.getFinancialData().getTradeOption());
+        assertEquals(propertySaved.getFinancialData().getRentalAmountPeriod(), propertyToSave.getFinancialData().getRentalAmountPeriod());
+        assertEquals(propertySaved.getFinancialData().getRentalAmountUnit(), propertyToSave.getFinancialData().getRentalAmountUnit());
 
+        assertNotNull(propertySaved.getAnimalPolicyEntity());
+        assertEquals(propertySaved.getAnimalPolicyEntity().getAnimalsPermitted(), propertyToSave.getAnimalPolicyEntity().getAnimalsPermitted());
+        assertEquals(propertySaved.getAnimalPolicyEntity().getPermittedTypes(), propertyToSave.getAnimalPolicyEntity().getPermittedTypes());
+        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightLimit(), propertyToSave.getAnimalPolicyEntity().getWeightLimit());
+        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightUnit(), propertyToSave.getAnimalPolicyEntity().getWeightUnit());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

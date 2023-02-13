@@ -56,14 +56,14 @@ public class PropertyConverterTest {
     }
 
     @Test
-    public void entityToDTO_RoomConverter_ShouldReturnCompleteObject(){
+    public void entityToDTO_PropertyConverter_ShouldReturnCompleteObject(){
         PropertyEntity propertyEntity = UtilsTest.createPropertyEntityWithBasicFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-//        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicyEntity(), propertyDTO.getAnimalPolicy());
+        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicyEntity(), propertyDTO.getAnimalPolicy());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
