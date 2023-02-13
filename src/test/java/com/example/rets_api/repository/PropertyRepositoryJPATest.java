@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
+import static com.example.rets_api.repository.UtilsTest.createViewDataEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static com.example.rets_api.resource.Enums.RoomType;
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +50,7 @@ public class PropertyRepositoryJPATest {
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setViewData(createViewDataEntity());
         propertyToSave.setBedroomsQty(1);
 
         //Saving
@@ -66,6 +68,8 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
         assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+
+        assertNotNull(propertySaved.getViewData());
 
     }
 

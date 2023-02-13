@@ -129,4 +129,39 @@ public class UtilsTest {
                 .build();
     }
 
+    public static ViewDataEntity createViewDataEntity(){
+        ViewDataEntity viewData = new ViewDataEntity();
+        viewData.setCityLight("Light");
+        viewData.setCityLightIndicator(Indicator.YES);
+        viewData.setMountain("Mountain");
+        viewData.setMountainIndicator(Indicator.YES);
+        viewData.setRiver("River");
+        viewData.setRiverIndicator(Indicator.YES);
+        viewData.setLake("Lake");
+        viewData.setLakeIndicator(Indicator.YES);
+        viewData.setGolfCourse("Golf");
+        viewData.setGolfCourseIndicator(Indicator.YES);
+        viewData.setWater("Water");
+        viewData.setWaterIndicator(Indicator.YES);
+        return viewData;
+    }
+
+    public static ViewDataDTO createViewDataDTO(){
+        return ViewDataDTO.builder()
+                .cityLight("light")
+                .cityLightIndicator(Indicator.NO)
+                .mountain("mountain")
+                .mountainIndicator(Indicator.NO)
+                .river("river")
+                .riverIndicator(Indicator.NO)
+                .lake("lake")
+                .lakeIndicator(Indicator.NO)
+                .golfCourse("golfCourse")
+                .golfCourseIndicator(Indicator.NO)
+                .water("water")
+                .waterIndicator(Indicator.NO)
+                .build();
+    }
+
+
 }
