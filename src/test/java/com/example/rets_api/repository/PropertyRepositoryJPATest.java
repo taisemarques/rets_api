@@ -1,7 +1,5 @@
 package com.example.rets_api.repository;
 
-import antlr.Utils;
-import com.example.rets_api.entity.LotDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.rets_api.repository.UtilsTest.createRoom;
+import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static com.example.rets_api.resource.Enums.RoomType;
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,9 +47,11 @@ public class PropertyRepositoryJPATest {
     public void should_store_a_PropertyAndSchoolAndRoom() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
-        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchool("primarySchool", "jrHighSchool")));
-        propertyToSave.setRoomList(Arrays.asList(createRoom(RoomType.LIVING_ROOM), createRoom(RoomType.MAIN_FLOOR_BEDROOM)));
-        propertyToSave.setLotData(UtilsTest.createLotData());
+
+        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
+        propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setLotData(UtilsTest.createLotDataEntity());
+
         propertyToSave.setBedroomsQty(1);
 
         //Saving
