@@ -1,5 +1,6 @@
 package com.example.rets_api.repository;
 
+import com.example.rets_api.entity.LotDataEntity;
 import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.entity.RoomEntity;
@@ -44,6 +45,18 @@ public class UtilsTest {
         school.setPrimarySchool(primary);
         school.setJrHigh(jrHigh);
         return school;
+    }
+
+    public static LotDataEntity createLotData(){
+        LotDataEntity lotData = new LotDataEntity();
+        lotData.setCornerLot("corner lot test");
+        lotData.setCornerLotIndicator(Indicator.UNKNOWN);
+        lotData.setGolfCourseLot("golf course lot test");
+        lotData.setGolfCourseLotIndicator(Indicator.NO);
+        lotData.setCuldeSac("cul de sac test");
+        lotData.setCuldeSacIndicator(Indicator.YES);
+
+        return lotData;
     }
 
 }

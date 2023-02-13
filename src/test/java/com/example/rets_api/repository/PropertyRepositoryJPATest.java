@@ -1,5 +1,7 @@
 package com.example.rets_api.repository;
 
+import antlr.Utils;
+import com.example.rets_api.entity.LotDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,6 +51,7 @@ public class PropertyRepositoryJPATest {
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchool("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoom(RoomType.LIVING_ROOM), createRoom(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setLotData(UtilsTest.createLotData());
         propertyToSave.setBedroomsQty(1);
 
         //Saving
@@ -66,6 +69,9 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
         assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+
+        assertNotNull(propertySaved.getLotData());
+        assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
 
     }
 
