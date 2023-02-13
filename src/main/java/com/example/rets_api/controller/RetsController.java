@@ -6,7 +6,6 @@ import com.example.rets_api.service.PropertyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -26,7 +25,7 @@ public class RetsController {
         return ResponseEntity.ok(propertyService.createProperty(property));
     }
 
-    @GetMapping(value = "/byFilter")
+    @GetMapping
     public ResponseEntity<List<PropertyDTO>> getPropertiesByParams(@RequestBody PropertyFilter propertyFilter) {
         return ResponseEntity.ok(propertyService.getPropertiesByParams(propertyFilter));
     }
@@ -42,11 +41,6 @@ public class RetsController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(propertyDTO);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<PropertyDTO>> getAllProperties(){
-        return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
 }
