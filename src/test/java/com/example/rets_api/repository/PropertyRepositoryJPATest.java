@@ -50,6 +50,10 @@ public class PropertyRepositoryJPATest {
 
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setAnimalPolicy(UtilsTest.createAnimalPolicy("permittedType"));
+        propertyToSave.setFinancialData(UtilsTest.createFinancialDataEntity());
+        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
+        propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
         propertyToSave.setLotData(UtilsTest.createLotDataEntity());
 
         propertyToSave.setBedroomsQty(1);
@@ -69,6 +73,12 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
         assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+
+        assertNotNull(propertySaved.getFinancialData());
+        assertEquals(propertySaved.getFinancialData(), propertyToSave.getFinancialData());
+
+        assertNotNull(propertySaved.getAnimalPolicy());
+        assertEquals(propertySaved.getAnimalPolicy(), propertyToSave.getAnimalPolicy());
 
         assertNotNull(propertySaved.getLotData());
         assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());

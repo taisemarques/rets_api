@@ -52,6 +52,7 @@ public class PropertyDTO {
 
     private List<RoomDTO> roomList;
 
-    private LotDataDTO lotData;
+    private AnimalPolicyDTO animalPolicy;
 
+    private LotDataDTO lotData;
 }
