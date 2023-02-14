@@ -5,11 +5,7 @@ import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 
-import com.example.rets_api.dto.*;
-
-
 import java.util.Arrays;
-import java.util.Collections;
 
 import static java.util.Arrays.asList;
 
