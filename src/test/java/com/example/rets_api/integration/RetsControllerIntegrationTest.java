@@ -89,7 +89,7 @@ public class RetsControllerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         JSONObject parameters = new JSONObject();
         parameters.put("age", 5);
-        RequestEntity requestEntity = new RequestEntity(parameters.toString(), headers, HttpMethod.GET, URI.create(URL));
+        RequestEntity requestEntity = new RequestEntity(parameters.toString(), headers, HttpMethod.GET, URI.create(URL+"/byFilter"));
 
         //Request
         ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
