@@ -102,18 +102,19 @@ public class UtilsTest {
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
             .financialData(createFinancialDataDTO())
-            .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
+            .roomList(asList(createRoomDTO(RoomType.MASTER_BEDROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .build();
     }
 
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
-            .area(45)
-            .type(roomType)
-            .length(5)
-            .width(9)
-            .build();
+                .indicator(Indicator.YES)
+                .area(45)
+                .type(roomType)
+                .length(5)
+                .width(9)
+                .build();
     }
 
     public static SchoolDTO createSchoolDTO(String primary, String jrHigh){
