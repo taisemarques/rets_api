@@ -173,14 +173,4 @@ public class UtilsTest {
         return propertyFilter;
     }
 
-    //Filter
-
-    public static PropertyFilter createDefaultPropertyFilter(){
-        PropertyFilter propertyFilter = new PropertyFilter();
-        propertyFilter.setAge(10);
-        propertyFilter.setBathroomsQty(2);
-        propertyFilter.setBedroomsQty(3);
-        return propertyFilter;
-    }
-
 }
