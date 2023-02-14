@@ -11,5 +11,4 @@ public class CommunityDTO {
     private String name;
     private Indicator indicator;
     private CommunityType type;
-
 }

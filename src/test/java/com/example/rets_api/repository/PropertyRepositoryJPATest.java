@@ -56,7 +56,7 @@ public class PropertyRepositoryJPATest {
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
         propertyToSave.setLotData(UtilsTest.createLotDataEntity());
-        propertyToSave.setCommunities(Arrays.asList(UtilsTest.createCommunityEntity(CommunityType.COMMUNITY_PARK)));
+        propertyToSave.setCommunity(UtilsTest.createCommunityEntity(CommunityType.SENIOR_COMMUNITY));
 
         propertyToSave.setBedroomsQty(1);
 
@@ -85,10 +85,8 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getLotData());
         assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
 
-        assertNotNull(propertySaved.getCommunities());
-        assertEquals(propertySaved.getCommunities().size(), propertyToSave.getCommunities().size());
-        assertEquals(propertySaved.getCommunities().get(0).getType(), propertyToSave.getCommunities().get(0).getType());
-
+        assertNotNull(propertySaved.getCommunity());
+        assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

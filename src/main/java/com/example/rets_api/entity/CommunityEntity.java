@@ -4,6 +4,7 @@ import com.example.rets_api.resource.Enums.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "community")
 @Setter
@@ -24,7 +25,6 @@ public class CommunityEntity {
 
     private Indicator indicator;
 
-    @ManyToOne
-    @JoinColumn(name = "property_id")
-    private PropertyEntity property;
+    @OneToMany(mappedBy= "community")
+    private List<PropertyEntity> properties;
 }

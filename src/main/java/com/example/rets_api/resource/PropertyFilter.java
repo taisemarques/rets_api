@@ -1,6 +1,5 @@
 package com.example.rets_api.resource;
 
-import com.example.rets_api.dto.CommunityDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -68,7 +67,7 @@ public class PropertyFilter {
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
 
-    private List<CommunityDTO> communityList = Collections.emptyList();
+    private CommunityType communityType = CommunityType.DEFAULT_ENUM_VALUE;
 
     private String leaseOption = DEFAULT_STRING_VALUE;
 

@@ -90,6 +90,7 @@ public class Enums {
         POOL,
         BOAT_FACILITIES,
         HORSE_FACILITIES,
-        COMMUNITY_PARK
+        COMMUNITY_PARK,
+        DEFAULT_ENUM_VALUE
     }
 }

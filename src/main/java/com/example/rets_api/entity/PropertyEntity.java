@@ -71,8 +71,9 @@ public class PropertyEntity {
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
-    @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
-    private List<CommunityEntity> communities;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "community_id")
+    private CommunityEntity community;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "animal_policy_id")
@@ -109,7 +110,7 @@ public class PropertyEntity {
         if(!isNull(schoolList)) schoolList.forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
-        if(!isNull(communities)) communities.forEach(communityEntity -> communityEntity.setProperty(this));
+        if(!isNull(community)) community.setProperties(Arrays.asList(this));
         if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
     }

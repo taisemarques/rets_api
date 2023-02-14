@@ -54,7 +54,7 @@ public class PropertyDTO {
 
     private AnimalPolicyDTO animalPolicy;
 
-    private List<CommunityDTO> communityDTOList;
+    private CommunityDTO community;
 
     private LotDataDTO lotData;
 
