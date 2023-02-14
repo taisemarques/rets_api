@@ -37,7 +37,6 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-        checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
     }
 
     //Entity To DTO
@@ -63,7 +62,6 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-        checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
@@ -85,6 +83,7 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeRental());
         assertNull(propertyEntity.getPropertyTypeCondo());
         assertNull(propertyEntity.getPropertyTypeTownHouse());
+        assertNull(propertyEntity.getLotData());
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -106,6 +105,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeRental());
         assertNull(propertyDTO.getPropertyTypeCondo());
         assertNull(propertyDTO.getPropertyTypeTownHouse());
+        assertNull(propertyDTO.getLotData());
     }
 
     private void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
@@ -127,6 +127,7 @@ public class PropertyConverterTest {
         assertEquals(propertyEntity.getPropertyTypeRental(), propertyDTO.getPropertyTypeRental());
         assertEquals(propertyEntity.getPropertyTypeCondo(), propertyDTO.getPropertyTypeCondo());
         assertEquals(propertyEntity.getPropertyTypeTownHouse(), propertyDTO.getPropertyTypeTownHouse());
+        assertEquals(propertyEntity.getLotData(), propertyDTO.getLotData());
     }
 
 
