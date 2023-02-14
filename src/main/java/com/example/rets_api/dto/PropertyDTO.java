@@ -52,4 +52,6 @@ public class PropertyDTO {
 
     private List<RoomDTO> roomList;
 
+    private LotDataDTO lotData;
+
 }

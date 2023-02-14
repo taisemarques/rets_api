@@ -1,5 +1,6 @@
 package com.example.rets_api.repository;
 
+
 import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -59,6 +60,30 @@ public class UtilsTest {
         return school;
     }
 
+    public static LotDataEntity createLotDataEntity() {
+        LotDataEntity lotData = new LotDataEntity();
+        lotData.setCornerLot("corner lot test");
+        lotData.setCornerLotIndicator(Indicator.UNKNOWN);
+        lotData.setGolfCourseLot("golf course lot test");
+        lotData.setGolfCourseLotIndicator(Indicator.NO);
+        lotData.setCuldeSac("cul de sac test");
+        lotData.setCuldeSacIndicator(Indicator.YES);
+
+        return lotData;
+    }
+
+    public static LotDataDTO createLotDataDTO(){
+        return LotDataDTO.builder()
+        .cornerLot("corner lot test")
+        .cornerLotIndicator(Indicator.UNKNOWN)
+        .golfCourseLot("golf course lot test")
+        .golfCourseLotIndicator(Indicator.NO)
+        .culdeSac("cul de sac test")
+        .culdeSacIndicator(Indicator.YES)
+        .build();
+
+
+    }
     public static FinancialDataEntity createFinancialDataEntity(){
         FinancialDataEntity financialDataEntity = new FinancialDataEntity();
         financialDataEntity.setLeaseOption("leaseOption");
@@ -127,6 +152,7 @@ public class UtilsTest {
                 .rentalAmountPeriod(RentalPeriod.YEAR)
                 .rentalAmountUnit(AreaUnit.SQ_METERS)
                 .build();
+
     }
 
 }

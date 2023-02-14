@@ -47,8 +47,11 @@ public class PropertyRepositoryJPATest {
     public void should_store_a_PropertyAndSchoolAndRoom() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
+
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setLotData(UtilsTest.createLotDataEntity());
+
         propertyToSave.setBedroomsQty(1);
 
         //Saving
@@ -66,6 +69,9 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
         assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+
+        assertNotNull(propertySaved.getLotData());
+        assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
 
     }
 
