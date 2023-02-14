@@ -39,6 +39,7 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         return propertyEntity;
     }
 
@@ -97,9 +98,17 @@ public class UtilsTest {
         .culdeSac("cul de sac test")
         .culdeSacIndicator(Indicator.YES)
         .build();
-
-
     }
+
+    public static AnimalPolicyEntity createAnimalPolicyEntity() {
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes("permitted");
+        animalPolicy.setWeightLimit(10L);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        return animalPolicy;
+    }
+
     public static FinancialDataEntity createFinancialDataEntity(){
         FinancialDataEntity financialDataEntity = new FinancialDataEntity();
         financialDataEntity.setLeaseOption("leaseOption");

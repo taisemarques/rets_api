@@ -50,8 +50,7 @@ public class PropertyRepositoryJPATest {
 
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
-
-//        propertyToSave.setAnimalPolicyEntity(UtilsTest.createAnimalPolicy("permittedType"));
+        propertyToSave.setAnimalPolicy(UtilsTest.createAnimalPolicy("permittedType"));
         propertyToSave.setFinancialData(UtilsTest.createFinancialDataEntity());
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
@@ -86,11 +85,11 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getFinancialData().getRentalAmountPeriod(), propertyToSave.getFinancialData().getRentalAmountPeriod());
         assertEquals(propertySaved.getFinancialData().getRentalAmountUnit(), propertyToSave.getFinancialData().getRentalAmountUnit());
 
-//        assertNotNull(propertySaved.getAnimalPolicyEntity());
-//        assertEquals(propertySaved.getAnimalPolicyEntity().getAnimalsPermitted(), propertyToSave.getAnimalPolicyEntity().getAnimalsPermitted());
-//        assertEquals(propertySaved.getAnimalPolicyEntity().getPermittedTypes(), propertyToSave.getAnimalPolicyEntity().getPermittedTypes());
-//        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightLimit(), propertyToSave.getAnimalPolicyEntity().getWeightLimit());
-//        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightUnit(), propertyToSave.getAnimalPolicyEntity().getWeightUnit());
+        assertNotNull(propertySaved.getAnimalPolicy());
+        assertEquals(propertySaved.getAnimalPolicy().getAnimalsPermitted(), propertyToSave.getAnimalPolicy().getAnimalsPermitted());
+        assertEquals(propertySaved.getAnimalPolicy().getPermittedTypes(), propertyToSave.getAnimalPolicy().getPermittedTypes());
+        assertEquals(propertySaved.getAnimalPolicy().getWeightLimit(), propertyToSave.getAnimalPolicy().getWeightLimit());
+        assertEquals(propertySaved.getAnimalPolicy().getWeightUnit(), propertyToSave.getAnimalPolicy().getWeightUnit());
 
         assertNotNull(propertySaved.getLotData());
         assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
