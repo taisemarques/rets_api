@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "lot_data")
 @Setter
@@ -31,6 +32,12 @@ public class LotDataEntity {
     @OneToMany(mappedBy = "lotData")
     private List<PropertyEntity> propertyList;
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LotDataEntity)) return false;
+        LotDataEntity that = (LotDataEntity) o;
+        return Objects.equals(getCornerLot(), that.getCornerLot()) && getCornerLotIndicator() == that.getCornerLotIndicator() && Objects.equals(getCuldeSac(), that.getCuldeSac()) && getCuldeSacIndicator() == that.getCuldeSacIndicator() && Objects.equals(getGolfCourseLot(), that.getGolfCourseLot()) && getGolfCourseLotIndicator() == that.getGolfCourseLotIndicator();
+    }
 
 }

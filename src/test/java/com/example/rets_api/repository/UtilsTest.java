@@ -32,9 +32,11 @@ public class UtilsTest {
         propertyEntity.setPropertyTypeCondo(false);
         propertyEntity.setPropertyTypeTownHouse(true);
         propertyEntity.setFinancialData(createFinancialDataEntity());
-        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
+        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity((RoomType.MAIN_FLOOR_BEDROOM))));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         propertyEntity.setViewData(createViewDataEntity());
+        propertyEntity.setLotData(UtilsTest.createLotDataEntity());
+        propertyEntity.setBedroomsQty(1);
         return propertyEntity;
     }
 

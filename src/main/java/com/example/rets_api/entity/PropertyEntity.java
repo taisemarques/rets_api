@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.rets_api.resource.Enums.*;
 import static java.util.Objects.isNull;
@@ -108,4 +109,11 @@ public class PropertyEntity {
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PropertyEntity)) return false;
+        PropertyEntity that = (PropertyEntity) o;
+        return getAge() == that.getAge() && getBedroomsQty() == that.getBedroomsQty() && getBathroomsQty() == that.getBathroomsQty() && Objects.equals(getHorseFacilities(), that.getHorseFacilities()) && getHorseFacilitiesIndicator() == that.getHorseFacilitiesIndicator() && Objects.equals(getHotTub(), that.getHotTub()) && getHotTubIndicator() == that.getHotTubIndicator() && Objects.equals(getTennisCourt(), that.getTennisCourt()) && getTennisCourtIndicator() == that.getTennisCourtIndicator() && Objects.equals(getInclusions(), that.getInclusions()) && Objects.equals(getEnergyInformation(), that.getEnergyInformation()) && Objects.equals(getConstructionMaterial(), that.getConstructionMaterial()) && Objects.equals(getDisabilityFeatures(), that.getDisabilityFeatures()) && getDisabilityFeaturesIndicator() == that.getDisabilityFeaturesIndicator() && Objects.equals(getSecurityFeatures(), that.getSecurityFeatures()) && getSecurityFeaturesIndicator() == that.getSecurityFeaturesIndicator() && Objects.equals(getPropertyTypeRental(), that.getPropertyTypeRental()) && Objects.equals(getPropertyTypeFarm(), that.getPropertyTypeFarm()) && Objects.equals(getPropertyTypeCondo(), that.getPropertyTypeCondo()) && Objects.equals(getPropertyTypeTownHouse(), that.getPropertyTypeTownHouse()) && Objects.equals(getFinancialData(), that.getFinancialData()) && Objects.equals(getSchoolList(), that.getSchoolList()) && Objects.equals(getRoomList(), that.getRoomList()) && Objects.equals(getViewData(), that.getViewData()) && Objects.equals(getLotData(), that.getLotData());
+    }
 }

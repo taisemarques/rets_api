@@ -7,13 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
-import static com.example.rets_api.repository.UtilsTest.createViewDataEntity;
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.example.rets_api.resource.Enums.RoomType;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -45,15 +41,10 @@ public class PropertyRepositoryJPATest {
     }
 
     @Test
-    public void should_store_a_PropertyAndSchoolAndRoom() {
+    public void should_store_a_PropertyAndSchoolAndRoomAndViewData() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
-        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
-        propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
-        propertyToSave.setViewData(createViewDataEntity());
-        propertyToSave.setLotData(UtilsTest.createLotDataEntity());
-
-        propertyToSave.setBedroomsQty(1);
+        PropertyEntity propertyEntityToCompare = UtilsTest.createPropertyEntityWithBasicFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
@@ -62,31 +53,19 @@ public class PropertyRepositoryJPATest {
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getSchoolList());
-        assertEquals(propertySaved.getSchoolList().size(), propertyToSave.getSchoolList().size());
-        assertEquals(propertySaved.getSchoolList().get(0).getPrimarySchool(), propertyToSave.getSchoolList().get(0).getPrimarySchool());
-        assertEquals(propertySaved.getSchoolList().get(0).getJrHigh(), propertyToSave.getSchoolList().get(0).getJrHigh());
+        assertEquals(propertySaved.getSchoolList().size(), propertyEntityToCompare.getSchoolList().size());
+        assertEquals(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0));
 
         assertNotNull(propertySaved.getRoomList());
-        assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
-        assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
-        assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+        assertEquals(propertySaved.getRoomList().size(), propertyEntityToCompare.getRoomList().size());
+        assertEquals(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0));
+        assertEquals(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1));
 
         assertNotNull(propertySaved.getLotData());
-        assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
+        assertEquals(propertySaved.getLotData(), propertyEntityToCompare.getLotData());
 
         assertNotNull(propertySaved.getViewData());
-        assertNotNull(propertySaved.getViewData().getCityLight());
-        assertNotNull(propertySaved.getViewData().getCityLightIndicator());
-        assertNotNull(propertySaved.getViewData().getMountain());
-        assertNotNull(propertySaved.getViewData().getMountainIndicator());
-        assertNotNull(propertySaved.getViewData().getRiver());
-        assertNotNull(propertySaved.getViewData().getRiverIndicator());
-        assertNotNull(propertySaved.getViewData().getLake());
-        assertNotNull(propertySaved.getViewData().getLakeIndicator());
-        assertNotNull(propertySaved.getViewData().getGolfCourse());
-        assertNotNull(propertySaved.getViewData().getGolfCourseIndicator());
-        assertNotNull(propertySaved.getViewData().getWater());
-        assertNotNull(propertySaved.getViewData().getWaterIndicator());
+        assertEquals(propertySaved.getViewData(), propertyEntityToCompare.getViewData());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

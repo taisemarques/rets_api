@@ -5,6 +5,7 @@ import lombok.*;
 import static com.example.rets_api.resource.Enums.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "room")
 @Setter
@@ -61,4 +62,11 @@ public class RoomEntity {
                 && indicator.equals(Indicator.YES));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RoomEntity)) return false;
+        RoomEntity that = (RoomEntity) o;
+        return Float.compare(that.getLength(), getLength()) == 0 && Float.compare(that.getWidth(), getWidth()) == 0 && Float.compare(that.getArea(), getArea()) == 0 && getRoomType() == that.getRoomType() && getIndicator() == that.getIndicator() && Objects.equals(getDimensions(), that.getDimensions()) && getLengthUnit() == that.getLengthUnit() && getWidthUnit() == that.getWidthUnit() && getAreaUnit() == that.getAreaUnit() && getAreaType() == that.getAreaType() && getBathSize() == that.getBathSize();
+    }
 }

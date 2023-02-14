@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "school")
 @Setter
@@ -28,5 +29,12 @@ public class SchoolEntity {
             inverseJoinColumns = @JoinColumn(name = "property_id"))
     private List<PropertyEntity> propertyList;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SchoolEntity)) return false;
+        SchoolEntity that = (SchoolEntity) o;
+        return Objects.equals(getPrimarySchool(), that.getPrimarySchool()) && Objects.equals(getJrHigh(), that.getJrHigh());
+    }
 }
 

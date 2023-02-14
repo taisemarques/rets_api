@@ -52,7 +52,7 @@ public class ViewDataConverterTest {
         checkAllFields_ViewData(viewDataEntity, viewDataDTO);
     }
 
-    private void checkNullAllFields_ViewDataEntity(ViewDataEntity viewData){
+    public static void checkNullAllFields_ViewDataEntity(ViewDataEntity viewData){
         assertNull(viewData.getCityLight());
         assertNull(viewData.getCityLightIndicator());
         assertNull(viewData.getMountain());
