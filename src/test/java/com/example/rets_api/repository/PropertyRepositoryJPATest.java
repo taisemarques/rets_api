@@ -83,7 +83,6 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getLotData());
         assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
 
-
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

@@ -88,6 +88,7 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeRental());
         assertNull(propertyEntity.getPropertyTypeCondo());
         assertNull(propertyEntity.getPropertyTypeTownHouse());
+        assertNull(propertyEntity.getLotData());
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -109,6 +110,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeRental());
         assertNull(propertyDTO.getPropertyTypeCondo());
         assertNull(propertyDTO.getPropertyTypeTownHouse());
+        assertNull(propertyDTO.getLotData());
     }
 
     public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
