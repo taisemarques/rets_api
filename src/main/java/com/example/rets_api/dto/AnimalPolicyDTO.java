@@ -18,5 +18,4 @@ public class AnimalPolicyDTO {
 
     private WeightUnit weightUnit;
 
-    private List<PropertyDTO> properties;
 }

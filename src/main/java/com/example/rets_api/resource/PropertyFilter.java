@@ -64,4 +64,6 @@ public class PropertyFilter {
 
     private Indicator leaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
+    private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
+
 }

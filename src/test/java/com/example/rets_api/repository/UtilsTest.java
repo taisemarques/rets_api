@@ -49,6 +49,7 @@ public class UtilsTest {
         room.setLength(5);
         room.setLengthUnit(LengthWidthUnit.METERS);
         room.setWidth(9);
+        room.setWidthUnit(LengthWidthUnit.METERS);
         room.setArea(45);
         room.setAreaUnit(AreaUnit.SQ_METERS);
         room.setAreaType(AreaType.FLOAT);

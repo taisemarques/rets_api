@@ -102,6 +102,7 @@ public class PropertyEntity {
         if(!isNull(schoolList)) schoolList.forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
+        if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
     }
 
 }

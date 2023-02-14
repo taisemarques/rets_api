@@ -20,7 +20,7 @@ public class AnimalPolicyConverterTest {
     }
 
     @Test
-    public void dtoTOEntity_EmptyFinancialDataConverter_ShouldReturnEmpty(){
+    public void dtoTOEntity_EmptyAnimalPolicyConverter_ShouldReturnEmpty(){
         AnimalPolicyDTO animalPolicyDTO = AnimalPolicyDTO.builder().build();
         AnimalPolicyEntity animalPolicyEntity = AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(animalPolicyDTO);
         checkNullAllFields_AnimalPolicy(animalPolicyEntity);
@@ -31,8 +31,6 @@ public class AnimalPolicyConverterTest {
         AnimalPolicyDTO animalPolicyDTO = UtilsTest.createAnimalPolicyDTO();
         AnimalPolicyEntity animalPolicyEntity = AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(animalPolicyDTO);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
-        checkAllFields_Property(animalPolicyEntity.getProperties().get(0), animalPolicyDTO.getProperties().get(0));
-
     }
 
     //Entity To DTO
@@ -55,7 +53,6 @@ public class AnimalPolicyConverterTest {
         AnimalPolicyEntity animalPolicyEntity = UtilsTest.createAnimalPolicy("permitted");
         AnimalPolicyDTO animalPolicyDTO = AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(animalPolicyEntity);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
-        checkAllFields_Property(animalPolicyEntity.getProperties().get(0), animalPolicyDTO.getProperties().get(0));
     }
 
     private void checkNullAllFields_AnimalPolicy(AnimalPolicyEntity animalPolicy){
@@ -79,7 +76,6 @@ public class AnimalPolicyConverterTest {
         assertNull(animalPolicyDTO.getPermittedTypes());
         assertNull(animalPolicyDTO.getWeightLimit());
         assertNull(animalPolicyDTO.getWeightUnit());
-        assertNull(animalPolicyDTO.getProperties());
     }
 
 

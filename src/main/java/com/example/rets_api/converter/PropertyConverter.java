@@ -37,6 +37,7 @@ public class PropertyConverter {
         retsEntity.setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(in.getFinancialData()));
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
+        retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         return retsEntity;
     };
 
@@ -64,6 +65,7 @@ public class PropertyConverter {
                 .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
                 .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
                 .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                 .build();
     };
 
@@ -71,13 +73,6 @@ public class PropertyConverter {
         if(isNull(propertiesEntity)) return null;
         return propertiesEntity.stream()
                 .map(propertyDTO -> propertyEntityToPropertyDTO.convert(propertyDTO))
-                .collect(Collectors.toList());
-    }
-
-    public static List<PropertyEntity> listPropertyDTOToListPropertyEntity(List<PropertyDTO> propertiesDTO) {
-        if (isNull(propertiesDTO)) return null;
-        return propertiesDTO.stream()
-                .map(propertyEntity -> propertyDTOToPropertyEntity.convert(propertyEntity))
                 .collect(Collectors.toList());
     }
 }
