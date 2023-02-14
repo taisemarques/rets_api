@@ -75,21 +75,10 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
 
         assertNotNull(propertySaved.getFinancialData());
-        assertEquals(propertySaved.getFinancialData().getLeaseIndicator(), propertyToSave.getFinancialData().getLeaseIndicator());
-        assertEquals(propertySaved.getFinancialData().getLeaseOption(), propertyToSave.getFinancialData().getLeaseOption());
-        assertEquals(propertySaved.getFinancialData().getRentalAmount(), propertyToSave.getFinancialData().getRentalAmount());
-        assertEquals(propertySaved.getFinancialData().getRentalAmountCurrencyCode(), propertyToSave.getFinancialData().getRentalAmountCurrencyCode());
-        assertEquals(propertySaved.getFinancialData().getRentalAmountType(), propertyToSave.getFinancialData().getRentalAmountType());
-        assertEquals(propertySaved.getFinancialData().getTradeIndicator(), propertyToSave.getFinancialData().getTradeIndicator());
-        assertEquals(propertySaved.getFinancialData().getTradeOption(), propertyToSave.getFinancialData().getTradeOption());
-        assertEquals(propertySaved.getFinancialData().getRentalAmountPeriod(), propertyToSave.getFinancialData().getRentalAmountPeriod());
-        assertEquals(propertySaved.getFinancialData().getRentalAmountUnit(), propertyToSave.getFinancialData().getRentalAmountUnit());
+        assertEquals(propertySaved.getFinancialData(), propertyToSave.getFinancialData());
 
         assertNotNull(propertySaved.getAnimalPolicy());
-        assertEquals(propertySaved.getAnimalPolicy().getAnimalsPermitted(), propertyToSave.getAnimalPolicy().getAnimalsPermitted());
-        assertEquals(propertySaved.getAnimalPolicy().getPermittedTypes(), propertyToSave.getAnimalPolicy().getPermittedTypes());
-        assertEquals(propertySaved.getAnimalPolicy().getWeightLimit(), propertyToSave.getAnimalPolicy().getWeightLimit());
-        assertEquals(propertySaved.getAnimalPolicy().getWeightUnit(), propertyToSave.getAnimalPolicy().getWeightUnit());
+        assertEquals(propertySaved.getAnimalPolicy(), propertyToSave.getAnimalPolicy());
 
         assertNotNull(propertySaved.getLotData());
         assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
