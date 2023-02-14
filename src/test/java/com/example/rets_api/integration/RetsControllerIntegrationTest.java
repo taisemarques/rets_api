@@ -2,12 +2,15 @@ package com.example.rets_api.integration;
 
 import com.example.rets_api.RetsApiApplication;
 import com.example.rets_api.dto.PropertyDTO;
+import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+
+import java.net.URI;
 
 import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
 import static org.junit.Assert.assertEquals;
@@ -73,7 +76,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void getByFilter() {
+    public void getPropertiesByParams() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -82,13 +85,15 @@ public class RetsControllerIntegrationTest {
         assertEquals(200, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
-        String URLWithID = URL
-                .concat("/")
-                .concat(String.valueOf(responseEntityPost.getBody()));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject parameters = new JSONObject();
+        parameters.put("age", 5);
+        RequestEntity requestEntity = new RequestEntity(parameters.toString(), headers, HttpMethod.GET, URI.create(URL));
 
         //Request
         ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
-                .getForEntity(URLWithID, PropertyDTO.class);
+                .exchange(requestEntity, PropertyDTO.class);
 
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
