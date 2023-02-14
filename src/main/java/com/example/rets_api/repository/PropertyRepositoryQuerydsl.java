@@ -33,7 +33,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .join(room).on(property.roomList.contains(room))
                 .join(school).on(property.schoolList.contains(school))
-                .join(lotData).on(property.lotData.eq(lotData));
+                .leftJoin(lotData).on(property.lotData.eq(lotData));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
