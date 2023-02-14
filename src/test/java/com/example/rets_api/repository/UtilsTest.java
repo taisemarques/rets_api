@@ -33,6 +33,7 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setViewData(createViewDataEntity());
         return propertyEntity;
     }
 
@@ -95,6 +96,7 @@ public class UtilsTest {
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
             .financialData(createFinancialDataDTO())
+            .viewData(createViewDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .build();

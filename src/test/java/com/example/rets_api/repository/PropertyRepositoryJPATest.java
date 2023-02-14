@@ -45,7 +45,7 @@ public class PropertyRepositoryJPATest {
     }
 
     @Test
-    public void should_store_a_PropertyAndSchoolAndRoom() {
+    public void should_store_a_PropertyAndSchoolAndRoomAndViewData() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
@@ -70,7 +70,18 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
 
         assertNotNull(propertySaved.getViewData());
-
+        assertNotNull(propertySaved.getViewData().getCityLight());
+        assertNotNull(propertySaved.getViewData().getCityLightIndicator());
+        assertNotNull(propertySaved.getViewData().getMountain());
+        assertNotNull(propertySaved.getViewData().getMountainIndicator());
+        assertNotNull(propertySaved.getViewData().getRiver());
+        assertNotNull(propertySaved.getViewData().getRiverIndicator());
+        assertNotNull(propertySaved.getViewData().getLake());
+        assertNotNull(propertySaved.getViewData().getLakeIndicator());
+        assertNotNull(propertySaved.getViewData().getGolfCourse());
+        assertNotNull(propertySaved.getViewData().getGolfCourseIndicator());
+        assertNotNull(propertySaved.getViewData().getWater());
+        assertNotNull(propertySaved.getViewData().getWaterIndicator());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
