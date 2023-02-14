@@ -1,9 +1,7 @@
 package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PropertyDTO;
-import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.entity.RoomEntity;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.List;

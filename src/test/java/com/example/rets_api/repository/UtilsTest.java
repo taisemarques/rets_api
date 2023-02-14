@@ -8,6 +8,7 @@ import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.dto.*;
 
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import static java.util.Arrays.asList;
@@ -67,7 +68,7 @@ public class UtilsTest {
         animalPolicy.setPermittedTypes(permittedType);
         animalPolicy.setWeightUnit(WeightUnit.KILO);
         animalPolicy.setWeightLimit(10L);
-        animalPolicy.setProperties(Collections.singletonList(createPropertyEntityWithBasicFields()));
+        animalPolicy.setProperties(Arrays.asList(createPropertyEntityWithBasicFields()));
         return animalPolicy;
     }
 

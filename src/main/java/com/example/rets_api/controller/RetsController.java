@@ -1,6 +1,5 @@
 package com.example.rets_api.controller;
 
-import com.example.rets_api.dto.AnimalPolicyDTO;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
