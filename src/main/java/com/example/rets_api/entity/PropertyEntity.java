@@ -71,7 +71,7 @@ public class PropertyEntity {
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "animal_policy_id")
     private AnimalPolicyEntity animalPolicy;
 

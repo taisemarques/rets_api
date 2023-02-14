@@ -29,7 +29,7 @@ public class AnimalPolicyEntity {
 
     private WeightUnit weightUnit;
 
-    @OneToMany(mappedBy= "animalPolicy", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy= "animalPolicy")
     private List<PropertyEntity> properties;
 
 }

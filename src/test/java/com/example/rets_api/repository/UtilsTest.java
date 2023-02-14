@@ -147,6 +147,7 @@ public class UtilsTest {
             .financialData(createFinancialDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
+            .animalPolicy(createAnimalPolicyDTO())
             .build();
     }
 
