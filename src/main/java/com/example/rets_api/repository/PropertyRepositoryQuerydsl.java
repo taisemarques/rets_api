@@ -1,4 +1,5 @@
 package com.example.rets_api.repository;
+import com.example.rets_api.converter.LotDataConverter;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -27,12 +28,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
         QViewDataEntity viewData = QViewDataEntity.viewDataEntity;
+        QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .leftJoin(room).on(property.roomList.contains(room))
                 .leftJoin(school).on(property.schoolList.contains(school))
-                .leftJoin(viewData).on(property.viewData.eq(viewData));
+                .leftJoin(viewData).on(property.viewData.eq(viewData))
+                .leftJoin(lotData).on(property.lotData.eq(lotData));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -139,6 +142,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(!filterParams.getWaterIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.viewData.waterIndicator.eq(filterParams.getWaterIndicator()));
+
+        if(!filterParams.getGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.golfCourseLotIndicator.eq(filterParams.getGolfCourseLotIndicator()));
+
+        if(!filterParams.getCuldeSacIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.culdeSacIndicator.eq(filterParams.getCuldeSacIndicator()));
+
+        if(!filterParams.getCornerLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.cornerLotIndicator.eq(filterParams.getCornerLotIndicator()));
 
         return query.fetch();
     }

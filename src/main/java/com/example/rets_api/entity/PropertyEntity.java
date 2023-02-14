@@ -74,6 +74,10 @@ public class PropertyEntity {
     @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
     private ViewDataEntity viewData;
 
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "lotData_id")
+    private LotDataEntity lotData;
+
     @PrePersist
     void updateBeforeSave(){
         updateRoomQuantity();
@@ -101,6 +105,7 @@ public class PropertyEntity {
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
         if(!isNull(viewData)) viewData.setProperty(this);
+        if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
     }
 
 }
