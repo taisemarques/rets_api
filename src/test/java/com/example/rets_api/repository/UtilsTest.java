@@ -5,6 +5,8 @@ import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 
+import java.util.Arrays;
+
 import static java.util.Arrays.asList;
 
 public class UtilsTest {
@@ -34,6 +36,8 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
+        propertyEntity.setLotData(createLotDataEntity());
         return propertyEntity;
     }
 
@@ -50,15 +54,26 @@ public class UtilsTest {
         room.setAreaUnit(AreaUnit.SQ_METERS);
         room.setAreaType(AreaType.FLOAT);
         room.setBathSize(BathSize.THREE_QUARTER);
+        room.setIndicator(Indicator.YES);
         return room;
     }
 
-    public static CommunityEntity createCommunityEntity(CommunityType communityType){
+    public static CommunityEntity createCommunityEntity(CommunityType communityType) {
         CommunityEntity community = new CommunityEntity();
         community.setType(communityType);
         community.setName("name");
         community.setIndicator(Indicator.YES);
         return community;
+    }
+
+    public static AnimalPolicyEntity createAnimalPolicy(String permittedType){
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes(permittedType);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        animalPolicy.setWeightLimit(10L);
+        animalPolicy.setProperties(Arrays.asList(createPropertyEntityWithBasicFields()));
+        return animalPolicy;
     }
 
     public static SchoolEntity createSchoolEntity(String primary, String jrHigh){
@@ -89,9 +104,17 @@ public class UtilsTest {
         .culdeSac("cul de sac test")
         .culdeSacIndicator(Indicator.YES)
         .build();
-
-
     }
+
+    public static AnimalPolicyEntity createAnimalPolicyEntity() {
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes("permitted");
+        animalPolicy.setWeightLimit(10L);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        return animalPolicy;
+    }
+
     public static FinancialDataEntity createFinancialDataEntity(){
         FinancialDataEntity financialDataEntity = new FinancialDataEntity();
         financialDataEntity.setLeaseOption("leaseOption");
@@ -130,6 +153,8 @@ public class UtilsTest {
             .financialData(createFinancialDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
+            .animalPolicy(createAnimalPolicyDTO())
+            .lotData(createLotDataDTO())
             .build();
     }
 
@@ -169,6 +194,15 @@ public class UtilsTest {
                 .rentalAmountUnit(AreaUnit.SQ_METERS)
                 .build();
 
+    }
+
+    public static AnimalPolicyDTO createAnimalPolicyDTO(){
+        return AnimalPolicyDTO.builder()
+                .permittedTypes("permittted")
+                .animalsPermitted(Indicator.YES)
+                .weightUnit(WeightUnit.KILO)
+                .weightLimit(10L)
+                .build();
     }
 
 }

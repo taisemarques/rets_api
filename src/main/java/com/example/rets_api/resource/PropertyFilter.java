@@ -70,4 +70,9 @@ public class PropertyFilter {
 
     private List<CommunityDTO> communityList = Collections.emptyList();
 
+    private String leaseOption = DEFAULT_STRING_VALUE;
+
+    private Indicator leaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
 }

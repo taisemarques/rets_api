@@ -5,6 +5,7 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
+import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
@@ -38,6 +39,7 @@ public class PropertyConverterTest {
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
+        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
     }
 
     //Entity To DTO
@@ -56,7 +58,7 @@ public class PropertyConverterTest {
     }
 
     @Test
-    public void entityToDTO_RoomConverter_ShouldReturnCompleteObject(){
+    public void entityToDTO_PropertyConverter_ShouldReturnCompleteObject(){
         PropertyEntity propertyEntity = UtilsTest.createPropertyEntityWithBasicFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
@@ -64,6 +66,7 @@ public class PropertyConverterTest {
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
+        checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
@@ -85,6 +88,7 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeRental());
         assertNull(propertyEntity.getPropertyTypeCondo());
         assertNull(propertyEntity.getPropertyTypeTownHouse());
+        assertNull(propertyEntity.getLotData());
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -106,9 +110,10 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeRental());
         assertNull(propertyDTO.getPropertyTypeCondo());
         assertNull(propertyDTO.getPropertyTypeTownHouse());
+        assertNull(propertyDTO.getLotData());
     }
 
-    private void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
+    public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
         assertEquals(propertyEntity.getAge(), propertyDTO.getAge());
         assertEquals(propertyEntity.getHorseFacilities(), propertyDTO.getHorseFacilities());
         assertEquals(propertyEntity.getHorseFacilitiesIndicator(), propertyDTO.getHorseFacilitiesIndicator());
@@ -128,7 +133,4 @@ public class PropertyConverterTest {
         assertEquals(propertyEntity.getPropertyTypeCondo(), propertyDTO.getPropertyTypeCondo());
         assertEquals(propertyEntity.getPropertyTypeTownHouse(), propertyDTO.getPropertyTypeTownHouse());
     }
-
-
-
 }

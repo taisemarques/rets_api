@@ -75,6 +75,10 @@ public class PropertyEntity {
     private List<CommunityEntity> communities;
 
     @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "animal_policy_id")
+    private AnimalPolicyEntity animalPolicy;
+
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "lotData_id")
     private LotDataEntity lotData;
 
@@ -106,6 +110,7 @@ public class PropertyEntity {
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
         if(!isNull(communities)) communities.forEach(communityEntity -> communityEntity.setProperty(this));
+        if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
     }
 
