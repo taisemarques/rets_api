@@ -54,4 +54,5 @@ public class PropertyDTO {
 
     private AnimalPolicyDTO animalPolicy;
 
+    private LotDataDTO lotData;
 }

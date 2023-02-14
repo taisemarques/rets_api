@@ -1,4 +1,5 @@
 package com.example.rets_api.repository;
+import com.example.rets_api.converter.LotDataConverter;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -28,14 +29,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QSchoolEntity school = QSchoolEntity.schoolEntity;
         QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
-
+        QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .join(room).on(property.roomList.contains(room))
                 .join(school).on(property.schoolList.contains(school))
                 .join(financialData).on(property.eq(financialData.property))
-                .join(animalPolicy).on(property.animalPolicy.eq(animalPolicy));
+                .join(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
+                .join(lotData).on(property.lotData.eq(lotData));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -133,6 +135,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(!filterParams.getAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.animalPolicy.animalsPermitted.eq(filterParams.getAnimalPermitted()));
+
+        if(!filterParams.getGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.golfCourseLotIndicator.eq(filterParams.getGolfCourseLotIndicator()));
+
+        if(!filterParams.getCuldeSacIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.culdeSacIndicator.eq(filterParams.getCuldeSacIndicator()));
+
+        if(!filterParams.getCornerLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.cornerLotIndicator.eq(filterParams.getCornerLotIndicator()));
 
         return query.fetch();
     }

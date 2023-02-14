@@ -47,12 +47,16 @@ public class PropertyRepositoryJPATest {
     public void should_store_a_PropertyAndSchoolAndRoom() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
+
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+
 //        propertyToSave.setAnimalPolicyEntity(UtilsTest.createAnimalPolicy("permittedType"));
         propertyToSave.setFinancialData(UtilsTest.createFinancialDataEntity());
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setLotData(UtilsTest.createLotDataEntity());
+
         propertyToSave.setBedroomsQty(1);
 
         //Saving
@@ -87,6 +91,11 @@ public class PropertyRepositoryJPATest {
 //        assertEquals(propertySaved.getAnimalPolicyEntity().getPermittedTypes(), propertyToSave.getAnimalPolicyEntity().getPermittedTypes());
 //        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightLimit(), propertyToSave.getAnimalPolicyEntity().getWeightLimit());
 //        assertEquals(propertySaved.getAnimalPolicyEntity().getWeightUnit(), propertyToSave.getAnimalPolicyEntity().getWeightUnit());
+
+        assertNotNull(propertySaved.getLotData());
+        assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
+
+
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

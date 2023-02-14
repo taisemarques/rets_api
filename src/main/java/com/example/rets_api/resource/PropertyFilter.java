@@ -24,6 +24,13 @@ public class PropertyFilter {
 
     private List<BathSize> bathSizes = Collections.emptyList();
 
+
+    private Indicator cornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator culdeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator golfCourseLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
     private int bedroomsQty = DEFAULT_ROOM_QTY;
 
     private int bathroomsQty = DEFAULT_ROOM_QTY;
