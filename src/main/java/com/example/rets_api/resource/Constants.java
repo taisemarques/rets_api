@@ -8,4 +8,5 @@ public class Constants {
 
     public static final Boolean DEFAULT_BOOLEAN_VALUE = null;
 
+
 }

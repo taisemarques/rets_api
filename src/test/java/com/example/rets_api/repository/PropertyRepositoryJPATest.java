@@ -1,6 +1,7 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.resource.Enums.CommunityType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.rets_api.repository.UtilsTest.createRoom;
+import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static com.example.rets_api.resource.Enums.RoomType;
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,8 +48,12 @@ public class PropertyRepositoryJPATest {
     public void should_store_a_PropertyAndSchoolAndRoom() {
         //Creating
         PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
-        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchool("primarySchool", "jrHighSchool")));
-        propertyToSave.setRoomList(Arrays.asList(createRoom(RoomType.LIVING_ROOM), createRoom(RoomType.MAIN_FLOOR_BEDROOM)));
+
+        propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
+        propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
+        propertyToSave.setLotData(UtilsTest.createLotDataEntity());
+        propertyToSave.setCommunities(Arrays.asList(UtilsTest.createCommunityEntity(CommunityType.COMMUNITY_PARK)));
+
         propertyToSave.setBedroomsQty(1);
 
         //Saving
@@ -66,6 +71,13 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getRoomList().size(), propertyToSave.getRoomList().size());
         assertEquals(propertySaved.getRoomList().get(0).getRoomType(), propertyToSave.getRoomList().get(0).getRoomType());
         assertEquals(propertySaved.getRoomList().get(1).getRoomType(), propertyToSave.getRoomList().get(1).getRoomType());
+
+        assertNotNull(propertySaved.getLotData());
+        assertEquals(propertySaved.getLotData(), propertyToSave.getLotData());
+
+        assertNotNull(propertySaved.getCommunities());
+        assertEquals(propertySaved.getCommunities().size(), propertyToSave.getCommunities().size());
+        assertEquals(propertySaved.getCommunities().get(0).getType(), propertyToSave.getCommunities().get(0).getType());
 
     }
 

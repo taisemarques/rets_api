@@ -1,5 +1,6 @@
 package com.example.rets_api.resource;
 
+import com.example.rets_api.dto.CommunityDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,13 @@ public class PropertyFilter {
     private List<SchoolDTO> schoolList = Collections.emptyList();
 
     private List<BathSize> bathSizes = Collections.emptyList();
+
+
+    private Indicator cornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator culdeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator golfCourseLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
     private int bedroomsQty = DEFAULT_ROOM_QTY;
 
@@ -59,5 +67,7 @@ public class PropertyFilter {
     private Boolean propertyTypeCondo = DEFAULT_BOOLEAN_VALUE;
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
+
+    private List<CommunityDTO> communityList = Collections.emptyList();
 
 }

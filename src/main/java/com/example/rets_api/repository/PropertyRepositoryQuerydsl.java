@@ -1,4 +1,6 @@
 package com.example.rets_api.repository;
+import com.example.rets_api.converter.LotDataConverter;
+import com.example.rets_api.dto.CommunityDTO;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -26,11 +28,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
+        QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
+        QCommunityEntity community = QCommunityEntity.communityEntity;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
-                .join(room).on(property.roomList.contains(room))
-                .join(school).on(property.schoolList.contains(school));
+                .leftJoin(room).on(property.roomList.contains(room))
+                .leftJoin(school).on(property.schoolList.contains(school))
+                .leftJoin(lotData).on(property.lotData.eq(lotData))
+                .leftJoin(community).on(property.communities.contains(community));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -119,6 +125,57 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(filterParams.getBathroomsQty() >= 0)
             query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
+
+        if(!filterParams.getGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.golfCourseLotIndicator.eq(filterParams.getGolfCourseLotIndicator()));
+
+        if(!filterParams.getCuldeSacIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.culdeSacIndicator.eq(filterParams.getCuldeSacIndicator()));
+
+        if(!filterParams.getCornerLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotData.cornerLotIndicator.eq(filterParams.getCornerLotIndicator()));
+
+        if(!isEmpty(filterParams.getCommunityList())){
+            BooleanBuilder builder = new BooleanBuilder();
+            for(CommunityDTO communityDTO: filterParams.getCommunityList()) {
+                if (!isNull(communityDTO.getName()) &&
+                        !isNull(communityDTO.getIndicator()) &&
+                        !isNull(communityDTO.getType())) {
+                    builder = builder.or(community.name.eq(communityDTO.getName())
+                            .and(community.indicator.eq(communityDTO.getIndicator())
+                                    .and(community.type.eq(communityDTO.getType()))));
+                } else if (isNull(communityDTO.getName()) &&
+                        !isNull(communityDTO.getIndicator()) &&
+                        !isNull(communityDTO.getType())) {
+                    builder = builder.or(community.indicator.eq(communityDTO.getIndicator())
+                            .and(community.type.eq(communityDTO.getType())));
+                } else if (!isNull(communityDTO.getName()) &&
+                        isNull(communityDTO.getIndicator()) &&
+                        !isNull(communityDTO.getType())) {
+                    builder = builder.or(community.name.eq(communityDTO.getName())
+                            .and(community.type.eq(communityDTO.getType())));
+                } else if (!isNull(communityDTO.getName()) &&
+                            !isNull(communityDTO.getIndicator()) &&
+                            isNull(communityDTO.getType())) {
+                    builder = builder.or(community.indicator.eq(communityDTO.getIndicator())
+                            .and(community.name.eq(communityDTO.getName())));
+                } else if (!isNull(communityDTO.getName()) &&
+                        isNull(communityDTO.getIndicator()) &&
+                        isNull(communityDTO.getType())) {
+                    builder = builder.or(community.name.eq(communityDTO.getName()));
+                } else if (isNull(communityDTO.getName()) &&
+                        !isNull(communityDTO.getIndicator()) &&
+                        isNull(communityDTO.getType())) {
+                    builder = builder.or(community.indicator.eq(communityDTO.getIndicator()));
+                } else if (isNull(communityDTO.getName()) &&
+                        isNull(communityDTO.getIndicator()) &&
+                        !isNull(communityDTO.getType())) {
+                    builder = builder.or(community.type.eq(communityDTO.getType()));
+                }
+
+            }
+            query = query.where(builder);
+        }
 
         return query.fetch();
     }

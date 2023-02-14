@@ -23,14 +23,19 @@ public class RetsController {
         return ResponseEntity.ok(propertyService.createProperty(property));
     }
 
-    @GetMapping
+    @GetMapping(value = "/byFilter")
     public ResponseEntity<List<PropertyDTO>> getPropertiesByParams(@RequestBody PropertyFilter propertyFilter) {
         return ResponseEntity.ok(propertyService.getPropertiesByParams(propertyFilter));
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<PropertyDTO> getPropertiesById(@PathVariable("id") Long propertyId){
+    public ResponseEntity<PropertyDTO> getPropertyById(@PathVariable("id") Long propertyId){
         return ResponseEntity.ok(propertyService.getPropertyById(propertyId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PropertyDTO>> getAllProperties(){
+        return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
 }
