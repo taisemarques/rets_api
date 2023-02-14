@@ -34,6 +34,7 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setLotData(createLotDataEntity());
         return propertyEntity;
     }
 
@@ -122,6 +123,7 @@ public class UtilsTest {
             .financialData(createFinancialDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
+            .lotData(createLotDataDTO())
             .build();
     }
 
