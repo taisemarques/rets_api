@@ -14,32 +14,60 @@ public class CommunityConverter {
     public static Converter<CommunityDTO, CommunityEntity> communityDTOToCommunityEntity = in -> {
         if(isNull(in)) return null;
         CommunityEntity communityEntity = new CommunityEntity();
-        communityEntity.setIndicator(in.getIndicator());
-        communityEntity.setName(in.getName());
-        communityEntity.setType(in.getType());
+        communityEntity.setClubHouse(in.getClubHouse());
+        communityEntity.setClubHouseIndicator(in.getClubHouseIndicator());
+        communityEntity.setExerciseArea(in.getExerciseArea());
+        communityEntity.setExerciseAreaIndicator(in.getExerciseAreaIndicator());
+        communityEntity.setGolf(in.getGolf());
+        communityEntity.setGolfIndicator(in.getGolfIndicator());
+        communityEntity.setTennis(in.getTennis());
+        communityEntity.setTennisIndicator(in.getTennisIndicator());
+        communityEntity.setRecreationalFacilities(in.getRecreationalFacilities());
+        communityEntity.setRecreationalFacilitiesIndicator(in.getRecreationalFacilitiesIndicator());
+        communityEntity.setSeniorCommunity(in.getSeniorCommunity());
+        communityEntity.setSeniorCommunityIndicator(in.getSeniorCommunityIndicator());
+        communityEntity.setSecurityFeatures(in.getSecurityFeatures());
+        communityEntity.setSecurityFeaturesIndicator(in.getSecurityFeaturesIndicator());
+        communityEntity.setHotTub(in.getHotTub());
+        communityEntity.setHotTubIndicator(in.getHotTubIndicator());
+        communityEntity.setPool(in.getPool());
+        communityEntity.setPoolIndicator(in.getPoolIndicator());
+        communityEntity.setBoatFacilities(in.getBoatFacilities());
+        communityEntity.setBoatFacilitiesIndicator(in.getBoatFacilitiesIndicator());
+        communityEntity.setHorseFacilities(in.getHorseFacilities());
+        communityEntity.setHorseFacilitiesIndicator(in.getHorseFacilitiesIndicator());
+        communityEntity.setCommunityPark(in.getCommunityPark());
+        communityEntity.setCommunityParkIndicator(in.getCommunityParkIndicator());
         return communityEntity;
     };
 
     public static Converter<CommunityEntity, CommunityDTO> communityEntityToCommunityDTO = in -> {
         if (isNull(in)) return null;
         return CommunityDTO.builder()
-                .indicator(in.getIndicator())
-                .name(in.getName())
-                .type(in.getType())
+                .clubHouse(in.getClubHouse())
+                .clubHouseIndicator(in.getClubHouseIndicator())
+                .exerciseArea(in.getExerciseArea())
+                .exerciseAreaIndicator(in.getExerciseAreaIndicator())
+                .golf(in.getGolf())
+                .golfIndicator(in.getGolfIndicator())
+                .tennis(in.getTennis())
+                .tennisIndicator(in.getTennisIndicator())
+                .recreationalFacilities(in.getRecreationalFacilities())
+                .recreationalFacilitiesIndicator(in.getRecreationalFacilitiesIndicator())
+                .securityFeatures(in.getSecurityFeatures())
+                .securityFeaturesIndicator(in.getSecurityFeaturesIndicator())
+                .seniorCommunity(in.getSeniorCommunity())
+                .seniorCommunityIndicator(in.getSeniorCommunityIndicator())
+                .hotTub(in.getHotTub())
+                .hotTubIndicator(in.getHotTubIndicator())
+                .pool(in.getPool())
+                .poolIndicator(in.getPoolIndicator())
+                .boatFacilities(in.getBoatFacilities())
+                .boatFacilitiesIndicator(in.getBoatFacilitiesIndicator())
+                .horseFacilities(in.getHorseFacilities())
+                .horseFacilitiesIndicator(in.getHorseFacilitiesIndicator())
+                .communityPark(in.getCommunityPark())
+                .communityParkIndicator(in.getCommunityParkIndicator())
                 .build();
     };
-
-    public static List<CommunityDTO> listCommunityEntityToListCommunityDTO(List<CommunityEntity> communityEntities) {
-        if (isNull(communityEntities)) return null;
-        return communityEntities.stream()
-                .map(community -> communityEntityToCommunityDTO.convert(community))
-                .collect(Collectors.toList());
-    }
-
-    public static List<CommunityEntity> listCommunityDTOToListCommunityEntity(List<CommunityDTO> communityDTOS) {
-        if (isNull(communityDTOS)) return null;
-        return communityDTOS.stream()
-                .map(communityEntity -> communityDTOToCommunityEntity.convert(communityEntity))
-                .collect(Collectors.toList());
-    }
 }

@@ -1,7 +1,6 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.resource.Enums.CommunityType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class PropertyRepositoryJPATest {
         propertyToSave.setSchoolList(Arrays.asList(UtilsTest.createSchoolEntity("primarySchool", "jrHighSchool")));
         propertyToSave.setRoomList(Arrays.asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity(RoomType.MAIN_FLOOR_BEDROOM)));
         propertyToSave.setLotData(UtilsTest.createLotDataEntity());
-        propertyToSave.setCommunity(UtilsTest.createCommunityEntity(CommunityType.SENIOR_COMMUNITY));
+        propertyToSave.setCommunity(UtilsTest.createCommunityEntity());
 
         propertyToSave.setBedroomsQty(1);
 

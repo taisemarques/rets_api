@@ -58,11 +58,33 @@ public class UtilsTest {
         return room;
     }
 
-    public static CommunityEntity createCommunityEntity(CommunityType communityType) {
+    public static CommunityEntity createCommunityEntity() {
         CommunityEntity community = new CommunityEntity();
-        community.setType(communityType);
-        community.setName("name");
-        community.setIndicator(Indicator.YES);
+        community.setClubHouse("club house");
+        community.setClubHouseIndicator(Indicator.YES);
+        community.setExerciseArea("exercise area");
+        community.setCommunityParkIndicator(Indicator.YES);
+        community.setGolf("golf house");
+        community.setGolfIndicator(Indicator.YES);
+        community.setTennis("tennis area");
+        community.setTennisIndicator(Indicator.YES);
+        community.setRecreationalFacilities("recreational house");
+        community.setRecreationalFacilitiesIndicator(Indicator.YES);
+        community.setSeniorCommunity("senior house");
+        community.setSeniorCommunityIndicator(Indicator.YES);
+        community.setSecurityFeatures("security");
+        community.setSecurityFeaturesIndicator(Indicator.YES);
+        community.setHotTub("hotTub");
+        community.setHotTubIndicator(Indicator.YES);
+        community.setPool("pool");
+        community.setPoolIndicator(Indicator.YES);
+        community.setBoatFacilities("boats");
+        community.setBoatFacilitiesIndicator(Indicator.YES);
+        community.setHorseFacilities("horses");
+        community.setHorseFacilitiesIndicator(Indicator.YES);
+        community.setCommunityPark("parks");
+        community.setCommunityParkIndicator(Indicator.YES);
+
         return community;
     }
 
@@ -155,6 +177,7 @@ public class UtilsTest {
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .animalPolicy(createAnimalPolicyDTO())
             .lotData(createLotDataDTO())
+             .community(createCommunityDTO())
             .build();
     }
 
@@ -167,11 +190,32 @@ public class UtilsTest {
             .build();
     }
 
-    public static CommunityDTO createCommunityDTO(CommunityType communityType){
+    public static CommunityDTO createCommunityDTO(){
         return CommunityDTO.builder()
-                .name("name")
-                .type(communityType)
-                .indicator(Indicator.YES)
+                .clubHouse("club-house")
+                .clubHouseIndicator(Indicator.YES)
+                .exerciseArea("exercise_area")
+                .exerciseAreaIndicator(Indicator.YES)
+                .golf("golf")
+                .golfIndicator(Indicator.YES)
+                .tennis("tennis")
+                .tennisIndicator(Indicator.YES)
+                .recreationalFacilities("recreational-facilities")
+                .recreationalFacilitiesIndicator(Indicator.NO)
+                .securityFeatures("secure")
+                .securityFeaturesIndicator(Indicator.NO)
+                .seniorCommunity("seniorCommunity")
+                .seniorCommunityIndicator(Indicator.NO)
+                .hotTub("hotTub")
+                .hotTubIndicator(Indicator.NO)
+                .pool("pool")
+                .poolIndicator(Indicator.UNKNOWN)
+                .boatFacilities("boats")
+                .boatFacilitiesIndicator(Indicator.UNKNOWN)
+                .horseFacilities("horses")
+                .horseFacilitiesIndicator(Indicator.UNKNOWN)
+                .communityPark("parks")
+                .communityParkIndicator(Indicator.UNKNOWN)
                 .build();
     }
 
