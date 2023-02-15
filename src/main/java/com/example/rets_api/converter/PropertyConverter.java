@@ -36,6 +36,7 @@ public class PropertyConverter {
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
         retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
+        retsEntity.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(in.getViewData()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
         return retsEntity;
     };
@@ -43,30 +44,31 @@ public class PropertyConverter {
     public static Converter<PropertyEntity, PropertyDTO> propertyEntityToPropertyDTO = in -> {
         if (isNull(in)) return null;
         return PropertyDTO.builder()
-                .age(in.getAge())
-                .horseFacilities(in.getHorseFacilities())
-                .horseFacilitiesIndicator(in.getHorseFacilitiesIndicator())
-                .hotTub(in.getHotTub())
-                .hotTubIndicator(in.getHotTubIndicator())
-                .tennisCourt(in.getTennisCourt())
-                .tennisCourtIndicator(in.getTennisCourtIndicator())
-                .inclusions((in.getInclusions()))
-                .energyInformation(in.getEnergyInformation())
-                .constructionMaterial(in.getConstructionMaterial())
-                .disabilityFeatures(in.getDisabilityFeatures())
-                .disabilityFeaturesIndicator(in.getDisabilityFeaturesIndicator())
-                .securityFeatures(in.getSecurityFeatures())
-                .securityFeaturesIndicator(in.getSecurityFeaturesIndicator())
-                .propertyTypeRental(in.getPropertyTypeRental())
-                .propertyTypeFarm(in.getPropertyTypeFarm())
-                .propertyTypeCondo(in.getPropertyTypeCondo())
-                .propertyTypeTownHouse(in.getPropertyTypeTownHouse())
-                .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
-                .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
-                .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
-                .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
-                .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
-                .build();
+                        .age(in.getAge())
+                        .horseFacilities(in.getHorseFacilities())
+                        .horseFacilitiesIndicator(in.getHorseFacilitiesIndicator())
+                        .hotTub(in.getHotTub())
+                        .hotTubIndicator(in.getHotTubIndicator())
+                        .tennisCourt(in.getTennisCourt())
+                        .tennisCourtIndicator(in.getTennisCourtIndicator())
+                        .inclusions((in.getInclusions()))
+                        .energyInformation(in.getEnergyInformation())
+                        .constructionMaterial(in.getConstructionMaterial())
+                        .disabilityFeatures(in.getDisabilityFeatures())
+                        .disabilityFeaturesIndicator(in.getDisabilityFeaturesIndicator())
+                        .securityFeatures(in.getSecurityFeatures())
+                        .securityFeaturesIndicator(in.getSecurityFeaturesIndicator())
+                        .propertyTypeRental(in.getPropertyTypeRental())
+                        .propertyTypeFarm(in.getPropertyTypeFarm())
+                        .propertyTypeCondo(in.getPropertyTypeCondo())
+                        .propertyTypeTownHouse(in.getPropertyTypeTownHouse())
+                        .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
+                        .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
+                        .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                        .viewData(ViewDataConverter.viewDataEntityToViewDataDTO.convert(in.getViewData()))
+                        .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
+                        .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
+                        .build();
     };
 
     public static List<PropertyDTO> listPropertiesEntityToListPropertiesDTO(List<PropertyEntity> propertiesEntity){

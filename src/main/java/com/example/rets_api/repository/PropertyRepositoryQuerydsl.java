@@ -27,6 +27,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPropertyEntity property = QPropertyEntity.propertyEntity;
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
+        QViewDataEntity viewData = QViewDataEntity.viewDataEntity;
         QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
@@ -35,9 +36,10 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .leftJoin(room).on(property.roomList.contains(room))
                 .leftJoin(school).on(property.schoolList.contains(school))
+                .leftJoin(viewData).on(property.viewData.eq(viewData))
+                .leftJoin(lotData).on(property.lotData.eq(lotData))
                 .leftJoin(financialData).on(property.financialData.eq(financialData))
-                .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
-                .leftJoin(lotData).on(property.lotData.eq(lotData));
+                .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -128,6 +130,24 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(filterParams.getBathroomsQty() >= 0)
             query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
+
+        if(!filterParams.getCityLightIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+        query = query.where(property.viewData.cityLightIndicator.eq(filterParams.getCityLightIndicator()));
+
+        if(!filterParams.getMountainIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.viewData.mountainIndicator.eq(filterParams.getMountainIndicator()));
+
+        if(!filterParams.getRiverIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.viewData.riverIndicator.eq(filterParams.getRiverIndicator()));
+
+        if(!filterParams.getLakeIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.viewData.lakeIndicator.eq(filterParams.getLakeIndicator()));
+
+        if(!filterParams.getGolfCourseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.viewData.golfCourseIndicator.eq(filterParams.getGolfCourseIndicator()));
+
+        if(!filterParams.getWaterIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.viewData.waterIndicator.eq(filterParams.getWaterIndicator()));
 
         if(!filterParams.getLeaseOption().equals(DEFAULT_STRING_VALUE))
             query = query.where(financialData.leaseOption.eq(filterParams.getLeaseOption()));

@@ -66,6 +66,18 @@ public class PropertyFilter {
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
 
+    private Indicator cityLightIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator mountainIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator riverIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator lakeIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator golfCourseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator waterIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
     private String leaseOption = DEFAULT_STRING_VALUE;
 
     private Indicator leaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
