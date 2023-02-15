@@ -2,15 +2,16 @@ package com.example.rets_api.integration;
 
 import com.example.rets_api.RetsApiApplication;
 import com.example.rets_api.dto.PropertyDTO;
-import net.minidev.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-
-import java.net.URI;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
 import static org.junit.Assert.assertEquals;
@@ -42,7 +43,7 @@ public class RetsControllerIntegrationTest {
     @Test
     public void getPropertyById_notFound() {
         //Creating objects
-        String URL = "http://localhost:" + port + "/properties/1";
+        String URL = "http://localhost:" + port + "/properties/123456";
 
         //Request
         ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
@@ -85,19 +86,23 @@ public class RetsControllerIntegrationTest {
         assertEquals(200, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        JSONObject parameters = new JSONObject();
-        parameters.put("age", 5);
-        RequestEntity requestEntity = new RequestEntity(parameters.toString(), headers, HttpMethod.GET, URI.create(URL+"/byFilter"));
+        String urlVariables = "?age=5&bedroomsQty=1";
 
         //Request
-        ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
-                .exchange(requestEntity, PropertyDTO.class);
+        ResponseEntity<String> responseEntityGet = this.restTemplate
+                .getForEntity(URL+urlVariables, String.class);
 
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
-        assertEquals(propertyDTORequest, responseEntityGet.getBody());
+        assertEquals(propertyDTORequest, getPropertyDTOFromResponse(responseEntityGet, 0));
+    }
+
+
+    private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
+        Gson g = new Gson();
+        Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
+        List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
+        return propertyDTOList.get(propertyIndex);
     }
 
 }

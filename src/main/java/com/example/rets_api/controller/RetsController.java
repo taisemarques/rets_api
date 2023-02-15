@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static java.util.Objects.isNull;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping(value = {"/properties"})
@@ -25,9 +26,10 @@ public class RetsController {
         return ResponseEntity.ok(propertyService.createProperty(property));
     }
 
-    @GetMapping(value = "/byFilter")
-    public ResponseEntity<List<PropertyDTO>> getPropertiesByParams(@RequestBody PropertyFilter propertyFilter) {
-        return ResponseEntity.ok(propertyService.getPropertiesByParams(propertyFilter));
+    @GetMapping
+    public ResponseEntity<List<PropertyDTO>> getPropertiesByParams(PropertyFilter filter) {
+        List<PropertyDTO> propertyDTOList = propertyService.getPropertiesByParams(filter);
+        return handleResponse(propertyDTOList);
     }
 
     @GetMapping(value="/{id}")
@@ -43,9 +45,11 @@ public class RetsController {
         return ResponseEntity.ok(propertyDTO);
     }
 
-    @GetMapping
-    public ResponseEntity<List<PropertyDTO>> getAllProperties(){
-        return ResponseEntity.ok(propertyService.getAllProperties());
+    private ResponseEntity<List<PropertyDTO>> handleResponse(List<PropertyDTO> propertyDTOList){
+        if(isEmpty(propertyDTOList)){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(propertyDTOList);
     }
 
 }
