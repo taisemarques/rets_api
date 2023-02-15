@@ -1,5 +1,4 @@
 package com.example.rets_api.repository;
-import com.example.rets_api.converter.LotDataConverter;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -30,6 +29,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
+        QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
+        QPhoneEntity phone = QPhoneEntity.phoneEntity;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
@@ -37,7 +38,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(school).on(property.schoolList.contains(school))
                 .leftJoin(financialData).on(property.financialData.eq(financialData))
                 .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
-                .leftJoin(lotData).on(property.lotData.eq(lotData));
+                .leftJoin(lotData).on(property.lotData.eq(lotData))
+                .leftJoin(contactInformation).on(property.contactInformation.eq(contactInformation))
+                .leftJoin(phone).on(property.contactInformation.agentPhone.eq(phone))
+                .leftJoin(phone).on(property.contactInformation.listAgentPhone.eq(phone))
+                .leftJoin(phone).on(property.contactInformation.officePhone.eq(phone))
+                .leftJoin(phone).on(property.contactInformation.listOfficePhone.eq(phone))
+                .leftJoin(phone).on(property.contactInformation.salesAgentPhone.eq(phone))
+                .leftJoin(phone).on(property.contactInformation.salesOfficePhone.eq(phone));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -93,6 +101,27 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
+        if(!isEmpty(filterParams.getPhoneNumbers())){
+            BooleanBuilder builder = new BooleanBuilder();
+            for(String phoneNumber: filterParams.getPhoneNumbers()){
+                if(!phoneNumber.equals(DEFAULT_STRING_VALUE)) {
+                    builder = builder.or(contactInformation.agentPhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.agentPhone.alternatePhone.eq(phoneNumber))
+                                     .or(contactInformation.listAgentPhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.listAgentPhone.alternatePhone.eq(phoneNumber))
+                                     .or(contactInformation.salesAgentPhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.salesAgentPhone.alternatePhone.eq(phoneNumber))
+                                     .or(contactInformation.officePhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.officePhone.alternatePhone.eq(phoneNumber))
+                                     .or(contactInformation.listOfficePhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.listOfficePhone.alternatePhone.eq(phoneNumber))
+                                     .or(contactInformation.salesOfficePhone.primaryPhone.eq(phoneNumber))
+                                     .or(contactInformation.salesOfficePhone.alternatePhone.eq(phoneNumber));
+                }
+            }
+            query = query.where(builder);
+        }
+
         if(!isEmpty(filterParams.getBathSizes())){
             BooleanBuilder builder = new BooleanBuilder();
             for(BathSize bathSize: filterParams.getBathSizes()) {
@@ -103,8 +132,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                         builder = builder.or(room.bathSize.eq(bathSize).and(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM)));
                     }
                 }
-                query = query.where(builder);
             }
+            query = query.where(builder);
         }
 
         if(!isEmpty(filterParams.getSchoolList())){

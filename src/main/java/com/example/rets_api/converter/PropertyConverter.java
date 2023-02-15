@@ -37,6 +37,7 @@ public class PropertyConverter {
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
         retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
+        retsEntity.setContactInformation(ContactInformationConverter.contactInformationDTOContactInformationEntity.convert(in.getContactInformation()));
         return retsEntity;
     };
 
@@ -66,6 +67,7 @@ public class PropertyConverter {
                 .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
                 .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
+                .contactInformation(ContactInformationConverter.contactInformationEntityContactInformationDTO.convert(in.getContactInformation()))
                 .build();
     };
 
