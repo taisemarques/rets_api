@@ -31,9 +31,9 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
-                .join(room).on(property.roomList.contains(room))
-                .join(school).on(property.schoolList.contains(school))
-                .join(lotData).on(property.lotData.eq(lotData));
+                .leftJoin(room).on(property.roomList.contains(room))
+                .leftJoin(school).on(property.schoolList.contains(school))
+                .leftJoin(lotData).on(property.lotData.eq(lotData));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -106,12 +106,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();
             for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
-                if(!isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
-                } else if(isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
-                } else if(!isNull(schoolDTO.getPrimary()) && isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                if(!isNull(schoolDTO)){
+                    if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+                    } else if(schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
+                    } else if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                    }
                 }
             }
             query = query.where(builder);
