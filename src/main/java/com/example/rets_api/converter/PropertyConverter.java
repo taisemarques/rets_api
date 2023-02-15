@@ -3,6 +3,7 @@ package com.example.rets_api.converter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import org.springframework.core.convert.converter.Converter;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class PropertyConverter {
         retsEntity.setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(in.getFinancialData()));
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
+        retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
         return retsEntity;
     };
@@ -62,6 +64,7 @@ public class PropertyConverter {
                 .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
                 .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
                 .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
                 .build();
     };

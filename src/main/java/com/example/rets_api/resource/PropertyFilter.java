@@ -66,4 +66,10 @@ public class PropertyFilter {
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
 
+    private String leaseOption = DEFAULT_STRING_VALUE;
+
+    private Indicator leaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
+
 }
