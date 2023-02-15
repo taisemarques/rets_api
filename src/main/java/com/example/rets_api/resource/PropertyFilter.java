@@ -24,7 +24,6 @@ public class PropertyFilter {
 
     private List<BathSize> bathSizes = Collections.emptyList();
 
-
     private Indicator cornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
     private Indicator culdeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;

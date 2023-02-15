@@ -110,12 +110,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();
             for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
-                if(!isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
-                } else if(isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
-                } else if(!isNull(schoolDTO.getPrimary()) && isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                if(!isNull(schoolDTO)){
+                    if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+                    } else if(schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
+                    } else if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                    }
                 }
             }
             query = query.where(builder);
