@@ -29,12 +29,5 @@ public class SchoolEntity {
             inverseJoinColumns = @JoinColumn(name = "property_id"))
     private List<PropertyEntity> propertyList;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SchoolEntity)) return false;
-        SchoolEntity that = (SchoolEntity) o;
-        return Objects.equals(getPrimarySchool(), that.getPrimarySchool()) && Objects.equals(getJrHigh(), that.getJrHigh());
-    }
 }
 

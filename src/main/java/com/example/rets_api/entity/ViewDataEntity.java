@@ -42,12 +42,5 @@ public class ViewDataEntity {
     @JoinColumn(name = "property_id")
     private PropertyEntity property;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ViewDataEntity)) return false;
-        ViewDataEntity that = (ViewDataEntity) o;
-        return Objects.equals(getCityLight(), that.getCityLight()) && getCityLightIndicator() == that.getCityLightIndicator() && Objects.equals(getMountain(), that.getMountain()) && getMountainIndicator() == that.getMountainIndicator() && Objects.equals(getRiver(), that.getRiver()) && getRiverIndicator() == that.getRiverIndicator() && Objects.equals(getLake(), that.getLake()) && getLakeIndicator() == that.getLakeIndicator() && Objects.equals(getGolfCourse(), that.getGolfCourse()) && getGolfCourseIndicator() == that.getGolfCourseIndicator() && Objects.equals(getWater(), that.getWater()) && getWaterIndicator() == that.getWaterIndicator();
-    }
 
 }

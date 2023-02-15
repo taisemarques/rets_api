@@ -43,11 +43,4 @@ public class FinancialDataEntity {
     @JoinColumn(name = "property_id")
     private PropertyEntity property;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FinancialDataEntity)) return false;
-        FinancialDataEntity that = (FinancialDataEntity) o;
-        return Objects.equals(getLeaseOption(), that.getLeaseOption()) && getLeaseIndicator() == that.getLeaseIndicator() && Objects.equals(getTradeOption(), that.getTradeOption()) && getTradeIndicator() == that.getTradeIndicator() && Objects.equals(getRentalAmount(), that.getRentalAmount()) && getRentalAmountType() == that.getRentalAmountType() && Objects.equals(getRentalAmountCurrencyCode(), that.getRentalAmountCurrencyCode()) && getRentalAmountPeriod() == that.getRentalAmountPeriod() && getRentalAmountUnit() == that.getRentalAmountUnit();
-    }
 }
