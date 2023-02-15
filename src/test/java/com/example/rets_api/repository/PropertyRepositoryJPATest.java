@@ -73,8 +73,7 @@ public class PropertyRepositoryJPATest {
         compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData());
 
         assertNotNull(propertySaved.getAnimalPolicy());
-        assertEquals(propertySaved.getAnimalPolicy(), propertyToSave.getAnimalPolicy());
-
+        compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
@@ -151,5 +150,12 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getRentalAmountCurrencyCode(), entity2.getRentalAmountCurrencyCode());
         assertEquals(entity1.getRentalAmountPeriod(), entity2.getRentalAmountPeriod());
         assertEquals(entity1.getRentalAmountUnit(), entity2.getRentalAmountUnit());
+    }
+
+    public void compareAnimalPolicy(AnimalPolicyEntity entity1, AnimalPolicyEntity entity2) {
+        assertEquals(entity1.getAnimalsPermitted(), entity2.getAnimalsPermitted());
+        assertEquals(entity1.getPermittedTypes(), entity2.getPermittedTypes());
+        assertEquals(entity1.getWeightLimit(), entity2.getWeightLimit());
+        assertEquals(entity1.getWeightUnit(), entity2.getWeightUnit());
     }
 }
