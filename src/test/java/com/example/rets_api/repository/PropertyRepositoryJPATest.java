@@ -25,10 +25,10 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_find_no_Property_if_repository_is_empty(){
         //Searching
-        List<PropertyEntity> authors = propertyRepository.findAll();
+        List<PropertyEntity> properties = propertyRepository.findAll();
 
         //Validating
-        assertTrue(authors.isEmpty());
+        assertTrue(properties.isEmpty());
     }
 
     @Test

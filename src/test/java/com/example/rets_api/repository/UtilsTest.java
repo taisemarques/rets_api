@@ -4,6 +4,7 @@ package com.example.rets_api.repository;
 import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
+import com.example.rets_api.resource.PropertyFilter;
 
 import java.util.Arrays;
 
@@ -38,6 +39,12 @@ public class UtilsTest {
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         propertyEntity.setLotData(createLotDataEntity());
+        return propertyEntity;
+    }
+
+    public static PropertyEntity createPropertyEntityResponseAndID(Long id){
+        PropertyEntity propertyEntity = createPropertyEntityWithBasicFields();
+        propertyEntity.setPropertyId(id);
         return propertyEntity;
     }
 
@@ -173,7 +180,7 @@ public class UtilsTest {
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
             .financialData(createFinancialDataDTO())
-            .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
+            .roomList(asList(createRoomDTO(RoomType.MASTER_BEDROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .animalPolicy(createAnimalPolicyDTO())
             .lotData(createLotDataDTO())
@@ -183,11 +190,12 @@ public class UtilsTest {
 
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
-            .area(45)
-            .type(roomType)
-            .length(5)
-            .width(9)
-            .build();
+                .indicator(Indicator.YES)
+                .area(45)
+                .type(roomType)
+                .length(5)
+                .width(9)
+                .build();
     }
 
     public static CommunityDTO createCommunityDTO(){
@@ -247,6 +255,16 @@ public class UtilsTest {
                 .weightUnit(WeightUnit.KILO)
                 .weightLimit(10L)
                 .build();
+    }
+
+    //Filter
+
+    public static PropertyFilter createDefaultPropertyFilter(){
+        PropertyFilter propertyFilter = new PropertyFilter();
+        propertyFilter.setAge(10);
+        propertyFilter.setBathroomsQty(2);
+        propertyFilter.setBedroomsQty(3);
+        return propertyFilter;
     }
 
 }
