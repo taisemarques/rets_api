@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LotDataDTO {
+public class AnimalPolicyDTO {
 
-    private String cornerLot;
-    private Indicator cornerLotIndicator;
+    private Indicator animalsPermitted;
 
-    private String culdeSac;
-    private Indicator culdeSacIndicator;
+    private String permittedTypes;
 
-    private String golfCourseLot;
-    private Indicator golfCourseLotIndicator;
+    private Long weightLimit;
+
+    private WeightUnit weightUnit;
+
 }

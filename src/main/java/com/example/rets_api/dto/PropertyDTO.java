@@ -1,13 +1,17 @@
 package com.example.rets_api.dto;
 
 import com.example.rets_api.resource.Enums.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PropertyDTO {
 
     private int age;
@@ -54,6 +58,7 @@ public class PropertyDTO {
 
     private ViewDataDTO viewData;
 
-    private LotDataDTO lotData;
+    private AnimalPolicyDTO animalPolicy;
 
+    private LotDataDTO lotData;
 }

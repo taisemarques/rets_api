@@ -23,10 +23,10 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_find_no_Property_if_repository_is_empty(){
         //Searching
-        List<PropertyEntity> authors = propertyRepository.findAll();
+        List<PropertyEntity> properties = propertyRepository.findAll();
 
         //Validating
-        assertTrue(authors.isEmpty());
+        assertTrue(properties.isEmpty());
     }
 
     @Test
@@ -71,6 +71,9 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getFinancialData());
         compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData());
         compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData());
+
+        assertNotNull(propertySaved.getAnimalPolicy());
+        assertEquals(propertySaved.getAnimalPolicy(), propertyToSave.getAnimalPolicy());
 
     }
 

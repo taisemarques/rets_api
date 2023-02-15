@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static com.example.rets_api.resource.Enums.*;
 import static java.util.Objects.isNull;
@@ -76,6 +75,10 @@ public class PropertyEntity {
     private ViewDataEntity viewData;
 
     @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "animal_policy_id")
+    private AnimalPolicyEntity animalPolicy;
+
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "lotData_id")
     private LotDataEntity lotData;
 
@@ -106,6 +109,7 @@ public class PropertyEntity {
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
         if(!isNull(viewData)) viewData.setProperty(this);
+        if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
     }
 

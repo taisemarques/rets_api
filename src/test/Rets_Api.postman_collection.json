@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4fade851-f970-4f4c-9c85-78e3a76a8a96",
+		"_postman_id": "27bc4eac-2a9a-4ad2-9de0-11a45d9f0da7",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13137083"
 	},
 	"item": [
 		{
@@ -92,13 +93,147 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/properties",
+					"raw": "localhost:8080/properties?age=10&bedroomsQty=2&bathroomsQty=1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"properties"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "10"
+						},
+						{
+							"key": "bedroomsQty",
+							"value": "2"
+						},
+						{
+							"key": "bathroomsQty",
+							"value": "1"
+						},
+						{
+							"key": "horseFacilities",
+							"value": "horseFacilitiesValue",
+							"disabled": true
+						},
+						{
+							"key": "horseFacilitiesIndicator",
+							"value": "YES",
+							"disabled": true
+						},
+						{
+							"key": "hotTub",
+							"value": "hotTubValue",
+							"disabled": true
+						},
+						{
+							"key": "hotTubIndicator",
+							"value": "NO",
+							"disabled": true
+						},
+						{
+							"key": "tennisCourt",
+							"value": "tennisCourtValue",
+							"disabled": true
+						},
+						{
+							"key": "tennisCourtIndicator",
+							"value": "UNKNOWN",
+							"disabled": true
+						},
+						{
+							"key": "inclusions",
+							"value": "inclusionsValue",
+							"disabled": true
+						},
+						{
+							"key": "energyInformation",
+							"value": "energyInformationValue",
+							"disabled": true
+						},
+						{
+							"key": "constructionMaterial",
+							"value": "constructionMaterialValue",
+							"disabled": true
+						},
+						{
+							"key": "disabilityFeatures",
+							"value": "disabilityFeaturesValue",
+							"disabled": true
+						},
+						{
+							"key": "disabilityFeaturesIndicator",
+							"value": "YES",
+							"disabled": true
+						},
+						{
+							"key": "securityFeatures",
+							"value": "securityFeaturesValue",
+							"disabled": true
+						},
+						{
+							"key": "securityFeaturesIndicator",
+							"value": "YES",
+							"disabled": true
+						},
+						{
+							"key": "propertyTypeRental",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "propertyTypeCondo",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "propertyTypeTownHouse",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "propertyTypeFarm",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "schoolList",
+							"value": "primarySchool1; jrHigh1",
+							"disabled": true
+						},
+						{
+							"key": "schoolList",
+							"value": "primarySchool2; jrHigh2",
+							"disabled": true
+						},
+						{
+							"key": "bathSizes",
+							"value": "FULL",
+							"disabled": true
+						},
+						{
+							"key": "bathSizes",
+							"value": "HALF",
+							"disabled": true
+						},
+						{
+							"key": "cornerLotIndicator",
+							"value": "YES",
+							"disabled": true
+						},
+						{
+							"key": "culdeSacIndicator",
+							"value": "NO",
+							"disabled": true
+						},
+						{
+							"key": "golfCourseLotIndicator",
+							"value": "NO",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -113,6 +248,7 @@
 					"mode": "raw",
 					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"UNKNOWN\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"NO\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"NO\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"NO\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primary school 13\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        },\r\n        {\r\n            \"primary\": \"primary school 23\",\r\n            \"jrHigh\": \"High2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ],\r\n    \"lotData\": {\n            \"cornerLot\": \"corner lot 1\",\n            \"cornerLotIndicator\": \"YES\",\n            \"culdeSac\": \"Cul de sac 1\",\n            \"culdeSacIndicator\": \"NO\",\n            \"golfCourseLot\": \"Golf of course lot 1\",\n            \"golfCourseLotIndicator\": \"NO\"\n    }     \r\n}",
 					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"UNKNOWN\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"NO\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"NO\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"NO\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primary school 13\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        },\r\n        {\r\n            \"primary\": \"primary school 23\",\r\n            \"jrHigh\": \"High2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ]\r\n    \"viewData\": {\n        \"cityLight\": \"city light\",\n        \"cityLightIndicator\": \"NO\",\n        \"mountain\": \"mountain\",\n        \"mountainIndicator\": \"NO\",\n        \"river\": \"river\",\n        \"riverIndicator\": \"NO\",\n        \"lake\": \"lake\",\n        \"lakeIndicator\": \"NO\",\n        \"golfCourse\": \"golfCourse\"\n        \"golfCourseIndicator\": \"NO\",\n        \"water\": \"water\",\n        \"waterIndicator\": \"NO\"\n    }}",
+					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"UNKNOWN\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"NO\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"NO\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"NO\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primarySchool1\",\r\n            \"jrHigh\": \"jrHigh1\"\r\n        },\r\n        {\r\n            \"primary\": \"primarySchool2\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ],\r\n    \"lotData\": {\r\n            \"cornerLot\": \"corner lot 1\",\r\n            \"cornerLotIndicator\": \"YES\",\r\n            \"culdeSac\": \"Cul de sac 1\",\r\n            \"culdeSacIndicator\": \"NO\",\r\n            \"golfCourseLot\": \"Golf of course lot 1\",\r\n            \"golfCourseLotIndicator\": \"NO\"\r\n    }     \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

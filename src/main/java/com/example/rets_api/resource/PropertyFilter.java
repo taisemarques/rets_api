@@ -24,7 +24,6 @@ public class PropertyFilter {
 
     private List<BathSize> bathSizes = Collections.emptyList();
 
-
     private Indicator cornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
     private Indicator culdeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;
@@ -78,5 +77,11 @@ public class PropertyFilter {
     private Indicator golfCourseIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
     private Indicator waterIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private String leaseOption = DEFAULT_STRING_VALUE;
+
+    private Indicator leaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
 
 }

@@ -28,6 +28,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QRoomEntity room = QRoomEntity.roomEntity;
         QSchoolEntity school = QSchoolEntity.schoolEntity;
         QViewDataEntity viewData = QViewDataEntity.viewDataEntity;
+        QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
+        QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
 
         // Joining tables
@@ -35,7 +37,9 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(room).on(property.roomList.contains(room))
                 .leftJoin(school).on(property.schoolList.contains(school))
                 .leftJoin(viewData).on(property.viewData.eq(viewData))
-                .leftJoin(lotData).on(property.lotData.eq(lotData));
+                .leftJoin(lotData).on(property.lotData.eq(lotData))
+                .leftJoin(financialData).on(property.financialData.eq(financialData))
+                .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
@@ -108,12 +112,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!isEmpty(filterParams.getSchoolList())){
             BooleanBuilder builder = new BooleanBuilder();
             for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
-                if(!isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
-                } else if(isNull(schoolDTO.getPrimary()) && !isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
-                } else if(!isNull(schoolDTO.getPrimary()) && isNull(schoolDTO.getJrHigh())){
-                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                if(!isNull(schoolDTO)){
+                    if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+                    } else if(schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
+                    } else if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                    }
                 }
             }
             query = query.where(builder);
@@ -142,6 +148,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(!filterParams.getWaterIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.viewData.waterIndicator.eq(filterParams.getWaterIndicator()));
+
+        if(!filterParams.getLeaseOption().equals(DEFAULT_STRING_VALUE))
+            query = query.where(financialData.leaseOption.eq(filterParams.getLeaseOption()));
+
+        if(!filterParams.getLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(financialData.leaseIndicator.eq(filterParams.getLeaseIndicator()));
+
+        if(!filterParams.getAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.animalPolicy.animalsPermitted.eq(filterParams.getAnimalPermitted()));
 
         if(!filterParams.getGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.lotData.golfCourseLotIndicator.eq(filterParams.getGolfCourseLotIndicator()));

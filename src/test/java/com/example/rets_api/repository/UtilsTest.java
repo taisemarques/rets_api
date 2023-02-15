@@ -4,6 +4,9 @@ package com.example.rets_api.repository;
 import com.example.rets_api.dto.*;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
+import com.example.rets_api.resource.PropertyFilter;
+
+import java.util.Arrays;
 
 import static java.util.Arrays.asList;
 
@@ -34,6 +37,15 @@ public class UtilsTest {
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity((RoomType.MAIN_FLOOR_BEDROOM))));
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
+        propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
+        propertyEntity.setLotData(createLotDataEntity());
+        propertyEntity.setViewData(createViewDataEntity());
+        return propertyEntity;
+    }
+
+    public static PropertyEntity createPropertyEntityResponseAndID(Long id){
+        PropertyEntity propertyEntity = createPropertyEntityWithBasicFields();
+        propertyEntity.setPropertyId(id);
         propertyEntity.setViewData(createViewDataEntity());
         propertyEntity.setLotData(UtilsTest.createLotDataEntity());
         propertyEntity.setBedroomsQty(1);
@@ -53,7 +65,18 @@ public class UtilsTest {
         room.setAreaUnit(AreaUnit.SQ_METERS);
         room.setAreaType(AreaType.FLOAT);
         room.setBathSize(BathSize.THREE_QUARTER);
+        room.setIndicator(Indicator.YES);
         return room;
+    }
+
+    public static AnimalPolicyEntity createAnimalPolicy(String permittedType){
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes(permittedType);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        animalPolicy.setWeightLimit(10L);
+        animalPolicy.setProperties(Arrays.asList(createPropertyEntityWithBasicFields()));
+        return animalPolicy;
     }
 
     public static SchoolEntity createSchoolEntity(String primary, String jrHigh){
@@ -84,9 +107,17 @@ public class UtilsTest {
         .culdeSac("cul de sac test")
         .culdeSacIndicator(Indicator.YES)
         .build();
-
-
     }
+
+    public static AnimalPolicyEntity createAnimalPolicyEntity() {
+        AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
+        animalPolicy.setAnimalsPermitted(Indicator.YES);
+        animalPolicy.setPermittedTypes("permitted");
+        animalPolicy.setWeightLimit(10L);
+        animalPolicy.setWeightUnit(WeightUnit.KILO);
+        return animalPolicy;
+    }
+
     public static FinancialDataEntity createFinancialDataEntity(){
         FinancialDataEntity financialDataEntity = new FinancialDataEntity();
         financialDataEntity.setLeaseOption("leaseOption");
@@ -123,19 +154,23 @@ public class UtilsTest {
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
             .financialData(createFinancialDataDTO())
+            .roomList(asList(createRoomDTO(RoomType.MASTER_BEDROOM)))
             .viewData(createViewDataDTO())
             .roomList(asList(createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
+            .animalPolicy(createAnimalPolicyDTO())
+            .lotData(createLotDataDTO())
             .build();
     }
 
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
-            .area(45)
-            .type(roomType)
-            .length(5)
-            .width(9)
-            .build();
+                .indicator(Indicator.YES)
+                .area(45)
+                .type(roomType)
+                .length(5)
+                .width(9)
+                .build();
     }
 
     public static SchoolDTO createSchoolDTO(String primary, String jrHigh){
@@ -193,5 +228,24 @@ public class UtilsTest {
                 .build();
     }
 
+
+    public static AnimalPolicyDTO createAnimalPolicyDTO(){
+        return AnimalPolicyDTO.builder()
+                .permittedTypes("permittted")
+                .animalsPermitted(Indicator.YES)
+                .weightUnit(WeightUnit.KILO)
+                .weightLimit(10L)
+                .build();
+    }
+
+    //Filter
+
+    public static PropertyFilter createDefaultPropertyFilter(){
+        PropertyFilter propertyFilter = new PropertyFilter();
+        propertyFilter.setAge(10);
+        propertyFilter.setBathroomsQty(2);
+        propertyFilter.setBedroomsQty(3);
+        return propertyFilter;
+    }
 
 }
