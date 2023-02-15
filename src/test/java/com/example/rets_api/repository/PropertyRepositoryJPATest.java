@@ -74,6 +74,16 @@ public class PropertyRepositoryJPATest {
 
         assertNotNull(propertySaved.getAnimalPolicy());
         compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy());
+
+        assertNotNull(propertySaved.getPropertyId());
+        assertNotNull(propertySaved.getAnimalPolicy().getAnimalPolicyId());
+        assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
+        assertNotNull(propertySaved.getLotData().getLotDataId());
+        assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
+        assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
+        assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
+        assertNotNull(propertySaved.getViewData().getViewDataId());
+
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){

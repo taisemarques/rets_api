@@ -36,6 +36,7 @@ public class UtilsTest {
         propertyEntity.setPropertyTypeTownHouse(true);
         propertyEntity.setFinancialData(createFinancialDataEntity());
         propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity((RoomType.MAIN_FLOOR_BEDROOM))));
+        propertyEntity.setBedroomsQty(1);
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         propertyEntity.setLotData(createLotDataEntity());
@@ -46,9 +47,6 @@ public class UtilsTest {
     public static PropertyEntity createPropertyEntityResponseAndID(Long id){
         PropertyEntity propertyEntity = createPropertyEntityWithBasicFields();
         propertyEntity.setPropertyId(id);
-        propertyEntity.setViewData(createViewDataEntity());
-        propertyEntity.setLotData(UtilsTest.createLotDataEntity());
-        propertyEntity.setBedroomsQty(1);
         return propertyEntity;
     }
 

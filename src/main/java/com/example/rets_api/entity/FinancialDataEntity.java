@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import java.util.Objects;
-
 import static com.example.rets_api.resource.Enums.*;
 
 @Entity(name = "financial_data")

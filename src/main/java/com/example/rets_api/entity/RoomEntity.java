@@ -5,7 +5,6 @@ import lombok.*;
 import static com.example.rets_api.resource.Enums.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity(name = "room")
 @Setter

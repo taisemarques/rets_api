@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import com.example.rets_api.resource.Enums.*;
 
-import java.util.Objects;
 
 @Entity(name = "viewData")
 @Setter
