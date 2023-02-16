@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "735e26cb-e527-450e-94bc-36f20e94534b",
+		"_postman_id": "73f7a2e1-8674-4cbe-ac17-8beb5daea99d",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13137083"
 	},
 	"item": [
 		{

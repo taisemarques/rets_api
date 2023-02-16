@@ -73,7 +73,7 @@ public class RetsControllerIntegrationTest {
 
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
-//        assertEquals(propertyDTORequest, responseEntityGet.getBody());
+        assertEquals(propertyDTORequest, responseEntityGet.getBody());
     }
 
     @Test
