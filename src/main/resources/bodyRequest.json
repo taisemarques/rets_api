@@ -70,5 +70,42 @@
     "golfCourseIndicator": null,
     "water": "",
     "waterIndicator": null
+  },
+  "community": {
+    "clubHouse":  "",
+    "clubHouseIndicator":  null,
+
+    "exerciseArea":  "",
+     "exerciseAreaIndicator":  null,
+
+    "golf":  "",
+     "golfIndicator":  null,
+
+    "tennis":  "",
+     "tennisIndicator":  null,
+
+    "recreationalFacilities":  "",
+     "recreationalFacilitiesIndicator":  null,
+
+    "securityFeatures":  "",
+     "securityFeaturesIndicator":  null,
+
+    "seniorCommunity":  "",
+     "seniorCommunityIndicator":  null,
+
+    "hotTub":  "",
+     "hotTubIndicator":  null,
+
+    "pool":  "",
+     "poolIndicator":  null,
+
+    "boatFacilities":  "",
+     "boatFacilitiesIndicator":  null,
+
+    "horseFacilities":  "",
+     "horseFacilitiesIndicator":  null,
+
+    "communityPark":  "",
+     "communityParkIndicator":  null
   }
 }

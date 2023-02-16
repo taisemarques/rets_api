@@ -188,7 +188,7 @@ public class UtilsTest {
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .animalPolicy(createAnimalPolicyDTO())
             .lotData(createLotDataDTO())
-             .community(createCommunityDTO())
+            .community(createCommunityDTO())
             .build();
     }
 
@@ -289,7 +289,7 @@ public class UtilsTest {
 
     public static AnimalPolicyDTO createAnimalPolicyDTO(){
         return AnimalPolicyDTO.builder()
-                .permittedTypes("permittted")
+                .permittedTypes("permitttedType")
                 .animalsPermitted(Indicator.YES)
                 .weightUnit(WeightUnit.KILO)
                 .weightLimit(10L)

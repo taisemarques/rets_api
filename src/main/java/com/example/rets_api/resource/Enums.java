@@ -77,20 +77,4 @@ public class Enums {
         LESS_THEN,
         DEFAULT_ENUM_VALUE
     }
-
-    public enum CommunityType {
-        CLUB_HOUSE,
-        EXERCISE_AREA,
-        GOLF,
-        TENNIS,
-        RECREATIONAL_FACILITIES,
-        SECURITY_FEATURES,
-        SENIOR_COMMUNITY,
-        HOTTUB,
-        POOL,
-        BOAT_FACILITIES,
-        HORSE_FACILITIES,
-        COMMUNITY_PARK,
-        DEFAULT_ENUM_VALUE
-    }
 }
