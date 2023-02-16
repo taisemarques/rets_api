@@ -1,6 +1,5 @@
 package com.example.rets_api.entity;
 
-import com.querydsl.core.annotations.QueryInit;
 import lombok.*;
 
 import javax.persistence.*;
@@ -72,6 +71,9 @@ public class PropertyEntity {
     @OneToMany(mappedBy= "property", cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
+    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
+    private ViewDataEntity viewData;
+
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "animal_policy_id")
     private AnimalPolicyEntity animalPolicy;
@@ -109,6 +111,7 @@ public class PropertyEntity {
         if(!isNull(schoolList)) schoolList.forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
+        if(!isNull(viewData)) viewData.setProperty(this);
         if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
         if(!isNull(contactInformation)) contactInformation.setProperty(this);

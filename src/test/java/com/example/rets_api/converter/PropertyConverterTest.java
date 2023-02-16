@@ -9,6 +9,7 @@ import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllF
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
+import static com.example.rets_api.converter.ViewDataConverterTest.checkAllFields_ViewData;
 import static com.example.rets_api.converter.LotDataConverterTest.checkAllFields_LotData;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -39,6 +40,7 @@ public class PropertyConverterTest {
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
+        checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
     }
 
@@ -65,6 +67,7 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
+        checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
     }

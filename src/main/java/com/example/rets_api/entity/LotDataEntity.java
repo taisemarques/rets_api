@@ -31,6 +31,4 @@ public class LotDataEntity {
     @OneToMany(mappedBy = "lotData")
     private List<PropertyEntity> propertyList;
 
-
-
 }

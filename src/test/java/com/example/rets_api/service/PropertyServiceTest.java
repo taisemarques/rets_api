@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
 import static com.example.rets_api.repository.UtilsTest.*;
@@ -50,14 +51,12 @@ public class PropertyServiceTest {
 
     @Test
     public void shouldGetEmptyProperty_getPropertyById(){
-        //Mocking calls
-        when(propertyRepositoryJPA.getById(any())).thenReturn(null);
 
         //Request
         PropertyDTO propertyDTOResponse = propertyService.getPropertyById(Long.valueOf(123456789));
 
         //Validation
-        assertEquals(PropertyDTO.builder().build(),  propertyDTOResponse);
+        assertEquals(null,  propertyDTOResponse);
     }
 
     @Test
@@ -66,7 +65,7 @@ public class PropertyServiceTest {
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls
-        when(propertyRepositoryJPA.getById(any())).thenReturn(propertyEntity);
+        when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
 
         //Request
         PropertyDTO propertyDTOResponse = propertyService.getPropertyById(Long.valueOf(123456789));
