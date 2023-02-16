@@ -20,8 +20,22 @@ public class PhoneEntity {
     private String primaryPhone;
     private String alternatePhone;
 
-    @OneToOne
-    @JoinColumn(name = "contactInformationId")
-    private ContactInformationEntity contactInformation;
+    @OneToOne(mappedBy = "agentPhone")
+    private ContactInformationEntity agentPhoneContactInformationEntity;
+
+    @OneToOne(mappedBy = "listAgentPhone")
+    private ContactInformationEntity listAgentPhoneContactInformationEntity;
+
+    @OneToOne(mappedBy = "salesAgentPhone")
+    private ContactInformationEntity salesAgentPhoneContactInformationEntity;
+
+    @OneToOne(mappedBy = "officePhone")
+    private ContactInformationEntity officePhoneContactInformationEntity;
+
+    @OneToOne(mappedBy = "listOfficePhone")
+    private ContactInformationEntity listOfficePhoneContactInformationEntity;
+
+    @OneToOne(mappedBy = "salesOfficePhone")
+    private ContactInformationEntity salesOfficePhoneContactInformationEntity;
 }
 

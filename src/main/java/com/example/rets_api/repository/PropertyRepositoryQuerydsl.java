@@ -31,7 +31,12 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
         QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
-        QPhoneEntity phone = QPhoneEntity.phoneEntity;
+        QPhoneEntity agentPhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity listAgentPhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity officePhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity listOfficePhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity salesAgentPhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity salesOfficePhone = QPhoneEntity.phoneEntity;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
@@ -41,14 +46,13 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(lotData).on(property.lotData.eq(lotData))
                 .leftJoin(financialData).on(property.financialData.eq(financialData))
                 .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
-                .leftJoin(lotData).on(property.lotData.eq(lotData))
-                .leftJoin(contactInformation).on(property.contactInformation.eq(contactInformation))
-                .leftJoin(phone).on(property.contactInformation.agentPhone.eq(phone))
-                .leftJoin(phone).on(property.contactInformation.listAgentPhone.eq(phone))
-                .leftJoin(phone).on(property.contactInformation.officePhone.eq(phone))
-                .leftJoin(phone).on(property.contactInformation.listOfficePhone.eq(phone))
-                .leftJoin(phone).on(property.contactInformation.salesAgentPhone.eq(phone))
-                .leftJoin(phone).on(property.contactInformation.salesOfficePhone.eq(phone));
+                .leftJoin(contactInformation).on(property.contactInformation.contactInformationId.eq(contactInformation.contactInformationId))
+                .leftJoin(agentPhone).on(contactInformation.agentPhone.phoneId.eq(agentPhone.phoneId))
+                .leftJoin(listAgentPhone).on(contactInformation.listAgentPhone.phoneId.eq(listAgentPhone.phoneId))
+                .leftJoin(officePhone).on(contactInformation.officePhone.phoneId.eq(officePhone.phoneId))
+                .leftJoin(listOfficePhone).on(contactInformation.listOfficePhone.phoneId.eq(listOfficePhone.phoneId))
+                .leftJoin(salesAgentPhone).on(contactInformation.salesAgentPhone.phoneId.eq(salesAgentPhone.phoneId))
+                .leftJoin(salesOfficePhone).on(contactInformation.salesOfficePhone.phoneId.eq(salesOfficePhone.phoneId));
 
         if(filterParams.getAge() > 0)
             query = query.where(property.age.eq(filterParams.getAge()));
