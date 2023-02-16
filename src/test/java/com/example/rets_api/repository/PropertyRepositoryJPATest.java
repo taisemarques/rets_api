@@ -1,7 +1,6 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.*;
-import com.example.rets_api.resource.Enums.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
