@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ContactInformationDTO {
 
-    private PhoneEntity agentPhone;
-    private PhoneEntity listAgentPhone;
+    private PhoneDTO agentPhone;
+    private PhoneDTO listAgentPhone;
 
-    private PhoneEntity salesAgentPhone;
+    private PhoneDTO salesAgentPhone;
 
-    private PhoneEntity officePhone;
-    private PhoneEntity listOfficePhone;
+    private PhoneDTO officePhone;
+    private PhoneDTO listOfficePhone;
 
-    private PhoneEntity salesOfficePhone;
+    private PhoneDTO salesOfficePhone;
 }

@@ -12,12 +12,12 @@ public class ContactInformationConverter {
         if(isNull(in)) return null;
 
         ContactInformationEntity retsEntity = new ContactInformationEntity();
-        retsEntity.setAgentPhone(in.getAgentPhone());
-        retsEntity.setListAgentPhone(in.getListAgentPhone());
-        retsEntity.setSalesAgentPhone(in.getSalesAgentPhone());
-        retsEntity.setOfficePhone(in.getOfficePhone());
-        retsEntity.setListOfficePhone(in.getListOfficePhone());
-        retsEntity.setSalesOfficePhone(in.getSalesOfficePhone());
+        retsEntity.setAgentPhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getAgentPhone()));
+        retsEntity.setListAgentPhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getListAgentPhone()));
+        retsEntity.setSalesAgentPhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getSalesAgentPhone()));
+        retsEntity.setOfficePhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getOfficePhone()));
+        retsEntity.setListOfficePhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getListOfficePhone()));
+        retsEntity.setSalesOfficePhone(PhoneConverter.phoneDTOPhoneEntityConverter.convert(in.getSalesOfficePhone()));
 
         return retsEntity;
     };
@@ -25,12 +25,12 @@ public class ContactInformationConverter {
     public static Converter<ContactInformationEntity, ContactInformationDTO> contactInformationEntityContactInformationDTO = in -> {
         if (isNull(in)) return null;
         return ContactInformationDTO.builder()
-                .agentPhone(in.getAgentPhone())
-                .listAgentPhone(in.getListAgentPhone())
-                .salesAgentPhone(in.getSalesAgentPhone())
-                .officePhone(in.getOfficePhone())
-                .listOfficePhone(in.getListOfficePhone())
-                .salesOfficePhone(in.getSalesOfficePhone())
+                .agentPhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getAgentPhone()))
+                .listAgentPhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getListAgentPhone()))
+                .salesAgentPhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getSalesAgentPhone()))
+                .officePhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getOfficePhone()))
+                .listOfficePhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getListOfficePhone()))
+                .salesOfficePhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getSalesOfficePhone()))
                 .build();
     };
 }
