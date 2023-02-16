@@ -104,5 +104,4 @@ public class RetsControllerIntegrationTest {
         List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
         return propertyDTOList.get(propertyIndex);
     }
-
 }

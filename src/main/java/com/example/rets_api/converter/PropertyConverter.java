@@ -66,6 +66,7 @@ public class PropertyConverter {
                 .financialData(FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(in.getFinancialData()))
                 .schoolList(SchoolConverter.listSchoolEntityToListSchoolDTO(in.getSchoolList()))
                 .roomList(RoomConverter.listRoomEntityToListRoomDTO(in.getRoomList()))
+                .viewData(ViewDataConverter.viewDataEntityToViewDataDTO.convert(in.getViewData()))
                 .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
                 .community(CommunityConverter.communityEntityToCommunityDTO.convert(in.getCommunity()))
