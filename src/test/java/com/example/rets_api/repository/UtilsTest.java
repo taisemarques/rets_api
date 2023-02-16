@@ -35,10 +35,12 @@ public class UtilsTest {
         propertyEntity.setPropertyTypeCondo(false);
         propertyEntity.setPropertyTypeTownHouse(true);
         propertyEntity.setFinancialData(createFinancialDataEntity());
-        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM)));
+        propertyEntity.setRoomList(asList(createRoomEntity(RoomType.LIVING_ROOM), createRoomEntity((RoomType.MAIN_FLOOR_BEDROOM))));
+        propertyEntity.setBedroomsQty(1);
         propertyEntity.setSchoolList(asList(createSchoolEntity("primary", "jrHigh")));
         propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         propertyEntity.setLotData(createLotDataEntity());
+        propertyEntity.setViewData(createViewDataEntity());
         return propertyEntity;
     }
 
@@ -180,7 +182,8 @@ public class UtilsTest {
             .propertyTypeCondo(false)
             .propertyTypeTownHouse(true)
             .financialData(createFinancialDataDTO())
-            .roomList(asList(createRoomDTO(RoomType.MASTER_BEDROOM)))
+            .viewData(createViewDataDTO())
+            .roomList(asList(createRoomDTO(RoomType.MASTER_BEDROOM), createRoomDTO(RoomType.LIVING_ROOM)))
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .animalPolicy(createAnimalPolicyDTO())
             .lotData(createLotDataDTO())
@@ -247,6 +250,41 @@ public class UtilsTest {
                 .build();
 
     }
+
+    public static ViewDataEntity createViewDataEntity(){
+        ViewDataEntity viewData = new ViewDataEntity();
+        viewData.setCityLight("Light");
+        viewData.setCityLightIndicator(Indicator.YES);
+        viewData.setMountain("Mountain");
+        viewData.setMountainIndicator(Indicator.YES);
+        viewData.setRiver("River");
+        viewData.setRiverIndicator(Indicator.YES);
+        viewData.setLake("Lake");
+        viewData.setLakeIndicator(Indicator.YES);
+        viewData.setGolfCourse("Golf");
+        viewData.setGolfCourseIndicator(Indicator.YES);
+        viewData.setWater("Water");
+        viewData.setWaterIndicator(Indicator.YES);
+        return viewData;
+    }
+
+    public static ViewDataDTO createViewDataDTO(){
+        return ViewDataDTO.builder()
+                .cityLight("light")
+                .cityLightIndicator(Indicator.NO)
+                .mountain("mountain")
+                .mountainIndicator(Indicator.NO)
+                .river("river")
+                .riverIndicator(Indicator.NO)
+                .lake("lake")
+                .lakeIndicator(Indicator.NO)
+                .golfCourse("golfCourse")
+                .golfCourseIndicator(Indicator.NO)
+                .water("water")
+                .waterIndicator(Indicator.NO)
+                .build();
+    }
+
 
     public static AnimalPolicyDTO createAnimalPolicyDTO(){
         return AnimalPolicyDTO.builder()

@@ -56,6 +56,8 @@ public class PropertyDTO {
 
     private List<RoomDTO> roomList;
 
+    private ViewDataDTO viewData;
+
     private AnimalPolicyDTO animalPolicy;
 
     private CommunityDTO community;

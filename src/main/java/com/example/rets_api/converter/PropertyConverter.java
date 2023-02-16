@@ -36,6 +36,7 @@ public class PropertyConverter {
         retsEntity.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(in.getSchoolList()));
         retsEntity.setRoomList(RoomConverter.listRoomDTOToListRoomEntity(in.getRoomList()));
         retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
+        retsEntity.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(in.getViewData()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
         retsEntity.setCommunity(CommunityConverter.communityDTOToCommunityEntity.convert(in.getCommunity()));
         return retsEntity;

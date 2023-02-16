@@ -55,4 +55,20 @@
     "weightLimit": 0,
     "wightUnit": null
   }
+,
+
+  "viewData": {
+    "cityLight": "",
+    "cityLightIndicator": null,
+    "mountain": "",
+    "mountainIndicator": null,
+    "river": "",
+    "riverIndicator": null,
+    "lake": "",
+    "lakeIndicator": null,
+    "golfCourse": "",
+    "golfCourseIndicator": null,
+    "water": "",
+    "waterIndicator": null
+  }
 }
