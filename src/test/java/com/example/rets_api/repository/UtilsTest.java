@@ -41,6 +41,7 @@ public class UtilsTest {
         propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         propertyEntity.setLotData(createLotDataEntity());
         propertyEntity.setViewData(createViewDataEntity());
+        propertyEntity.setCommunity(createCommunityEntity());
         return propertyEntity;
     }
 

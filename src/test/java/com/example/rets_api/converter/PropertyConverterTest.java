@@ -6,6 +6,7 @@ import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
 import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
+import static com.example.rets_api.converter.CommunityConverterTest.checkAllFields_Community;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
@@ -67,9 +68,9 @@ public class PropertyConverterTest {
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
         checkAllFields_School(propertyEntity.getSchoolList().get(0), propertyDTO.getSchoolList().get(0));
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
-        checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
+        checkAllFields_Community(propertyEntity.getCommunity(), propertyDTO.getCommunity());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
