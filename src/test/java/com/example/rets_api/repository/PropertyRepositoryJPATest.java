@@ -88,6 +88,7 @@ public class PropertyRepositoryJPATest {
 
         assertNotNull(propertySaved.getCommunity());
         assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
+        assertNotNull(propertySaved.getCommunity().getCommunityId());
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
     }
 
