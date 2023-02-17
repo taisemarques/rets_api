@@ -84,6 +84,9 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
         assertNotNull(propertySaved.getViewData().getViewDataId());
 
+        assertNotNull(propertySaved.getContactInformation());
+        compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation());
+
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
@@ -167,5 +170,20 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getPermittedTypes(), entity2.getPermittedTypes());
         assertEquals(entity1.getWeightLimit(), entity2.getWeightLimit());
         assertEquals(entity1.getWeightUnit(), entity2.getWeightUnit());
+    }
+
+    public static void compareContactInformation(ContactInformationEntity entity1, ContactInformationEntity entity2) {
+        assertEquals(entity1.getAgentPhone().getPrimaryPhone(), entity2.getAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getAgentPhone().getAlternatePhone(), entity2.getAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getListAgentPhone().getPrimaryPhone(), entity2.getListAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getListAgentPhone().getAlternatePhone(), entity2.getListAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getSalesAgentPhone().getPrimaryPhone(), entity2.getSalesAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getSalesAgentPhone().getAlternatePhone(), entity2.getSalesAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getOfficePhone().getPrimaryPhone(), entity2.getOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getOfficePhone().getAlternatePhone(), entity2.getOfficePhone().getAlternatePhone());
+        assertEquals(entity1.getListOfficePhone().getPrimaryPhone(), entity2.getListOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getListOfficePhone().getAlternatePhone(), entity2.getListOfficePhone().getAlternatePhone());
+        assertEquals(entity1.getSalesOfficePhone().getPrimaryPhone(), entity2.getSalesOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getSalesOfficePhone().getAlternatePhone(), entity2.getSalesOfficePhone().getAlternatePhone());
     }
 }

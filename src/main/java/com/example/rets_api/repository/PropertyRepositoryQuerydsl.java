@@ -31,6 +31,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
         QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
+
         QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
         QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
         QPhoneEntity officePhone = new QPhoneEntity("officePhone");

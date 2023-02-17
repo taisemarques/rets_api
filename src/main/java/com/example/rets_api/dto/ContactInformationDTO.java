@@ -1,6 +1,5 @@
 package com.example.rets_api.dto;
 
-import com.example.rets_api.entity.PhoneEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,4 @@
 package com.example.rets_api.entity;
-
-import com.example.rets_api.entity.ContactInformationEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,22 +18,22 @@ public class PhoneEntity {
     private String primaryPhone;
     private String alternatePhone;
 
-    @OneToOne(mappedBy = "agentPhone")
+    @OneToOne(mappedBy = "agentPhone", cascade = CascadeType.ALL)
     private ContactInformationEntity agentPhoneContactInformationEntity;
 
-    @OneToOne(mappedBy = "listAgentPhone")
+    @OneToOne(mappedBy = "listAgentPhone", cascade = CascadeType.ALL)
     private ContactInformationEntity listAgentPhoneContactInformationEntity;
 
-    @OneToOne(mappedBy = "salesAgentPhone")
+    @OneToOne(mappedBy = "salesAgentPhone", cascade = CascadeType.ALL)
     private ContactInformationEntity salesAgentPhoneContactInformationEntity;
 
-    @OneToOne(mappedBy = "officePhone")
+    @OneToOne(mappedBy = "officePhone", cascade = CascadeType.ALL)
     private ContactInformationEntity officePhoneContactInformationEntity;
 
-    @OneToOne(mappedBy = "listOfficePhone")
+    @OneToOne(mappedBy = "listOfficePhone", cascade = CascadeType.ALL)
     private ContactInformationEntity listOfficePhoneContactInformationEntity;
 
-    @OneToOne(mappedBy = "salesOfficePhone")
+    @OneToOne(mappedBy = "salesOfficePhone", cascade = CascadeType.ALL)
     private ContactInformationEntity salesOfficePhoneContactInformationEntity;
 }
 
