@@ -31,12 +31,12 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
         QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
-        QPhoneEntity agentPhone = QPhoneEntity.phoneEntity;
-        QPhoneEntity listAgentPhone = QPhoneEntity.phoneEntity;
-        QPhoneEntity officePhone = QPhoneEntity.phoneEntity;
-        QPhoneEntity listOfficePhone = QPhoneEntity.phoneEntity;
-        QPhoneEntity salesAgentPhone = QPhoneEntity.phoneEntity;
-        QPhoneEntity salesOfficePhone = QPhoneEntity.phoneEntity;
+        QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
+        QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
+        QPhoneEntity officePhone = new QPhoneEntity("officePhone");
+        QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
+        QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
+        QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
@@ -108,22 +108,23 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
-        if(!isEmpty(filterParams.getPhoneNumbers())){
+        List<String> phoneNumbers = filterParams.getPhoneNumbers();
+        if(!isEmpty(phoneNumbers)){
             BooleanBuilder builder = new BooleanBuilder();
-            for(String phoneNumber: filterParams.getPhoneNumbers()){
+            for(String phoneNumber: phoneNumbers){
                 if(!phoneNumber.equals(DEFAULT_STRING_VALUE)) {
-                    builder = builder.or(contactInformation.agentPhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.agentPhone.alternatePhone.eq(phoneNumber))
-                                     .or(contactInformation.listAgentPhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.listAgentPhone.alternatePhone.eq(phoneNumber))
-                                     .or(contactInformation.salesAgentPhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.salesAgentPhone.alternatePhone.eq(phoneNumber))
-                                     .or(contactInformation.officePhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.officePhone.alternatePhone.eq(phoneNumber))
-                                     .or(contactInformation.listOfficePhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.listOfficePhone.alternatePhone.eq(phoneNumber))
-                                     .or(contactInformation.salesOfficePhone.primaryPhone.eq(phoneNumber))
-                                     .or(contactInformation.salesOfficePhone.alternatePhone.eq(phoneNumber));
+                    builder = builder.or(agentPhone.primaryPhone.in(phoneNumbers))
+                                     .or(agentPhone.alternatePhone.in(phoneNumbers))
+                                     .or(listAgentPhone.primaryPhone.in(phoneNumbers))
+                                     .or(listAgentPhone.alternatePhone.in(phoneNumbers))
+                                     .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
+                                     .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
+                                     .or(officePhone.primaryPhone.in(phoneNumbers))
+                                     .or(officePhone.alternatePhone.in(phoneNumbers))
+                                     .or(listOfficePhone.primaryPhone.in(phoneNumbers))
+                                     .or(listOfficePhone.alternatePhone.in(phoneNumbers))
+                                     .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
+                                     .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
                 }
             }
             query = query.where(builder);
