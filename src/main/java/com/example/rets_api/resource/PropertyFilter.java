@@ -84,4 +84,27 @@ public class PropertyFilter {
 
     private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
 
+    private Indicator clubHouseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator exerciseAreaIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator golfIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator tennisIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator recreationalFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator securityFeaturesIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator seniorCommunityIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator hotTubIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator poolIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator boatFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator horseFacilitiesIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
 }

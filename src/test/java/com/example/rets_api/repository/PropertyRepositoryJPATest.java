@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -84,6 +86,10 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
         assertNotNull(propertySaved.getViewData().getViewDataId());
 
+        assertNotNull(propertySaved.getCommunity());
+        assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
+        assertNotNull(propertySaved.getCommunity().getCommunityId());
+        compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
@@ -167,5 +173,32 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getPermittedTypes(), entity2.getPermittedTypes());
         assertEquals(entity1.getWeightLimit(), entity2.getWeightLimit());
         assertEquals(entity1.getWeightUnit(), entity2.getWeightUnit());
+    }
+
+    public void compareCommunity(CommunityEntity entity1, CommunityEntity entity2) {
+        assertEquals(entity1.getClubHouse(), entity2.getClubHouse());
+        assertEquals(entity1.getCommunityParkIndicator(), entity2.getClubHouseIndicator());
+        assertEquals(entity1.getExerciseArea(), entity2.getExerciseArea());
+        assertEquals(entity1.getExerciseAreaIndicator(), entity2.getExerciseAreaIndicator());
+        assertEquals(entity1.getGolf(), entity2.getGolf());
+        assertEquals(entity1.getGolfIndicator(), entity2.getGolfIndicator());
+        assertEquals(entity1.getTennis(), entity2.getTennis());
+        assertEquals(entity1.getTennisIndicator(), entity2.getTennisIndicator());
+        assertEquals(entity1.getRecreationalFacilities(), entity2.getRecreationalFacilities());
+        assertEquals(entity1.getRecreationalFacilitiesIndicator(), entity2.getRecreationalFacilitiesIndicator());
+        assertEquals(entity1.getSecurityFeatures(), entity2.getSecurityFeatures());
+        assertEquals(entity1.getSecurityFeaturesIndicator(), entity2.getSecurityFeaturesIndicator());
+        assertEquals(entity1.getSeniorCommunity(), entity2.getSeniorCommunity());
+        assertEquals(entity1.getSeniorCommunityIndicator(), entity2.getSeniorCommunityIndicator());
+        assertEquals(entity1.getHotTub(), entity2.getHotTub());
+        assertEquals(entity1.getHotTubIndicator(),entity2.getHotTubIndicator());
+        assertEquals(entity1.getPool(), entity2.getPool());
+        assertEquals(entity1.getPoolIndicator(), entity2.getPoolIndicator());
+        assertEquals(entity1.getBoatFacilities(), entity2.getBoatFacilities());
+        assertEquals(entity1.getBoatFacilitiesIndicator(),entity2.getBoatFacilitiesIndicator());
+        assertEquals(entity1.getHorseFacilities(), entity2.getHorseFacilities());
+        assertEquals(entity1.getHorseFacilitiesIndicator(), entity2.getHorseFacilitiesIndicator());
+        assertEquals(entity1.getCommunityPark(), entity2.getCommunityPark());
+        assertEquals(entity1.getCommunityParkIndicator(), entity2.getCommunityParkIndicator());
     }
 }

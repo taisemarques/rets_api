@@ -77,5 +77,4 @@ public class Enums {
         LESS_THEN,
         DEFAULT_ENUM_VALUE
     }
-
 }
