@@ -38,6 +38,7 @@ public class PropertyConverter {
         retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         retsEntity.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(in.getViewData()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
+        retsEntity.setContactInformation(ContactInformationConverter.contactInformationDTOContactInformationEntity.convert(in.getContactInformation()));
         retsEntity.setCommunity(CommunityConverter.communityDTOToCommunityEntity.convert(in.getCommunity()));
         return retsEntity;
     };
@@ -69,6 +70,7 @@ public class PropertyConverter {
                 .viewData(ViewDataConverter.viewDataEntityToViewDataDTO.convert(in.getViewData()))
                 .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
+                .contactInformation(ContactInformationConverter.contactInformationEntityContactInformationDTO.convert(in.getContactInformation()))
                 .community(CommunityConverter.communityEntityToCommunityDTO.convert(in.getCommunity()))
                 .build();
     };

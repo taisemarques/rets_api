@@ -30,6 +30,13 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
+        QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
+        QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
+        QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
+        QPhoneEntity officePhone = new QPhoneEntity("officePhone");
+        QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
+        QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
+        QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
         QCommunityEntity community = QCommunityEntity.communityEntity;
 
         // Joining tables
@@ -40,7 +47,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(viewData).on(property.propertyId.eq(viewData.property.propertyId))
                 .leftJoin(lotData).on(property.lotData.eq(lotData))
                 .leftJoin(financialData).on(property.propertyId.eq(financialData.property.propertyId))
-                .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy));
+                .leftJoin(financialData).on(property.financialData.eq(financialData))
+                .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
+                .leftJoin(contactInformation).on(property.contactInformation.contactInformationId.eq(contactInformation.contactInformationId))
+                .leftJoin(agentPhone).on(contactInformation.agentPhone.phoneId.eq(agentPhone.phoneId))
+                .leftJoin(listAgentPhone).on(contactInformation.listAgentPhone.phoneId.eq(listAgentPhone.phoneId))
+                .leftJoin(officePhone).on(contactInformation.officePhone.phoneId.eq(officePhone.phoneId))
+                .leftJoin(listOfficePhone).on(contactInformation.listOfficePhone.phoneId.eq(listOfficePhone.phoneId))
+                .leftJoin(salesAgentPhone).on(contactInformation.salesAgentPhone.phoneId.eq(salesAgentPhone.phoneId))
+                .leftJoin(salesOfficePhone).on(contactInformation.salesOfficePhone.phoneId.eq(salesOfficePhone.phoneId));
 
         if(filterParams.getPropertyAge() != DEFAULT_NUMBER_VALUE)
             query = query.where(property.age.eq(filterParams.getPropertyAge()));
@@ -101,6 +116,27 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(filterParams.getPropertyBathroomsQty() != DEFAULT_NUMBER_VALUE)
             query = query.where(property.bathroomsQty.eq(filterParams.getPropertyBathroomsQty()));
+
+        if(nonNull(filterParams.getPropertyTypeTownHouse()))
+            query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
+
+        List<String> phoneNumbers = filterParams.getPhoneNumbers();
+        if(!isEmpty(phoneNumbers)){
+            BooleanBuilder builder = new BooleanBuilder();
+                    builder = builder.or(agentPhone.primaryPhone.in(phoneNumbers))
+                            .or(agentPhone.alternatePhone.in(phoneNumbers))
+                            .or(listAgentPhone.primaryPhone.in(phoneNumbers))
+                            .or(listAgentPhone.alternatePhone.in(phoneNumbers))
+                            .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
+                            .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
+                            .or(officePhone.primaryPhone.in(phoneNumbers))
+                            .or(officePhone.alternatePhone.in(phoneNumbers))
+                            .or(listOfficePhone.primaryPhone.in(phoneNumbers))
+                            .or(listOfficePhone.alternatePhone.in(phoneNumbers))
+                            .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
+                            .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
+            query = query.where(builder);
+        }
 
         if(!isEmpty(filterParams.getPropertyBathSizes())){
             BooleanBuilder builder = new BooleanBuilder();

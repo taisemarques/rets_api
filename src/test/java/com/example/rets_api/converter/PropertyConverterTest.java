@@ -6,6 +6,7 @@ import com.example.rets_api.repository.UtilsTest;
 import org.junit.Test;
 
 import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
+import static com.example.rets_api.converter.ContactInformationConverterTest.checkAllFields_ContactInformation;
 import static com.example.rets_api.converter.CommunityConverterTest.checkAllFields_Community;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
@@ -43,6 +44,7 @@ public class PropertyConverterTest {
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
         checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
+        checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
     }
 
     //Entity To DTO
@@ -70,6 +72,7 @@ public class PropertyConverterTest {
         checkAllFields_FinancialData(propertyEntity.getFinancialData(), propertyDTO.getFinancialData());
         checkAllFields_LotData(propertyEntity.getLotData(), propertyDTO.getLotData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
+        checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
         checkAllFields_Community(propertyEntity.getCommunity(), propertyDTO.getCommunity());
     }
 
@@ -93,6 +96,7 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeCondo());
         assertNull(propertyEntity.getPropertyTypeTownHouse());
         assertNull(propertyEntity.getLotData());
+        assertNull(propertyEntity.getContactInformation());
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -115,6 +119,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeCondo());
         assertNull(propertyDTO.getPropertyTypeTownHouse());
         assertNull(propertyDTO.getLotData());
+        assertNull(propertyDTO.getContactInformation());
     }
 
     public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
