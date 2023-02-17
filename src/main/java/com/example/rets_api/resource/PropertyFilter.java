@@ -86,14 +86,28 @@ public class PropertyFilter {
 
     private Indicator animalPermitted = Indicator.DEFAULT_ENUM_VALUE;
 
-//    private String agentPrimaryPhone = DEFAULT_STRING_VALUE;
-//    private String listAgentPrimaryPhone = DEFAULT_STRING_VALUE;
-//
-//    private String salesAgentPrimaryPhone = DEFAULT_STRING_VALUE;
-//
-//    private String officePrimaryPhone = DEFAULT_STRING_VALUE;
-//    private String listOfficePrimaryPhone = DEFAULT_STRING_VALUE;
-//
-//    private String salesOfficePrimaryPhone = DEFAULT_STRING_VALUE;
+    private Indicator clubHouseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator exerciseAreaIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator golfIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator tennisIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator recreationalFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator securityFeaturesIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator seniorCommunityIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator hotTubIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator poolIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator boatFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator horseFacilitiesIndicatorOfCommunity = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
 }
