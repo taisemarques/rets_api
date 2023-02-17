@@ -84,6 +84,7 @@ public class PropertyRepositoryJPATest {
 
 
         assertNotNull(propertySaved.getContactInformation());
+        assertNotNull(propertySaved.getContactInformation().getContactInformationId());
         compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation());
 
 
