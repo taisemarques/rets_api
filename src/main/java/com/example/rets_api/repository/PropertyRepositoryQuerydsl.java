@@ -30,6 +30,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
+        QCommunityEntity community = QCommunityEntity.communityEntity;
         QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
         QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
         QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
@@ -37,18 +38,17 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
         QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
         QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
-        QCommunityEntity community = QCommunityEntity.communityEntity;
+
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
                 .leftJoin(room).on(property.roomList.contains(room))
                 .leftJoin(school).on(property.schoolList.contains(school))
-                .leftJoin(community).on(property.community.eq(community))
                 .leftJoin(viewData).on(property.propertyId.eq(viewData.property.propertyId))
-                .leftJoin(lotData).on(property.lotData.eq(lotData))
                 .leftJoin(financialData).on(property.propertyId.eq(financialData.property.propertyId))
-                .leftJoin(financialData).on(property.financialData.eq(financialData))
                 .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
+                .leftJoin(lotData).on(property.lotData.eq(lotData))
+                .leftJoin(community).on(property.community.eq(community))
                 .leftJoin(contactInformation).on(property.contactInformation.contactInformationId.eq(contactInformation.contactInformationId))
                 .leftJoin(agentPhone).on(contactInformation.agentPhone.phoneId.eq(agentPhone.phoneId))
                 .leftJoin(listAgentPhone).on(contactInformation.listAgentPhone.phoneId.eq(listAgentPhone.phoneId))
@@ -119,24 +119,6 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
-
-        List<String> phoneNumbers = filterParams.getPhoneNumbers();
-        if(!isEmpty(phoneNumbers)){
-            BooleanBuilder builder = new BooleanBuilder();
-                    builder = builder.or(agentPhone.primaryPhone.in(phoneNumbers))
-                            .or(agentPhone.alternatePhone.in(phoneNumbers))
-                            .or(listAgentPhone.primaryPhone.in(phoneNumbers))
-                            .or(listAgentPhone.alternatePhone.in(phoneNumbers))
-                            .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
-                            .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
-                            .or(officePhone.primaryPhone.in(phoneNumbers))
-                            .or(officePhone.alternatePhone.in(phoneNumbers))
-                            .or(listOfficePhone.primaryPhone.in(phoneNumbers))
-                            .or(listOfficePhone.alternatePhone.in(phoneNumbers))
-                            .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
-                            .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
-            query = query.where(builder);
-        }
 
         if(!isEmpty(filterParams.getPropertyBathSizes())){
             BooleanBuilder builder = new BooleanBuilder();
@@ -242,6 +224,24 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(!filterParams.getCommunityParkIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(community.communityParkIndicator.eq(filterParams.getCommunityParkIndicator()));
+
+        List<String> phoneNumbers = filterParams.getContactInformationPhoneNumbers();
+        if(!isEmpty(phoneNumbers)){
+            BooleanBuilder builder = new BooleanBuilder();
+            builder = builder.or(agentPhone.primaryPhone.in(phoneNumbers))
+                    .or(agentPhone.alternatePhone.in(phoneNumbers))
+                    .or(listAgentPhone.primaryPhone.in(phoneNumbers))
+                    .or(listAgentPhone.alternatePhone.in(phoneNumbers))
+                    .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
+                    .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
+                    .or(officePhone.primaryPhone.in(phoneNumbers))
+                    .or(officePhone.alternatePhone.in(phoneNumbers))
+                    .or(listOfficePhone.primaryPhone.in(phoneNumbers))
+                    .or(listOfficePhone.alternatePhone.in(phoneNumbers))
+                    .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
+                    .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
+            query = query.where(builder);
+        }
 
         return query.fetch();
     }

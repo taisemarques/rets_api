@@ -109,6 +109,6 @@ public class PropertyFilter {
 
     private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
-    private List<String> phoneNumbers = Collections.emptyList();
+    private List<String> contactInformationPhoneNumbers = Collections.emptyList();
 
 }
