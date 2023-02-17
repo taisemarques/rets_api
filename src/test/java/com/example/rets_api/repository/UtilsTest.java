@@ -300,9 +300,9 @@ public class UtilsTest {
 
     public static PropertyFilter createDefaultPropertyFilter(){
         PropertyFilter propertyFilter = new PropertyFilter();
-        propertyFilter.setAge(10);
-        propertyFilter.setBathroomsQty(2);
-        propertyFilter.setBedroomsQty(3);
+        propertyFilter.setPropertyAge(10);
+        propertyFilter.setPropertyBathroomsQty(2);
+        propertyFilter.setPropertyBedroomsQty(3);
         return propertyFilter;
     }
 

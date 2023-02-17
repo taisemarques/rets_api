@@ -37,52 +37,52 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(room).on(property.roomList.contains(room))
                 .leftJoin(school).on(property.schoolList.contains(school))
                 .leftJoin(community).on(property.community.eq(community))
-                .leftJoin(viewData).on(property.viewData.eq(viewData))
+                .leftJoin(viewData).on(property.propertyId.eq(viewData.property.propertyId))
                 .leftJoin(lotData).on(property.lotData.eq(lotData))
-                .leftJoin(financialData).on(property.financialData.eq(financialData))
+                .leftJoin(financialData).on(property.propertyId.eq(financialData.property.propertyId))
                 .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy));
 
-        if(filterParams.getAge() > 0)
-            query = query.where(property.age.eq(filterParams.getAge()));
+        if(filterParams.getPropertyAge() != DEFAULT_NUMBER_VALUE)
+            query = query.where(property.age.eq(filterParams.getPropertyAge()));
 
-        if(!filterParams.getHorseFacilities().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getHorseFacilities()));
+        if(!filterParams.getPropertyHorseFacilitiesDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getPropertyHorseFacilitiesDescription()));
 
-        if(!filterParams.getHorseFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.horseFacilitiesIndicator.eq(filterParams.getHorseFacilitiesIndicator()));
+        if(!filterParams.getPropertyHorseFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.horseFacilitiesIndicator.eq(filterParams.getPropertyHorseFacilitiesIndicator()));
 
-        if(!filterParams.getHotTub().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.hotTub.likeIgnoreCase(filterParams.getHotTub()));
+        if(!filterParams.getPropertyHotTubDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.hotTub.likeIgnoreCase(filterParams.getPropertyHotTubDescription()));
 
-        if(!filterParams.getHotTubIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.hotTubIndicator.eq(filterParams.getHotTubIndicator()));
+        if(!filterParams.getPropertyHotTubIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.hotTubIndicator.eq(filterParams.getPropertyHotTubIndicator()));
 
-        if(!filterParams.getTennisCourt().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.tennisCourt.likeIgnoreCase(filterParams.getTennisCourt()));
+        if(!filterParams.getPropertyTennisCourtDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.tennisCourt.likeIgnoreCase(filterParams.getPropertyTennisCourtDescription()));
 
-        if(!filterParams.getTennisCourtIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.tennisCourtIndicator.eq(filterParams.getTennisCourtIndicator()));
+        if(!filterParams.getPropertyTennisCourtIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.tennisCourtIndicator.eq(filterParams.getPropertyTennisCourtIndicator()));
 
-        if(!filterParams.getInclusions().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.inclusions.likeIgnoreCase(filterParams.getInclusions()));
+        if(!filterParams.getPropertyInclusionsDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.inclusions.likeIgnoreCase(filterParams.getPropertyInclusionsDescription()));
 
-        if(!filterParams.getEnergyInformation().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.energyInformation.likeIgnoreCase(filterParams.getEnergyInformation()));
+        if(!filterParams.getPropertyEnergyInformationDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.energyInformation.likeIgnoreCase(filterParams.getPropertyEnergyInformationDescription()));
 
-        if(!filterParams.getConstructionMaterial().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.constructionMaterial.likeIgnoreCase(filterParams.getConstructionMaterial()));
+        if(!filterParams.getPropertyConstructionMaterialDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.constructionMaterial.likeIgnoreCase(filterParams.getPropertyConstructionMaterialDescription()));
 
-        if(!filterParams.getDisabilityFeatures().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.disabilityFeatures.likeIgnoreCase(filterParams.getDisabilityFeatures()));
+        if(!filterParams.getPropertyDisabilityFeaturesDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.disabilityFeatures.likeIgnoreCase(filterParams.getPropertyDisabilityFeaturesDescription()));
 
-        if(!filterParams.getDisabilityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.disabilityFeaturesIndicator.eq(filterParams.getDisabilityFeaturesIndicator()));
+        if(!filterParams.getPropertyDisabilityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.disabilityFeaturesIndicator.eq(filterParams.getPropertyDisabilityFeaturesIndicator()));
 
-        if(!filterParams.getSecurityFeatures().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.securityFeatures.likeIgnoreCase(filterParams.getSecurityFeatures()));
+        if(!filterParams.getPropertySecurityFeaturesDescription().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.securityFeatures.likeIgnoreCase(filterParams.getPropertySecurityFeaturesDescription()));
 
-        if(!filterParams.getSecurityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.securityFeaturesIndicator.eq(filterParams.getSecurityFeaturesIndicator()));
+        if(!filterParams.getPropertySecurityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.securityFeaturesIndicator.eq(filterParams.getPropertySecurityFeaturesIndicator()));
 
         if(nonNull(filterParams.getPropertyTypeRental()))
             query = query.where(property.propertyTypeRental.eq(filterParams.getPropertyTypeRental()));
@@ -96,9 +96,15 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
-        if(!isEmpty(filterParams.getBathSizes())){
+        if(filterParams.getPropertyBedroomsQty() != DEFAULT_NUMBER_VALUE)
+            query = query.where(property.bedroomsQty.eq(filterParams.getPropertyBedroomsQty()));
+
+        if(filterParams.getPropertyBathroomsQty() != DEFAULT_NUMBER_VALUE)
+            query = query.where(property.bathroomsQty.eq(filterParams.getPropertyBathroomsQty()));
+
+        if(!isEmpty(filterParams.getPropertyBathSizes())){
             BooleanBuilder builder = new BooleanBuilder();
-            for(BathSize bathSize: filterParams.getBathSizes()) {
+            for(BathSize bathSize: filterParams.getPropertyBathSizes()) {
                 if(!bathSize.equals(BathSize.DEFAULT_ENUM_VALUE)) {
                     if (bathSize.equals(BathSize.FULL)) {
                         builder = builder.or(room.roomType.eq(RoomType.MASTER_BEDROOM).orAllOf(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM), room.bathSize.eq(bathSize)));
@@ -126,83 +132,80 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
             query = query.where(builder);
         }
 
-        if(filterParams.getBedroomsQty() >= 0)
-            query = query.where(property.bedroomsQty.eq(filterParams.getBedroomsQty()));
+        if(!filterParams.getViewDataCityLightIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.cityLightIndicator.eq(filterParams.getViewDataCityLightIndicator()));
 
-        if(filterParams.getBathroomsQty() >= 0)
-            query = query.where(property.bathroomsQty.eq(filterParams.getBathroomsQty()));
+        if(!filterParams.getViewDataMountainIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.mountainIndicator.eq(filterParams.getViewDataMountainIndicator()));
 
-        if(!filterParams.getCityLightIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-        query = query.where(property.viewData.cityLightIndicator.eq(filterParams.getCityLightIndicator()));
+        if(!filterParams.getViewDataRiverIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.riverIndicator.eq(filterParams.getViewDataRiverIndicator()));
 
-        if(!filterParams.getMountainIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.viewData.mountainIndicator.eq(filterParams.getMountainIndicator()));
+        if(!filterParams.getViewDataLakeIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.lakeIndicator.eq(filterParams.getViewDataLakeIndicator()));
 
-        if(!filterParams.getRiverIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.viewData.riverIndicator.eq(filterParams.getRiverIndicator()));
+        if(!filterParams.getViewDataGolfCourseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.golfCourseIndicator.eq(filterParams.getViewDataGolfCourseIndicator()));
 
-        if(!filterParams.getLakeIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.viewData.lakeIndicator.eq(filterParams.getLakeIndicator()));
+        if(!filterParams.getViewDataWaterIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(viewData.waterIndicator.eq(filterParams.getViewDataWaterIndicator()));
 
-        if(!filterParams.getGolfCourseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.viewData.golfCourseIndicator.eq(filterParams.getGolfCourseIndicator()));
+        if(!filterParams.getFinancialDataTradeIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(financialData.tradeIndicator.eq(filterParams.getFinancialDataTradeIndicator()));
 
-        if(!filterParams.getWaterIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.viewData.waterIndicator.eq(filterParams.getWaterIndicator()));
+        if(!filterParams.getFinancialDataLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(financialData.leaseIndicator.eq(filterParams.getFinancialDataLeaseIndicator()));
 
-        if(!filterParams.getLeaseOption().equals(DEFAULT_STRING_VALUE))
-            query = query.where(financialData.leaseOption.eq(filterParams.getLeaseOption()));
+        if(!filterParams.getFinancialDataRentalAmount().equals(DEFAULT_LONG_VALUE))
+            query = query.where(financialData.rentalAmount.eq(filterParams.getFinancialDataRentalAmount()));
 
-        if(!filterParams.getLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(financialData.leaseIndicator.eq(filterParams.getLeaseIndicator()));
+        if(!filterParams.getAnimalPolicyAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(animalPolicy.animalsPermitted.eq(filterParams.getAnimalPolicyAnimalPermitted()));
 
-        if(!filterParams.getAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.animalPolicy.animalsPermitted.eq(filterParams.getAnimalPermitted()));
+        if(!filterParams.getLotDataGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(lotData.golfCourseLotIndicator.eq(filterParams.getLotDataGolfCourseLotIndicator()));
 
-        if(!filterParams.getGolfCourseLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotData.golfCourseLotIndicator.eq(filterParams.getGolfCourseLotIndicator()));
+        if(!filterParams.getLotDataCuldeSacIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(lotData.culdeSacIndicator.eq(filterParams.getLotDataCuldeSacIndicator()));
 
-        if(!filterParams.getCuldeSacIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotData.culdeSacIndicator.eq(filterParams.getCuldeSacIndicator()));
+        if(!filterParams.getLotDataCornerLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(lotData.cornerLotIndicator.eq(filterParams.getLotDataCornerLotIndicator()));
 
-        if(!filterParams.getCornerLotIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotData.cornerLotIndicator.eq(filterParams.getCornerLotIndicator()));
+        if(!filterParams.getCommunityClubHouseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.clubHouseIndicator.eq(filterParams.getCommunityClubHouseIndicator()));
 
-        if(!filterParams.getClubHouseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.clubHouseIndicator.eq(filterParams.getClubHouseIndicator()));
+        if(!filterParams.getCommunityExerciseAreaIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.exerciseAreaIndicator.eq(filterParams.getCommunityExerciseAreaIndicator()));
 
-        if(!filterParams.getExerciseAreaIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.exerciseAreaIndicator.eq(filterParams.getExerciseAreaIndicator()));
+        if(!filterParams.getCommunityGolfIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.golfIndicator.eq(filterParams.getCommunityGolfIndicator()));
 
-        if(!filterParams.getGolfIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.golfIndicator.eq(filterParams.getGolfIndicator()));
+        if(!filterParams.getCommunityTennisIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.tennisIndicator.eq(filterParams.getCommunityTennisIndicator()));
 
-        if(!filterParams.getTennisIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.tennisIndicator.eq(filterParams.getTennisIndicator()));
+        if(!filterParams.getCommunityRecreationalFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.recreationalFacilitiesIndicator.eq(filterParams.getCommunityRecreationalFacilitiesIndicator()));
 
-        if(!filterParams.getRecreationalFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.recreationalFacilitiesIndicator.eq(filterParams.getRecreationalFacilitiesIndicator()));
+        if(!filterParams.getCommunitySecurityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.securityFeaturesIndicator.eq(filterParams.getCommunitySecurityFeaturesIndicator()));
 
-        if(!filterParams.getSecurityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.securityFeaturesIndicator.eq(filterParams.getSecurityFeaturesIndicatorOfCommunity()));
+        if(!filterParams.getCommunitySeniorCommunityIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.seniorCommunityIndicator.eq(filterParams.getCommunitySeniorCommunityIndicator()));
 
-        if(!filterParams.getSeniorCommunityIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.seniorCommunityIndicator.eq(filterParams.getSeniorCommunityIndicator()));
+        if(!filterParams.getCommunityHotTubIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.hotTubIndicator.eq(filterParams.getCommunityHotTubIndicator()));
 
-        if(!filterParams.getHotTubIndicatorOfCommunity().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.hotTubIndicator.eq(filterParams.getHotTubIndicatorOfCommunity()));
+        if(!filterParams.getCommunityPoolIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.poolIndicator.eq(filterParams.getCommunityPoolIndicator()));
 
-        if(!filterParams.getPoolIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.poolIndicator.eq(filterParams.getPoolIndicator()));
+        if(!filterParams.getCommunityBoatFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.boatFacilitiesIndicator.eq(filterParams.getCommunityBoatFacilitiesIndicator()));
 
-        if(!filterParams.getBoatFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.boatFacilitiesIndicator.eq(filterParams.getBoatFacilitiesIndicator()));
-
-        if(!filterParams.getHorseFacilitiesIndicatorOfCommunity().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.horseFacilitiesIndicator.eq(filterParams.getHorseFacilitiesIndicatorOfCommunity()));
+        if(!filterParams.getCommunityHorseFacilitiesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(community.horseFacilitiesIndicator.eq(filterParams.getCommunityHorseFacilitiesIndicator()));
 
         if(!filterParams.getCommunityParkIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.community.communityParkIndicator.eq(filterParams.getCommunityParkIndicator()));
+            query = query.where(community.communityParkIndicator.eq(filterParams.getCommunityParkIndicator()));
 
         return query.fetch();
     }
