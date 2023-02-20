@@ -135,7 +135,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (!filterParams.getDisplayFlagListing().equals(DEFAULT_BOOLEAN_VALUE))
             query = query.where(property.displayFlagListing.eq(filterParams.getDisplayFlagListing()));
 
-        if (nonNull(filterParams.getDisplayFlagAddress()))
+        if (!filterParams.getDisplayFlagAddress().equals(DEFAULT_BOOLEAN_VALUE))
             query = query.where(property.displayFlagAddress.eq(filterParams.getDisplayFlagAddress()));
 
         if (!filterParams.getLotSizeRange().equals(DEFAULT_STRING_VALUE))
