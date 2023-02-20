@@ -12,8 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ListPriceDTO {
 
-    private NumberType lowAmount;
-    private NumberType highAmount;
-    private String currencyCode;
+    private Long lowAmount;
+    private Long highAmount;
+    private NumberType lowAmountType;
+    private NumberType highAmountType;
+    private String lowAmountCurrencyCode;
+    private String highAmountCurrencyCode;
     private AreaUnit units;
 }

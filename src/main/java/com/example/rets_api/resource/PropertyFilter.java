@@ -111,4 +111,18 @@ public class PropertyFilter {
 
     private List<String> contactInformationPhoneNumbers = Collections.emptyList();
 
+    private Long lowAmount = DEFAULT_LONG_VALUE;
+
+    private Long highAmount = DEFAULT_LONG_VALUE;
+
+    private NumberType lowAmountType = NumberType.DEFAULT_ENUM_VALUE;
+
+    private NumberType highAmountType = NumberType.DEFAULT_ENUM_VALUE;
+
+    private String lowAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private String highAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private AreaUnit listPriceUnits = AreaUnit.DEFAULT_ENUM_VALUE;
+
 }

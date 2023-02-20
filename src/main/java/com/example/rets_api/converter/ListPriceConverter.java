@@ -13,7 +13,10 @@ public class ListPriceConverter {
         ListPriceEntity listPriceEntity = new ListPriceEntity();
         listPriceEntity.setLowAmount(in.getLowAmount());
         listPriceEntity.setHighAmount(in.getHighAmount());
-        listPriceEntity.setCurrencyCode(in.getCurrencyCode());
+        listPriceEntity.setLowAmountType(in.getLowAmountType());
+        listPriceEntity.setHighAmountType(in.getHighAmountType());
+        listPriceEntity.setLowAmountCurrencyCode(in.getLowAmountCurrencyCode());
+        listPriceEntity.setHighAmountCurrencyCode(in.getHighAmountCurrencyCode());
         listPriceEntity.setUnits(in.getUnits());
         return listPriceEntity;
     };
@@ -22,7 +25,10 @@ public class ListPriceConverter {
         return ListPriceDTO.builder()
                 .lowAmount(in.getLowAmount())
                 .highAmount(in.getHighAmount())
-                .currencyCode(in.getCurrencyCode())
+                .lowAmountType(in.getLowAmountType())
+                .highAmountType(in.getHighAmountType())
+                .lowAmountCurrencyCode(in.getLowAmountCurrencyCode())
+                .highAmountCurrencyCode(in.getHighAmountCurrencyCode())
                 .units(in.getUnits())
                 .build();
     };

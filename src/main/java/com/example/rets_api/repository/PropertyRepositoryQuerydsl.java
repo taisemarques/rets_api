@@ -31,6 +31,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
         QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
         QCommunityEntity community = QCommunityEntity.communityEntity;
+        QListPriceEntity listPrice = QListPriceEntity.listPriceEntity;
         QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
         QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
         QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
@@ -49,6 +50,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(animalPolicy).on(property.animalPolicy.eq(animalPolicy))
                 .leftJoin(lotData).on(property.lotData.eq(lotData))
                 .leftJoin(community).on(property.community.eq(community))
+                .leftJoin(listPrice).on(property.propertyId.eq(listPrice.property.propertyId))
                 .leftJoin(contactInformation).on(property.contactInformation.contactInformationId.eq(contactInformation.contactInformationId))
                 .leftJoin(agentPhone).on(contactInformation.agentPhone.phoneId.eq(agentPhone.phoneId))
                 .leftJoin(listAgentPhone).on(contactInformation.listAgentPhone.phoneId.eq(listAgentPhone.phoneId))
@@ -242,6 +244,27 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                     .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
             query = query.where(builder);
         }
+
+        if(!filterParams.getLowAmount().equals(DEFAULT_LONG_VALUE))
+            query = query.where(listPrice.lowAmount.goe(filterParams.getLowAmount()));
+
+        if(!filterParams.getHighAmount().equals(DEFAULT_LONG_VALUE))
+            query = query.where(listPrice.highAmount.loe(filterParams.getHighAmount()));
+
+        if(!filterParams.getLowAmountType().equals(NumberType.DEFAULT_ENUM_VALUE))
+            query = query.where(listPrice.lowAmountType.eq(filterParams.getLowAmountType()));
+
+        if(!filterParams.getHighAmountType().equals(NumberType.DEFAULT_ENUM_VALUE))
+            query = query.where(listPrice.highAmountType.eq(filterParams.getHighAmountType()));
+
+        if(!filterParams.getLowAmountCurrencyCode().equals(DEFAULT_STRING_VALUE))
+            query = query.where(listPrice.lowAmountCurrencyCode.equalsIgnoreCase(filterParams.getLowAmountCurrencyCode()));
+
+        if(!filterParams.getHighAmountCurrencyCode().equals(DEFAULT_STRING_VALUE))
+            query = query.where(listPrice.highAmountCurrencyCode.equalsIgnoreCase(filterParams.getHighAmountCurrencyCode()));
+
+        if(!filterParams.getListPriceUnits().equals(AreaUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(listPrice.units.eq(filterParams.getListPriceUnits()));
 
         return query.fetch();
     }

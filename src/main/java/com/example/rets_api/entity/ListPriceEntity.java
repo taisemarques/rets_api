@@ -18,9 +18,12 @@ public class ListPriceEntity {
     @Column(name = "list_price_id")
     private Long listPriceId;
 
-    private NumberType lowAmount;
-    private NumberType highAmount;
-    private String currencyCode;
+    private Long lowAmount;
+    private Long highAmount;
+    private NumberType lowAmountType;
+    private NumberType highAmountType;
+    private String lowAmountCurrencyCode;
+    private String highAmountCurrencyCode;
     private AreaUnit units;
 
     @OneToOne
