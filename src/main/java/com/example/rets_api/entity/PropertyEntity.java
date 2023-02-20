@@ -1,7 +1,6 @@
 package com.example.rets_api.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
@@ -58,12 +57,12 @@ public class PropertyEntity {
 
     private Boolean propertyTypeTownHouse;
 
-    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
-    private FinancialDataEntity financialData;
-
     private int bedroomsQty;
 
     private int bathroomsQty;
+
+    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
+    private FinancialDataEntity financialData;
 
     @ManyToMany(mappedBy= "propertyList", cascade = CascadeType.ALL)
     private List<SchoolEntity> schoolList;

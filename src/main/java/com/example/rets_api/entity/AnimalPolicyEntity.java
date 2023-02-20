@@ -1,9 +1,7 @@
 package com.example.rets_api.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
-
 import java.util.List;
 
 import static com.example.rets_api.resource.Enums.*;
