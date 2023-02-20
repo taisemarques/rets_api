@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListPriceDTO {
+public class ListingPriceDTO {
 
     private Long lowAmount;
     private Long highAmount;

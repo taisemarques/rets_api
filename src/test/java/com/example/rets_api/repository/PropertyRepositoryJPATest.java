@@ -94,9 +94,9 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getCommunity().getCommunityId());
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
 
-        assertNotNull(propertySaved.getListPrice());
-        assertNotNull(propertySaved.getListPrice().getListPriceId());
-        compareListPrice(propertySaved.getListPrice(), propertyEntityToCompare.getListPrice());
+        assertNotNull(propertySaved.getListingPrice());
+        assertNotNull(propertySaved.getListingPrice().getListPriceId());
+        compareListPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice());
 
     }
 
@@ -227,7 +227,7 @@ public class PropertyRepositoryJPATest {
 
     }
 
-    public void compareListPrice(ListPriceEntity entity1, ListPriceEntity entity2){
+    public void compareListPrice(ListingPriceEntity entity1, ListingPriceEntity entity2){
         assertEquals(entity1.getLowAmount(), entity2.getLowAmount());
         assertEquals(entity1.getHighAmount(), entity2.getHighAmount());
         assertEquals(entity1.getLowAmountType(), entity2.getLowAmountType());

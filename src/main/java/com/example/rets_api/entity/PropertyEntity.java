@@ -89,7 +89,7 @@ public class PropertyEntity {
     private ContactInformationEntity contactInformation;
 
     @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
-    private ListPriceEntity listPrice;
+    private ListingPriceEntity listingPrice;
 
     @PrePersist
     void updateBeforeSave(){
@@ -122,7 +122,7 @@ public class PropertyEntity {
         if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
         if(!isNull(contactInformation)) contactInformation.setProperty(this);
-        if(!isNull(listPrice)) listPrice.setProperty(this);
+        if(!isNull(listingPrice)) listingPrice.setProperty(this);
     }
 
 }

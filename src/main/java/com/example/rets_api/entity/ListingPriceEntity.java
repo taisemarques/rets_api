@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class ListPriceEntity {
+public class ListingPriceEntity {
 
     @Id
     @GeneratedValue

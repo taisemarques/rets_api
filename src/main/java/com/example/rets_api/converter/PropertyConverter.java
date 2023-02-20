@@ -40,7 +40,7 @@ public class PropertyConverter {
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
         retsEntity.setContactInformation(ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(in.getContactInformation()));
         retsEntity.setCommunity(CommunityConverter.communityDTOToCommunityEntity.convert(in.getCommunity()));
-        retsEntity.setListPrice(ListPriceConverter.listPriceDTOToListPriceEntity.convert(in.getListPrice()));
+        retsEntity.setListingPrice(ListingPriceConverter.listPriceDTOToListPriceEntity.convert(in.getListingPrice()));
         return retsEntity;
     };
 
@@ -73,7 +73,7 @@ public class PropertyConverter {
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
                 .contactInformation(ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(in.getContactInformation()))
                 .community(CommunityConverter.communityEntityToCommunityDTO.convert(in.getCommunity()))
-                .listPrice(ListPriceConverter.listPriceEntityToListPriceDTO.convert(in.getListPrice()))
+                .listingPrice(ListingPriceConverter.listPriceEntityToListPriceDTO.convert(in.getListingPrice()))
                 .build();
     };
 

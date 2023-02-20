@@ -43,7 +43,7 @@ public class UtilsTest {
         propertyEntity.setViewData(createViewDataEntity());
         propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
-        propertyEntity.setListPrice(createListPriceEntity());
+        propertyEntity.setListingPrice(createListPriceEntity());
 
         return propertyEntity;
     }
@@ -193,8 +193,8 @@ public class UtilsTest {
         return phone;
     }
 
-    public static ListPriceEntity createListPriceEntity(){
-        ListPriceEntity listPrice = new ListPriceEntity();
+    public static ListingPriceEntity createListPriceEntity(){
+        ListingPriceEntity listPrice = new ListingPriceEntity();
         listPrice.setLowAmount(new Long(150000));
         listPrice.setHighAmount(new Long(500000));
         listPrice.setLowAmountType(NumberType.FLOAT);
@@ -236,7 +236,7 @@ public class UtilsTest {
             .lotData(createLotDataDTO())
             .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
-            .listPrice(createListPriceDTO())
+            .listingPrice(createListPriceDTO())
             .build();
     }
 
@@ -354,8 +354,8 @@ public class UtilsTest {
                 .build();
     }
 
-    public static ListPriceDTO createListPriceDTO(){
-        return ListPriceDTO.builder()
+    public static ListingPriceDTO createListPriceDTO(){
+        return ListingPriceDTO.builder()
                 .lowAmount(new Long(150000))
                 .highAmount(new Long(500000))
                 .lowAmountType(NumberType.FLOAT)
