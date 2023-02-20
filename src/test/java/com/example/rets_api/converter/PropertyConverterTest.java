@@ -92,6 +92,27 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeCondo());
         assertNull(propertyEntity.getPropertyTypeTownHouse());
         assertNull(propertyEntity.getLotData());
+        assertNull(propertyEntity.getFirePlaceFuelType());
+        assertNull(propertyEntity.getFirePlaceDetails());
+        assertNull(propertyEntity.getFloorsHardwood());
+        assertNull(propertyEntity.getFloorsHardwoodIndicator());
+        assertNull(propertyEntity.getDisplayFlagListing());
+        assertNull(propertyEntity.getDisplayFlagAddress());
+        assertNull(propertyEntity.getLotSizeRange());
+        assertNull(propertyEntity.getLotSizeRangeUnits());
+        assertNull(propertyEntity.getLotSizeWidthUnits());
+        assertNull(propertyEntity.getDiningRoomWidthUnits());
+        assertNull(propertyEntity.getFamilyRoomWidthUnits());
+        assertNull(propertyEntity.getLivingRoomWidthUnits());
+        assertNull(propertyEntity.getBasementWidthUnits());
+        assertNull(propertyEntity.getLotSizeLengthUnits());
+        assertNull(propertyEntity.getDiningRoomLengthUnits());
+        assertNull(propertyEntity.getLivingRoomLengthUnits());
+        assertNull(propertyEntity.getFamilyRoomLengthUnits());
+        assertNull(propertyEntity.getBasementLengthUnits());
+        assertEquals(propertyEntity.getParkingTotal(),0);
+        assertNull(propertyEntity.getParkingTotalOperator());
+
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -114,6 +135,26 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeCondo());
         assertNull(propertyDTO.getPropertyTypeTownHouse());
         assertNull(propertyDTO.getLotData());
+        assertNull(propertyDTO.getFirePlaceFuelType());
+        assertNull(propertyDTO.getFirePlaceDetails());
+        assertNull(propertyDTO.getFloorsHardwood());
+        assertNull(propertyDTO.getFloorsHardwoodIndicator());
+        assertNull(propertyDTO.getDisplayFlagListing());
+        assertNull(propertyDTO.getDisplayFlagAddress());
+        assertNull(propertyDTO.getLotSizeRange());
+        assertNull(propertyDTO.getLotSizeRangeUnits());
+        assertNull(propertyDTO.getLotSizeWidthUnits());
+        assertNull(propertyDTO.getDiningRoomWidthUnits());
+        assertNull(propertyDTO.getFamilyRoomWidthUnits());
+        assertNull(propertyDTO.getLivingRoomWidthUnits());
+        assertNull(propertyDTO.getBasementWidthUnits());
+        assertNull(propertyDTO.getLotSizeLengthUnits());
+        assertNull(propertyDTO.getDiningRoomLengthUnits());
+        assertNull(propertyDTO.getLivingRoomLengthUnits());
+        assertNull(propertyDTO.getFamilyRoomLengthUnits());
+        assertNull(propertyDTO.getBasementLengthUnits());
+        assertEquals(propertyDTO.getParkingTotal(),0);
+        assertNull(propertyDTO.getParkingTotalOperator());
     }
 
     public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
@@ -135,5 +176,25 @@ public class PropertyConverterTest {
         assertEquals(propertyEntity.getPropertyTypeRental(), propertyDTO.getPropertyTypeRental());
         assertEquals(propertyEntity.getPropertyTypeCondo(), propertyDTO.getPropertyTypeCondo());
         assertEquals(propertyEntity.getPropertyTypeTownHouse(), propertyDTO.getPropertyTypeTownHouse());
+        assertEquals(propertyEntity.getFirePlaceFuelType(), propertyDTO.getFirePlaceFuelType());
+        assertEquals(propertyEntity.getFirePlaceDetails(), propertyDTO.getFirePlaceDetails());
+        assertEquals(propertyEntity.getFloorsHardwood(), propertyDTO.getFloorsHardwood());
+        assertEquals(propertyEntity.getFloorsHardwoodIndicator(), propertyDTO.getFloorsHardwoodIndicator());
+        assertEquals(propertyEntity.getDisplayFlagListing(), propertyDTO.getDisplayFlagListing());
+        assertEquals(propertyEntity.getDisplayFlagAddress(), propertyDTO.getDisplayFlagAddress());
+        assertEquals(propertyEntity.getLotSizeRange(), propertyDTO.getLotSizeRange());
+        assertEquals(propertyEntity.getLotSizeRangeUnits(), propertyDTO.getLotSizeRangeUnits());
+        assertEquals(propertyEntity.getLotSizeWidthUnits(), propertyDTO.getLotSizeWidthUnits());
+        assertEquals(propertyEntity.getDiningRoomWidthUnits(), propertyDTO.getDiningRoomWidthUnits());
+        assertEquals(propertyEntity.getFamilyRoomWidthUnits(), propertyDTO.getFamilyRoomWidthUnits());
+        assertEquals(propertyEntity.getLivingRoomWidthUnits(), propertyDTO.getLivingRoomWidthUnits());
+        assertEquals(propertyEntity.getBasementWidthUnits(), propertyDTO.getBasementWidthUnits());
+        assertEquals(propertyEntity.getLotSizeLengthUnits(), propertyDTO.getLotSizeLengthUnits());
+        assertEquals(propertyEntity.getDiningRoomLengthUnits(), propertyDTO.getDiningRoomLengthUnits());
+        assertEquals(propertyEntity.getLivingRoomLengthUnits(), propertyDTO.getLivingRoomLengthUnits());
+        assertEquals(propertyEntity.getFamilyRoomLengthUnits(), propertyDTO.getFamilyRoomLengthUnits());
+        assertEquals(propertyEntity.getBasementLengthUnits(), propertyDTO.getBasementLengthUnits());
+        assertEquals(propertyEntity.getParkingTotal(), propertyDTO.getParkingTotal());
+        assertEquals(propertyEntity.getParkingTotalOperator(), propertyDTO.getParkingTotalOperator());
     }
 }

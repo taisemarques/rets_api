@@ -61,4 +61,44 @@ public class PropertyDTO {
     private AnimalPolicyDTO animalPolicy;
 
     private LotDataDTO lotData;
+
+    private String firePlaceFuelType;
+
+    private String firePlaceDetails;
+
+    private String floorsHardwood;
+
+    private Indicator floorsHardwoodIndicator;
+
+    private Boolean displayFlagListing;
+
+    private Boolean displayFlagAddress;
+
+    private String lotSizeRange;
+
+    private AreaUnit lotSizeRangeUnits;
+
+    private LengthWidthUnit lotSizeWidthUnits;
+
+    private LengthWidthUnit diningRoomWidthUnits;
+
+    private LengthWidthUnit familyRoomWidthUnits;
+
+    private LengthWidthUnit livingRoomWidthUnits;
+
+    private LengthWidthUnit basementWidthUnits;
+
+    private LengthWidthUnit lotSizeLengthUnits;
+
+    private LengthWidthUnit diningRoomLengthUnits;
+
+    private LengthWidthUnit livingRoomLengthUnits;
+
+    private LengthWidthUnit familyRoomLengthUnits;
+
+    private LengthWidthUnit basementLengthUnits;
+
+    private int parkingTotal;
+
+    private Operator parkingTotalOperator;
 }

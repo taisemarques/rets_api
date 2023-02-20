@@ -38,6 +38,26 @@ public class PropertyConverter {
         retsEntity.setAnimalPolicy(AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(in.getAnimalPolicy()));
         retsEntity.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(in.getViewData()));
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
+        retsEntity.setFirePlaceFuelType(in.getFirePlaceFuelType());
+        retsEntity.setFirePlaceDetails(in.getFirePlaceDetails());
+        retsEntity.setFloorsHardwood(in.getFloorsHardwood());
+        retsEntity.setFloorsHardwoodIndicator(in.getFloorsHardwoodIndicator());
+        retsEntity.setDisplayFlagListing(in.getDisplayFlagListing());
+        retsEntity.setDisplayFlagAddress(in.getDisplayFlagAddress());
+        retsEntity.setLotSizeRange(in.getLotSizeRange());
+        retsEntity.setLotSizeRangeUnits(in.getLotSizeRangeUnits());
+        retsEntity.setLotSizeWidthUnits(in.getLotSizeWidthUnits());
+        retsEntity.setDiningRoomWidthUnits(in.getDiningRoomWidthUnits());
+        retsEntity.setFamilyRoomWidthUnits(in.getFamilyRoomWidthUnits());
+        retsEntity.setLivingRoomWidthUnits(in.getLivingRoomWidthUnits());
+        retsEntity.setBasementWidthUnits(in.getBasementWidthUnits());
+        retsEntity.setLotSizeLengthUnits(in.getLotSizeLengthUnits());
+        retsEntity.setDiningRoomLengthUnits(in.getDiningRoomLengthUnits());
+        retsEntity.setLivingRoomLengthUnits(in.getLivingRoomLengthUnits());
+        retsEntity.setFamilyRoomLengthUnits(in.getFamilyRoomLengthUnits());
+        retsEntity.setBasementLengthUnits(in.getBasementLengthUnits());
+        retsEntity.setParkingTotal(in.getParkingTotal());
+        retsEntity.setParkingTotalOperator(in.getParkingTotalOperator());
         return retsEntity;
     };
 
@@ -68,6 +88,26 @@ public class PropertyConverter {
                         .viewData(ViewDataConverter.viewDataEntityToViewDataDTO.convert(in.getViewData()))
                         .animalPolicy(AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(in.getAnimalPolicy()))
                         .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
+                        .firePlaceFuelType(in.getFirePlaceFuelType())
+                        .firePlaceDetails(in.getFirePlaceDetails())
+                        .floorsHardwood(in.getFloorsHardwood())
+                        .floorsHardwoodIndicator(in.getFloorsHardwoodIndicator())
+                        .displayFlagListing(in.getDisplayFlagListing())
+                        .displayFlagAddress(in.getDisplayFlagAddress())
+                        .lotSizeRange(in.getLotSizeRange())
+                        .lotSizeRangeUnits(in.getLotSizeRangeUnits())
+                        .lotSizeWidthUnits(in.getLotSizeWidthUnits())
+                        .diningRoomWidthUnits(in.getDiningRoomWidthUnits())
+                        .familyRoomWidthUnits(in.getFamilyRoomWidthUnits())
+                        .livingRoomWidthUnits(in.getLivingRoomWidthUnits())
+                        .basementWidthUnits(in.getBasementWidthUnits())
+                        .lotSizeLengthUnits(in.getLotSizeLengthUnits())
+                        .diningRoomLengthUnits(in.getDiningRoomLengthUnits())
+                        .livingRoomLengthUnits(in.getLivingRoomLengthUnits())
+                        .familyRoomLengthUnits(in.getFamilyRoomLengthUnits())
+                        .basementLengthUnits(in.getBasementLengthUnits())
+                        .parkingTotal(in.getParkingTotal())
+                        .parkingTotalOperator(in.getParkingTotalOperator())
                         .build();
     };
 

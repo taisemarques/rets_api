@@ -1,5 +1,4 @@
 package com.example.rets_api.repository;
-import com.example.rets_api.converter.LotDataConverter;
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.example.rets_api.resource.Constants.*;
+import static com.example.rets_api.resource.Enums.AreaUnit.DEFAULT_ENUM_VALUE;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -94,6 +94,66 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
+
+        if(!filterParams.getFirePlaceFuelType().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.firePlaceFuelType.likeIgnoreCase(filterParams.getFirePlaceFuelType()));
+
+        if(!filterParams.getFirePlaceDetails().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.firePlaceDetails.likeIgnoreCase(filterParams.getFirePlaceDetails()));
+
+        if(!filterParams.getFloorsHardwood().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.floorsHardwood.likeIgnoreCase(filterParams.getFloorsHardwood()));
+
+        if(!filterParams.getFloorsHardwoodIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.floorsHardwoodIndicator.eq(filterParams.getFloorsHardwoodIndicator()));
+
+        if(nonNull(filterParams.getDisplayFlagListing()))
+            query = query.where(property.displayFlagListing.eq(filterParams.getDisplayFlagListing()));
+
+        if(nonNull(filterParams.getDisplayFlagAddress()))
+            query = query.where(property.displayFlagAddress.eq(filterParams.getDisplayFlagAddress()));
+
+        if(!filterParams.getLotSizeRange().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.lotSizeRange.likeIgnoreCase(filterParams.getLotSizeRange()));
+
+        if(!filterParams.getLotSizeRangeUnits().equals(DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeRangeUnits.eq(filterParams.getLotSizeRangeUnits()));
+
+        if(!filterParams.getLotSizeWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeWidthUnits.eq(filterParams.getLotSizeWidthUnits()));
+
+        if(!filterParams.getDiningRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.diningRoomWidthUnits.eq(filterParams.getDiningRoomWidthUnits()));
+
+        if(!filterParams.getFamilyRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.familyRoomWidthUnits.eq(filterParams.getFamilyRoomWidthUnits()));
+
+        if(!filterParams.getLivingRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.livingRoomWidthUnits.eq(filterParams.getLivingRoomWidthUnits()));
+
+        if(!filterParams.getBasementWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.basementWidthUnits.eq(filterParams.getBasementWidthUnits()));
+
+        if(!filterParams.getLotSizeLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeLengthUnits.eq(filterParams.getLotSizeLengthUnits()));
+
+        if(!filterParams.getDiningRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.diningRoomLengthUnits.eq(filterParams.getDiningRoomLengthUnits()));
+
+        if(!filterParams.getLivingRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.livingRoomLengthUnits.eq(filterParams.getLivingRoomLengthUnits()));
+
+        if(!filterParams.getFamilyRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.familyRoomLengthUnits.eq(filterParams.getFamilyRoomLengthUnits()));
+
+        if(!filterParams.getBasementLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.basementLengthUnits.eq(filterParams.getBasementLengthUnits()));
+
+        if(filterParams.getParkingTotal() > 0)
+            query = query.where(property.parkingTotal.eq(filterParams.getParkingTotal()));
+
+        if(!filterParams.getParkingTotalOperator().equals(Operator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.parkingTotalOperator.eq(filterParams.getParkingTotalOperator()));
 
         if(!isEmpty(filterParams.getBathSizes())){
             BooleanBuilder builder = new BooleanBuilder();
