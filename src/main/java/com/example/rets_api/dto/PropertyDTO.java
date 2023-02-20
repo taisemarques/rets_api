@@ -66,4 +66,6 @@ public class PropertyDTO {
 
     private ContactInformationDTO contactInformation;
 
+    private ListPriceDTO listPrice;
+
 }

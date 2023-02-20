@@ -8,7 +8,7 @@ import static java.util.Objects.isNull;
 
 public class ContactInformationConverter {
 
-    public static Converter<ContactInformationDTO, ContactInformationEntity> contactInformationDTOContactInformationEntity = in -> {
+    public static Converter<ContactInformationDTO, ContactInformationEntity> contactInformationDTOToContactInformationEntity = in -> {
         if(isNull(in)) return null;
 
         ContactInformationEntity retsEntity = new ContactInformationEntity();
@@ -22,7 +22,7 @@ public class ContactInformationConverter {
         return retsEntity;
     };
 
-    public static Converter<ContactInformationEntity, ContactInformationDTO> contactInformationEntityContactInformationDTO = in -> {
+    public static Converter<ContactInformationEntity, ContactInformationDTO> contactInformationEntityToContactInformationDTO = in -> {
         if (isNull(in)) return null;
         return ContactInformationDTO.builder()
                 .agentPhone(PhoneConverter.phoneEntityPhoneDTOConverter.convert(in.getAgentPhone()))
