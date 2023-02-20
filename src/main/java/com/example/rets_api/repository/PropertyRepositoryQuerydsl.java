@@ -132,7 +132,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (!filterParams.getFloorsHardwoodIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.floorsHardwoodIndicator.eq(filterParams.getFloorsHardwoodIndicator()));
 
-        if (nonNull(filterParams.getDisplayFlagListing()))
+        if (!filterParams.getDisplayFlagListing().equals(DEFAULT_BOOLEAN_VALUE))
             query = query.where(property.displayFlagListing.eq(filterParams.getDisplayFlagListing()));
 
         if (nonNull(filterParams.getDisplayFlagAddress()))
@@ -174,7 +174,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (!filterParams.getBasementLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
             query = query.where(property.basementLengthUnits.eq(filterParams.getBasementLengthUnits()));
 
-        if (filterParams.getParkingTotal() > 0)
+        if (filterParams.getParkingTotal() != DEFAULT_NUMBER_VALUE)
             query = query.where(property.parkingTotal.eq(filterParams.getParkingTotal()));
 
         if (!filterParams.getParkingTotalOperator().equals(Operator.DEFAULT_ENUM_VALUE))

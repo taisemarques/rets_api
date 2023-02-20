@@ -123,7 +123,7 @@ public class PropertyFilter {
 
     private Boolean displayFlagAddress = DEFAULT_BOOLEAN_VALUE;
 
-    private String lotSizeRange = DEFAULT_STRING_VALUE;;
+    private String lotSizeRange = DEFAULT_STRING_VALUE;
 
     private AreaUnit lotSizeRangeUnits = AreaUnit.DEFAULT_ENUM_VALUE;
 
