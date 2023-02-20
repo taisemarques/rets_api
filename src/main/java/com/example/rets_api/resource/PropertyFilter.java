@@ -113,9 +113,9 @@ public class PropertyFilter {
 
     private String firePlaceFuelType = DEFAULT_STRING_VALUE;
 
-    private String firePlaceDetails = DEFAULT_STRING_VALUE;;
+    private String firePlaceDetails = DEFAULT_STRING_VALUE;
 
-    private String floorsHardwood = DEFAULT_STRING_VALUE;;
+    private String floorsHardwood = DEFAULT_STRING_VALUE;
 
     private Indicator floorsHardwoodIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
@@ -147,7 +147,7 @@ public class PropertyFilter {
 
     private LengthWidthUnit basementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private int parkingTotal = 0;
+    private int parkingTotal = DEFAULT_NUMBER_VALUE ;
 
     private Operator parkingTotalOperator = Operator.DEFAULT_ENUM_VALUE;
 
