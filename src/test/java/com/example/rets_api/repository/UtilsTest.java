@@ -41,7 +41,9 @@ public class UtilsTest {
         propertyEntity.setAnimalPolicy(createAnimalPolicyEntity());
         propertyEntity.setLotData(createLotDataEntity());
         propertyEntity.setViewData(createViewDataEntity());
+        propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
+
         return propertyEntity;
     }
 
@@ -127,17 +129,6 @@ public class UtilsTest {
         return lotData;
     }
 
-    public static LotDataDTO createLotDataDTO(){
-        return LotDataDTO.builder()
-        .cornerLot("corner lot test")
-        .cornerLotIndicator(Indicator.UNKNOWN)
-        .golfCourseLot("golf course lot test")
-        .golfCourseLotIndicator(Indicator.NO)
-        .culdeSac("cul de sac test")
-        .culdeSacIndicator(Indicator.YES)
-        .build();
-    }
-
     public static AnimalPolicyEntity createAnimalPolicyEntity() {
         AnimalPolicyEntity animalPolicy = new AnimalPolicyEntity();
         animalPolicy.setAnimalsPermitted(Indicator.YES);
@@ -158,6 +149,47 @@ public class UtilsTest {
         financialDataEntity.setRentalAmountPeriod(RentalPeriod.YEAR);
         financialDataEntity.setRentalAmountUnit(AreaUnit.SQ_METERS);
         return financialDataEntity;
+    }
+
+    public static ViewDataEntity createViewDataEntity(){
+        ViewDataEntity viewData = new ViewDataEntity();
+        viewData.setCityLight("Light");
+        viewData.setCityLightIndicator(Indicator.YES);
+        viewData.setMountain("Mountain");
+        viewData.setMountainIndicator(Indicator.YES);
+        viewData.setRiver("River");
+        viewData.setRiverIndicator(Indicator.YES);
+        viewData.setLake("Lake");
+        viewData.setLakeIndicator(Indicator.YES);
+        viewData.setGolfCourse("Golf");
+        viewData.setGolfCourseIndicator(Indicator.YES);
+        viewData.setWater("Water");
+        viewData.setWaterIndicator(Indicator.YES);
+        return viewData;
+    }
+
+    public static ContactInformationEntity createContactInformationEntity(){
+        ContactInformationEntity contactInformation = new ContactInformationEntity();
+        contactInformation.setAgentPhone(createPhoneEntity("5140001111", "5140002222"));
+        contactInformation.setListAgentPhone(createPhoneEntity("5140003333", "5140004444"));
+        contactInformation.setSalesAgentPhone(createPhoneEntity("5140005555", "5140006666"));
+        contactInformation.setOfficePhone(createPhoneEntity("5140007777", "5140008888"));
+        contactInformation.setListOfficePhone(createPhoneEntity("5140009999", "5140009898"));
+        contactInformation.setSalesOfficePhone(createPhoneEntity("5140009987", "5140009989"));
+        return contactInformation;
+    }
+
+    public static PhoneEntity createPhoneEntity(String primaryPhone, String alternatePhone){
+        PhoneEntity phone = new PhoneEntity();
+        phone.setPrimaryPhone(primaryPhone);
+        phone.setAlternatePhone(alternatePhone);
+        phone.setAgentPhoneContactInformationEntity(new ContactInformationEntity());
+        phone.setListAgentPhoneContactInformationEntity(new ContactInformationEntity());
+        phone.setSalesAgentPhoneContactInformationEntity(new ContactInformationEntity());
+        phone.setOfficePhoneContactInformationEntity(new ContactInformationEntity());
+        phone.setListOfficePhoneContactInformationEntity(new ContactInformationEntity());
+        phone.setSalesOfficePhoneContactInformationEntity(new ContactInformationEntity());
+        return phone;
     }
 
     //DTO
@@ -188,6 +220,7 @@ public class UtilsTest {
             .schoolList(asList(createSchoolDTO("primary", "jrHigh")))
             .animalPolicy(createAnimalPolicyDTO())
             .lotData(createLotDataDTO())
+            .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
             .build();
     }
@@ -238,6 +271,17 @@ public class UtilsTest {
             .build();
     }
 
+    public static LotDataDTO createLotDataDTO(){
+        return LotDataDTO.builder()
+                .cornerLot("corner lot test")
+                .cornerLotIndicator(Indicator.UNKNOWN)
+                .golfCourseLot("golf course lot test")
+                .golfCourseLotIndicator(Indicator.NO)
+                .culdeSac("cul de sac test")
+                .culdeSacIndicator(Indicator.YES)
+                .build();
+    }
+
     public static FinancialDataDTO createFinancialDataDTO(){
         return FinancialDataDTO.builder()
                 .leaseOption("leaseOption")
@@ -249,24 +293,6 @@ public class UtilsTest {
                 .rentalAmountPeriod(RentalPeriod.YEAR)
                 .rentalAmountUnit(AreaUnit.SQ_METERS)
                 .build();
-
-    }
-
-    public static ViewDataEntity createViewDataEntity(){
-        ViewDataEntity viewData = new ViewDataEntity();
-        viewData.setCityLight("Light");
-        viewData.setCityLightIndicator(Indicator.YES);
-        viewData.setMountain("Mountain");
-        viewData.setMountainIndicator(Indicator.YES);
-        viewData.setRiver("River");
-        viewData.setRiverIndicator(Indicator.YES);
-        viewData.setLake("Lake");
-        viewData.setLakeIndicator(Indicator.YES);
-        viewData.setGolfCourse("Golf");
-        viewData.setGolfCourseIndicator(Indicator.YES);
-        viewData.setWater("Water");
-        viewData.setWaterIndicator(Indicator.YES);
-        return viewData;
     }
 
     public static ViewDataDTO createViewDataDTO(){
@@ -286,13 +312,30 @@ public class UtilsTest {
                 .build();
     }
 
-
     public static AnimalPolicyDTO createAnimalPolicyDTO(){
         return AnimalPolicyDTO.builder()
                 .permittedTypes("permitttedType")
                 .animalsPermitted(Indicator.YES)
                 .weightUnit(WeightUnit.KILO)
                 .weightLimit(10L)
+                .build();
+    }
+
+    public static ContactInformationDTO createContactInformationDTO(){
+        return ContactInformationDTO.builder()
+                .agentPhone(createPhoneDTO("5140001111", "5140002222"))
+                .listAgentPhone(createPhoneDTO("5140003333", "5140004444"))
+                .salesAgentPhone(createPhoneDTO("5140005555", "5140006666"))
+                .officePhone(createPhoneDTO("5140007777", "5140008888"))
+                .listOfficePhone(createPhoneDTO("5140009999", "5140009898"))
+                .salesOfficePhone(createPhoneDTO("5140009987", "5140009989"))
+                .build();
+    }
+
+    public static PhoneDTO createPhoneDTO(String primaryPhone, String alternatePhone){
+        return PhoneDTO.builder()
+                .primaryPhone(primaryPhone)
+                .alternatePhone(alternatePhone)
                 .build();
     }
 

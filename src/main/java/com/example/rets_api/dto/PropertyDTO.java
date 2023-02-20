@@ -64,4 +64,6 @@ public class PropertyDTO {
 
     private LotDataDTO lotData;
 
+    private ContactInformationDTO contactInformation;
+
 }

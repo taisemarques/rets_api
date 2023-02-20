@@ -6,11 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Arrays;
 import java.util.List;
-
-import static com.example.rets_api.repository.UtilsTest.createRoomEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -86,10 +82,17 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
         assertNotNull(propertySaved.getViewData().getViewDataId());
 
+
+        assertNotNull(propertySaved.getContactInformation());
+        assertNotNull(propertySaved.getContactInformation().getContactInformationId());
+        compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation());
+
+
         assertNotNull(propertySaved.getCommunity());
         assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
+
     }
 
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
@@ -175,6 +178,22 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getWeightUnit(), entity2.getWeightUnit());
     }
 
+
+    public static void compareContactInformation(ContactInformationEntity entity1, ContactInformationEntity entity2) {
+        assertEquals(entity1.getAgentPhone().getPrimaryPhone(), entity2.getAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getAgentPhone().getAlternatePhone(), entity2.getAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getListAgentPhone().getPrimaryPhone(), entity2.getListAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getListAgentPhone().getAlternatePhone(), entity2.getListAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getSalesAgentPhone().getPrimaryPhone(), entity2.getSalesAgentPhone().getPrimaryPhone());
+        assertEquals(entity1.getSalesAgentPhone().getAlternatePhone(), entity2.getSalesAgentPhone().getAlternatePhone());
+        assertEquals(entity1.getOfficePhone().getPrimaryPhone(), entity2.getOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getOfficePhone().getAlternatePhone(), entity2.getOfficePhone().getAlternatePhone());
+        assertEquals(entity1.getListOfficePhone().getPrimaryPhone(), entity2.getListOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getListOfficePhone().getAlternatePhone(), entity2.getListOfficePhone().getAlternatePhone());
+        assertEquals(entity1.getSalesOfficePhone().getPrimaryPhone(), entity2.getSalesOfficePhone().getPrimaryPhone());
+        assertEquals(entity1.getSalesOfficePhone().getAlternatePhone(), entity2.getSalesOfficePhone().getAlternatePhone());
+    }
+
     public void compareCommunity(CommunityEntity entity1, CommunityEntity entity2) {
         assertEquals(entity1.getClubHouse(), entity2.getClubHouse());
         assertEquals(entity1.getCommunityParkIndicator(), entity2.getClubHouseIndicator());
@@ -200,5 +219,6 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getHorseFacilitiesIndicator(), entity2.getHorseFacilitiesIndicator());
         assertEquals(entity1.getCommunityPark(), entity2.getCommunityPark());
         assertEquals(entity1.getCommunityParkIndicator(), entity2.getCommunityParkIndicator());
+
     }
 }

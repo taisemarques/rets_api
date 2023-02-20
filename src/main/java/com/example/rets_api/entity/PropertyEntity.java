@@ -86,6 +86,8 @@ public class PropertyEntity {
     @JoinColumn(name = "lotData_id")
     private LotDataEntity lotData;
 
+    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
+    private ContactInformationEntity contactInformation;
 
     @PrePersist
     void updateBeforeSave(){
@@ -117,6 +119,7 @@ public class PropertyEntity {
         if(!isNull(viewData)) viewData.setProperty(this);
         if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
+        if(!isNull(contactInformation)) contactInformation.setProperty(this);
     }
 
 }
