@@ -1,7 +1,6 @@
 package com.example.rets_api.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
@@ -98,14 +97,12 @@ public class PropertyEntity {
 
     private Operator parkingTotalOperator;
 
-
-
-    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
-    private FinancialDataEntity financialData;
-
     private int bedroomsQty;
 
     private int bathroomsQty;
+
+    @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
+    private FinancialDataEntity financialData;
 
     @ManyToMany(mappedBy= "propertyList", cascade = CascadeType.ALL)
     private List<SchoolEntity> schoolList;
@@ -117,12 +114,19 @@ public class PropertyEntity {
     private ViewDataEntity viewData;
 
     @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "community_id")
+    private CommunityEntity community;
+
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "animal_policy_id")
     private AnimalPolicyEntity animalPolicy;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "lotData_id")
     private LotDataEntity lotData;
+
+    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
+    private ContactInformationEntity contactInformation;
 
     @PrePersist
     void updateBeforeSave(){
@@ -150,9 +154,11 @@ public class PropertyEntity {
         if(!isNull(schoolList)) schoolList.forEach(schoolEntity -> schoolEntity.setPropertyList(Arrays.asList(this)));
         if(!isNull(roomList)) roomList.forEach(roomEntity -> roomEntity.setProperty(this));
         if(!isNull(financialData)) financialData.setProperty(this);
+        if(!isNull(community)) community.setProperties(Arrays.asList(this));
         if(!isNull(viewData)) viewData.setProperty(this);
         if(!isNull(animalPolicy)) animalPolicy.setProperties(Arrays.asList(this));
         if(!isNull(lotData)) lotData.setPropertyList(Arrays.asList(this));
+        if(!isNull(contactInformation)) contactInformation.setProperty(this);
     }
 
 }

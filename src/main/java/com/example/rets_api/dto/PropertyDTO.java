@@ -60,7 +60,12 @@ public class PropertyDTO {
 
     private AnimalPolicyDTO animalPolicy;
 
+    private CommunityDTO community;
+
     private LotDataDTO lotData;
+
+    private ContactInformationDTO contactInformation;
+
 
     private String firePlaceFuelType;
 
