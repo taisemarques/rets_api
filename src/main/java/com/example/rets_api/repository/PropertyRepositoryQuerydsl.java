@@ -251,12 +251,6 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!filterParams.getHighAmount().equals(DEFAULT_LONG_VALUE))
             query = query.where(listPrice.highAmount.loe(filterParams.getHighAmount()));
 
-        if(!filterParams.getLowAmountType().equals(NumberType.DEFAULT_ENUM_VALUE))
-            query = query.where(listPrice.lowAmountType.eq(filterParams.getLowAmountType()));
-
-        if(!filterParams.getHighAmountType().equals(NumberType.DEFAULT_ENUM_VALUE))
-            query = query.where(listPrice.highAmountType.eq(filterParams.getHighAmountType()));
-
         if(!filterParams.getLowAmountCurrencyCode().equals(DEFAULT_STRING_VALUE))
             query = query.where(listPrice.lowAmountCurrencyCode.equalsIgnoreCase(filterParams.getLowAmountCurrencyCode()));
 

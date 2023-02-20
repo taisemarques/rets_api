@@ -43,6 +43,7 @@ public class UtilsTest {
         propertyEntity.setViewData(createViewDataEntity());
         propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
+        propertyEntity.setListPrice(createListPriceEntity());
 
         return propertyEntity;
     }
@@ -192,6 +193,19 @@ public class UtilsTest {
         return phone;
     }
 
+    public static ListPriceEntity createListPriceEntity(){
+        ListPriceEntity listPrice = new ListPriceEntity();
+        listPrice.setLowAmount(new Long(150000));
+        listPrice.setHighAmount(new Long(500000));
+        listPrice.setLowAmountType(NumberType.FLOAT);
+        listPrice.setHighAmountType(NumberType.FLOAT);
+        listPrice.setLowAmountCurrencyCode("CAD");
+        listPrice.setHighAmountCurrencyCode("CAD");
+        listPrice.setUnits(AreaUnit.SQ_FEET);
+
+        return listPrice;
+    }
+
     //DTO
 
     public static PropertyDTO createPropertyDTOWithBasicFields(){
@@ -222,6 +236,7 @@ public class UtilsTest {
             .lotData(createLotDataDTO())
             .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
+            .listPrice(createListPriceDTO())
             .build();
     }
 
@@ -336,6 +351,18 @@ public class UtilsTest {
         return PhoneDTO.builder()
                 .primaryPhone(primaryPhone)
                 .alternatePhone(alternatePhone)
+                .build();
+    }
+
+    public static ListPriceDTO createListPriceDTO(){
+        return ListPriceDTO.builder()
+                .lowAmount(new Long(150000))
+                .highAmount(new Long(500000))
+                .lowAmountType(NumberType.FLOAT)
+                .highAmountType(NumberType.FLOAT)
+                .lowAmountCurrencyCode("CAD")
+                .highAmountCurrencyCode("CAD")
+                .units(AreaUnit.SQ_FEET)
                 .build();
     }
 

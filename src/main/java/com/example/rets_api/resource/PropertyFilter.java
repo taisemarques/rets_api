@@ -115,10 +115,6 @@ public class PropertyFilter {
 
     private Long highAmount = DEFAULT_LONG_VALUE;
 
-    private NumberType lowAmountType = NumberType.DEFAULT_ENUM_VALUE;
-
-    private NumberType highAmountType = NumberType.DEFAULT_ENUM_VALUE;
-
     private String lowAmountCurrencyCode = DEFAULT_STRING_VALUE;
 
     private String highAmountCurrencyCode = DEFAULT_STRING_VALUE;

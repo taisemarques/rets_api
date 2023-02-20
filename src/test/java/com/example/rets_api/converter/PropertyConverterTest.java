@@ -9,6 +9,7 @@ import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllF
 import static com.example.rets_api.converter.ContactInformationConverterTest.checkAllFields_ContactInformation;
 import static com.example.rets_api.converter.CommunityConverterTest.checkAllFields_Community;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
+import static com.example.rets_api.converter.ListPriceConverterTest.checkAllFields_ListPrice;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
 import static com.example.rets_api.converter.ViewDataConverterTest.checkAllFields_ViewData;
@@ -45,6 +46,7 @@ public class PropertyConverterTest {
         checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
         checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
+        checkAllFields_ListPrice(propertyEntity.getListPrice(), propertyDTO.getListPrice());
     }
 
     //Entity To DTO
@@ -74,6 +76,7 @@ public class PropertyConverterTest {
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
         checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
         checkAllFields_Community(propertyEntity.getCommunity(), propertyDTO.getCommunity());
+        checkAllFields_ListPrice(propertyEntity.getListPrice(), propertyDTO.getListPrice());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){
@@ -97,6 +100,7 @@ public class PropertyConverterTest {
         assertNull(propertyEntity.getPropertyTypeTownHouse());
         assertNull(propertyEntity.getLotData());
         assertNull(propertyEntity.getContactInformation());
+        assertNull(propertyEntity.getListPrice());
     }
 
     private void checkNullAllFields_PropertyDTO(PropertyDTO propertyDTO){
@@ -120,6 +124,7 @@ public class PropertyConverterTest {
         assertNull(propertyDTO.getPropertyTypeTownHouse());
         assertNull(propertyDTO.getLotData());
         assertNull(propertyDTO.getContactInformation());
+        assertNull(propertyDTO.getListPrice());
     }
 
     public static void checkAllFields_Property(PropertyEntity propertyEntity, PropertyDTO propertyDTO) {
