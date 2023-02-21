@@ -73,6 +73,50 @@ public class PropertyFilter {
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
 
+    private String propertyFirePlaceFuelType = DEFAULT_STRING_VALUE;
+
+    private String propertyFirePlaceDetails = DEFAULT_STRING_VALUE;
+
+    private String propertyFloorsHardwood = DEFAULT_STRING_VALUE;
+
+    private Indicator propertyFloorsHardwoodIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Boolean propertyDisplayFlagListing = DEFAULT_BOOLEAN_VALUE;
+
+    private Boolean propertyDisplayFlagAddress = DEFAULT_BOOLEAN_VALUE;
+
+    private String propertyLotSizeRange = DEFAULT_STRING_VALUE;
+
+    private AreaUnit propertyLotSizeRangeUnits = AreaUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyLotSizeWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyDiningRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyFamilyRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyLivingRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyBasementWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyLotSizeLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyDiningRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyLivingRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyFamilyRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private LengthWidthUnit propertyBasementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+
+    private int propertyParkingTotalStart = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyParkingTotalStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyParkingTotalEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyParkingTotalEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
     private List<SchoolDTO> schoolList = Collections.emptyList();
 
     private List<BathSize> propertyBathSizes = Collections.emptyList();
@@ -134,45 +178,5 @@ public class PropertyFilter {
     private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
     private List<String> contactInformationPhoneNumbers = Collections.emptyList();
-
-    private String propertyFirePlaceFuelType = DEFAULT_STRING_VALUE;
-
-    private String propertyFirePlaceDetails = DEFAULT_STRING_VALUE;
-
-    private String propertyFloorsHardwood = DEFAULT_STRING_VALUE;
-
-    private Indicator propertyFloorsHardwoodIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Boolean propertyDisplayFlagListing = DEFAULT_BOOLEAN_VALUE;
-
-    private Boolean propertyDisplayFlagAddress = DEFAULT_BOOLEAN_VALUE;
-
-    private String propertyLotSizeRange = DEFAULT_STRING_VALUE;
-
-    private AreaUnit propertyLotSizeRangeUnits = AreaUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyLotSizeWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyDiningRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyFamilyRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyLivingRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyBasementWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyLotSizeLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyDiningRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyLivingRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyFamilyRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private LengthWidthUnit propertyBasementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
-
-    private int propertyParkingTotal = DEFAULT_NUMBER_VALUE ;
-
-    private Operator propertyParkingTotalOperator = Operator.DEFAULT_ENUM_VALUE;
 
 }

@@ -50,23 +50,6 @@ public class PropertyDTO {
 
     private Boolean propertyTypeTownHouse;
 
-    private FinancialDataDTO financialData;
-
-    private List<SchoolDTO> schoolList;
-
-    private List<RoomDTO> roomList;
-
-    private ViewDataDTO viewData;
-
-    private AnimalPolicyDTO animalPolicy;
-
-    private CommunityDTO community;
-
-    private LotDataDTO lotData;
-
-    private ContactInformationDTO contactInformation;
-
-
     private String firePlaceFuelType;
 
     private String firePlaceDetails;
@@ -106,4 +89,21 @@ public class PropertyDTO {
     private int parkingTotal;
 
     private Operator parkingTotalOperator;
+
+    private FinancialDataDTO financialData;
+
+    private List<SchoolDTO> schoolList;
+
+    private List<RoomDTO> roomList;
+
+    private ViewDataDTO viewData;
+
+    private AnimalPolicyDTO animalPolicy;
+
+    private CommunityDTO community;
+
+    private LotDataDTO lotData;
+
+    private ContactInformationDTO contactInformation;
+
 }

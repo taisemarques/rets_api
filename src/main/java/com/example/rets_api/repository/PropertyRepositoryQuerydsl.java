@@ -178,11 +178,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (!filterParams.getPropertyBasementLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
             query = query.where(property.basementLengthUnits.eq(filterParams.getPropertyBasementLengthUnits()));
 
-        if (filterParams.getPropertyParkingTotal() != DEFAULT_NUMBER_VALUE)
-            query = query.where(property.parkingTotal.eq(filterParams.getPropertyParkingTotal()));
-
-        if (!filterParams.getPropertyParkingTotalOperator().equals(Operator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.parkingTotalOperator.eq(filterParams.getPropertyParkingTotalOperator()));
+        if (filterParams.getPropertyParkingTotalStart() != DEFAULT_INTEGER_VALUE || filterParams.getPropertyParkingTotalEnd() != DEFAULT_INTEGER_VALUE)
+            query = configureParkingInTheQuery(query);
 
         if(!isEmpty(filterParams.getSchoolList()))
             query = configureSchoolListInTheQuery(query);
@@ -266,6 +263,11 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
             query = configurePhoneNumberInTheQuery(query);
 
         return query.fetch();
+    }
+
+    private JPQLQuery<PropertyEntity> configureParkingInTheQuery(JPQLQuery<PropertyEntity> query) {
+        return configureNumberPathInTheQuery(query, property.parkingTotal, filterParams.getPropertyParkingTotalStart(), filterParams.getPropertyParkingTotalEnd(),
+                filterParams.getPropertyParkingTotalStartOperator(), filterParams.getPropertyParkingTotalEndOperator());
     }
 
     private JPQLQuery<PropertyEntity> configureAgeInTheQuery(JPQLQuery<PropertyEntity> query) {
