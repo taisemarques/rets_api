@@ -44,6 +44,26 @@ public class UtilsTest {
         propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
 
+        propertyEntity.setFirePlaceFuelType("Fuel");
+        propertyEntity.setFirePlaceDetails("Fire place details");
+        propertyEntity.setFloorsHardwood("Hardwood");
+        propertyEntity.setFloorsHardwoodIndicator(Indicator.YES);
+        propertyEntity.setDisplayFlagListing(true);
+        propertyEntity.setDisplayFlagAddress(true);
+        propertyEntity.setLotSizeRange("range");
+        propertyEntity.setLotSizeRangeUnits(AreaUnit.SQ_METERS);
+        propertyEntity.setLotSizeWidthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setDiningRoomWidthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setFamilyRoomWidthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setLivingRoomWidthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setBasementWidthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setLotSizeLengthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setDiningRoomLengthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setLivingRoomLengthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setFamilyRoomLengthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setBasementLengthUnits(LengthWidthUnit.METERS);
+        propertyEntity.setParkingTotal(2);
+        propertyEntity.setParkingTotalOperator(Operator.DEFAULT_ENUM_VALUE);
         return propertyEntity;
     }
 
