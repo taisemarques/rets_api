@@ -132,11 +132,11 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (!filterParams.getPropertyFloorsHardwoodIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.floorsHardwoodIndicator.eq(filterParams.getPropertyFloorsHardwoodIndicator()));
 
-        if (nonNull(filterParams.getPropertyDisplayFlagListing()))
+        if (filterParams.getPropertyDisplayFlagListing() != DEFAULT_BOOLEAN_VALUE)
             query = query.where(property.displayFlagListing.eq(filterParams.getPropertyDisplayFlagListing()));
 
-        if (nonNull(filterParams.getPropertyDisplayFlagListing()))
-            query = query.where(property.displayFlagAddress.eq(filterParams.getPropertyDisplayFlagListing()));
+        if (filterParams.getPropertyDisplayFlagAddress() != DEFAULT_BOOLEAN_VALUE)
+            query = query.where(property.displayFlagAddress.eq(filterParams.getPropertyDisplayFlagAddress()));
 
         if (!filterParams.getPropertyLotSizeRange().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.lotSizeRange.likeIgnoreCase(filterParams.getPropertyLotSizeRange()));
