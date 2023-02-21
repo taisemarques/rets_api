@@ -111,44 +111,44 @@ public class PropertyFilter {
 
     private List<String> contactInformationPhoneNumbers = Collections.emptyList();
 
-    private String firePlaceFuelType = DEFAULT_STRING_VALUE;
+    private String propertyFirePlaceFuelType = DEFAULT_STRING_VALUE;
 
-    private String firePlaceDetails = DEFAULT_STRING_VALUE;
+    private String propertyFirePlaceDetails = DEFAULT_STRING_VALUE;
 
-    private String floorsHardwood = DEFAULT_STRING_VALUE;
+    private String propertyFloorsHardwood = DEFAULT_STRING_VALUE;
 
-    private Indicator floorsHardwoodIndicator = Indicator.DEFAULT_ENUM_VALUE;
+    private Indicator propertyFloorsHardwoodIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
-    private Boolean displayFlagListing = DEFAULT_BOOLEAN_VALUE;
+    private Boolean propertyDisplayFlagListing = DEFAULT_BOOLEAN_VALUE;
 
-    private Boolean displayFlagAddress = DEFAULT_BOOLEAN_VALUE;
+    private Boolean propertyDisplayFlagAddress = DEFAULT_BOOLEAN_VALUE;
 
-    private String lotSizeRange = DEFAULT_STRING_VALUE;
+    private String propertyLotSizeRange = DEFAULT_STRING_VALUE;
 
-    private AreaUnit lotSizeRangeUnits = AreaUnit.DEFAULT_ENUM_VALUE;
+    private AreaUnit propertyLotSizeRangeUnits = AreaUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit lotSizeWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyLotSizeWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit diningRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyDiningRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit familyRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyFamilyRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit livingRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyLivingRoomWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit basementWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyBasementWidthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit lotSizeLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyLotSizeLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit diningRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyDiningRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit livingRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyLivingRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit familyRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyFamilyRoomLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private LengthWidthUnit basementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
+    private LengthWidthUnit propertyBasementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private int parkingTotal = DEFAULT_NUMBER_VALUE ;
+    private int propertyParkingTotal = DEFAULT_NUMBER_VALUE ;
 
-    private Operator parkingTotalOperator = Operator.DEFAULT_ENUM_VALUE;
+    private Operator propertyParkingTotalOperator = Operator.DEFAULT_ENUM_VALUE;
 
 }

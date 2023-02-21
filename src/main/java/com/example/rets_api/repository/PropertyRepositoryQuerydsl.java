@@ -120,65 +120,65 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if (nonNull(filterParams.getPropertyTypeTownHouse()))
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
-        if (!filterParams.getFirePlaceFuelType().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.firePlaceFuelType.likeIgnoreCase(filterParams.getFirePlaceFuelType()));
+        if (!filterParams.getPropertyFirePlaceFuelType().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.firePlaceFuelType.likeIgnoreCase(filterParams.getPropertyFirePlaceFuelType()));
 
-        if (!filterParams.getFirePlaceDetails().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.firePlaceDetails.likeIgnoreCase(filterParams.getFirePlaceDetails()));
+        if (!filterParams.getPropertyFirePlaceDetails().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.firePlaceDetails.likeIgnoreCase(filterParams.getPropertyFirePlaceDetails()));
 
-        if (!filterParams.getFloorsHardwood().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.floorsHardwood.likeIgnoreCase(filterParams.getFloorsHardwood()));
+        if (!filterParams.getPropertyFloorsHardwood().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.floorsHardwood.likeIgnoreCase(filterParams.getPropertyFloorsHardwood()));
 
-        if (!filterParams.getFloorsHardwoodIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.floorsHardwoodIndicator.eq(filterParams.getFloorsHardwoodIndicator()));
+        if (!filterParams.getPropertyFloorsHardwoodIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.floorsHardwoodIndicator.eq(filterParams.getPropertyFloorsHardwoodIndicator()));
 
-        if (!filterParams.getDisplayFlagListing().equals(DEFAULT_BOOLEAN_VALUE))
-            query = query.where(property.displayFlagListing.eq(filterParams.getDisplayFlagListing()));
+        if (nonNull(filterParams.getPropertyDisplayFlagListing()))
+            query = query.where(property.displayFlagListing.eq(filterParams.getPropertyDisplayFlagListing()));
 
-        if (!filterParams.getDisplayFlagAddress().equals(DEFAULT_BOOLEAN_VALUE))
-            query = query.where(property.displayFlagAddress.eq(filterParams.getDisplayFlagAddress()));
+        if (nonNull(filterParams.getPropertyDisplayFlagListing()))
+            query = query.where(property.displayFlagAddress.eq(filterParams.getPropertyDisplayFlagListing()));
 
-        if (!filterParams.getLotSizeRange().equals(DEFAULT_STRING_VALUE))
-            query = query.where(property.lotSizeRange.likeIgnoreCase(filterParams.getLotSizeRange()));
+        if (!filterParams.getPropertyLotSizeRange().equals(DEFAULT_STRING_VALUE))
+            query = query.where(property.lotSizeRange.likeIgnoreCase(filterParams.getPropertyLotSizeRange()));
 
-        if (!filterParams.getLotSizeRangeUnits().equals(AreaUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotSizeRangeUnits.eq(filterParams.getLotSizeRangeUnits()));
+        if (!filterParams.getPropertyLotSizeRangeUnits().equals(AreaUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeRangeUnits.eq(filterParams.getPropertyLotSizeRangeUnits()));
 
-        if (!filterParams.getLotSizeWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotSizeWidthUnits.eq(filterParams.getLotSizeWidthUnits()));
+        if (!filterParams.getPropertyLotSizeWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeWidthUnits.eq(filterParams.getPropertyLotSizeWidthUnits()));
 
-        if (!filterParams.getDiningRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.diningRoomWidthUnits.eq(filterParams.getDiningRoomWidthUnits()));
+        if (!filterParams.getPropertyDiningRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.diningRoomWidthUnits.eq(filterParams.getPropertyDiningRoomWidthUnits()));
 
-        if (!filterParams.getFamilyRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.familyRoomWidthUnits.eq(filterParams.getFamilyRoomWidthUnits()));
+        if (!filterParams.getPropertyFamilyRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.familyRoomWidthUnits.eq(filterParams.getPropertyFamilyRoomWidthUnits()));
 
-        if (!filterParams.getLivingRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.livingRoomWidthUnits.eq(filterParams.getLivingRoomWidthUnits()));
+        if (!filterParams.getPropertyLivingRoomWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.livingRoomWidthUnits.eq(filterParams.getPropertyLivingRoomWidthUnits()));
 
-        if (!filterParams.getBasementWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.basementWidthUnits.eq(filterParams.getBasementWidthUnits()));
+        if (!filterParams.getPropertyBasementWidthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.basementWidthUnits.eq(filterParams.getPropertyBasementWidthUnits()));
 
-        if (!filterParams.getLotSizeLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.lotSizeLengthUnits.eq(filterParams.getLotSizeLengthUnits()));
+        if (!filterParams.getPropertyLotSizeLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.lotSizeLengthUnits.eq(filterParams.getPropertyLotSizeLengthUnits()));
 
-        if (!filterParams.getDiningRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.diningRoomLengthUnits.eq(filterParams.getDiningRoomLengthUnits()));
+        if (!filterParams.getPropertyDiningRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.diningRoomLengthUnits.eq(filterParams.getPropertyDiningRoomLengthUnits()));
 
-        if (!filterParams.getLivingRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.livingRoomLengthUnits.eq(filterParams.getLivingRoomLengthUnits()));
+        if (!filterParams.getPropertyLivingRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.livingRoomLengthUnits.eq(filterParams.getPropertyLivingRoomLengthUnits()));
 
-        if (!filterParams.getFamilyRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.familyRoomLengthUnits.eq(filterParams.getFamilyRoomLengthUnits()));
+        if (!filterParams.getPropertyFamilyRoomLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.familyRoomLengthUnits.eq(filterParams.getPropertyFamilyRoomLengthUnits()));
 
-        if (!filterParams.getBasementLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
-            query = query.where(property.basementLengthUnits.eq(filterParams.getBasementLengthUnits()));
+        if (!filterParams.getPropertyBasementLengthUnits().equals(LengthWidthUnit.DEFAULT_ENUM_VALUE))
+            query = query.where(property.basementLengthUnits.eq(filterParams.getPropertyBasementLengthUnits()));
 
-        if (filterParams.getParkingTotal() != DEFAULT_NUMBER_VALUE)
-            query = query.where(property.parkingTotal.eq(filterParams.getParkingTotal()));
+        if (filterParams.getPropertyParkingTotal() != DEFAULT_NUMBER_VALUE)
+            query = query.where(property.parkingTotal.eq(filterParams.getPropertyParkingTotal()));
 
-        if (!filterParams.getParkingTotalOperator().equals(Operator.DEFAULT_ENUM_VALUE))
-            query = query.where(property.parkingTotalOperator.eq(filterParams.getParkingTotalOperator()));
+        if (!filterParams.getPropertyParkingTotalOperator().equals(Operator.DEFAULT_ENUM_VALUE))
+            query = query.where(property.parkingTotalOperator.eq(filterParams.getPropertyParkingTotalOperator()));
 
         if (!isEmpty(filterParams.getPropertyBathSizes())) {
             BooleanBuilder builder = new BooleanBuilder();
