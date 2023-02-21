@@ -15,11 +15,29 @@ import static com.example.rets_api.resource.Enums.*;
 @Getter
 public class PropertyFilter {
 
-    private int propertyAge = DEFAULT_NUMBER_VALUE;
+    private int propertyAgeStart = DEFAULT_INTEGER_VALUE;
 
-    private int propertyBedroomsQty = DEFAULT_NUMBER_VALUE;
+    private Operator propertyAgeStartOperator = Operator.DEFAULT_ENUM_VALUE;
 
-    private int propertyBathroomsQty = DEFAULT_NUMBER_VALUE;
+    private int propertyAgeEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyAgeEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBedroomsQtyStart = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBedroomsQtyStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBedroomsQtyEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBedroomsQtyEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBathroomsQtyStart = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBathroomsQtyStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBathroomsQtyEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBathroomsQtyEndOperator = Operator.DEFAULT_ENUM_VALUE;
 
     private String propertyHorseFacilitiesDescription = DEFAULT_STRING_VALUE;
 
@@ -81,7 +99,13 @@ public class PropertyFilter {
 
     private Indicator financialDataLeaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
 
-    private Long financialDataRentalAmount = DEFAULT_LONG_VALUE;
+    private Long financialDataRentalAmountStart = DEFAULT_LONG_VALUE;
+
+    private Operator financialDataRentalAmountStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private Long financialDataRentalAmountEnd = DEFAULT_LONG_VALUE;
+
+    private Operator financialDataRentalAmountEndOperator = Operator.DEFAULT_ENUM_VALUE;
 
     private Indicator animalPolicyAnimalPermitted = Indicator.DEFAULT_ENUM_VALUE;
 

@@ -1,44 +1,48 @@
 package com.example.rets_api.repository;
+
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.resource.PropertyFilter;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 import static com.example.rets_api.resource.Constants.*;
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Repository
 public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
+
+    private final QPropertyEntity property = QPropertyEntity.propertyEntity;
+    private final QRoomEntity room = QRoomEntity.roomEntity;
+    private final QSchoolEntity school = QSchoolEntity.schoolEntity;
+    private final QViewDataEntity viewData = QViewDataEntity.viewDataEntity;
+    private final QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
+    private final QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
+    private final QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
+    private final QCommunityEntity community = QCommunityEntity.communityEntity;
+    private final QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
+    private final QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
+    private final QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
+    private final QPhoneEntity officePhone = new QPhoneEntity("officePhone");
+    private final QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
+    private final QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
+    private final QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
+
+    private PropertyFilter filterParams;
 
     public PropertyRepositoryQuerydsl() {
         super(PropertyEntity.class);
     }
 
     public List<PropertyEntity> fetchAll(PropertyFilter filterParams) {
-        QPropertyEntity property = QPropertyEntity.propertyEntity;
-        QRoomEntity room = QRoomEntity.roomEntity;
-        QSchoolEntity school = QSchoolEntity.schoolEntity;
-        QViewDataEntity viewData = QViewDataEntity.viewDataEntity;
-        QFinancialDataEntity financialData = QFinancialDataEntity.financialDataEntity;
-        QAnimalPolicyEntity animalPolicy = QAnimalPolicyEntity.animalPolicyEntity;
-        QLotDataEntity lotData = QLotDataEntity.lotDataEntity;
-        QCommunityEntity community = QCommunityEntity.communityEntity;
-        QContactInformationEntity contactInformation = QContactInformationEntity.contactInformationEntity;
-        QPhoneEntity agentPhone = new QPhoneEntity("agentPhone");
-        QPhoneEntity listAgentPhone = new QPhoneEntity("listAgentPhone");
-        QPhoneEntity officePhone = new QPhoneEntity("officePhone");
-        QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
-        QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
-        QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
 
+        this.filterParams = filterParams;
 
         // Joining tables
         JPQLQuery<PropertyEntity> query = from(property).distinct()
@@ -57,8 +61,14 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(salesAgentPhone).on(contactInformation.salesAgentPhone.phoneId.eq(salesAgentPhone.phoneId))
                 .leftJoin(salesOfficePhone).on(contactInformation.salesOfficePhone.phoneId.eq(salesOfficePhone.phoneId));
 
-        if(filterParams.getPropertyAge() != DEFAULT_NUMBER_VALUE)
-            query = query.where(property.age.eq(filterParams.getPropertyAge()));
+        if(filterParams.getPropertyAgeStart() != DEFAULT_INTEGER_VALUE || filterParams.getPropertyAgeEnd() != DEFAULT_INTEGER_VALUE)
+            query = configureAgeInTheQuery(query);
+
+        if(filterParams.getPropertyBedroomsQtyStart() != DEFAULT_INTEGER_VALUE || filterParams.getPropertyBedroomsQtyEnd() != DEFAULT_INTEGER_VALUE)
+            query = configureBedroomInTheQuery(query);
+
+        if(filterParams.getPropertyBathroomsQtyStart() != DEFAULT_INTEGER_VALUE || filterParams.getPropertyBathroomsQtyEnd() != DEFAULT_INTEGER_VALUE)
+            query = configureBathroomInTheQuery(query);
 
         if(!filterParams.getPropertyHorseFacilitiesDescription().equals(DEFAULT_STRING_VALUE))
             query = query.where(property.horseFacilities.likeIgnoreCase(filterParams.getPropertyHorseFacilitiesDescription()));
@@ -99,56 +109,23 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!filterParams.getPropertySecurityFeaturesIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(property.securityFeaturesIndicator.eq(filterParams.getPropertySecurityFeaturesIndicator()));
 
-        if(nonNull(filterParams.getPropertyTypeRental()))
+        if(filterParams.getPropertyTypeRental() != DEFAULT_BOOLEAN_VALUE)
             query = query.where(property.propertyTypeRental.eq(filterParams.getPropertyTypeRental()));
 
-        if(nonNull(filterParams.getPropertyTypeCondo()))
+        if(filterParams.getPropertyTypeCondo() != DEFAULT_BOOLEAN_VALUE)
             query = query.where(property.propertyTypeCondo.eq(filterParams.getPropertyTypeCondo()));
 
-        if(nonNull(filterParams.getPropertyTypeFarm()))
+        if(filterParams.getPropertyTypeFarm() != DEFAULT_BOOLEAN_VALUE)
             query = query.where(property.propertyTypeFarm.eq(filterParams.getPropertyTypeFarm()));
 
-        if(nonNull(filterParams.getPropertyTypeTownHouse()))
+        if(filterParams.getPropertyTypeTownHouse() != DEFAULT_BOOLEAN_VALUE)
             query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
 
-        if(filterParams.getPropertyBedroomsQty() != DEFAULT_NUMBER_VALUE)
-            query = query.where(property.bedroomsQty.eq(filterParams.getPropertyBedroomsQty()));
+        if(!isEmpty(filterParams.getPropertyBathSizes()))
+            query = configureBathSizesInTheQuery(query);
 
-        if(filterParams.getPropertyBathroomsQty() != DEFAULT_NUMBER_VALUE)
-            query = query.where(property.bathroomsQty.eq(filterParams.getPropertyBathroomsQty()));
-
-        if(nonNull(filterParams.getPropertyTypeTownHouse()))
-            query = query.where(property.propertyTypeTownHouse.eq(filterParams.getPropertyTypeTownHouse()));
-
-        if(!isEmpty(filterParams.getPropertyBathSizes())){
-            BooleanBuilder builder = new BooleanBuilder();
-            for(BathSize bathSize: filterParams.getPropertyBathSizes()) {
-                if(!bathSize.equals(BathSize.DEFAULT_ENUM_VALUE)) {
-                    if (bathSize.equals(BathSize.FULL)) {
-                        builder = builder.or(room.roomType.eq(RoomType.MASTER_BEDROOM).orAllOf(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM), room.bathSize.eq(bathSize)));
-                    } else {
-                        builder = builder.or(room.bathSize.eq(bathSize).and(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM)));
-                    }
-                }
-                query = query.where(builder);
-            }
-        }
-
-        if(!isEmpty(filterParams.getSchoolList())){
-            BooleanBuilder builder = new BooleanBuilder();
-            for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
-                if(!isNull(schoolDTO)){
-                    if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
-                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
-                    } else if(schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
-                        builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
-                    } else if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
-                        builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
-                    }
-                }
-            }
-            query = query.where(builder);
-        }
+        if(!isEmpty(filterParams.getSchoolList()))
+            query = configureSchoolListInTheQuery(query);
 
         if(!filterParams.getViewDataCityLightIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(viewData.cityLightIndicator.eq(filterParams.getViewDataCityLightIndicator()));
@@ -174,8 +151,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!filterParams.getFinancialDataLeaseIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(financialData.leaseIndicator.eq(filterParams.getFinancialDataLeaseIndicator()));
 
-        if(!filterParams.getFinancialDataRentalAmount().equals(DEFAULT_LONG_VALUE))
-            query = query.where(financialData.rentalAmount.eq(filterParams.getFinancialDataRentalAmount()));
+        if(!filterParams.getFinancialDataRentalAmountStart().equals(DEFAULT_LONG_VALUE) || !filterParams.getFinancialDataRentalAmountEnd().equals(DEFAULT_LONG_VALUE))
+            query = configureRentAmountInTheQuery(query);
 
         if(!filterParams.getAnimalPolicyAnimalPermitted().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(animalPolicy.animalsPermitted.eq(filterParams.getAnimalPolicyAnimalPermitted()));
@@ -225,24 +202,101 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         if(!filterParams.getCommunityParkIndicator().equals(Indicator.DEFAULT_ENUM_VALUE))
             query = query.where(community.communityParkIndicator.eq(filterParams.getCommunityParkIndicator()));
 
-        List<String> phoneNumbers = filterParams.getContactInformationPhoneNumbers();
-        if(!isEmpty(phoneNumbers)){
-            BooleanBuilder builder = new BooleanBuilder();
-            builder = builder.or(agentPhone.primaryPhone.in(phoneNumbers))
-                    .or(agentPhone.alternatePhone.in(phoneNumbers))
-                    .or(listAgentPhone.primaryPhone.in(phoneNumbers))
-                    .or(listAgentPhone.alternatePhone.in(phoneNumbers))
-                    .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
-                    .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
-                    .or(officePhone.primaryPhone.in(phoneNumbers))
-                    .or(officePhone.alternatePhone.in(phoneNumbers))
-                    .or(listOfficePhone.primaryPhone.in(phoneNumbers))
-                    .or(listOfficePhone.alternatePhone.in(phoneNumbers))
-                    .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
-                    .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
-            query = query.where(builder);
-        }
+        if(!isEmpty(filterParams.getContactInformationPhoneNumbers()))
+            query = configurePhoneNumberInTheQuery(query);
 
         return query.fetch();
     }
+
+    private JPQLQuery<PropertyEntity> configureAgeInTheQuery(JPQLQuery<PropertyEntity> query) {
+        return configureNumberPathInTheQuery(query, property.age, filterParams.getPropertyAgeStart(), filterParams.getPropertyAgeEnd(),
+                    filterParams.getPropertyAgeStartOperator(), filterParams.getPropertyAgeEndOperator());
+    }
+
+    private JPQLQuery<PropertyEntity> configureBedroomInTheQuery(JPQLQuery<PropertyEntity> query) {
+        return configureNumberPathInTheQuery(query, property.bedroomsQty, filterParams.getPropertyBedroomsQtyStart(), filterParams.getPropertyBedroomsQtyEnd(),
+                filterParams.getPropertyBedroomsQtyStartOperator(), filterParams.getPropertyBedroomsQtyEndOperator());
+    }
+
+    private JPQLQuery<PropertyEntity> configureBathroomInTheQuery(JPQLQuery<PropertyEntity> query) {
+        return configureNumberPathInTheQuery(query, property.bathroomsQty, filterParams.getPropertyBathroomsQtyStart(), filterParams.getPropertyBathroomsQtyEnd(),
+                filterParams.getPropertyBathroomsQtyStartOperator(), filterParams.getPropertyBathroomsQtyEndOperator());
+    }
+
+    private JPQLQuery<PropertyEntity> configureRentAmountInTheQuery(JPQLQuery<PropertyEntity> query) {
+        return configureNumberPathInTheQuery(query, financialData.rentalAmount, filterParams.getFinancialDataRentalAmountStart(), filterParams.getFinancialDataRentalAmountEnd(),
+                filterParams.getFinancialDataRentalAmountStartOperator(), filterParams.getFinancialDataRentalAmountEndOperator());
+    }
+
+    private JPQLQuery<PropertyEntity> configurePhoneNumberInTheQuery(JPQLQuery<PropertyEntity> query) {
+        List<String> phoneNumbers = filterParams.getContactInformationPhoneNumbers();
+        BooleanBuilder builder = new BooleanBuilder()
+                .or(agentPhone.primaryPhone.in(phoneNumbers))
+                .or(agentPhone.alternatePhone.in(phoneNumbers))
+                .or(listAgentPhone.primaryPhone.in(phoneNumbers))
+                .or(listAgentPhone.alternatePhone.in(phoneNumbers))
+                .or(salesAgentPhone.primaryPhone.in(phoneNumbers))
+                .or(salesAgentPhone.alternatePhone.in(phoneNumbers))
+                .or(officePhone.primaryPhone.in(phoneNumbers))
+                .or(officePhone.alternatePhone.in(phoneNumbers))
+                .or(listOfficePhone.primaryPhone.in(phoneNumbers))
+                .or(listOfficePhone.alternatePhone.in(phoneNumbers))
+                .or(salesOfficePhone.primaryPhone.in(phoneNumbers))
+                .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
+        return query.where(builder);
+    }
+
+    private JPQLQuery<PropertyEntity> configureBathSizesInTheQuery(JPQLQuery<PropertyEntity> query) {
+        BooleanBuilder builder = new BooleanBuilder();
+        for(BathSize bathSize: filterParams.getPropertyBathSizes()) {
+            if(!bathSize.equals(BathSize.DEFAULT_ENUM_VALUE)) {
+                if (bathSize.equals(BathSize.FULL)) {
+                    builder = builder.or(room.roomType.eq(RoomType.MASTER_BEDROOM).orAllOf(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM), room.bathSize.eq(bathSize)));
+                } else {
+                    builder = builder.or(room.bathSize.eq(bathSize).and(room.roomType.eq(RoomType.MAIN_FLOOR_BATHROOM)));
+                }
+            }
+        }
+        return query.where(builder);
+    }
+
+    private JPQLQuery<PropertyEntity> configureSchoolListInTheQuery(JPQLQuery<PropertyEntity> query) {
+        BooleanBuilder builder = new BooleanBuilder();
+        for(SchoolDTO schoolDTO: filterParams.getSchoolList()) {
+            if(!isNull(schoolDTO)){
+                if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()).and(school.jrHigh.eq(schoolDTO.getJrHigh())));
+                } else if(schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && !schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                    builder = builder.or(school.jrHigh.eq(schoolDTO.getJrHigh()));
+                } else if(!schoolDTO.getPrimary().equals(DEFAULT_STRING_VALUE) && schoolDTO.getJrHigh().equals(DEFAULT_STRING_VALUE)){
+                    builder = builder.or(school.primarySchool.eq(schoolDTO.getPrimary()));
+                }
+            }
+        }
+        return query.where(builder);
+    }
+
+    private <T extends Number & Comparable<?>>JPQLQuery<PropertyEntity> configureNumberPathInTheQuery(
+            JPQLQuery<PropertyEntity> query, NumberPath<T> numberPath, T start, T end, Operator operatorStart, Operator operatorEnd) {
+        if (start.intValue() != DEFAULT_INTEGER_VALUE && end.intValue() != DEFAULT_INTEGER_VALUE) {
+            query.where(numberPath.between(start, end));
+        } else if (start.intValue() != DEFAULT_INTEGER_VALUE){
+            configureNumberOperator(query, numberPath, start, operatorStart);
+        } else if (end.intValue() != DEFAULT_INTEGER_VALUE){
+            configureNumberOperator(query, numberPath, end, operatorEnd);
+        }
+        return query;
+    }
+
+    private <T extends Number & Comparable<?>>void configureNumberOperator(
+            JPQLQuery<PropertyEntity> query, NumberPath<T> numberPath, T value, Operator operator){
+        if(operator.equals(Operator.GREATER_THEN)) {
+            query.where(numberPath.goe(value));
+        } else if(operator.equals(Operator.LESS_THEN)) {
+            query.where(numberPath.loe(value));
+        } else {
+            query.where(numberPath.eq(value));
+        }
+    }
+
 }
