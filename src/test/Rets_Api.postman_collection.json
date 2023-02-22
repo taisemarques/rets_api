@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e0717c00-f8ab-40a9-9c3f-4e610a7c0639",
+		"_postman_id": "0c036403-c386-42bf-bb28-35f4349c11ea",
 		"name": "Rets_Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -48,7 +48,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/properties?propertyAge=8&propertyBedroomsQty=2&propertyBathroomsQty=2&propertyHorseFacilitiesDescription=horseFacilities&propertyHorseFacilitiesIndicator=YES&propertyHotTubDescription=hotTub&propertyHotTubIndicator=YES&propertyTennisCourtDescription=tennisCourt&propertyTennisCourtIndicator=YES&propertyDisabilityFeaturesDescription=disabilityFeatures&propertyDisabilityFeaturesIndicator=YES&propertySecurityFeaturesDescription=securityFeatures&propertySecurityFeaturesIndicator=YES&propertyInclusionsDescription=inclusions&propertyEnergyInformationDescription=energyInformation&propertyConstructionMaterialDescription=constructionMaterial&propertyTypeRental=true&propertyTypeCondo=false&propertyTypeTownHouse=true&propertyTypeFarm=false&schoolList=primarySchool1; jrHigh1&schoolList=primarySchool2; jrHigh2&propertyBathSizes=FULL&propertyBathSizes=HALF&lotDataCornerLotIndicator=YES&lotDataCuldeSacIndicator=YES&lotDataGolfCourseLotIndicator=YES&viewDataCityLightIndicator=YES&viewDataMountainIndicator=YES&viewDataRiverIndicator=YES&viewDataLakeIndicator=YES&viewDataGolfCourseIndicator=YES&viewDataWaterIndicator=YES&financialDataTradeIndicator=YES&financialDataLeaseIndicator=YES&financialDataRentalAmount=5000&animalPolicyAnimalPermitted=YES&communityClubHouseIndicator=YES&communityExerciseAreaIndicator=YES&communityGolfIndicator=YES&communityTennisIndicator=YES&communityRecreationalFacilitiesIndicator=YES&communitySecurityFeaturesIndicator=YES&communitySeniorCommunityIndicator=YES&communityHotTubIndicator=YES&communityPoolIndicator=YES&communityBoatFacilitiesIndicator=YES&communityHorseFacilitiesIndicator=YES&communityParkIndicator=YES",
+					"raw": "localhost:8080/properties",
 					"host": [
 						"localhost"
 					],
@@ -59,199 +59,348 @@
 					"query": [
 						{
 							"key": "propertyAge",
-							"value": "8"
+							"value": "8",
+							"disabled": true
 						},
 						{
 							"key": "propertyBedroomsQty",
-							"value": "2"
+							"value": "2",
+							"disabled": true
 						},
 						{
 							"key": "propertyBathroomsQty",
-							"value": "2"
+							"value": "2",
+							"disabled": true
 						},
 						{
 							"key": "propertyHorseFacilitiesDescription",
-							"value": "horseFacilities"
+							"value": "horseFacilities",
+							"disabled": true
 						},
 						{
 							"key": "propertyHorseFacilitiesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "propertyHotTubDescription",
-							"value": "hotTub"
+							"value": "hotTub",
+							"disabled": true
 						},
 						{
 							"key": "propertyHotTubIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "propertyTennisCourtDescription",
-							"value": "tennisCourt"
+							"value": "tennisCourt",
+							"disabled": true
 						},
 						{
 							"key": "propertyTennisCourtIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "propertyDisabilityFeaturesDescription",
-							"value": "disabilityFeatures"
+							"value": "disabilityFeatures",
+							"disabled": true
 						},
 						{
 							"key": "propertyDisabilityFeaturesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "propertySecurityFeaturesDescription",
-							"value": "securityFeatures"
+							"value": "securityFeatures",
+							"disabled": true
 						},
 						{
 							"key": "propertySecurityFeaturesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "propertyInclusionsDescription",
-							"value": "inclusions"
+							"value": "inclusions",
+							"disabled": true
 						},
 						{
 							"key": "propertyEnergyInformationDescription",
-							"value": "energyInformation"
+							"value": "energyInformation",
+							"disabled": true
 						},
 						{
 							"key": "propertyConstructionMaterialDescription",
-							"value": "constructionMaterial"
+							"value": "constructionMaterial",
+							"disabled": true
 						},
 						{
 							"key": "propertyTypeRental",
-							"value": "true"
+							"value": "true",
+							"disabled": true
 						},
 						{
 							"key": "propertyTypeCondo",
-							"value": "false"
+							"value": "false",
+							"disabled": true
 						},
 						{
 							"key": "propertyTypeTownHouse",
-							"value": "true"
+							"value": "true",
+							"disabled": true
 						},
 						{
 							"key": "propertyTypeFarm",
-							"value": "false"
+							"value": "false",
+							"disabled": true
 						},
 						{
 							"key": "schoolList",
-							"value": "primarySchool1; jrHigh1"
+							"value": "primarySchool1; jrHigh1",
+							"disabled": true
 						},
 						{
 							"key": "schoolList",
-							"value": "primarySchool2; jrHigh2"
+							"value": "primarySchool2; jrHigh2",
+							"disabled": true
 						},
 						{
 							"key": "propertyBathSizes",
-							"value": "FULL"
+							"value": "FULL",
+							"disabled": true
 						},
 						{
 							"key": "propertyBathSizes",
-							"value": "HALF"
+							"value": "HALF",
+							"disabled": true
 						},
 						{
 							"key": "lotDataCornerLotIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "lotDataCuldeSacIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "lotDataGolfCourseLotIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataCityLightIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataMountainIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataRiverIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataLakeIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataGolfCourseIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "viewDataWaterIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "financialDataTradeIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "financialDataLeaseIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "financialDataRentalAmount",
-							"value": "5000"
+							"value": "5000",
+							"disabled": true
 						},
 						{
 							"key": "animalPolicyAnimalPermitted",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityClubHouseIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityExerciseAreaIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityGolfIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityTennisIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityRecreationalFacilitiesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communitySecurityFeaturesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communitySeniorCommunityIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityHotTubIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityPoolIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityBoatFacilitiesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityHorseFacilitiesIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
 						},
 						{
 							"key": "communityParkIndicator",
-							"value": "YES"
+							"value": "YES",
+							"disabled": true
+						},
+						{
+							"key": "propertyFirePlaceFuelType",
+							"value": "fire",
+							"disabled": true
+						},
+						{
+							"key": "propertyFirePlaceDetails",
+							"value": "details",
+							"disabled": true
+						},
+						{
+							"key": "propertyFloorsHardwood",
+							"value": "wood",
+							"disabled": true
+						},
+						{
+							"key": "propertyFloorsHardwoodIndicator",
+							"value": "NO",
+							"disabled": true
+						},
+						{
+							"key": "propertyDisplayFlagListing",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "propertyDisplayFlagAddress",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "propertyLotSizeRange",
+							"value": "size",
+							"disabled": true
+						},
+						{
+							"key": "propertyLotSizeRangeUnits",
+							"value": "SQ_METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyLotSizeWidthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyDiningRoomWidthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyFamilyRoomWidthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyLivingRoomWidthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyBasementWidthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyLotSizeLengthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyDiningRoomLengthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyLivingRoomLengthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyFamilyRoomLengthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyBasementLengthUnits",
+							"value": "METERS",
+							"disabled": true
+						},
+						{
+							"key": "propertyParkingTotal",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "propertyParkingTotalOperator",
+							"value": "DEFAULT_ENUM_VALUE",
+							"disabled": true
 						}
 					]
 				}
@@ -259,13 +408,13 @@
 			"response": []
 		},
 		{
-			"name": "Create Property with all Fields",
+			"name": "Create Property",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"YES\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"YES\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"YES\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"YES\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primarySchool1\",\r\n            \"jrHigh\": \"jrHigh1\"\r\n        },\r\n        {\r\n            \"primary\": \"primarySchool2\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ],\r\n    \"lotData\": {\r\n        \"cornerLot\": \"cornerLot\",\r\n        \"cornerLotIndicator\": \"YES\",\r\n        \"culdeSac\": \"culdeSac\",\r\n        \"culdeSacIndicator\": \"YES\",\r\n        \"golfCourseLot\": \"golfCourseLot\",\r\n        \"golfCourseLotIndicator\": \"YES\"\r\n    },\r\n    \"animalPolicy\": {\r\n        \"animalsPermitted\": \"YES\",\r\n        \"permittedTypes\": \"permittedTypes\",\r\n        \"weightLimit\": 10,\r\n        \"weightUnit\": \"KILO\"\r\n    },\r\n    \"community\": {\r\n        \"clubHouse\": \"clubHouse\",\r\n        \"clubHouseIndicator\": \"YES\",\r\n        \"exerciseArea\": \"exerciseArea\",\r\n        \"exerciseAreaIndicator\": \"YES\",\r\n        \"golf\": \"golf\",\r\n        \"golfIndicator\": \"YES\",\r\n        \"tennis\": \"tennis\",\r\n        \"tennisIndicator\": \"YES\",\r\n        \"recreationalFacilities\": \"recreationalFacilities\",\r\n        \"recreationalFacilitiesIndicator\": \"YES\",\r\n        \"securityFeatures\": \"securityFeatures\",\r\n        \"securityFeaturesIndicator\": \"YES\",\r\n        \"seniorCommunity\": \"seniorCommunity\",\r\n        \"seniorCommunityIndicator\": \"YES\",\r\n        \"hotTub\": \"hotTub\",\r\n        \"hotTubIndicator\": \"YES\",\r\n        \"pool\": \"pool\",\r\n        \"poolIndicator\": \"YES\",\r\n        \"boatFacilities\": \"boatFacilities\",\r\n        \"boatFacilitiesIndicator\": \"YES\",\r\n        \"horseFacilities\": \"horseFacilities\",\r\n        \"horseFacilitiesIndicator\": \"YES\",\r\n        \"communityPark\": \"communityPark\",\r\n        \"communityParkIndicator\": \"YES\"\r\n    },\r\n    \"viewData\": {\r\n        \"cityLight\": \"cityLight\",\r\n        \"cityLightIndicator\": \"YES\",\r\n        \"mountain\": \"mountain\",\r\n        \"mountainIndicator\": \"YES\",\r\n        \"river\": \"river\",\r\n        \"riverIndicator\": \"YES\",\r\n        \"lake\": \"lake\",\r\n        \"lakeIndicator\": \"YES\",\r\n        \"golfCourse\": \"golfCourse\",\r\n        \"golfCourseIndicator\": \"YES\",\r\n        \"water\": \"water\",\r\n        \"waterIndicator\": \"YES\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"age\": 10,\r\n    \"financialData\": {\r\n        \"rentalAmount\": 5000\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primarySchool1\",\r\n            \"jrHigh\": \"jrHigh1\"\r\n        },\r\n        {\r\n            \"primary\": \"primarySchool2\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -287,13 +436,13 @@
 			"response": []
 		},
 		{
-			"name": "Create Property",
+			"name": "Create Property with all Fields",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"age\": 10,\r\n    \"financialData\": {\r\n        \"rentalAmount\": 5000\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primarySchool1\",\r\n            \"jrHigh\": \"jrHigh1\"\r\n        },\r\n        {\r\n            \"primary\": \"primarySchool2\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"width\": 3,\r\n            \"length\": 3,\r\n            \"area\": 9\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"age\": 8,\r\n    \"horseFacilities\": \"horseFacilities\",\r\n    \"horseFacilitiesIndicator\": \"YES\",\r\n    \"hotTub\": \"hotTub\",\r\n    \"hotTubIndicator\": \"YES\",\r\n    \"tennisCourt\": \"tennisCourt\",\r\n    \"tennisCourtIndicator\": \"YES\",\r\n    \"inclusions\": \"inclusions\",\r\n    \"energyInformation\": \"energyInformation\",\r\n    \"constructionMaterial\": \"constructionMaterial\",\r\n    \"disabilityFeatures\": \"disabilityFeatures\",\r\n    \"disabilityFeaturesIndicator\": \"YES\",\r\n    \"securityFeatures\": \"securityFeatures\",\r\n    \"securityFeaturesIndicator\": \"YES\",\r\n    \"propertyTypeRental\": true,\r\n    \"propertyTypeFarm\": false,\r\n    \"propertyTypeCondo\": false,\r\n    \"propertyTypeTownHouse\": true,\r\n    \"firePlaceFuelType\": \"fire\",\r\n    \"firePlaceDetails\": \"details\",\r\n    \"floorsHardwood\": \"wood\",\r\n    \"floorsHardwoodIndicator\": \"NO\",\r\n    \"displayFlagListing\": true,\r\n    \"displayFlagAddress\": true,\r\n    \"lotSizeRange\": \"size\",\r\n    \"lotSizeRangeUnits\": \"SQ_METERS\",\r\n    \"lotSizeWidthUnits\": \"METERS\",\r\n    \"diningRoomWidthUnits\": \"METERS\",\r\n    \"familyRoomWidthUnits\": \"METERS\",\r\n    \"livingRoomWidthUnits\": \"METERS\",\r\n    \"basementWidthUnits\": \"METERS\",\r\n    \"lotSizeLengthUnits\": \"METERS\",\r\n    \"diningRoomLengthUnits\": \"METERS\",\r\n    \"livingRoomLengthUnits\": \"METERS\",\r\n    \"familyRoomLengthUnits\": \"METERS\",\r\n    \"basementLengthUnits\": \"METERS\",\r\n    \"parkingTotal\": 0,\r\n    \"parkingTotalOperator\": \"DEFAULT_ENUM_VALUE\",\r\n    \"financialData\": {\r\n        \"leaseOption\": \"leaseOption\",\r\n        \"leaseIndicator\": \"YES\",\r\n        \"tradeOption\": \"tradeOption\",\r\n        \"tradeIndicator\": \"YES\",\r\n        \"rentalAmount\": 5000,\r\n        \"rentalAmountType\": \"INTEGER\",\r\n        \"rentalAmountCurrencyCode\": \"rentalAmountCurrencyCode\",\r\n        \"rentalAmountPeriod\": \"MONTH\",\r\n        \"rentalAmountUnit\": \"SQ_METERS\"\r\n    },\r\n    \"schoolList\": [\r\n        {\r\n            \"primary\": \"primarySchool1\",\r\n            \"jrHigh\": \"jrHigh1\"\r\n        },\r\n        {\r\n            \"primary\": \"primarySchool2\",\r\n            \"jrHigh\": \"jrHigh2\"\r\n        }\r\n    ],\r\n    \"roomList\": [\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions1\",\r\n            \"length\": 3,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 9,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BEDROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions2\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 3,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 6,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MASTER_BEDROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions3\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LIVING_ROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions4\",\r\n            \"length\": 5,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 5,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 25,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"KITCHEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions5\",\r\n            \"length\": 4,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 4,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 16,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"FULL\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"YES\",\r\n            \"bathSize\": \"HALF\"\r\n        },\r\n        {\r\n            \"type\": \"MAIN_FLOOR_BATHROOM\",\r\n            \"indicator\": \"NO\",\r\n            \"bathSize\": \"THREE_QUARTER\"\r\n        },\r\n        {\r\n            \"type\": \"DEN\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions6\",\r\n            \"length\": 1,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 2,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"OFFICE\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions7\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"GAME\",\r\n            \"indicator\": \"NO\",\r\n            \"dimensions\": \"dimensions8\",\r\n            \"length\": 0,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 0,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 0,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        },\r\n        {\r\n            \"type\": \"LAUNDRY\",\r\n            \"indicator\": \"YES\",\r\n            \"dimensions\": \"dimensions9\",\r\n            \"length\": 2,\r\n            \"lengthUnit\": \"METERS\",\r\n            \"width\": 2,\r\n            \"widthUnit\": \"METERS\",\r\n            \"area\": 4,\r\n            \"areaUnit\": \"SQ_METERS\",\r\n            \"areaType\": \"INTEGER\"\r\n        }\r\n    ],\r\n    \"lotData\": {\r\n        \"cornerLot\": \"cornerLot\",\r\n        \"cornerLotIndicator\": \"YES\",\r\n        \"culdeSac\": \"culdeSac\",\r\n        \"culdeSacIndicator\": \"YES\",\r\n        \"golfCourseLot\": \"golfCourseLot\",\r\n        \"golfCourseLotIndicator\": \"YES\"\r\n    },\r\n    \"animalPolicy\": {\r\n        \"animalsPermitted\": \"YES\",\r\n        \"permittedTypes\": \"permittedTypes\",\r\n        \"weightLimit\": 10,\r\n        \"weightUnit\": \"KILO\"\r\n    },\r\n    \"community\": {\r\n        \"clubHouse\": \"clubHouse\",\r\n        \"clubHouseIndicator\": \"YES\",\r\n        \"exerciseArea\": \"exerciseArea\",\r\n        \"exerciseAreaIndicator\": \"YES\",\r\n        \"golf\": \"golf\",\r\n        \"golfIndicator\": \"YES\",\r\n        \"tennis\": \"tennis\",\r\n        \"tennisIndicator\": \"YES\",\r\n        \"recreationalFacilities\": \"recreationalFacilities\",\r\n        \"recreationalFacilitiesIndicator\": \"YES\",\r\n        \"securityFeatures\": \"securityFeatures\",\r\n        \"securityFeaturesIndicator\": \"YES\",\r\n        \"seniorCommunity\": \"seniorCommunity\",\r\n        \"seniorCommunityIndicator\": \"YES\",\r\n        \"hotTub\": \"hotTub\",\r\n        \"hotTubIndicator\": \"YES\",\r\n        \"pool\": \"pool\",\r\n        \"poolIndicator\": \"YES\",\r\n        \"boatFacilities\": \"boatFacilities\",\r\n        \"boatFacilitiesIndicator\": \"YES\",\r\n        \"horseFacilities\": \"horseFacilities\",\r\n        \"horseFacilitiesIndicator\": \"YES\",\r\n        \"communityPark\": \"communityPark\",\r\n        \"communityParkIndicator\": \"YES\"\r\n    },\r\n    \"viewData\": {\r\n        \"cityLight\": \"cityLight\",\r\n        \"cityLightIndicator\": \"YES\",\r\n        \"mountain\": \"mountain\",\r\n        \"mountainIndicator\": \"YES\",\r\n        \"river\": \"river\",\r\n        \"riverIndicator\": \"YES\",\r\n        \"lake\": \"lake\",\r\n        \"lakeIndicator\": \"YES\",\r\n        \"golfCourse\": \"golfCourse\",\r\n        \"golfCourseIndicator\": \"YES\",\r\n        \"water\": \"water\",\r\n        \"waterIndicator\": \"YES\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

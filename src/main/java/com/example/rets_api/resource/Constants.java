@@ -8,6 +8,6 @@ public class Constants {
 
     public static final String DEFAULT_STRING_VALUE = "DEFAULT_STRING_VALUE";
 
-    public static final Boolean DEFAULT_BOOLEAN_VALUE = null;
+    public static Boolean DEFAULT_BOOLEAN_VALUE = null;
 
 }
