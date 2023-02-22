@@ -57,6 +57,27 @@ public class BasicPropertyRepositoryJPATest{
         assertThat(propertySaved).hasFieldOrPropertyWithValue("propertyTypeFarm", propertySaved.getPropertyTypeFarm());
         assertThat(propertySaved).hasFieldOrPropertyWithValue("propertyTypeCondo", propertySaved.getPropertyTypeCondo());
         assertThat(propertySaved).hasFieldOrPropertyWithValue("propertyTypeTownHouse", propertySaved.getPropertyTypeTownHouse());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("propertyTypeTownHouse", propertySaved.getPropertyTypeTownHouse());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("firePlaceFuelType", propertySaved.getFirePlaceFuelType());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("firePlaceDetails", propertySaved.getFirePlaceDetails());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("floorsHardwood", propertySaved.getFloorsHardwood());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("floorsHardwoodIndicator", propertySaved.getFloorsHardwoodIndicator());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("displayFlagListing", propertySaved.getDisplayFlagListing());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("displayFlagAddress", propertySaved.getDisplayFlagAddress());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("lotSizeRange", propertySaved.getLotSizeRange());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("lotSizeRangeUnits", propertySaved.getLotSizeRangeUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("lotSizeWidthUnits", propertySaved.getLotSizeWidthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("diningRoomWidthUnits", propertySaved.getDiningRoomWidthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("familyRoomWidthUnits", propertySaved.getFamilyRoomWidthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("livingRoomWidthUnits", propertySaved.getLivingRoomWidthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("basementWidthUnits", propertySaved.getBasementWidthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("lotSizeLengthUnits", propertySaved.getLotSizeLengthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("diningRoomLengthUnits", propertySaved.getDiningRoomLengthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("livingRoomLengthUnits", propertySaved.getLivingRoomLengthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("familyRoomLengthUnits", propertySaved.getFamilyRoomLengthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("basementLengthUnits", propertySaved.getBasementLengthUnits());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("parkingTotal", propertySaved.getParkingTotal());
+        assertThat(propertySaved).hasFieldOrPropertyWithValue("parkingTotalOperator", propertySaved.getParkingTotalOperator());
 
     }
 
