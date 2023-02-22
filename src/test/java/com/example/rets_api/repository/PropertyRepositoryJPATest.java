@@ -1,6 +1,7 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.*;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_store_a_Property() {
         //Creating
-        PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
@@ -42,8 +43,8 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_store_a_PropertyAndSchoolAndRoomAndViewData() {
         //Creating
-        PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
-        PropertyEntity propertyEntityToCompare = UtilsTest.createPropertyEntityWithBasicFields();
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
+        PropertyEntity propertyEntityToCompare = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);

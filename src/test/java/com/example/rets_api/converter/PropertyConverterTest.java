@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
@@ -35,7 +36,7 @@ public class PropertyConverterTest {
 
     @Test
     public void dtoTOEntity_PropertyConverter_ShouldReturnCompleteObject(){
-        PropertyDTO propertyDTO = UtilsTest.createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTO = DtoUtilsTest.createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntity = PropertyConverter.propertyDTOToPropertyEntity.convert(propertyDTO);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
@@ -64,7 +65,7 @@ public class PropertyConverterTest {
 
     @Test
     public void entityToDTO_PropertyConverter_ShouldReturnCompleteObject(){
-        PropertyEntity propertyEntity = UtilsTest.createPropertyEntityWithBasicFields();
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));

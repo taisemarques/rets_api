@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.entity.RoomEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import com.example.rets_api.resource.Enums.*;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class RoomConverterTest {
 
     @Test
     public void dtoTOEntity_RoomConverter_ShouldReturnCompleteObject(){
-        RoomDTO roomDTO = UtilsTest.createRoomDTO(RoomType.MASTER_BEDROOM);
+        RoomDTO roomDTO = DtoUtilsTest.createRoomDTO(RoomType.MASTER_BEDROOM);
         RoomEntity roomEntity = RoomConverter.roomDTOToRoomEntity.convert(roomDTO);
         checkAllFields_Room(roomEntity, roomDTO);
     }
@@ -51,7 +52,7 @@ public class RoomConverterTest {
 
     @Test
     public void entityToDTO_RoomConverter_ShouldReturnCompleteObject(){
-        RoomEntity roomEntity = UtilsTest.createRoomEntity(RoomType.MASTER_BEDROOM);
+        RoomEntity roomEntity = EntityUtilsTest.createRoomEntity(RoomType.MASTER_BEDROOM);
         RoomDTO roomDTO = RoomConverter.roomEntityToRoomDTO.convert(roomEntity);
         checkAllFields_Room(roomEntity, roomDTO);
     }
