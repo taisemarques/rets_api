@@ -367,7 +367,6 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
 
         if(nonDefaultValue(filterParams.getListingPriceUnits()))
             query = query.where(listingPrice.units.eq(filterParams.getListingPriceUnits()));
-
     }
 
     private <T extends Number & Comparable<?>>void addWhereWithRangeValues(NumberPath<T> numberPath, T start, T end,
