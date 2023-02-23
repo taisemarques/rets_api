@@ -33,6 +33,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
     private final QPhoneEntity listOfficePhone = new QPhoneEntity("listOfficePhone");
     private final QPhoneEntity salesAgentPhone = new QPhoneEntity("salesAgentPhone");
     private final QPhoneEntity salesOfficePhone = new QPhoneEntity("salesOfficePhone");
+    private final QListingPriceEntity listingPrice = QListingPriceEntity.listingPriceEntity;
 
     private PropertyFilter filterParams;
     JPQLQuery<PropertyEntity> query;
@@ -57,6 +58,7 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
         addBathSizeFilterToQuery();
         addSchoolFilterToQuery();
         addContactInfoFilterToQuery();
+        addPriceListingFilterToQuery();
         return query.fetch();
     }
 
@@ -75,7 +77,8 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                 .leftJoin(officePhone).on(contactInformation.officePhone.phoneId.eq(officePhone.phoneId))
                 .leftJoin(listOfficePhone).on(contactInformation.listOfficePhone.phoneId.eq(listOfficePhone.phoneId))
                 .leftJoin(salesAgentPhone).on(contactInformation.salesAgentPhone.phoneId.eq(salesAgentPhone.phoneId))
-                .leftJoin(salesOfficePhone).on(contactInformation.salesOfficePhone.phoneId.eq(salesOfficePhone.phoneId));
+                .leftJoin(salesOfficePhone).on(contactInformation.salesOfficePhone.phoneId.eq(salesOfficePhone.phoneId))
+                .leftJoin(listingPrice).on(property.propertyId.eq(listingPrice.property.propertyId));
     }
 
     private void addOperatorFiltersToQuery() {
@@ -347,6 +350,24 @@ public class PropertyRepositoryQuerydsl extends QuerydslRepositorySupport {
                     .or(salesOfficePhone.alternatePhone.in(phoneNumbers));
             query = query.where(builder);
         }
+    }
+
+    private void addPriceListingFilterToQuery() {
+        if(nonDefaultValue(filterParams.getListingPriceLowAmount()))
+            query = query.where(listingPrice.lowAmount.goe(filterParams.getListingPriceLowAmount()));
+
+        if(nonDefaultValue(filterParams.getListingPriceHighAmount()))
+            query = query.where(listingPrice.highAmount.loe(filterParams.getListingPriceHighAmount()));
+
+        if(nonDefaultValue(filterParams.getListingPriceLowAmountCurrencyCode()))
+            query = query.where(listingPrice.lowAmountCurrencyCode.equalsIgnoreCase(filterParams.getListingPriceLowAmountCurrencyCode()));
+
+        if(nonDefaultValue(filterParams.getListingPriceHighAmountCurrencyCode()))
+            query = query.where(listingPrice.highAmountCurrencyCode.equalsIgnoreCase(filterParams.getListingPriceHighAmountCurrencyCode()));
+
+        if(nonDefaultValue(filterParams.getListingPriceUnits()))
+            query = query.where(listingPrice.units.eq(filterParams.getListingPriceUnits()));
+
     }
 
     private <T extends Number & Comparable<?>>void addWhereWithRangeValues(NumberPath<T> numberPath, T start, T end,
