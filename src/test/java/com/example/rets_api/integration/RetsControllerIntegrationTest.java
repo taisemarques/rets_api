@@ -38,7 +38,7 @@ public class RetsControllerIntegrationTest {
                 .postForEntity(URL, propertyDTORequest, Long.class);
 
         //Validation
-        assertEquals(200, responseEntity.getStatusCodeValue());
+        assertEquals(201, responseEntity.getStatusCodeValue());
         assertNotNull(responseEntity.getBody());
     }
 
@@ -62,7 +62,7 @@ public class RetsControllerIntegrationTest {
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
-        assertEquals(200, responseEntityPost.getStatusCodeValue());
+        assertEquals(201, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
         String URLWithID = URL
@@ -85,7 +85,7 @@ public class RetsControllerIntegrationTest {
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
-        assertEquals(200, responseEntityPost.getStatusCodeValue());
+        assertEquals(201, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
         String urlVariables = createURLVariablesOperatorAgeBedroomBathroom();
