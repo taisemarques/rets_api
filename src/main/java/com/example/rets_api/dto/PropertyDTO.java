@@ -106,4 +106,7 @@ public class PropertyDTO {
     private int parkingTotal;
 
     private Operator parkingTotalOperator;
+
+    private ListingPriceDTO listingPrice;
+
 }
