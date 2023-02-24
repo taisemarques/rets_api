@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseTests {
 
-    public boolean compareRoom(RoomEntity entity1, RoomEntity entity2) {
+    public static boolean compareRoom(RoomEntity entity1, RoomEntity entity2) {
         return entity1.getRoomType().equals(entity2.getRoomType()) &&
                 entity1.getIndicator().equals(entity2.getIndicator()) &&
                 entity1.getDimensions().equals(entity2.getDimensions()) &&
@@ -22,7 +22,7 @@ public class BaseTests {
                 entity1.getBathSize().equals(entity2.getBathSize());
     }
 
-    public boolean compareFinancialData(FinancialDataEntity entity1, FinancialDataEntity entity2) {
+    public static boolean compareFinancialData(FinancialDataEntity entity1, FinancialDataEntity entity2) {
         return entity1.getLeaseOption().equals(entity2.getLeaseOption()) &&
                 entity1.getLeaseIndicator().equals(entity2.getLeaseIndicator()) &&
                 entity1.getTradeOption().equals(entity2.getTradeOption()) &&
@@ -34,7 +34,7 @@ public class BaseTests {
                 entity1.getRentalAmountUnit().equals(entity2.getRentalAmountUnit());
     }
 
-    public boolean compareViewData(ViewDataEntity entity1, ViewDataEntity entity2) {
+    public static boolean compareViewData(ViewDataEntity entity1, ViewDataEntity entity2) {
         return entity1.getCityLight().equals(entity2.getCityLight()) &&
                 entity1.getCityLightIndicator().equals(entity2.getCityLightIndicator()) &&
                 entity1.getMountain().equals(entity2.getMountain()) &&
@@ -49,7 +49,7 @@ public class BaseTests {
                 entity2.getWaterIndicator().equals(entity2.getWaterIndicator());
     }
 
-    public boolean compareLotData(LotDataEntity entity1, LotDataEntity entity2) {
+    public static boolean compareLotData(LotDataEntity entity1, LotDataEntity entity2) {
         return entity1.getCornerLot().equals(entity2.getCornerLot()) &&
                 entity1.getCornerLotIndicator().equals(entity2.getCornerLotIndicator()) &&
                 entity1.getCuldeSac().equals(entity2.getCuldeSac()) &&
@@ -58,13 +58,13 @@ public class BaseTests {
                 entity1.getGolfCourseLotIndicator().equals(entity2.getGolfCourseLotIndicator());
     }
 
-    public boolean compareSchool(SchoolEntity entity1, SchoolEntity entity2) {
+    public static boolean compareSchool(SchoolEntity entity1, SchoolEntity entity2) {
         return entity1.getPrimarySchool().equals(entity2.getPrimarySchool()) &&
                 entity2.getJrHigh().equals(entity2.getJrHigh());
     }
 
 
-    public boolean compareAnimalPolicy(AnimalPolicyEntity entity1, AnimalPolicyEntity entity2) {
+    public static boolean compareAnimalPolicy(AnimalPolicyEntity entity1, AnimalPolicyEntity entity2) {
         return entity1.getAnimalsPermitted().equals(entity2.getAnimalsPermitted()) &&
                 entity1.getPermittedTypes().equals(entity2.getPermittedTypes()) &&
                 entity1.getWeightLimit().equals(entity2.getWeightLimit()) &&
@@ -72,7 +72,7 @@ public class BaseTests {
     }
 
 
-    public boolean compareContactInformation(ContactInformationEntity entity1, ContactInformationEntity entity2) {
+    public static boolean compareContactInformation(ContactInformationEntity entity1, ContactInformationEntity entity2) {
         return entity1.getAgentPhone().getPrimaryPhone().equals(entity2.getAgentPhone().getPrimaryPhone()) &&
                 entity1.getAgentPhone().getAlternatePhone().equals(entity2.getAgentPhone().getAlternatePhone()) &&
                 entity1.getListAgentPhone().getPrimaryPhone().equals(entity2.getListAgentPhone().getPrimaryPhone()) &&
@@ -87,7 +87,7 @@ public class BaseTests {
                 entity1.getSalesOfficePhone().getAlternatePhone().equals(entity2.getSalesOfficePhone().getAlternatePhone());
     }
 
-    public boolean compareCommunity(CommunityEntity entity1, CommunityEntity entity2) {
+    public static boolean compareCommunity(CommunityEntity entity1, CommunityEntity entity2) {
         return entity1.getClubHouse().equals(entity2.getClubHouse()) &&
                 entity1.getClubHouseIndicator().equals(entity2.getClubHouseIndicator()) &&
                 entity1.getExerciseArea().equals(entity2.getExerciseArea()) &&
