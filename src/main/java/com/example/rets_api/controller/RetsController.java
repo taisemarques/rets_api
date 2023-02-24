@@ -38,6 +38,13 @@ public class RetsController {
         return handleResponse(propertyDTO);
     }
 
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<PropertyDTO> deletePropertiesById(@PathVariable("id") Long propertyId){
+        PropertyDTO propertyDTO = propertyService.deletePropertyById(propertyId);
+
+        return handleResponse(propertyDTO);
+    }
+
     private ResponseEntity<PropertyDTO> handleResponse(PropertyDTO propertyDTO){
         if(isNull(propertyDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);

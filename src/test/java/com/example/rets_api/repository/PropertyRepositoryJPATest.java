@@ -95,6 +95,27 @@ public class PropertyRepositoryJPATest {
 
     }
 
+    @Test
+    public void should_delete_a_Property() {
+        //Creating
+        PropertyEntity propertyToSave = UtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
+        PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(propertySaved);
+
+        //deleting
+        propertyRepository.delete(propertySaved);
+
+        //Searching
+        List<PropertyEntity> properties = propertyRepository.findAll();
+
+        //Validating
+        assertTrue(properties.isEmpty());
+    }
+
     private void checkAllBasicFieldsFromProperty(PropertyEntity property){
         assertNotNull(property.getPropertyId());
         assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());

@@ -46,4 +46,11 @@ public class PropertyService {
         List<PropertyDTO> propertiesDTO = PropertyConverter.listPropertiesEntityToListPropertiesDTO(propertyEntities);
         return propertiesDTO;
     }
+
+    public PropertyDTO deletePropertyById(Long propertyId) {
+        Optional<PropertyEntity> propertyResponse = propertyRepositoryJPA.findById(propertyId);
+        if(!propertyResponse.isPresent()) return null;
+        propertyRepositoryJPA.delete(propertyResponse.get());
+        return PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse.get());
+    }
 }

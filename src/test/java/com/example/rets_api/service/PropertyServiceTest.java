@@ -90,4 +90,27 @@ public class PropertyServiceTest {
         checkAllFields_Property(propertyEntity, propertyDTOListResponse.get(0));
     }
 
+    @Test
+    public void shouldDeletePropertyById_deletePropertyById(){
+        //Creating objects
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+
+        //Mocking calls
+        when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
+
+        //Request
+        PropertyDTO propertyDTOResponse = propertyService.deletePropertyById(Long.valueOf(123456789));
+
+        //Validation
+        checkAllFields_Property(propertyEntity, propertyDTOResponse);
+    }
+
+    @Test
+    public void shouldReturnNull_deletePropertyById(){
+        //Request
+        PropertyDTO propertyDTOResponse = propertyService.deletePropertyById(Long.valueOf(123456789));
+
+        //Validation
+        assertEquals(null,  propertyDTOResponse);
+    }
 }
