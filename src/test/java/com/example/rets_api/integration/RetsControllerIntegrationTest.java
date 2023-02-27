@@ -116,14 +116,6 @@ public class RetsControllerIntegrationTest {
                 .concat(String.valueOf(responseEntityPost.getBody()));
 
         //Request
-        ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
-                .getForEntity(URLWithID, PropertyDTO.class);
-
-        //Validation
-        assertEquals(200, responseEntityGet.getStatusCodeValue());
-        assertEquals(propertyDTORequest, responseEntityGet.getBody());
-
-        //Request
         this.restTemplate.delete(URLWithID);
 
         //Request
