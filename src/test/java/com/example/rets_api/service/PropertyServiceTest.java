@@ -19,7 +19,7 @@ import static com.example.rets_api.repository.UtilsTest.*;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PropertyServiceTest {
@@ -97,12 +97,14 @@ public class PropertyServiceTest {
 
         //Mocking calls
         when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
+        propertyRepositoryJPA.delete(any());
 
         //Request
         PropertyDTO propertyDTOResponse = propertyService.deletePropertyById(Long.valueOf(123456789));
 
         //Validation
         checkAllFields_Property(propertyEntity, propertyDTOResponse);
+        verify(propertyRepositoryJPA, times(1)).delete(propertyEntity);
     }
 
     @Test
