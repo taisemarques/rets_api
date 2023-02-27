@@ -113,5 +113,14 @@ public class BaseTests {
                 entity1.getCommunityPark().equals(entity2.getCommunityPark()) &&
                 entity1.getCommunityParkIndicator().equals(entity2.getCommunityParkIndicator());
     }
+    public static boolean compareListingPrice(ListingPriceEntity entity1, ListingPriceEntity entity2){
+        return  entity1.getLowAmount().equals(entity2.getLowAmount()) &&
+                entity1.getHighAmount().equals(entity2.getHighAmount()) &&
+                entity1.getLowAmountType().equals(entity2.getLowAmountType()) &&
+                entity1.getHighAmountType().equals(entity2.getHighAmountType()) &&
+                entity1.getLowAmountCurrencyCode().equals(entity2.getLowAmountCurrencyCode()) &&
+                entity1.getHighAmountCurrencyCode().equals(entity2.getHighAmountCurrencyCode()) &&
+                entity1.getUnits().equals(entity2.getUnits());
+    }
 
 }

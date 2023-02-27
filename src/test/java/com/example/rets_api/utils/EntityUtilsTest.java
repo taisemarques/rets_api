@@ -1,6 +1,5 @@
 package com.example.rets_api.utils;
 
-
 import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
 
@@ -64,6 +63,7 @@ public class EntityUtilsTest {
         propertyEntity.setViewData(createViewDataEntity());
         propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
+        propertyEntity.setListingPrice(createListingPriceEntity());
 
         propertyEntity.setFirePlaceFuelType("Fuel");
         propertyEntity.setFirePlaceDetails("Fire place details");
@@ -185,7 +185,7 @@ public class EntityUtilsTest {
         financialDataEntity.setLeaseIndicator(Indicator.NO);
         financialDataEntity.setTradeOption("tradeOption");
         financialDataEntity.setTradeIndicator(Indicator.YES);
-        financialDataEntity.setRentalAmount(Long.valueOf(1000));
+        financialDataEntity.setRentalAmount(1000L);
         financialDataEntity.setRentalAmountType(NumberType.INTEGER);
         financialDataEntity.setRentalAmountCurrencyCode("rentalAmountCurrencyCode");
         financialDataEntity.setRentalAmountPeriod(RentalPeriod.YEAR);
@@ -233,5 +233,19 @@ public class EntityUtilsTest {
         phone.setSalesOfficePhoneContactInformationEntity(new ContactInformationEntity());
         return phone;
     }
+
+    public static ListingPriceEntity createListingPriceEntity(){
+        ListingPriceEntity listPrice = new ListingPriceEntity();
+        listPrice.setLowAmount(150000L);
+        listPrice.setHighAmount(500000L);
+        listPrice.setLowAmountType(NumberType.FLOAT);
+        listPrice.setHighAmountType(NumberType.FLOAT);
+        listPrice.setLowAmountCurrencyCode("CAD");
+        listPrice.setHighAmountCurrencyCode("CAD");
+        listPrice.setUnits(AreaUnit.SQ_FEET);
+
+        return listPrice;
+    }
+
 
 }

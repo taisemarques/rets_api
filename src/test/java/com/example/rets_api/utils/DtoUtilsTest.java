@@ -2,11 +2,7 @@ package com.example.rets_api.utils;
 
 
 import com.example.rets_api.dto.*;
-import com.example.rets_api.entity.*;
 import com.example.rets_api.resource.Enums.*;
-import com.example.rets_api.resource.PropertyFilter;
-
-import java.util.Arrays;
 
 import static java.util.Arrays.asList;
 
@@ -41,6 +37,7 @@ public class DtoUtilsTest {
             .lotData(createLotDataDTO())
             .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
+            .listingPrice(createListingPriceDTO())
             .build();
     }
 
@@ -155,6 +152,18 @@ public class DtoUtilsTest {
         return PhoneDTO.builder()
                 .primaryPhone(primaryPhone)
                 .alternatePhone(alternatePhone)
+                .build();
+    }
+
+    public static ListingPriceDTO createListingPriceDTO(){
+        return ListingPriceDTO.builder()
+                .lowAmount(150000L)
+                .highAmount(500000L)
+                .lowAmountType(NumberType.FLOAT)
+                .highAmountType(NumberType.FLOAT)
+                .lowAmountCurrencyCode("CAD")
+                .highAmountCurrencyCode("CAD")
+                .units(AreaUnit.SQ_FEET)
                 .build();
     }
 }

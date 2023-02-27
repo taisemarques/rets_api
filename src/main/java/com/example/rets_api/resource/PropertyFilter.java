@@ -111,6 +111,16 @@ public class PropertyFilter {
 
     private List<String> contactInformationPhoneNumbers = Collections.emptyList();
 
+    private Long listingPriceLowAmount = DEFAULT_LONG_VALUE;
+
+    private Long listingPriceHighAmount = DEFAULT_LONG_VALUE;
+
+    private String listingPriceLowAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private String listingPriceHighAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private AreaUnit listingPriceUnits = AreaUnit.DEFAULT_ENUM_VALUE;
+
     private String propertyFirePlaceFuelType = DEFAULT_STRING_VALUE;
 
     private String propertyFirePlaceDetails = DEFAULT_STRING_VALUE;

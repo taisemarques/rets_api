@@ -15,19 +15,19 @@ public class ContactInformationConverterTest {
 
     @Test
     public void dtoTOEntity_NullContactInformationConverter_ShouldReturnNull(){
-        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOContactInformationEntity.convert(null);
+        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(null);
         assertNull(contactInformationEntity);
     }
     @Test
     public void dtoTOEntity_EmptyContactInformationConverter_ShouldReturnEmpty(){
         ContactInformationDTO contactInformationDTO = new ContactInformationDTO();
-        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOContactInformationEntity.convert(contactInformationDTO);
+        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(contactInformationDTO);
         checkNullAllFields_ContactInformationEntity(contactInformationEntity);
     }
     @Test
     public void dtoTOEntity_ContactInformationConverter_ShouldReturnCompleteObject(){
         ContactInformationDTO contactInformationDTO = DtoUtilsTest.createContactInformationDTO();
-        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOContactInformationEntity.convert(contactInformationDTO);
+        ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(contactInformationDTO);
         checkAllFields_ContactInformation(contactInformationEntity, contactInformationDTO);
     }
 
@@ -35,19 +35,19 @@ public class ContactInformationConverterTest {
 
     @Test
     public void EntityTODTO_NullContactInformationConverter_ShouldReturnNull(){
-        ContactInformationDTO contactInformationDTO = ContactInformationConverter.contactInformationEntityContactInformationDTO.convert(null);
+        ContactInformationDTO contactInformationDTO = ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(null);
         assertNull(contactInformationDTO);
     }
     @Test
     public void EntityTODTO_EmptyContactInformationConverter_ShouldReturnEmpty(){
         ContactInformationEntity ContactInformationEntity = new ContactInformationEntity();
-        ContactInformationDTO contactInformationDTO = ContactInformationConverter.contactInformationEntityContactInformationDTO.convert(ContactInformationEntity);
+        ContactInformationDTO contactInformationDTO = ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(ContactInformationEntity);
         checkNullAllFields_ContactInformationDTO(contactInformationDTO);
     }
     @Test
     public void EntityTODTO_ContactInformationConverter_ShouldReturnCompleteObject(){
         ContactInformationEntity contactInformationEntity = EntityUtilsTest.createContactInformationEntity();
-        ContactInformationDTO contactInformationDTO  = ContactInformationConverter.contactInformationEntityContactInformationDTO.convert(contactInformationEntity);
+        ContactInformationDTO contactInformationDTO  = ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(contactInformationEntity);
         checkAllFields_ContactInformation(contactInformationEntity, contactInformationDTO);
     }
 
