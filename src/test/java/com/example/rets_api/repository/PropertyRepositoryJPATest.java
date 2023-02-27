@@ -98,7 +98,7 @@ public class PropertyRepositoryJPATest {
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
 
         assertNotNull(propertySaved.getListingPrice());
-        assertNotNull(propertySaved.getListingPrice().getListPriceId());
+        assertNotNull(propertySaved.getListingPrice().getListingPriceId());
         compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice());
 
     }

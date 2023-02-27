@@ -176,6 +176,24 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
     }
 
+    @Test
+    public void should_store_a_PropertyAndListingPrice() {
+        //Creating
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithBasicFields();
+        propertyToSave.setListingPrice(createListingPriceEntity());
+        PropertyEntity propertyEntityToCompare = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
+
+        //Saving
+        PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(propertySaved);
+
+        assertNotNull(propertySaved.getListingPrice());
+        assertTrue(baseTests.compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice()));
+        assertNotNull(propertySaved.getListingPrice().getListingPriceId());
+    }
+
     protected void checkAllBasicFieldsFromProperty(PropertyEntity property){
         assertNotNull(property.getPropertyId());
         assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());
