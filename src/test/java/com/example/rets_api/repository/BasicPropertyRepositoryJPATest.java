@@ -30,7 +30,7 @@ public class BasicPropertyRepositoryJPATest{
     }
 
     @Test
-    public void should_store_a_Property() {
+    public void should_store_a_Property_With_Basic_Fields() {
         //Creating
         PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithBasicFields();
 

@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
-import static com.example.rets_api.repository.BaseTests.*;
+import static com.example.rets_api.utils.CompareEntitiesTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,7 +43,7 @@ public class PropertyRepositoryJPATest {
     }
 
     @Test
-    public void should_store_a_PropertyAndSchoolAndRoomAndViewData() {
+    public void should_store_a_Property_With_All_Nested_Fields() {
         //Creating
         PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
         PropertyEntity propertyEntityToCompare = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
@@ -103,7 +103,7 @@ public class PropertyRepositoryJPATest {
 
     }
 
-    private void checkAllBasicFieldsFromProperty(PropertyEntity property){
+    public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
         assertNotNull(property.getPropertyId());
         assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());
         assertThat(property).hasFieldOrPropertyWithValue("horseFacilities", property.getHorseFacilities());

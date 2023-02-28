@@ -3,6 +3,7 @@ package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.resource.Enums;
+import com.example.rets_api.utils.CompareEntitiesTest;
 import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static com.example.rets_api.repository.PropertyRepositoryJPATest.checkAllBasicFieldsFromProperty;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
 import static java.util.Arrays.asList;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,8 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class BasicPropertyWithOneEntityRepositoryJPATest{
-
-    BaseTests baseTests = new BaseTests();
     @Autowired
     PropertyRepositoryJPA propertyRepository;
 
@@ -39,7 +38,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getFinancialData());
-        assertTrue(baseTests.compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData()));
+        assertTrue(CompareEntitiesTest.compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData()));
         assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
     }
 
@@ -58,8 +57,8 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getRoomList());
         assertEquals(propertySaved.getRoomList().size(), propertyEntityToCompare.getRoomList().size());
-        assertTrue(baseTests.compareRoom(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0)));
-        assertTrue(baseTests.compareRoom(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1)));
+        assertTrue(CompareEntitiesTest.compareRoom(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0)));
+        assertTrue(CompareEntitiesTest.compareRoom(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1)));
         assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
         assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
     }
@@ -79,7 +78,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getSchoolList());
         assertEquals(propertySaved.getSchoolList().size(), propertyEntityToCompare.getSchoolList().size());
-        assertTrue(baseTests.compareSchool(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0)));
+        assertTrue(CompareEntitiesTest.compareSchool(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0)));
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
     }
 
@@ -99,7 +98,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         assertNotNull(propertySaved.getCommunity());
         assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
-        assertTrue(baseTests.compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity()));
+        assertTrue(CompareEntitiesTest.compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity()));
         assertNotNull(propertySaved.getCommunity().getCommunityId());
     }
 
@@ -117,7 +116,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getViewData());
-        assertTrue(baseTests.compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData()));
+        assertTrue(CompareEntitiesTest.compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData()));
         assertNotNull(propertySaved.getViewData().getViewDataId());
     }
 
@@ -135,7 +134,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getAnimalPolicy());
-        assertTrue(baseTests.compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy()));
+        assertTrue(CompareEntitiesTest.compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy()));
         assertNotNull(propertySaved.getAnimalPolicy().getAnimalPolicyId());
     }
 
@@ -153,7 +152,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getLotData());
-        assertTrue(baseTests.compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData()));
+        assertTrue(CompareEntitiesTest.compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData()));
         assertNotNull(propertySaved.getLotData().getLotDataId());
     }
 
@@ -172,7 +171,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getContactInformation());
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
-        assertTrue(baseTests.compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation()));
+        assertTrue(CompareEntitiesTest.compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation()));
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
     }
 
@@ -190,51 +189,9 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getListingPrice());
-        assertTrue(baseTests.compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice()));
+        assertTrue(CompareEntitiesTest.compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice()));
         assertNotNull(propertySaved.getListingPrice().getListingPriceId());
     }
 
-    protected void checkAllBasicFieldsFromProperty(PropertyEntity property){
-        assertNotNull(property.getPropertyId());
-        assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());
-        assertThat(property).hasFieldOrPropertyWithValue("horseFacilities", property.getHorseFacilities());
-        assertThat(property).hasFieldOrPropertyWithValue("horseFacilitiesIndicator", property.getHorseFacilitiesIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("hotTub", property.getHotTub());
-        assertThat(property).hasFieldOrPropertyWithValue("hotTubIndicator", property.getHotTubIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("tennisCourt", property.getTennisCourt());
-        assertThat(property).hasFieldOrPropertyWithValue("tennisCourtIndicator", property.getTennisCourtIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("inclusions", property.getInclusions());
-        assertThat(property).hasFieldOrPropertyWithValue("energyInformation", property.getEnergyInformation());
-        assertThat(property).hasFieldOrPropertyWithValue("constructionMaterial", property.getConstructionMaterial());
-        assertThat(property).hasFieldOrPropertyWithValue("disabilityFeatures", property.getDisabilityFeatures());
-        assertThat(property).hasFieldOrPropertyWithValue("disabilityFeaturesIndicator", property.getDisabilityFeaturesIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("securityFeatures", property.getSecurityFeatures());
-        assertThat(property).hasFieldOrPropertyWithValue("securityFeaturesIndicator", property.getSecurityFeaturesIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeRental", property.getPropertyTypeRental());
-        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeFarm", property.getPropertyTypeFarm());
-        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeCondo", property.getPropertyTypeCondo());
-        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeTownHouse", property.getPropertyTypeTownHouse());
-        assertThat(property).hasFieldOrPropertyWithValue("propertyTypeTownHouse", property.getPropertyTypeTownHouse());
-        assertThat(property).hasFieldOrPropertyWithValue("firePlaceFuelType", property.getFirePlaceFuelType());
-        assertThat(property).hasFieldOrPropertyWithValue("firePlaceDetails", property.getFirePlaceDetails());
-        assertThat(property).hasFieldOrPropertyWithValue("floorsHardwood", property.getFloorsHardwood());
-        assertThat(property).hasFieldOrPropertyWithValue("floorsHardwoodIndicator", property.getFloorsHardwoodIndicator());
-        assertThat(property).hasFieldOrPropertyWithValue("displayFlagListing", property.getDisplayFlagListing());
-        assertThat(property).hasFieldOrPropertyWithValue("displayFlagAddress", property.getDisplayFlagAddress());
-        assertThat(property).hasFieldOrPropertyWithValue("lotSizeRange", property.getLotSizeRange());
-        assertThat(property).hasFieldOrPropertyWithValue("lotSizeRangeUnits", property.getLotSizeRangeUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("lotSizeWidthUnits", property.getLotSizeWidthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("diningRoomWidthUnits", property.getDiningRoomWidthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("familyRoomWidthUnits", property.getFamilyRoomWidthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("livingRoomWidthUnits", property.getLivingRoomWidthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("basementWidthUnits", property.getBasementWidthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("lotSizeLengthUnits", property.getLotSizeLengthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("diningRoomLengthUnits", property.getDiningRoomLengthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("livingRoomLengthUnits", property.getLivingRoomLengthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("familyRoomLengthUnits", property.getFamilyRoomLengthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("basementLengthUnits", property.getBasementLengthUnits());
-        assertThat(property).hasFieldOrPropertyWithValue("parkingTotal", property.getParkingTotal());
-        assertThat(property).hasFieldOrPropertyWithValue("parkingTotalOperator", property.getParkingTotalOperator());
-    }
 
 }

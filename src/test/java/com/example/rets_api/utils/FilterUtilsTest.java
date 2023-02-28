@@ -1,13 +1,6 @@
 package com.example.rets_api.utils;
 
-
-import com.example.rets_api.entity.*;
-import com.example.rets_api.resource.Enums.*;
 import com.example.rets_api.resource.PropertyFilter;
-
-import java.util.Arrays;
-
-import static java.util.Arrays.asList;
 
 public class FilterUtilsTest {
 

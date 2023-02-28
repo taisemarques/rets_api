@@ -1,12 +1,8 @@
-package com.example.rets_api.repository;
+package com.example.rets_api.utils;
 
 import com.example.rets_api.entity.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-public class BaseTests {
+public class CompareEntitiesTest {
 
     public static boolean compareRoom(RoomEntity entity1, RoomEntity entity2) {
         return entity1.getRoomType().equals(entity2.getRoomType()) &&
