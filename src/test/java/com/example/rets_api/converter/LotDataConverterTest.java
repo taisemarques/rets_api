@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.LotDataDTO;
 import com.example.rets_api.entity.LotDataEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +29,7 @@ public class LotDataConverterTest {
 
     @Test
     public void dtoTOEntity_LotDataConverter_ShouldReturnCompleteObject(){
-        LotDataDTO lotDataDTO = UtilsTest.createLotDataDTO();
+        LotDataDTO lotDataDTO = DtoUtilsTest.createLotDataDTO();
         LotDataEntity lotDataEntity = LotDataConverter.lotDataDTOToLotDataEntity.convert(lotDataDTO);
         checkAllFields_LotData(lotDataEntity, lotDataDTO);
     }
@@ -49,7 +50,7 @@ public class LotDataConverterTest {
 
     @Test
     public void entityToDTO_LotDataConverter_ShouldReturnCompleteObject() {
-        LotDataEntity lotDataEntity = UtilsTest.createLotDataEntity();
+        LotDataEntity lotDataEntity = EntityUtilsTest.createLotDataEntity();
         LotDataDTO lotDataDTO = LotDataConverter.lotDataEntityToLotDataDTO.convert(lotDataEntity);
         checkAllFields_LotData(lotDataEntity, lotDataDTO);
     }

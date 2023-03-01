@@ -40,7 +40,7 @@ public class PropertyConverter {
         retsEntity.setLotData(LotDataConverter.lotDataDTOToLotDataEntity.convert(in.getLotData()));
         retsEntity.setContactInformation(ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(in.getContactInformation()));
         retsEntity.setCommunity(CommunityConverter.communityDTOToCommunityEntity.convert(in.getCommunity()));
-        retsEntity.setListingPrice(ListingPriceConverter.listPriceDTOToListPriceEntity.convert(in.getListingPrice()));
+        retsEntity.setListingPrice(ListingPriceConverter.listingPriceDTOToListingPriceEntity.convert(in.getListingPrice()));
         retsEntity.setFirePlaceFuelType(in.getFirePlaceFuelType());
         retsEntity.setFirePlaceDetails(in.getFirePlaceDetails());
         retsEntity.setFloorsHardwood(in.getFloorsHardwood());
@@ -93,7 +93,7 @@ public class PropertyConverter {
                 .lotData(LotDataConverter.lotDataEntityToLotDataDTO.convert(in.getLotData()))
                 .contactInformation(ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(in.getContactInformation()))
                 .community(CommunityConverter.communityEntityToCommunityDTO.convert(in.getCommunity()))
-                .listingPrice(ListingPriceConverter.listPriceEntityToListPriceDTO.convert(in.getListingPrice()))
+                .listingPrice(ListingPriceConverter.listingPriceEntityToListingPriceDTO.convert(in.getListingPrice()))
                 .firePlaceFuelType(in.getFirePlaceFuelType())
                 .firePlaceDetails(in.getFirePlaceDetails())
                 .floorsHardwood(in.getFloorsHardwood())

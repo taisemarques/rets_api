@@ -2,14 +2,15 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static com.example.rets_api.converter.AnimalPolicyConverterTest.checkAllFields_AnimalPolicy;
 import static com.example.rets_api.converter.ContactInformationConverterTest.checkAllFields_ContactInformation;
 import static com.example.rets_api.converter.CommunityConverterTest.checkAllFields_Community;
 import static com.example.rets_api.converter.FinancialDataConverterTest.checkAllFields_FinancialData;
-import static com.example.rets_api.converter.ListingPriceConverterTest.checkAllFields_ListPrice;
+import static com.example.rets_api.converter.ListingPriceConverterTest.checkAllFields_ListingPrice;
 import static com.example.rets_api.converter.RoomConverterTest.checkAllFields_Room;
 import static com.example.rets_api.converter.SchoolConverterTest.checkAllFields_School;
 import static com.example.rets_api.converter.ViewDataConverterTest.checkAllFields_ViewData;
@@ -36,7 +37,7 @@ public class PropertyConverterTest {
 
     @Test
     public void dtoTOEntity_PropertyConverter_ShouldReturnCompleteObject(){
-        PropertyDTO propertyDTO = UtilsTest.createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTO = DtoUtilsTest.createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntity = PropertyConverter.propertyDTOToPropertyEntity.convert(propertyDTO);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
@@ -46,7 +47,7 @@ public class PropertyConverterTest {
         checkAllFields_ViewData(propertyEntity.getViewData(), propertyDTO.getViewData());
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
         checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
-        checkAllFields_ListPrice(propertyEntity.getListingPrice(), propertyDTO.getListingPrice());
+        checkAllFields_ListingPrice(propertyEntity.getListingPrice(), propertyDTO.getListingPrice());
     }
 
     //Entity To DTO
@@ -66,7 +67,7 @@ public class PropertyConverterTest {
 
     @Test
     public void entityToDTO_PropertyConverter_ShouldReturnCompleteObject(){
-        PropertyEntity propertyEntity = UtilsTest.createPropertyEntityWithBasicFields();
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithAllFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));
@@ -76,7 +77,7 @@ public class PropertyConverterTest {
         checkAllFields_AnimalPolicy(propertyEntity.getAnimalPolicy(), propertyDTO.getAnimalPolicy());
         checkAllFields_ContactInformation(propertyEntity.getContactInformation(), propertyDTO.getContactInformation());
         checkAllFields_Community(propertyEntity.getCommunity(), propertyDTO.getCommunity());
-        checkAllFields_ListPrice(propertyEntity.getListingPrice(), propertyDTO.getListingPrice());
+        checkAllFields_ListingPrice(propertyEntity.getListingPrice(), propertyDTO.getListingPrice());
     }
 
     private void checkNullAllFields_PropertyEntity(PropertyEntity propertyEntity){

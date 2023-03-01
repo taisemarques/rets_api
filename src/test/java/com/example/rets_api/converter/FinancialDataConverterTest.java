@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.entity.FinancialDataEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +29,7 @@ public class FinancialDataConverterTest {
 
     @Test
     public void dtoTOEntity_FinancialDataConverter_ShouldReturnCompleteObject(){
-        FinancialDataDTO financialDataDTO = UtilsTest.createFinancialDataDTO();
+        FinancialDataDTO financialDataDTO = DtoUtilsTest.createFinancialDataDTO();
         FinancialDataEntity financialDataEntity = FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(financialDataDTO);
         checkAllFields_FinancialData(financialDataEntity, financialDataDTO);
     }
@@ -50,7 +51,7 @@ public class FinancialDataConverterTest {
 
     @Test
     public void entityToDTO_FinancialDataConverter_ShouldReturnCompleteObject(){
-        FinancialDataEntity financialDataEntity = UtilsTest.createFinancialDataEntity();
+        FinancialDataEntity financialDataEntity = EntityUtilsTest.createFinancialDataEntity();
         FinancialDataDTO financialDataDTO = FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(financialDataEntity);
         checkAllFields_FinancialData(financialDataEntity, financialDataDTO);
     }

@@ -23,7 +23,7 @@ public class RetsController {
 
     @PostMapping
     public ResponseEntity<Long> createProperty(@RequestBody PropertyDTO property){
-        return ResponseEntity.ok(propertyService.createProperty(property));
+            return new ResponseEntity(propertyService.createProperty(property),HttpStatus.CREATED);
     }
 
     @GetMapping
