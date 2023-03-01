@@ -67,7 +67,7 @@ public class PropertyConverterTest {
 
     @Test
     public void entityToDTO_PropertyConverter_ShouldReturnCompleteObject(){
-        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithAllFields();
         PropertyDTO propertyDTO = PropertyConverter.propertyEntityToPropertyDTO.convert(propertyEntity);
         checkAllFields_Property(propertyEntity, propertyDTO);
         checkAllFields_Room(propertyEntity.getRoomList().get(0), propertyDTO.getRoomList().get(0));

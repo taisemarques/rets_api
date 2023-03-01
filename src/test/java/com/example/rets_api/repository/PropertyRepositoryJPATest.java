@@ -33,7 +33,7 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_store_a_Property() {
         //Creating
-        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
@@ -45,8 +45,8 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_store_a_Property_With_All_Nested_Fields() {
         //Creating
-        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
-        PropertyEntity propertyEntityToCompare = EntityUtilsTest.createPropertyEntityWithAllNestedFields();
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllFields();
+        PropertyEntity propertyEntityToCompare = EntityUtilsTest.createPropertyEntityWithAllFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
