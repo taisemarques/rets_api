@@ -2,7 +2,7 @@ package com.example.rets_api.utils;
 
 import com.example.rets_api.entity.*;
 
-public class CompareEntitiesTest {
+public class CompareEntitiesUtilsTest {
 
     public static boolean compareRoom(RoomEntity entity1, RoomEntity entity2) {
         return entity1.getRoomType().equals(entity2.getRoomType()) &&

@@ -1,7 +1,7 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.entity.PropertyEntity;
-import com.example.rets_api.utils.CompareEntitiesTest;
+import com.example.rets_api.utils.CompareEntitiesUtilsTest;
 import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getFinancialData());
-        assertTrue(CompareEntitiesTest.compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData()));
+        assertTrue(CompareEntitiesUtilsTest.compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData()));
         assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
     }
 
@@ -50,8 +50,8 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getRoomList());
         assertEquals(propertySaved.getRoomList().size(), propertyEntityToCompare.getRoomList().size());
-        assertTrue(CompareEntitiesTest.compareRoom(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0)));
-        assertTrue(CompareEntitiesTest.compareRoom(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1)));
+        assertTrue(CompareEntitiesUtilsTest.compareRoom(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0)));
+        assertTrue(CompareEntitiesUtilsTest.compareRoom(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1)));
         assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
         assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
     }
@@ -70,7 +70,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getSchoolList());
         assertEquals(propertySaved.getSchoolList().size(), propertyEntityToCompare.getSchoolList().size());
-        assertTrue(CompareEntitiesTest.compareSchool(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0)));
+        assertTrue(CompareEntitiesUtilsTest.compareSchool(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0)));
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
     }
 
@@ -88,7 +88,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
-        assertTrue(CompareEntitiesTest.compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity()));
+        assertTrue(CompareEntitiesUtilsTest.compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity()));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getViewData());
-        assertTrue(CompareEntitiesTest.compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData()));
+        assertTrue(CompareEntitiesUtilsTest.compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData()));
         assertNotNull(propertySaved.getViewData().getViewDataId());
     }
 
@@ -121,7 +121,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getAnimalPolicy());
-        assertTrue(CompareEntitiesTest.compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy()));
+        assertTrue(CompareEntitiesUtilsTest.compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy()));
         assertNotNull(propertySaved.getAnimalPolicy().getAnimalPolicyId());
     }
 
@@ -138,7 +138,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getLotData());
-        assertTrue(CompareEntitiesTest.compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData()));
+        assertTrue(CompareEntitiesUtilsTest.compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData()));
         assertNotNull(propertySaved.getLotData().getLotDataId());
     }
 
@@ -156,7 +156,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
 
         assertNotNull(propertySaved.getContactInformation());
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
-        assertTrue(CompareEntitiesTest.compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation()));
+        assertTrue(CompareEntitiesUtilsTest.compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation()));
     }
 
     @Test
@@ -172,7 +172,7 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getListingPrice());
-        assertTrue(CompareEntitiesTest.compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice()));
+        assertTrue(CompareEntitiesUtilsTest.compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice()));
         assertNotNull(propertySaved.getListingPrice().getListingPriceId());
     }
 
