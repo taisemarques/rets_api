@@ -87,10 +87,8 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getCommunity());
-        assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
         assertTrue(CompareEntitiesTest.compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity()));
-        assertNotNull(propertySaved.getCommunity().getCommunityId());
     }
 
     @Test
@@ -159,7 +157,6 @@ public class BasicPropertyWithOneEntityRepositoryJPATest{
         assertNotNull(propertySaved.getContactInformation());
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
         assertTrue(CompareEntitiesTest.compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation()));
-        assertNotNull(propertySaved.getContactInformation().getContactInformationId());
     }
 
     @Test

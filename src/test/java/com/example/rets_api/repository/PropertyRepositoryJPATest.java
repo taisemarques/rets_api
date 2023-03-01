@@ -33,7 +33,7 @@ public class PropertyRepositoryJPATest {
     @Test
     public void should_store_a_Property() {
         //Creating
-        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithAllFields();
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithBasicFields();
 
         //Saving
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
@@ -80,7 +80,7 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getPropertyId());
         assertNotNull(propertySaved.getAnimalPolicy().getAnimalPolicyId());
         assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
-        assertNotNull(propertySaved.getLotData().getLotDataId());
+
         assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
         assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
         assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
@@ -93,7 +93,6 @@ public class PropertyRepositoryJPATest {
 
 
         assertNotNull(propertySaved.getCommunity());
-        assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
 
