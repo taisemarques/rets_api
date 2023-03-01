@@ -43,6 +43,7 @@ public class UtilsTest {
         propertyEntity.setViewData(createViewDataEntity());
         propertyEntity.setContactInformation(createContactInformationEntity());
         propertyEntity.setCommunity(createCommunityEntity());
+        propertyEntity.setListingPrice(createListPriceEntity());
 
         propertyEntity.setFirePlaceFuelType("Fuel");
         propertyEntity.setFirePlaceDetails("Fire place details");
@@ -212,6 +213,19 @@ public class UtilsTest {
         return phone;
     }
 
+    public static ListingPriceEntity createListPriceEntity(){
+        ListingPriceEntity listPrice = new ListingPriceEntity();
+        listPrice.setLowAmount(new Long(150000));
+        listPrice.setHighAmount(new Long(500000));
+        listPrice.setLowAmountType(NumberType.FLOAT);
+        listPrice.setHighAmountType(NumberType.FLOAT);
+        listPrice.setLowAmountCurrencyCode("CAD");
+        listPrice.setHighAmountCurrencyCode("CAD");
+        listPrice.setUnits(AreaUnit.SQ_FEET);
+
+        return listPrice;
+    }
+
     //DTO
 
     public static PropertyDTO createPropertyDTOWithBasicFields(){
@@ -242,6 +256,7 @@ public class UtilsTest {
             .lotData(createLotDataDTO())
             .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
+            .listingPrice(createListPriceDTO())
             .build();
     }
 
@@ -359,14 +374,32 @@ public class UtilsTest {
                 .build();
     }
 
+    public static ListingPriceDTO createListPriceDTO(){
+        return ListingPriceDTO.builder()
+                .lowAmount(new Long(150000))
+                .highAmount(new Long(500000))
+                .lowAmountType(NumberType.FLOAT)
+                .highAmountType(NumberType.FLOAT)
+                .lowAmountCurrencyCode("CAD")
+                .highAmountCurrencyCode("CAD")
+                .units(AreaUnit.SQ_FEET)
+                .build();
+    }
+
     //Filter
 
-    public static PropertyFilter createDefaultPropertyFilter(){
+    public static PropertyFilter createPropertyFilterAgeBedroomBathRoom(){
         PropertyFilter propertyFilter = new PropertyFilter();
-        propertyFilter.setPropertyAge(10);
-        propertyFilter.setPropertyBathroomsQty(2);
-        propertyFilter.setPropertyBedroomsQty(3);
+        propertyFilter.setPropertyAgeStart(10);
+        propertyFilter.setPropertyBathroomsQtyStart(2);
+        propertyFilter.setPropertyBedroomsQtyStart(3);
         return propertyFilter;
+    }
+
+    public static String createURLVariablesOperatorAgeBedroomBathroom(){
+        return "?propertyAgeStart=4&propertyAgeEnd=10"+
+                "&propertyBedroomsQtyStart=1&propertyBedroomsQtyStartOperator=GREATER_THEN" +
+                "&propertyBathroomsQtyEnd=3&propertyBathroomsQtyEndOperator=LESS_THEN";
     }
 
 }

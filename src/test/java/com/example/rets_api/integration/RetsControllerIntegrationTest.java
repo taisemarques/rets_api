@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
+import static com.example.rets_api.repository.UtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -79,7 +80,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void getPropertiesByParams() {
+    public void getPropertiesByParams_Operator() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -88,7 +89,7 @@ public class RetsControllerIntegrationTest {
         assertEquals(200, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
-        String urlVariables = "?age=5&bedroomsQty=1";
+        String urlVariables = createURLVariablesOperatorAgeBedroomBathroom();
 
         //Request
         ResponseEntity<String> responseEntityGet = this.restTemplate

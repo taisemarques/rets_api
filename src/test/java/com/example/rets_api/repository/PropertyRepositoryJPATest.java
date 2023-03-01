@@ -55,6 +55,7 @@ public class PropertyRepositoryJPATest {
         compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData());
 
         assertNotNull(propertySaved.getLotData());
+        assertNotNull(propertySaved.getLotData().getLotDataId());
         compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData());
 
         assertNotNull(propertySaved.getSchoolList());
@@ -92,6 +93,10 @@ public class PropertyRepositoryJPATest {
         assertEquals(propertySaved.getCommunity(), propertyToSave.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
         compareCommunity(propertySaved.getCommunity(), propertyEntityToCompare.getCommunity());
+
+        assertNotNull(propertySaved.getListingPrice());
+        assertNotNull(propertySaved.getListingPrice().getListPriceId());
+        compareListPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice());
 
     }
 
@@ -263,4 +268,15 @@ public class PropertyRepositoryJPATest {
         assertEquals(entity1.getCommunityParkIndicator(), entity2.getCommunityParkIndicator());
 
     }
+
+    public void compareListPrice(ListingPriceEntity entity1, ListingPriceEntity entity2){
+        assertEquals(entity1.getLowAmount(), entity2.getLowAmount());
+        assertEquals(entity1.getHighAmount(), entity2.getHighAmount());
+        assertEquals(entity1.getLowAmountType(), entity2.getLowAmountType());
+        assertEquals(entity1.getHighAmountType(), entity2.getHighAmountType());
+        assertEquals(entity1.getLowAmountCurrencyCode(), entity2.getLowAmountCurrencyCode());
+        assertEquals(entity1.getHighAmountCurrencyCode(), entity2.getHighAmountCurrencyCode());
+        assertEquals(entity1.getUnits(), entity2.getUnits());
+    }
+
 }

@@ -15,11 +15,29 @@ import static com.example.rets_api.resource.Enums.*;
 @Getter
 public class PropertyFilter {
 
-    private int propertyAge = DEFAULT_NUMBER_VALUE;
+    private int propertyAgeStart = DEFAULT_INTEGER_VALUE;
 
-    private int propertyBedroomsQty = DEFAULT_NUMBER_VALUE;
+    private Operator propertyAgeStartOperator = Operator.DEFAULT_ENUM_VALUE;
 
-    private int propertyBathroomsQty = DEFAULT_NUMBER_VALUE;
+    private int propertyAgeEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyAgeEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBedroomsQtyStart = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBedroomsQtyStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBedroomsQtyEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBedroomsQtyEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBathroomsQtyStart = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBathroomsQtyStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyBathroomsQtyEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyBathroomsQtyEndOperator = Operator.DEFAULT_ENUM_VALUE;
 
     private String propertyHorseFacilitiesDescription = DEFAULT_STRING_VALUE;
 
@@ -54,62 +72,6 @@ public class PropertyFilter {
     private Boolean propertyTypeCondo = DEFAULT_BOOLEAN_VALUE;
 
     private Boolean propertyTypeTownHouse = DEFAULT_BOOLEAN_VALUE;
-
-    private List<SchoolDTO> schoolList = Collections.emptyList();
-
-    private List<BathSize> propertyBathSizes = Collections.emptyList();
-
-    private Indicator lotDataCornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator lotDataCuldeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator lotDataGolfCourseLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataCityLightIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataMountainIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataRiverIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataLakeIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataGolfCourseIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator viewDataWaterIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator financialDataTradeIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator financialDataLeaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Long financialDataRentalAmount = DEFAULT_LONG_VALUE;
-
-    private Indicator animalPolicyAnimalPermitted = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityClubHouseIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityExerciseAreaIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityGolfIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityTennisIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityRecreationalFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communitySecurityFeaturesIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communitySeniorCommunityIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityHotTubIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityPoolIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityBoatFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityHorseFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
-
-    private List<String> contactInformationPhoneNumbers = Collections.emptyList();
 
     private String propertyFirePlaceFuelType = DEFAULT_STRING_VALUE;
 
@@ -147,8 +109,84 @@ public class PropertyFilter {
 
     private LengthWidthUnit propertyBasementLengthUnits = LengthWidthUnit.DEFAULT_ENUM_VALUE;
 
-    private int propertyParkingTotal = DEFAULT_NUMBER_VALUE ;
+    private int propertyParkingTotalStart = DEFAULT_INTEGER_VALUE;
 
-    private Operator propertyParkingTotalOperator = Operator.DEFAULT_ENUM_VALUE;
+    private Operator propertyParkingTotalStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private int propertyParkingTotalEnd = DEFAULT_INTEGER_VALUE;
+
+    private Operator propertyParkingTotalEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private List<SchoolDTO> schoolList = Collections.emptyList();
+
+    private List<BathSize> propertyBathSizes = Collections.emptyList();
+
+    private Indicator lotDataCornerLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator lotDataCuldeSacIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator lotDataGolfCourseLotIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataCityLightIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataMountainIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataRiverIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataLakeIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataGolfCourseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator viewDataWaterIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator financialDataTradeIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator financialDataLeaseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Long financialDataRentalAmountStart = DEFAULT_LONG_VALUE;
+
+    private Operator financialDataRentalAmountStartOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private Long financialDataRentalAmountEnd = DEFAULT_LONG_VALUE;
+
+    private Operator financialDataRentalAmountEndOperator = Operator.DEFAULT_ENUM_VALUE;
+
+    private Indicator animalPolicyAnimalPermitted = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityClubHouseIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityExerciseAreaIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityGolfIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityTennisIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityRecreationalFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communitySecurityFeaturesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communitySeniorCommunityIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityHotTubIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityPoolIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityBoatFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityHorseFacilitiesIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private Indicator communityParkIndicator = Indicator.DEFAULT_ENUM_VALUE;
+
+    private List<String> contactInformationPhoneNumbers = Collections.emptyList();
+
+    private Long listingPriceLowAmount = DEFAULT_LONG_VALUE;
+
+    private Long listingPriceHighAmount = DEFAULT_LONG_VALUE;
+
+    private String listingPriceLowAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private String listingPriceHighAmountCurrencyCode = DEFAULT_STRING_VALUE;
+
+    private AreaUnit listingPriceUnits = AreaUnit.DEFAULT_ENUM_VALUE;
 
 }
