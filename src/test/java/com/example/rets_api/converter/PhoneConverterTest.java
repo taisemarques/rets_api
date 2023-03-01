@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PhoneDTO;
 import com.example.rets_api.entity.PhoneEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ public class PhoneConverterTest {
     }
     @Test
     public void dtoTOEntity_PhoneConverter_ShouldReturnCompleteObject(){
-        PhoneDTO phoneDTO = UtilsTest.createPhoneDTO("5140001111", "5140002222");
+        PhoneDTO phoneDTO = DtoUtilsTest.createPhoneDTO("5140001111", "5140002222");
         PhoneEntity phoneEntity = PhoneConverter.phoneDTOPhoneEntityConverter.convert(phoneDTO);
         checkAllFields_Phone(phoneEntity, phoneDTO);
     }
@@ -45,7 +46,7 @@ public class PhoneConverterTest {
     }
     @Test
     public void EntityTODTO_PhoneConverter_ShouldReturnCompleteObject(){
-        PhoneEntity phoneEntity = UtilsTest.createPhoneEntity("5140001111", "5140002222");
+        PhoneEntity phoneEntity = EntityUtilsTest.createPhoneEntity("5140001111", "5140002222");
         PhoneDTO phoneDTO = PhoneConverter.phoneEntityPhoneDTOConverter.convert(phoneEntity);
         checkAllFields_Phone(phoneEntity, phoneDTO);
     }

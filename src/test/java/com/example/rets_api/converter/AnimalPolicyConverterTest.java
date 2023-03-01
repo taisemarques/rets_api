@@ -2,10 +2,10 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.AnimalPolicyDTO;
 import com.example.rets_api.entity.AnimalPolicyEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
 import org.junit.Test;
 
-import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -28,7 +28,7 @@ public class AnimalPolicyConverterTest {
 
     @Test
     public void dtoTOEntity_AnimalPolicyConverter_ShouldReturnCompleteObject(){
-        AnimalPolicyDTO animalPolicyDTO = UtilsTest.createAnimalPolicyDTO();
+        AnimalPolicyDTO animalPolicyDTO = DtoUtilsTest.createAnimalPolicyDTO();
         AnimalPolicyEntity animalPolicyEntity = AnimalPolicyConverter.animalPolicyDTOToAnimalPolicyEntity.convert(animalPolicyDTO);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
     }
@@ -50,7 +50,7 @@ public class AnimalPolicyConverterTest {
 
     @Test
     public void entityToDTO_AnimalPolicyConverter_ShouldReturnCompleteObject(){
-        AnimalPolicyEntity animalPolicyEntity = UtilsTest.createAnimalPolicy("permitted");
+        AnimalPolicyEntity animalPolicyEntity = EntityUtilsTest.createAnimalPolicy("permitted");
         AnimalPolicyDTO animalPolicyDTO = AnimalPolicyConverter.animalPolicyEntityToAnimalPolicyDTO.convert(animalPolicyEntity);
         checkAllFields_AnimalPolicy(animalPolicyEntity, animalPolicyDTO);
     }

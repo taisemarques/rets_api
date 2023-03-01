@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.CommunityDTO;
 import com.example.rets_api.entity.CommunityEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -26,7 +27,7 @@ public class CommunityConverterTest {
 
     @Test
     public void dtoTOEntity_CommunityConverter_ShouldReturnCompleteObject(){
-        CommunityDTO communityDTO = UtilsTest.createCommunityDTO();
+        CommunityDTO communityDTO = DtoUtilsTest.createCommunityDTO();
         CommunityEntity communityEntity = CommunityConverter.communityDTOToCommunityEntity.convert(communityDTO);
         checkAllFields_Community(communityEntity, communityDTO);
     }
@@ -48,7 +49,7 @@ public class CommunityConverterTest {
 
     @Test
     public void entityToDTO_CommunityConverter_ShouldReturnCompleteObject(){
-        CommunityEntity communityEntity = UtilsTest.createCommunityEntity();
+        CommunityEntity communityEntity = EntityUtilsTest.createCommunityEntity();
         CommunityDTO communityDTO = CommunityConverter.communityEntityToCommunityDTO.convert(communityEntity);
         checkAllFields_Community(communityEntity, communityDTO);
     }

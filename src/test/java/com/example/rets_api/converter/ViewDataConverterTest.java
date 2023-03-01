@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.entity.ViewDataEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -25,7 +26,7 @@ public class ViewDataConverterTest {
 
     @Test
     public void dtoTOEntity_ViewDataConverter_ShouldReturnCompleteObject(){
-        ViewDataDTO viewDataDTO = UtilsTest.createViewDataDTO();
+        ViewDataDTO viewDataDTO = DtoUtilsTest.createViewDataDTO();
         ViewDataEntity viewDataEntity = ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO);
         checkAllFields_ViewData(viewDataEntity, viewDataDTO);
     }
@@ -47,7 +48,7 @@ public class ViewDataConverterTest {
 
     @Test
     public void entityToDTO_ViewDataConverter_ShouldReturnCompleteObject(){
-        ViewDataEntity viewDataEntity = UtilsTest.createViewDataEntity();
+        ViewDataEntity viewDataEntity = EntityUtilsTest.createViewDataEntity();
         ViewDataDTO viewDataDTO = ViewDataConverter.viewDataEntityToViewDataDTO.convert(viewDataEntity);
         checkAllFields_ViewData(viewDataEntity, viewDataDTO);
     }
