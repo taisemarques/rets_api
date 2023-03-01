@@ -6,6 +6,7 @@ import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,9 +19,10 @@ import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
-import static com.example.rets_api.utils.FilterUtilsTest.createDefaultPropertyFilter;
+import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -59,7 +61,7 @@ public class PropertyServiceTest {
         PropertyDTO propertyDTOResponse = propertyService.getPropertyById(Long.valueOf(123456789));
 
         //Validation
-        assertEquals(null,  propertyDTOResponse);
+        assertNull(propertyDTOResponse);
     }
 
     @Test
@@ -80,7 +82,7 @@ public class PropertyServiceTest {
     @Test
     public void shouldGetEmptyPropertyList_getPropertyByParam(){
         //Creating objects
-        PropertyFilter propertyFilter = createDefaultPropertyFilter();
+        PropertyFilter propertyFilter = FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom();
         List<PropertyDTO> emptyArray = new ArrayList<>();
 
         //Request
@@ -93,7 +95,7 @@ public class PropertyServiceTest {
     @Test
     public void shouldGetPropertyByParams_getPropertiesByParams(){
         //Creating objects
-        PropertyFilter propertyFilter = createDefaultPropertyFilter();
+        PropertyFilter propertyFilter = createPropertyFilterAgeBedroomBathRoom();
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls

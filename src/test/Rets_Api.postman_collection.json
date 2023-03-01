@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "86a48179-0073-4057-a0cf-91104703ed6e",
+		"_postman_id": "db7e7e49-184d-4440-9988-f26f9b94e908",
 		"name": "Rets_Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -48,7 +48,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/properties",
+					"raw": "localhost:8080/properties?propertyAgeStart=7&propertyAgeStartOperator=GREATER_THEN&propertyAgeEnd=10&propertyAgeEndOperator=LESS_THEN&propertyBedroomsQtyStart=1&propertyBedroomsQtyStartOperator=GREATER_THEN&propertyBedroomsQtyEnd=3&propertyBedroomsQtyEndOperator=LESS_THEN&propertyBathroomsQtyStart=1&propertyBathroomsQtyStartOperator=GREATER_THEN&propertyBathroomsQtyEnd=3&propertyBathroomsQtyEndOperator=LESS_THEN&propertyHorseFacilitiesDescription=horseFacilities&propertyHorseFacilitiesIndicator=YES&propertyHotTubDescription=hotTub&propertyHotTubIndicator=YES&propertyTennisCourtDescription=tennisCourt&propertyTennisCourtIndicator=YES&propertyDisabilityFeaturesDescription=disabilityFeatures&propertyDisabilityFeaturesIndicator=YES&propertySecurityFeaturesDescription=securityFeatures&propertySecurityFeaturesIndicator=YES&propertyInclusionsDescription=inclusions&propertyEnergyInformationDescription=energyInformation&propertyConstructionMaterialDescription=constructionMaterial&propertyTypeRental=true&propertyTypeCondo=false&propertyTypeTownHouse=true&propertyTypeFarm=false&schoolList=primarySchool1; jrHigh1&schoolList=primarySchool2; jrHigh2&propertyBathSizes=FULL&propertyBathSizes=HALF&propertyBathSizes=THREE_QUARTER&lotDataCornerLotIndicator=YES&lotDataCuldeSacIndicator=YES&lotDataGolfCourseLotIndicator=YES&viewDataCityLightIndicator=YES&viewDataMountainIndicator=YES&viewDataRiverIndicator=YES&viewDataLakeIndicator=YES&viewDataGolfCourseIndicator=YES&viewDataWaterIndicator=YES&financialDataTradeIndicator=YES&financialDataLeaseIndicator=YES&financialDataRentalAmountStart=5000&financialDataRentalAmountStartOperator=GREATER_THEN&financialDataRentalAmountEnd=10000&financialDataRentalAmountEndOperator=LESS_THEN&animalPolicyAnimalPermitted=YES&communityClubHouseIndicator=YES&communityExerciseAreaIndicator=YES&communityGolfIndicator=YES&communityTennisIndicator=YES&communityRecreationalFacilitiesIndicator=YES&communitySecurityFeaturesIndicator=YES&communitySeniorCommunityIndicator=YES&communityHotTubIndicator=YES&communityPoolIndicator=YES&communityBoatFacilitiesIndicator=YES&communityHorseFacilitiesIndicator=YES&communityParkIndicator=YES&propertyFirePlaceFuelType=fire&propertyFirePlaceDetails=details&propertyFloorsHardwood=wood&propertyFloorsHardwoodIndicator=NO&propertyDisplayFlagListing=true&propertyDisplayFlagAddress=true&propertyLotSizeRange=size&propertyLotSizeRangeUnits=SQ_METERS&propertyLotSizeWidthUnits=METERS&propertyDiningRoomWidthUnits=METERS&propertyFamilyRoomWidthUnits=METERS&propertyLivingRoomWidthUnits=METERS&propertyBasementWidthUnits=METERS&propertyLotSizeLengthUnits=METERS&propertyDiningRoomLengthUnits=METERS&propertyLivingRoomLengthUnits=METERS&propertyFamilyRoomLengthUnits=METERS&propertyBasementLengthUnits=METERS&propertyParkingTotalStart=0&propertyParkingTotalStartOperator=GREATER_THEN&propertyParkingTotalEnd=2&propertyParkingTotalEndOperator=LESS_THEN&contactInformationPhoneNumbers=5145555577&contactInformationPhoneNumbers =5140002221",
 					"host": [
 						"localhost"
 					],
@@ -58,351 +58,348 @@
 					],
 					"query": [
 						{
-							"key": "propertyAge",
-							"value": "8",
-							"disabled": true
+							"key": "propertyAgeStart",
+							"value": "7"
 						},
 						{
-							"key": "propertyBedroomsQty",
-							"value": "2",
-							"disabled": true
+							"key": "propertyAgeStartOperator",
+							"value": "GREATER_THEN"
 						},
 						{
-							"key": "propertyBathroomsQty",
-							"value": "2",
-							"disabled": true
+							"key": "propertyAgeEnd",
+							"value": "10"
+						},
+						{
+							"key": "propertyAgeEndOperator",
+							"value": "LESS_THEN"
+						},
+						{
+							"key": "propertyBedroomsQtyStart",
+							"value": "1"
+						},
+						{
+							"key": "propertyBedroomsQtyStartOperator",
+							"value": "GREATER_THEN"
+						},
+						{
+							"key": "propertyBedroomsQtyEnd",
+							"value": "3"
+						},
+						{
+							"key": "propertyBedroomsQtyEndOperator",
+							"value": "LESS_THEN"
+						},
+						{
+							"key": "propertyBathroomsQtyStart",
+							"value": "1"
+						},
+						{
+							"key": "propertyBathroomsQtyStartOperator",
+							"value": "GREATER_THEN"
+						},
+						{
+							"key": "propertyBathroomsQtyEnd",
+							"value": "3"
+						},
+						{
+							"key": "propertyBathroomsQtyEndOperator",
+							"value": "LESS_THEN"
 						},
 						{
 							"key": "propertyHorseFacilitiesDescription",
-							"value": "horseFacilities",
-							"disabled": true
+							"value": "horseFacilities"
 						},
 						{
 							"key": "propertyHorseFacilitiesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertyHotTubDescription",
-							"value": "hotTub",
-							"disabled": true
+							"value": "hotTub"
 						},
 						{
 							"key": "propertyHotTubIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertyTennisCourtDescription",
-							"value": "tennisCourt",
-							"disabled": true
+							"value": "tennisCourt"
 						},
 						{
 							"key": "propertyTennisCourtIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertyDisabilityFeaturesDescription",
-							"value": "disabilityFeatures",
-							"disabled": true
+							"value": "disabilityFeatures"
 						},
 						{
 							"key": "propertyDisabilityFeaturesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertySecurityFeaturesDescription",
-							"value": "securityFeatures",
-							"disabled": true
+							"value": "securityFeatures"
 						},
 						{
 							"key": "propertySecurityFeaturesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertyInclusionsDescription",
-							"value": "inclusions",
-							"disabled": true
+							"value": "inclusions"
 						},
 						{
 							"key": "propertyEnergyInformationDescription",
-							"value": "energyInformation",
-							"disabled": true
+							"value": "energyInformation"
 						},
 						{
 							"key": "propertyConstructionMaterialDescription",
-							"value": "constructionMaterial",
-							"disabled": true
+							"value": "constructionMaterial"
 						},
 						{
 							"key": "propertyTypeRental",
-							"value": "true",
-							"disabled": true
+							"value": "true"
 						},
 						{
 							"key": "propertyTypeCondo",
-							"value": "false",
-							"disabled": true
+							"value": "false"
 						},
 						{
 							"key": "propertyTypeTownHouse",
-							"value": "true",
-							"disabled": true
+							"value": "true"
 						},
 						{
 							"key": "propertyTypeFarm",
-							"value": "false",
-							"disabled": true
+							"value": "false"
 						},
 						{
 							"key": "schoolList",
-							"value": "primarySchool1; jrHigh1",
-							"disabled": true
+							"value": "primarySchool1; jrHigh1"
 						},
 						{
 							"key": "schoolList",
-							"value": "primarySchool2; jrHigh2",
-							"disabled": true
+							"value": "primarySchool2; jrHigh2"
 						},
 						{
 							"key": "propertyBathSizes",
-							"value": "FULL",
-							"disabled": true
+							"value": "FULL"
 						},
 						{
 							"key": "propertyBathSizes",
-							"value": "HALF",
-							"disabled": true
+							"value": "HALF"
+						},
+						{
+							"key": "propertyBathSizes",
+							"value": "THREE_QUARTER"
 						},
 						{
 							"key": "lotDataCornerLotIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "lotDataCuldeSacIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "lotDataGolfCourseLotIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataCityLightIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataMountainIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataRiverIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataLakeIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataGolfCourseIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "viewDataWaterIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "financialDataTradeIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "financialDataLeaseIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
-							"key": "financialDataRentalAmount",
-							"value": "5000",
-							"disabled": true
+							"key": "financialDataRentalAmountStart",
+							"value": "5000"
+						},
+						{
+							"key": "financialDataRentalAmountStartOperator",
+							"value": "GREATER_THEN"
+						},
+						{
+							"key": "financialDataRentalAmountEnd",
+							"value": "10000"
+						},
+						{
+							"key": "financialDataRentalAmountEndOperator",
+							"value": "LESS_THEN"
 						},
 						{
 							"key": "animalPolicyAnimalPermitted",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityClubHouseIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityExerciseAreaIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityGolfIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityTennisIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityRecreationalFacilitiesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communitySecurityFeaturesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communitySeniorCommunityIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityHotTubIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityPoolIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityBoatFacilitiesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityHorseFacilitiesIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "communityParkIndicator",
-							"value": "YES",
-							"disabled": true
+							"value": "YES"
 						},
 						{
 							"key": "propertyFirePlaceFuelType",
-							"value": "fire",
-							"disabled": true
+							"value": "fire"
 						},
 						{
 							"key": "propertyFirePlaceDetails",
-							"value": "details",
-							"disabled": true
+							"value": "details"
 						},
 						{
 							"key": "propertyFloorsHardwood",
-							"value": "wood",
-							"disabled": true
+							"value": "wood"
 						},
 						{
 							"key": "propertyFloorsHardwoodIndicator",
-							"value": "NO",
-							"disabled": true
+							"value": "NO"
 						},
 						{
 							"key": "propertyDisplayFlagListing",
-							"value": "true",
-							"disabled": true
+							"value": "true"
 						},
 						{
 							"key": "propertyDisplayFlagAddress",
-							"value": "true",
-							"disabled": true
+							"value": "true"
 						},
 						{
 							"key": "propertyLotSizeRange",
-							"value": "size",
-							"disabled": true
+							"value": "size"
 						},
 						{
 							"key": "propertyLotSizeRangeUnits",
-							"value": "SQ_METERS",
-							"disabled": true
+							"value": "SQ_METERS"
 						},
 						{
 							"key": "propertyLotSizeWidthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyDiningRoomWidthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyFamilyRoomWidthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyLivingRoomWidthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyBasementWidthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyLotSizeLengthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyDiningRoomLengthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyLivingRoomLengthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyFamilyRoomLengthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
 							"key": "propertyBasementLengthUnits",
-							"value": "METERS",
-							"disabled": true
+							"value": "METERS"
 						},
 						{
-							"key": "propertyParkingTotal",
-							"value": "1",
-							"disabled": true
+							"key": "propertyParkingTotalStart",
+							"value": "0"
 						},
 						{
-							"key": "propertyParkingTotalOperator",
-							"value": "DEFAULT_ENUM_VALUE",
-							"disabled": true,
-							"value": "YES",
-							"disabled": true
+							"key": "propertyParkingTotalStartOperator",
+							"value": "GREATER_THEN"
+						},
+						{
+							"key": "propertyParkingTotalEnd",
+							"value": "2"
+						},
+						{
+							"key": "propertyParkingTotalEndOperator",
+							"value": "LESS_THEN"
+						},
+						{
+							"key": "contactInformationPhoneNumbers",
+							"value": "5145555577"
+						},
+						{
+							"key": "contactInformationPhoneNumbers ",
+							"value": "5140002221"
 						},
 						{
 							"key": "listingPriceLowAmount",
