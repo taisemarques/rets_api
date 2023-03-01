@@ -18,6 +18,7 @@ import static com.example.rets_api.converter.PropertyConverterTest.checkAllField
 import static com.example.rets_api.repository.UtilsTest.*;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -56,7 +57,7 @@ public class PropertyServiceTest {
         PropertyDTO propertyDTOResponse = propertyService.getPropertyById(Long.valueOf(123456789));
 
         //Validation
-        assertEquals(null,  propertyDTOResponse);
+        assertNull(propertyDTOResponse);
     }
 
     @Test
@@ -77,7 +78,7 @@ public class PropertyServiceTest {
     @Test
     public void shouldGetPropertyByParams_getPropertiesByParams(){
         //Creating objects
-        PropertyFilter propertyFilter = createDefaultPropertyFilter();
+        PropertyFilter propertyFilter = createPropertyFilterAgeBedroomBathRoom();
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls

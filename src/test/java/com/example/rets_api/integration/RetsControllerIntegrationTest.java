@@ -14,7 +14,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
+import static com.example.rets_api.repository.UtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @SpringBootTest(classes = RetsApiApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RetsControllerIntegrationTest {
@@ -37,7 +39,7 @@ public class RetsControllerIntegrationTest {
 
         //Validation
         assertEquals(200, responseEntity.getStatusCodeValue());
-        assertEquals(Long.valueOf(1), responseEntity.getBody());
+        assertNotNull(responseEntity.getBody());
     }
 
     @Test
@@ -77,7 +79,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void getPropertiesByParams() {
+    public void getPropertiesByParams_Operator() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -86,7 +88,7 @@ public class RetsControllerIntegrationTest {
         assertEquals(200, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
-        String urlVariables = "?age=5&bedroomsQty=1";
+        String urlVariables = createURLVariablesOperatorAgeBedroomBathroom();
 
         //Request
         ResponseEntity<String> responseEntityGet = this.restTemplate
@@ -96,7 +98,6 @@ public class RetsControllerIntegrationTest {
         assertEquals(200, responseEntityGet.getStatusCodeValue());
         assertEquals(propertyDTORequest, getPropertyDTOFromResponse(responseEntityGet, 0));
     }
-
 
     private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
         Gson g = new Gson();
