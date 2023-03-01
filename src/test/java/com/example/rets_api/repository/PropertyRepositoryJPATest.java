@@ -52,9 +52,11 @@ public class PropertyRepositoryJPATest {
         PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
 
         //Validating
+        assertNotNull(propertySaved.getPropertyId());
         checkAllBasicFieldsFromProperty(propertySaved);
 
         assertNotNull(propertySaved.getViewData());
+        assertNotNull(propertySaved.getViewData().getViewDataId());
         compareViewData(propertySaved.getViewData(), propertyEntityToCompare.getViewData());
 
         assertNotNull(propertySaved.getLotData());
@@ -62,35 +64,28 @@ public class PropertyRepositoryJPATest {
         compareLotData(propertySaved.getLotData(), propertyEntityToCompare.getLotData());
 
         assertNotNull(propertySaved.getSchoolList());
+        assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
         assertEquals(propertySaved.getSchoolList().size(), propertyEntityToCompare.getSchoolList().size());
         compareSchool(propertySaved.getSchoolList().get(0), propertyEntityToCompare.getSchoolList().get(0));
 
         assertNotNull(propertySaved.getRoomList());
+        assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
+        assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
         assertEquals(propertySaved.getRoomList().size(), propertyEntityToCompare.getRoomList().size());
         compareRoom(propertySaved.getRoomList().get(0), propertyEntityToCompare.getRoomList().get(0));
         compareRoom(propertySaved.getRoomList().get(1), propertyEntityToCompare.getRoomList().get(1));
 
         assertNotNull(propertySaved.getFinancialData());
-        compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData());
+        assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
         compareFinancialData(propertySaved.getFinancialData(), propertyEntityToCompare.getFinancialData());
 
         assertNotNull(propertySaved.getAnimalPolicy());
-        compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy());
-
-        assertNotNull(propertySaved.getPropertyId());
         assertNotNull(propertySaved.getAnimalPolicy().getAnimalPolicyId());
-        assertNotNull(propertySaved.getFinancialData().getFinancialDataId());
-
-        assertNotNull(propertySaved.getRoomList().get(0).getRoomId());
-        assertNotNull(propertySaved.getRoomList().get(1).getRoomId());
-        assertNotNull(propertySaved.getSchoolList().get(0).getSchoolId());
-        assertNotNull(propertySaved.getViewData().getViewDataId());
-
+        compareAnimalPolicy(propertySaved.getAnimalPolicy(), propertyEntityToCompare.getAnimalPolicy());
 
         assertNotNull(propertySaved.getContactInformation());
         assertNotNull(propertySaved.getContactInformation().getContactInformationId());
         compareContactInformation(propertySaved.getContactInformation(), propertyEntityToCompare.getContactInformation());
-
 
         assertNotNull(propertySaved.getCommunity());
         assertNotNull(propertySaved.getCommunity().getCommunityId());
@@ -99,7 +94,6 @@ public class PropertyRepositoryJPATest {
         assertNotNull(propertySaved.getListingPrice());
         assertNotNull(propertySaved.getListingPrice().getListingPriceId());
         compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice());
-
     }
 
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
