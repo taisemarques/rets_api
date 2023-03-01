@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.SchoolEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +28,7 @@ public class SchoolConverterTest {
 
     @Test
     public void dtoTOEntity_SchoolConverter_ShouldReturnCompleteObject(){
-        SchoolDTO schoolDTO = UtilsTest.createSchoolDTO("primary", "jrHigh");
+        SchoolDTO schoolDTO = DtoUtilsTest.createSchoolDTO("primary", "jrHigh");
         SchoolEntity schoolEntity = SchoolConverter.schoolDTOToSchoolEntity.convert(schoolDTO);
         checkAllFields_School(schoolEntity, schoolDTO);
     }
@@ -49,7 +50,7 @@ public class SchoolConverterTest {
 
     @Test
     public void entityToDTO_SchoolConverter_ShouldReturnCompleteObject(){
-        SchoolEntity schoolEntity = UtilsTest.createSchoolEntity("primary", "jrHigh");
+        SchoolEntity schoolEntity = EntityUtilsTest.createSchoolEntity("primary", "jrHigh");
         SchoolDTO schoolDTO = SchoolConverter.schoolEntityToSchoolDTO.convert(schoolEntity);
         checkAllFields_School(schoolEntity, schoolDTO);
     }

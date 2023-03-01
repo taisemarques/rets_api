@@ -13,8 +13,8 @@ import org.springframework.http.*;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
-import static com.example.rets_api.repository.UtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
+import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
+import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

@@ -8,7 +8,7 @@ import static java.util.Objects.isNull;
 
 public class ListingPriceConverter {
 
-    public static Converter<ListingPriceDTO, ListingPriceEntity> listPriceDTOToListPriceEntity = in -> {
+    public static Converter<ListingPriceDTO, ListingPriceEntity> listingPriceDTOToListingPriceEntity = in -> {
         if(isNull(in)) return null;
         ListingPriceEntity listingPriceEntity = new ListingPriceEntity();
         listingPriceEntity.setLowAmount(in.getLowAmount());
@@ -20,7 +20,7 @@ public class ListingPriceConverter {
         listingPriceEntity.setUnits(in.getUnits());
         return listingPriceEntity;
     };
-    public static Converter<ListingPriceEntity, ListingPriceDTO> listPriceEntityToListPriceDTO = in -> {
+    public static Converter<ListingPriceEntity, ListingPriceDTO> listingPriceEntityToListingPriceDTO = in -> {
         if(isNull(in)) return null;
         return ListingPriceDTO.builder()
                 .lowAmount(in.getLowAmount())

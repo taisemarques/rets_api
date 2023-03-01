@@ -5,17 +5,21 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import com.example.rets_api.resource.PropertyFilter;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
-import static com.example.rets_api.repository.UtilsTest.*;
+import static com.example.rets_api.utils.EntityUtilsTest.*;
+import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -37,7 +41,7 @@ public class PropertyServiceTest {
     @Test
     public void shouldCreateProperty_createProperty(){
         //Creating objects
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = DtoUtilsTest.createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntityResponse = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls
@@ -76,6 +80,19 @@ public class PropertyServiceTest {
     }
 
     @Test
+    public void shouldGetEmptyPropertyList_getPropertyByParam(){
+        //Creating objects
+        PropertyFilter propertyFilter = FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom();
+        List<PropertyDTO> emptyArray = new ArrayList<>();
+
+        //Request
+        List<PropertyDTO> propertyDTOResponse = propertyService.getPropertiesByParams(propertyFilter);
+
+        //Validation
+        assertEquals(emptyArray,  propertyDTOResponse);
+    }
+
+    @Test
     public void shouldGetPropertyByParams_getPropertiesByParams(){
         //Creating objects
         PropertyFilter propertyFilter = createPropertyFilterAgeBedroomBathRoom();
@@ -86,6 +103,33 @@ public class PropertyServiceTest {
 
         //Request
         List<PropertyDTO> propertyDTOListResponse = propertyService.getPropertiesByParams(propertyFilter);
+
+        //Validation
+        checkAllFields_Property(propertyEntity, propertyDTOListResponse.get(0));
+    }
+
+    @Test
+    public void shouldGetEmptyPropertyList_getAllProperty(){
+        //Creating objects
+        List<PropertyDTO> emptyArray = new ArrayList<>();
+
+        //Request
+        List<PropertyDTO> propertyDTOResponse = propertyService.getAllProperties();
+
+        //Validation
+        assertEquals(emptyArray,  propertyDTOResponse);
+    }
+
+    @Test
+    public void shouldGetPropertyList_getAllProperties(){
+        //Creating objects
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+
+        //Mocking calls
+        when(propertyRepositoryJPA.findAll()).thenReturn(asList(propertyEntity));
+
+        //Request
+        List<PropertyDTO> propertyDTOListResponse = propertyService.getAllProperties();
 
         //Validation
         checkAllFields_Property(propertyEntity, propertyDTOListResponse.get(0));
