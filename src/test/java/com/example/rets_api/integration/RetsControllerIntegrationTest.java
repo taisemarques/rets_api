@@ -4,9 +4,7 @@ import com.example.rets_api.RetsApiApplication;
 import com.example.rets_api.dto.PropertyDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -18,8 +16,8 @@ import java.util.List;
 
 import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest(classes = RetsApiApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RetsControllerIntegrationTest {
 
@@ -30,7 +28,7 @@ public class RetsControllerIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void step10CreatingProperty() {
+    public void creatingProperty() {
         //Creating objects
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -41,11 +39,11 @@ public class RetsControllerIntegrationTest {
 
         //Validation
         assertEquals(200, responseEntity.getStatusCodeValue());
-        assertEquals(Long.valueOf(1), responseEntity.getBody());
+        assertNotNull(responseEntity.getBody());
     }
 
     @Test
-    public void step11getPropertyById_notFound() {
+    public void getPropertyById_notFound() {
         //Creating objects
         String URL = "http://localhost:" + port + "/properties/123456";
 
@@ -58,7 +56,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void step20getPropertyById() {
+    public void getPropertyById() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -81,7 +79,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void step30getPropertiesByParams() {
+    public void getPropertiesByParams() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
@@ -102,7 +100,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void step40deletetPropertyById() {
+    public void deletetPropertyById() {
         //Preparing scenario: Adding a property
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         String URL = "http://localhost:" + port + "/properties";
