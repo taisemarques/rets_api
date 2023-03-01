@@ -97,7 +97,7 @@ public class PropertyServiceTest {
 
         //Mocking calls
         when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
-        propertyRepositoryJPA.delete(any());
+        doNothing().when(propertyRepositoryJPA).delete(any());
 
         //Request
         PropertyDTO propertyDTOResponse = propertyService.deletePropertyById(Long.valueOf(123456789));
