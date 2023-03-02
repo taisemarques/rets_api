@@ -1,8 +1,10 @@
 {
 	"info": {
+
 		"_postman_id": "db7e7e49-184d-4440-9988-f26f9b94e908",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13137083"
 	},
 	"item": [
 		{
@@ -49,6 +51,7 @@
 				"header": [],
 				"url": {
 					"raw": "localhost:8080/properties?propertyAgeStart=7&propertyAgeStartOperator=GREATER_THEN&propertyAgeEnd=10&propertyAgeEndOperator=LESS_THEN&propertyBedroomsQtyStart=1&propertyBedroomsQtyStartOperator=GREATER_THEN&propertyBedroomsQtyEnd=3&propertyBedroomsQtyEndOperator=LESS_THEN&propertyBathroomsQtyStart=1&propertyBathroomsQtyStartOperator=GREATER_THEN&propertyBathroomsQtyEnd=3&propertyBathroomsQtyEndOperator=LESS_THEN&propertyHorseFacilitiesDescription=horseFacilities&propertyHorseFacilitiesIndicator=YES&propertyHotTubDescription=hotTub&propertyHotTubIndicator=YES&propertyTennisCourtDescription=tennisCourt&propertyTennisCourtIndicator=YES&propertyDisabilityFeaturesDescription=disabilityFeatures&propertyDisabilityFeaturesIndicator=YES&propertySecurityFeaturesDescription=securityFeatures&propertySecurityFeaturesIndicator=YES&propertyInclusionsDescription=inclusions&propertyEnergyInformationDescription=energyInformation&propertyConstructionMaterialDescription=constructionMaterial&propertyTypeRental=true&propertyTypeCondo=false&propertyTypeTownHouse=true&propertyTypeFarm=false&schoolList=primarySchool1; jrHigh1&schoolList=primarySchool2; jrHigh2&propertyBathSizes=FULL&propertyBathSizes=HALF&propertyBathSizes=THREE_QUARTER&lotDataCornerLotIndicator=YES&lotDataCuldeSacIndicator=YES&lotDataGolfCourseLotIndicator=YES&viewDataCityLightIndicator=YES&viewDataMountainIndicator=YES&viewDataRiverIndicator=YES&viewDataLakeIndicator=YES&viewDataGolfCourseIndicator=YES&viewDataWaterIndicator=YES&financialDataTradeIndicator=YES&financialDataLeaseIndicator=YES&financialDataRentalAmountStart=5000&financialDataRentalAmountStartOperator=GREATER_THEN&financialDataRentalAmountEnd=10000&financialDataRentalAmountEndOperator=LESS_THEN&animalPolicyAnimalPermitted=YES&communityClubHouseIndicator=YES&communityExerciseAreaIndicator=YES&communityGolfIndicator=YES&communityTennisIndicator=YES&communityRecreationalFacilitiesIndicator=YES&communitySecurityFeaturesIndicator=YES&communitySeniorCommunityIndicator=YES&communityHotTubIndicator=YES&communityPoolIndicator=YES&communityBoatFacilitiesIndicator=YES&communityHorseFacilitiesIndicator=YES&communityParkIndicator=YES&propertyFirePlaceFuelType=fire&propertyFirePlaceDetails=details&propertyFloorsHardwood=wood&propertyFloorsHardwoodIndicator=NO&propertyDisplayFlagListing=true&propertyDisplayFlagAddress=true&propertyLotSizeRange=size&propertyLotSizeRangeUnits=SQ_METERS&propertyLotSizeWidthUnits=METERS&propertyDiningRoomWidthUnits=METERS&propertyFamilyRoomWidthUnits=METERS&propertyLivingRoomWidthUnits=METERS&propertyBasementWidthUnits=METERS&propertyLotSizeLengthUnits=METERS&propertyDiningRoomLengthUnits=METERS&propertyLivingRoomLengthUnits=METERS&propertyFamilyRoomLengthUnits=METERS&propertyBasementLengthUnits=METERS&propertyParkingTotalStart=0&propertyParkingTotalStartOperator=GREATER_THEN&propertyParkingTotalEnd=2&propertyParkingTotalEndOperator=LESS_THEN&contactInformationPhoneNumbers=5145555577&contactInformationPhoneNumbers =5140002221",
+
 					"host": [
 						"localhost"
 					],
@@ -491,6 +494,25 @@
 					"path": [
 						"properties",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/properties/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"properties",
+						"1"
 					]
 				}
 			},

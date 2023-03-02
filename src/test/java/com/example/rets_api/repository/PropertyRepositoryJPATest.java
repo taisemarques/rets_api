@@ -96,7 +96,29 @@ public class PropertyRepositoryJPATest {
         compareListingPrice(propertySaved.getListingPrice(), propertyEntityToCompare.getListingPrice());
     }
 
+    @Test
+    public void should_delete_a_Property() {
+        //Creating
+        PropertyEntity propertyToSave = EntityUtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
+        PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToSave);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(propertySaved);
+
+        //deleting
+        propertyRepository.delete(propertySaved);
+
+        //Searching
+        List<PropertyEntity> properties = propertyRepository.findAll();
+
+        //Validating
+        assertTrue(properties.isEmpty());
+    }
+
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
+
         assertNotNull(property.getPropertyId());
         assertThat(property).hasFieldOrPropertyWithValue("age", property.getAge());
         assertThat(property).hasFieldOrPropertyWithValue("horseFacilities", property.getHorseFacilities());
