@@ -3,6 +3,10 @@ package com.example.rets_api.controller;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +17,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping(value = {"/properties"})
+@Api(value = "Property Management", protocols = "http")
 public class RetsController {
 
     private PropertyService propertyService;
@@ -21,17 +26,35 @@ public class RetsController {
         this.propertyService = propertyService;
     }
 
+    @ApiOperation(value = "Create a property with the body")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Property created", response = Long.class),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Long> createProperty(@RequestBody PropertyDTO property){
-            return new ResponseEntity(propertyService.createProperty(property),HttpStatus.CREATED);
+        return handleResponse(propertyService.createProperty(property));
     }
 
+    @ApiOperation(value = "Search for a list of properties by filters")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property founded", response = PropertyDTO.class),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
     @GetMapping
     public ResponseEntity<List<PropertyDTO>> getPropertiesByParams(PropertyFilter filter) {
         List<PropertyDTO> propertyDTOList = propertyService.getPropertiesByParams(filter);
         return handleResponse(propertyDTOList);
     }
 
+    @ApiOperation(value = "Search for a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property founded", response = PropertyDTO.class),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
     @GetMapping(value="/{id}")
     public ResponseEntity<PropertyDTO> getPropertiesById(@PathVariable("id") Long propertyId){
         PropertyDTO propertyDTO = propertyService.getPropertyById(propertyId);
@@ -50,6 +73,13 @@ public class RetsController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(propertyDTOList);
+    }
+
+    private ResponseEntity<Long> handleResponse(Long id){
+        if(isNull(id)){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(id, HttpStatus.CREATED);
     }
 
 }

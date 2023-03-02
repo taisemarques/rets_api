@@ -114,7 +114,7 @@ public class PropertyServiceTest {
         List<PropertyDTO> emptyArray = new ArrayList<>();
 
         //Request
-        List<PropertyDTO> propertyDTOResponse = propertyService.getAllProperties();
+        List<PropertyDTO> propertyDTOResponse = propertyService.getPropertiesByParams(new PropertyFilter());
 
         //Validation
         assertEquals(emptyArray,  propertyDTOResponse);
@@ -126,10 +126,10 @@ public class PropertyServiceTest {
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls
-        when(propertyRepositoryJPA.findAll()).thenReturn(asList(propertyEntity));
+        when(propertyRepositoryQuerydsl.fetchAll(any())).thenReturn(asList(propertyEntity));
 
         //Request
-        List<PropertyDTO> propertyDTOListResponse = propertyService.getAllProperties();
+        List<PropertyDTO> propertyDTOListResponse = propertyService.getPropertiesByParams(new PropertyFilter());
 
         //Validation
         checkAllFields_Property(propertyEntity, propertyDTOListResponse.get(0));
