@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
+
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -97,6 +98,30 @@ public class RetsControllerIntegrationTest {
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
         assertEquals(propertyDTORequest, getPropertyDTOFromResponse(responseEntityGet, 0));
+    }
+
+    @Test
+    public void deletetPropertyById() {
+        //Preparing scenario: Adding a property
+        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        String URL = "http://localhost:" + port + "/properties";
+        ResponseEntity<Long> responseEntityPost = this.restTemplate
+                .postForEntity(URL, propertyDTORequest, Long.class);
+        assertEquals(201, responseEntityPost.getStatusCodeValue());
+
+        //Creating objects
+        String URLWithID = URL
+                .concat("/")
+                .concat(String.valueOf(responseEntityPost.getBody()));
+
+        //Request
+        this.restTemplate.delete(URLWithID);
+
+        //Request
+        ResponseEntity<PropertyDTO> responseEntityGetAgain = this.restTemplate
+                .getForEntity(URLWithID, PropertyDTO.class);
+
+        assertEquals(404, responseEntityGetAgain.getStatusCodeValue());
     }
 
     private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
