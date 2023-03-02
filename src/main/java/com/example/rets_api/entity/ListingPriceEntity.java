@@ -16,7 +16,7 @@ public class ListingPriceEntity {
     @Id
     @GeneratedValue
     @Column(name = "list_price_id")
-    private Long listPriceId;
+    private Long listingPriceId;
 
     private Long lowAmount;
     private Long highAmount;

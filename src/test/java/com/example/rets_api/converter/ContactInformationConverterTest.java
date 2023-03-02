@@ -2,7 +2,8 @@ package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.ContactInformationDTO;
 import com.example.rets_api.entity.ContactInformationEntity;
-import com.example.rets_api.repository.UtilsTest;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ public class ContactInformationConverterTest {
     }
     @Test
     public void dtoTOEntity_ContactInformationConverter_ShouldReturnCompleteObject(){
-        ContactInformationDTO contactInformationDTO = UtilsTest.createContactInformationDTO();
+        ContactInformationDTO contactInformationDTO = DtoUtilsTest.createContactInformationDTO();
         ContactInformationEntity contactInformationEntity = ContactInformationConverter.contactInformationDTOToContactInformationEntity.convert(contactInformationDTO);
         checkAllFields_ContactInformation(contactInformationEntity, contactInformationDTO);
     }
@@ -45,7 +46,7 @@ public class ContactInformationConverterTest {
     }
     @Test
     public void EntityTODTO_ContactInformationConverter_ShouldReturnCompleteObject(){
-        ContactInformationEntity contactInformationEntity = UtilsTest.createContactInformationEntity();
+        ContactInformationEntity contactInformationEntity = EntityUtilsTest.createContactInformationEntity();
         ContactInformationDTO contactInformationDTO  = ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(contactInformationEntity);
         checkAllFields_ContactInformation(contactInformationEntity, contactInformationDTO);
     }

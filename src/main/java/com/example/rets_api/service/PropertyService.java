@@ -53,4 +53,5 @@ public class PropertyService {
         propertyRepositoryJPA.delete(propertyResponse.get());
         return PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse.get());
     }
+
 }

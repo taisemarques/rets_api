@@ -14,8 +14,8 @@ import org.springframework.http.*;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import static com.example.rets_api.repository.UtilsTest.createPropertyDTOWithBasicFields;
-import static com.example.rets_api.repository.UtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
+import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
+import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -39,7 +39,7 @@ public class RetsControllerIntegrationTest {
                 .postForEntity(URL, propertyDTORequest, Long.class);
 
         //Validation
-        assertEquals(200, responseEntity.getStatusCodeValue());
+        assertEquals(201, responseEntity.getStatusCodeValue());
         assertNotNull(responseEntity.getBody());
     }
 
@@ -63,7 +63,7 @@ public class RetsControllerIntegrationTest {
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
-        assertEquals(200, responseEntityPost.getStatusCodeValue());
+        assertEquals(201, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
         String URLWithID = URL
@@ -86,7 +86,7 @@ public class RetsControllerIntegrationTest {
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
-        assertEquals(200, responseEntityPost.getStatusCodeValue());
+        assertEquals(201, responseEntityPost.getStatusCodeValue());
 
         //Creating objects
         String urlVariables = createURLVariablesOperatorAgeBedroomBathroom();

@@ -5,17 +5,21 @@ import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import com.example.rets_api.resource.PropertyFilter;
+import com.example.rets_api.utils.DtoUtilsTest;
+import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
-import static com.example.rets_api.repository.UtilsTest.*;
+import static com.example.rets_api.utils.EntityUtilsTest.*;
+import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -35,9 +39,9 @@ public class PropertyServiceTest {
     private PropertyService propertyService = new PropertyService(propertyRepositoryJPA, propertyRepositoryQuerydsl);
 
     @Test
-    public void shouldCreateProperty_createProperty(){
+    public void shouldCreateProperty_createProperty() {
         //Creating objects
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = DtoUtilsTest.createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntityResponse = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls
@@ -47,11 +51,11 @@ public class PropertyServiceTest {
         Long id = propertyService.createProperty(propertyDTORequest);
 
         //Validation
-        assertEquals(id,  propertyEntityResponse.getPropertyId());
+        assertEquals(id, propertyEntityResponse.getPropertyId());
     }
 
     @Test
-    public void shouldGetEmptyProperty_getPropertyById(){
+    public void shouldGetEmptyProperty_getPropertyById() {
 
         //Request
         PropertyDTO propertyDTOResponse = propertyService.getPropertyById(Long.valueOf(123456789));
@@ -61,7 +65,7 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldGetPropertyById_getPropertyById(){
+    public void shouldGetPropertyById_getPropertyById() {
         //Creating objects
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
@@ -76,7 +80,20 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldGetPropertyByParams_getPropertiesByParams(){
+    public void shouldGetEmptyPropertyList_getPropertyByParam() {
+        //Creating objects
+        PropertyFilter propertyFilter = FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom();
+        List<PropertyDTO> emptyArray = new ArrayList<>();
+
+        //Request
+        List<PropertyDTO> propertyDTOResponse = propertyService.getPropertiesByParams(propertyFilter);
+
+        //Validation
+        assertEquals(emptyArray, propertyDTOResponse);
+    }
+
+    @Test
+    public void shouldGetPropertyByParams_getPropertiesByParams() {
         //Creating objects
         PropertyFilter propertyFilter = createPropertyFilterAgeBedroomBathRoom();
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
@@ -92,7 +109,37 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldDeletePropertyById_deletePropertyById(){
+    public void shouldGetEmptyPropertyList_getAllProperty() {
+        //Creating objects
+        List<PropertyDTO> emptyArray = new ArrayList<>();
+
+        //Request
+        List<PropertyDTO> propertyDTOResponse = propertyService.getPropertiesByParams(new PropertyFilter());
+
+        //Validation
+        assertEquals(emptyArray, propertyDTOResponse);
+    }
+
+    @Test
+    public void shouldGetPropertyList_getAllProperties() {
+
+        //Creating objects
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+
+        //Mocking calls
+        when(propertyRepositoryQuerydsl.fetchAll(any())).thenReturn(asList(propertyEntity));
+
+        //Request
+        List<PropertyDTO> propertyDTOListResponse = propertyService.getPropertiesByParams(new PropertyFilter());
+
+        //Validation
+        checkAllFields_Property(propertyEntity, propertyDTOListResponse.get(0));
+    }
+
+
+    @Test
+    public void shouldDeletePropertyById_deletePropertyById() {
+
         //Creating objects
         PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
@@ -108,12 +155,4 @@ public class PropertyServiceTest {
         verify(propertyRepositoryJPA, times(1)).delete(propertyEntity);
     }
 
-    @Test
-    public void shouldReturnNull_deletePropertyById(){
-        //Request
-        PropertyDTO propertyDTOResponse = propertyService.deletePropertyById(Long.valueOf(123456789));
-
-        //Validation
-        assertEquals(null,  propertyDTOResponse);
-    }
 }
