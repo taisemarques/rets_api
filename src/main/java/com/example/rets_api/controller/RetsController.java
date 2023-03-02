@@ -61,6 +61,13 @@ public class RetsController {
         return handleResponse(propertyDTO);
     }
 
+    @ApiOperation(value = "delete a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property deleted", response = PropertyDTO.class),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+
     @DeleteMapping(value="/{id}")
     public ResponseEntity<PropertyDTO> deletePropertiesById(@PathVariable("id") Long propertyId){
         PropertyDTO propertyDTO = propertyService.deletePropertyById(propertyId);
