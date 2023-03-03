@@ -1,11 +1,11 @@
 package com.example.rets_api.service;
 
 import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import com.example.rets_api.resource.PropertyFilter;
-import com.example.rets_api.utils.DtoUtilsTest;
 import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyDTOBasicFields;
+import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
+import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTOWithBasicFields;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
 import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
@@ -41,7 +44,7 @@ public class PropertyServiceTest {
     @Test
     public void shouldCreateProperty_createProperty() {
         //Creating objects
-        PropertyDTO propertyDTORequest = DtoUtilsTest.createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         PropertyEntity propertyEntityResponse = createPropertyEntityResponseAndID(Long.valueOf(123456789));
 
         //Mocking calls
@@ -153,6 +156,36 @@ public class PropertyServiceTest {
         //Validation
         checkAllFields_Property(propertyEntity, propertyDTOResponse);
         verify(propertyRepositoryJPA, times(1)).delete(propertyEntity);
+    }
+
+    @Test
+    public void shouldPatchProperty_patchProperty(){
+        //Creating objects
+        PropertyPatchDTO propertyPatchDTO = createPropertyPatchDTOWithBasicFields();
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+
+        //Mocking calls
+        when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
+        when(propertyRepositoryJPA.saveAndFlush(any())).thenReturn(propertyEntity);
+
+        //Request
+        PropertyDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789),propertyPatchDTO);
+
+        //Validation
+        comparePropertyDTOBasicFields(propertyResponse, propertyPatchDTO);
+    }
+
+    @Test
+    public void shouldReturnNull_patchProperty(){
+        //Creating objects
+        PropertyPatchDTO propertyPatchDTO = createPropertyPatchDTOWithBasicFields();
+
+        //Request
+        PropertyDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789),propertyPatchDTO);
+
+        //Validation
+        assertNull(propertyResponse);
+
     }
 
 }

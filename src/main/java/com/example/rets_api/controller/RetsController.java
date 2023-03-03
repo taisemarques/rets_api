@@ -82,16 +82,10 @@ public class RetsController {
             @ApiResponse(code = 500, message = "Internal error")
     })
     @PatchMapping(value="/{id}")
-    public ResponseEntity<Long> patchProperty(@PathVariable("id") Long propertyId, @RequestBody PropertyPatchDTO propertyPatchDTO){
-        return handlePatchResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
+    public ResponseEntity<PropertyDTO> patchProperty(@PathVariable("id") Long propertyId, @RequestBody PropertyPatchDTO propertyPatchDTO){
+        return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
     }
 
-    private ResponseEntity<Long> handlePatchResponse(Long id){
-        if(isNull(id)){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(id);
-    }
 
 
     private ResponseEntity<PropertyDTO> handleResponse(PropertyDTO propertyDTO){

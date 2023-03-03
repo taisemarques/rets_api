@@ -16,6 +16,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyDTOBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTOWithBasicFields;
 import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
@@ -149,22 +150,15 @@ public class RetsControllerIntegrationTest {
                 .concat(String.valueOf(responseEntity.getBody()));
 
         //Request
-        ResponseEntity<Long> responsePatchEntity = this.restTemplate
-                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), Long.class);
+        ResponseEntity<PropertyDTO> responsePatchEntity = this.restTemplate
+                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), PropertyDTO.class);
 
         //Validation
         assertEquals(200, responsePatchEntity.getStatusCodeValue());
         assertNotNull(responsePatchEntity.getBody());
 
-        //Request
-        //after change in patch to return the updated object this call will no longer needed
-        ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
-                .getForEntity(URLWithID, PropertyDTO.class);
-
         //Validation
-//        assertEquals(responsePatchEntity, responseEntityGet.getBody());
-        //verify if the entity in get is the same as dto patch
-
+        comparePropertyDTOBasicFields(responsePatchEntity.getBody(), propertyPatchDTORequest);
     }
 
     @Test
@@ -179,8 +173,8 @@ public class RetsControllerIntegrationTest {
                 .concat("/")
                 .concat(String.valueOf(1));
 
-        ResponseEntity<Long> responsePatchEntity = this.restTemplate
-                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), Long.class);
+        ResponseEntity<PropertyDTO> responsePatchEntity = this.restTemplate
+                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), PropertyDTO.class);
 
         //Validation
         assertEquals(404, responsePatchEntity.getStatusCodeValue());

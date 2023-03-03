@@ -1,5 +1,7 @@
 package com.example.rets_api.utils;
 
+import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.*;
 
 public class CompareEntitiesUtilsTest {
@@ -117,6 +119,26 @@ public class CompareEntitiesUtilsTest {
                 entity1.getLowAmountCurrencyCode().equals(entity2.getLowAmountCurrencyCode()) &&
                 entity1.getHighAmountCurrencyCode().equals(entity2.getHighAmountCurrencyCode()) &&
                 entity1.getUnits().equals(entity2.getUnits());
+    }
+
+    public static boolean comparePropertyDTOBasicFields(PropertyDTO entity1, PropertyPatchDTO entity2){
+        return  entity1.getAge()==entity2.getAge() &&
+                entity1.getHorseFacilities().equals(entity2.getHorseFacilities()) &&
+                entity1.getHotTub().equals(entity2.getHotTub()) &&
+                entity1.getHotTubIndicator().equals(entity2.getHotTubIndicator()) &&
+                entity1.getTennisCourt().equals(entity2.getTennisCourt()) &&
+                entity1.getTennisCourtIndicator().equals(entity2.getTennisCourtIndicator()) &&
+                entity1.getInclusions().equals(entity2.getInclusions()) &&
+                entity1.getEnergyInformation().equals(entity2.getEnergyInformation()) &&
+                entity1.getConstructionMaterial().equals(entity2.getConstructionMaterial()) &&
+                entity1.getDisabilityFeatures().equals(entity2.getDisabilityFeatures()) &&
+                entity1.getDisabilityFeaturesIndicator().equals(entity2.getDisabilityFeaturesIndicator()) &&
+                entity1.getSecurityFeatures().equals(entity2.getSecurityFeatures()) &&
+                entity1.getSecurityFeaturesIndicator().equals(entity2.getSecurityFeaturesIndicator()) &&
+                entity1.getPropertyTypeRental().equals(entity2.getPropertyTypeRental()) &&
+                entity1.getPropertyTypeFarm().equals(entity2.getPropertyTypeFarm()) &&
+                entity1.getPropertyTypeCondo().equals(entity2.getPropertyTypeCondo()) &&
+                entity1.getPropertyTypeTownHouse().equals(entity2.getPropertyTypeTownHouse());
     }
 
 }
