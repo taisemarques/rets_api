@@ -1,6 +1,7 @@
 package com.example.rets_api.controller;
 
 import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import io.swagger.annotations.Api;
@@ -34,7 +35,7 @@ public class RetsController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Long> createProperty(@RequestBody PropertyDTO property){
-        return handleResponse(propertyService.createProperty(property));
+        return handleCreateResponse(propertyService.createProperty(property));
     }
 
     @ApiOperation(value = "Search for a list of properties by filters")
@@ -74,6 +75,25 @@ public class RetsController {
         return handleResponse(propertyDTO);
     }
 
+    @ApiOperation(value = "Patch basic fields in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{id}")
+    public ResponseEntity<Long> patchProperty(@PathVariable("id") Long propertyId, @RequestBody PropertyPatchDTO propertyPatchDTO){
+        return handlePatchResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
+    }
+
+    private ResponseEntity<Long> handlePatchResponse(Long id){
+        if(isNull(id)){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(id);
+    }
+
+
     private ResponseEntity<PropertyDTO> handleResponse(PropertyDTO propertyDTO){
         if(isNull(propertyDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -88,7 +108,7 @@ public class RetsController {
         return ResponseEntity.ok(propertyDTOList);
     }
 
-    private ResponseEntity<Long> handleResponse(Long id){
+    private ResponseEntity<Long> handleCreateResponse(Long id){
         if(isNull(id)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }

@@ -41,6 +41,29 @@ public class DtoUtilsTest {
             .build();
     }
 
+    public static PropertyPatchDTO createPropertyPatchDTOWithBasicFields(){
+        return PropertyPatchDTO.builder()
+                .age(5)
+                .horseFacilities("horseFacilities")
+                .horseFacilitiesIndicator(Indicator.NO)
+                .hotTub("HotTub")
+                .hotTubIndicator(Indicator.YES)
+                .tennisCourt("Tennis")
+                .tennisCourtIndicator(Indicator.UNKNOWN)
+                .inclusions("Inclusions")
+                .energyInformation("Energy")
+                .constructionMaterial("Material")
+                .disabilityFeatures("Disability")
+                .disabilityFeaturesIndicator(Indicator.YES)
+                .securityFeatures("Security")
+                .securityFeaturesIndicator(Indicator.YES)
+                .propertyTypeRental(true)
+                .propertyTypeFarm(false)
+                .propertyTypeCondo(false)
+                .propertyTypeTownHouse(true)
+                .build();
+    }
+
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
                 .indicator(Indicator.YES)
