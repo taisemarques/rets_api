@@ -16,12 +16,12 @@ public class PatchUtilsTest {
 
     @Test
     public void updatePropertyFieldsWhenChanged_shouldReturnTheUpdatedProperty(){
-        PropertyDTO propertyDTO = DtoUtilsTest.createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTO = DtoUtilsTest.createPropertyDTOWithAllFields();
         PropertyEntity propertyEntity = PropertyConverter.propertyDTOToPropertyEntity.convert(propertyDTO);
-        PropertyPatchDTO propertyPatchDTO = DtoUtilsTest.createPropertyPatchDTOWithBasicFields();
+        PropertyPatchDTO propertyPatchDTO = DtoUtilsTest.createPropertyPatchDTO();
 
         PropertyEntity responseEntity = updatePropertyFieldsWhenChanged(propertyEntity, propertyPatchDTO);
-        PropertyDTO responseEntityToCompare = PropertyConverter.propertyEntityToPropertyDTO.convert(responseEntity);
+        PropertyPatchDTO responseEntityToCompare = PropertyConverter.propertyEntityToPropertyPatchDTO.convert(responseEntity);
 
         comparePropertyPatchDTOBasicFields(responseEntityToCompare, propertyPatchDTO);
 

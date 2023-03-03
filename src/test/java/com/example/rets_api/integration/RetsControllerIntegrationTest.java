@@ -1,8 +1,10 @@
 package com.example.rets_api.integration;
 
 import com.example.rets_api.RetsApiApplication;
+import com.example.rets_api.converter.PropertyConverter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.entity.PropertyEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Before;
@@ -17,8 +19,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTOWithBasicFields;
+import static com.example.rets_api.utils.DtoUtilsTest.*;
 import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +41,7 @@ public class RetsControllerIntegrationTest {
     @Test
     public void creatingProperty() {
         //Creating objects
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         String URL = "http://localhost:" + port + "/properties";
 
         //Request
@@ -68,7 +69,7 @@ public class RetsControllerIntegrationTest {
     @Test
     public void getPropertyById() {
         //Preparing scenario: Adding a property
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
@@ -91,7 +92,7 @@ public class RetsControllerIntegrationTest {
     @Test
     public void getPropertiesByParams_Operator() {
         //Preparing scenario: Adding a property
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
@@ -110,9 +111,9 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void deletetPropertyById() {
+    public void deletePropertyById() {
         //Preparing scenario: Adding a property
-        PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         String URL = "http://localhost:" + port + "/properties";
         ResponseEntity<Long> responseEntityPost = this.restTemplate
                 .postForEntity(URL, propertyDTORequest, Long.class);
@@ -137,7 +138,7 @@ public class RetsControllerIntegrationTest {
     public void patchProperty() {
         //Creating objects
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
-        PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTOWithBasicFields();
+        PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTO();
         String URL = "http://localhost:" + port + "/properties";
 
         //Request
@@ -153,25 +154,25 @@ public class RetsControllerIntegrationTest {
         ResponseEntity<PropertyDTO> responsePatchEntity = this.restTemplate
                 .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), PropertyDTO.class);
 
+        PropertyEntity response = PropertyConverter.propertyDTOToPropertyEntity.convert(responsePatchEntity.getBody());
+
         //Validation
         assertEquals(200, responsePatchEntity.getStatusCodeValue());
         assertNotNull(responsePatchEntity.getBody());
-
-        //Validation
-        comparePropertyPatchDTOBasicFields(responsePatchEntity.getBody(), propertyPatchDTORequest);
+        comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyPatchDTO.convert(response), propertyPatchDTORequest);
     }
 
     @Test
     public void patchPropertyNotExist() {
         //Creating objects
-        PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTOWithBasicFields();
+        PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTO();
 
         String URL = "http://localhost:" + port + "/properties";
 
         //Creating objects
         String URLWithID = URL
                 .concat("/")
-                .concat(String.valueOf(1));
+                .concat(String.valueOf(123456));
 
         ResponseEntity<PropertyDTO> responsePatchEntity = this.restTemplate
                 .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), PropertyDTO.class);
