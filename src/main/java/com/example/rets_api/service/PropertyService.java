@@ -52,12 +52,9 @@ public class PropertyService {
     }
 
     public Long patchProperty(Long propertyId, PropertyPatchDTO propertyPatchDTO){
-
         PropertyEntity propertyToPatch = propertyRepositoryJPA.getById(propertyId);
         if(propertyToPatch == null){ return null;}
-
         updatePropertyFieldsWhenChanged(propertyToPatch, propertyPatchDTO);
-
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return propertyResponse.getPropertyId();
     }

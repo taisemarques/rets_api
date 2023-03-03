@@ -5,13 +5,14 @@ import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class RetsControllerIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Before
+    public void setup() {
+        this.restTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+    }
 
     @Test
     public void creatingProperty() {
@@ -126,28 +132,12 @@ public class RetsControllerIntegrationTest {
         assertEquals(404, responseEntityGetAgain.getStatusCodeValue());
     }
 
-    private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
-        Gson g = new Gson();
-        Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
-        List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
-        return propertyDTOList.get(propertyIndex);
-    }
-
-    private HttpEntity<String> getStringFromPropertyPatchDTO(PropertyPatchDTO propertyPatchDTO){
-        Gson g = new Gson();
-        String propertyJson = g.toJson(propertyPatchDTO);
-
-        return new HttpEntity<String>(propertyJson);
-    }
-
     @Test
     public void patchProperty() {
         //Creating objects
         PropertyDTO propertyDTORequest = createPropertyDTOWithBasicFields();
         PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTOWithBasicFields();
-
         String URL = "http://localhost:" + port + "/properties";
-
 
         //Request
         ResponseEntity<Long> responseEntity = this.restTemplate
@@ -158,16 +148,16 @@ public class RetsControllerIntegrationTest {
                 .concat("/")
                 .concat(String.valueOf(responseEntity.getBody()));
 
-
+        //Request
         ResponseEntity<Long> responsePatchEntity = this.restTemplate
-                .exchange(URLWithID,HttpMethod.PATCH, getStringFromPropertyPatchDTO(propertyPatchDTORequest), Long.class);
+                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), Long.class);
 
         //Validation
         assertEquals(200, responsePatchEntity.getStatusCodeValue());
         assertNotNull(responsePatchEntity.getBody());
 
-
         //Request
+        //after change in patch to return the updated object this call will no longer needed
         ResponseEntity<PropertyDTO> responseEntityGet = this.restTemplate
                 .getForEntity(URLWithID, PropertyDTO.class);
 
@@ -178,7 +168,7 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void patchPropertyNotExcist() {
+    public void patchPropertyNotExist() {
         //Creating objects
         PropertyPatchDTO propertyPatchDTORequest = createPropertyPatchDTOWithBasicFields();
 
@@ -189,14 +179,18 @@ public class RetsControllerIntegrationTest {
                 .concat("/")
                 .concat(String.valueOf(1));
 
-
         ResponseEntity<Long> responsePatchEntity = this.restTemplate
-                .exchange(URLWithID,HttpMethod.PATCH, getStringFromPropertyPatchDTO(propertyPatchDTORequest), Long.class);
+                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(propertyPatchDTORequest), Long.class);
 
         //Validation
         assertEquals(404, responsePatchEntity.getStatusCodeValue());
+    }
 
-
+    private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
+        Gson g = new Gson();
+        Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
+        List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
+        return propertyDTOList.get(propertyIndex);
     }
 
 }
