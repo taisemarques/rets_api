@@ -121,7 +121,7 @@ public class CompareEntitiesUtilsTest {
                 entity1.getUnits().equals(entity2.getUnits());
     }
 
-    public static boolean comparePropertyDTOBasicFields(PropertyDTO entity1, PropertyPatchDTO entity2){
+    public static boolean comparePropertyPatchDTOBasicFields(PropertyDTO entity1, PropertyPatchDTO entity2){
         return  entity1.getAge()==entity2.getAge() &&
                 entity1.getHorseFacilities().equals(entity2.getHorseFacilities()) &&
                 entity1.getHotTub().equals(entity2.getHotTub()) &&

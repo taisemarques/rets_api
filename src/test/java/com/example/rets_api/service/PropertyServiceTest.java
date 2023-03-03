@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
-import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyDTOBasicFields;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTOWithBasicFields;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
@@ -172,7 +172,7 @@ public class PropertyServiceTest {
         PropertyDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789),propertyPatchDTO);
 
         //Validation
-        comparePropertyDTOBasicFields(propertyResponse, propertyPatchDTO);
+        comparePropertyPatchDTOBasicFields(propertyResponse, propertyPatchDTO);
     }
 
     @Test
@@ -185,7 +185,6 @@ public class PropertyServiceTest {
 
         //Validation
         assertNull(propertyResponse);
-
     }
 
 }

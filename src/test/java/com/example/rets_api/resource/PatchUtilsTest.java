@@ -9,8 +9,7 @@ import com.example.rets_api.utils.DtoUtilsTest;
 import org.junit.Test;
 
 import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
-import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyDTOBasicFields;
-import static org.junit.Assert.assertEquals;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
 
 public class PatchUtilsTest {
 
@@ -24,7 +23,7 @@ public class PatchUtilsTest {
         PropertyEntity responseEntity = updatePropertyFieldsWhenChanged(propertyEntity, propertyPatchDTO);
         PropertyDTO responseEntityToCompare = PropertyConverter.propertyEntityToPropertyDTO.convert(responseEntity);
 
-        comparePropertyDTOBasicFields(responseEntityToCompare, propertyPatchDTO);
+        comparePropertyPatchDTOBasicFields(responseEntityToCompare, propertyPatchDTO);
 
     }
 }

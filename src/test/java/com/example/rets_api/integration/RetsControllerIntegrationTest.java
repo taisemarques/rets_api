@@ -16,7 +16,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyDTOBasicFields;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTOWithBasicFields;
 import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
@@ -158,7 +158,7 @@ public class RetsControllerIntegrationTest {
         assertNotNull(responsePatchEntity.getBody());
 
         //Validation
-        comparePropertyDTOBasicFields(responsePatchEntity.getBody(), propertyPatchDTORequest);
+        comparePropertyPatchDTOBasicFields(responsePatchEntity.getBody(), propertyPatchDTORequest);
     }
 
     @Test

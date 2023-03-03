@@ -1,6 +1,10 @@
 package com.example.rets_api.repository;
 
+import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.*;
+import com.example.rets_api.utils.DtoUtilsTest;
 import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
+import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -115,6 +120,24 @@ public class PropertyRepositoryJPATest {
 
         //Validating
         assertTrue(properties.isEmpty());
+    }
+
+    @Test
+    public void should_update_a_Property() {
+        //Creating
+        PropertyPatchDTO propertyToSave = DtoUtilsTest.createPropertyPatchDTOWithBasicFields();
+        PropertyEntity propertyToUpdate = EntityUtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
+        PropertyEntity propertySaved = propertyRepository.saveAndFlush(propertyToUpdate);
+
+        //Updating
+        updatePropertyFieldsWhenChanged(propertySaved, propertyToSave);
+        PropertyEntity responseEntity = propertyRepository.saveAndFlush(propertySaved);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(responseEntity);
+        comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyDTO.convert(responseEntity), propertyToSave);
     }
 
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
