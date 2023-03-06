@@ -71,7 +71,6 @@ public class RetsController {
     @DeleteMapping(value="/{id}")
     public ResponseEntity<PropertyDTO> deletePropertiesById(@PathVariable("id") Long propertyId){
         PropertyDTO propertyDTO = propertyService.deletePropertyById(propertyId);
-
         return handleResponse(propertyDTO);
     }
 
@@ -86,26 +85,18 @@ public class RetsController {
         return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
     }
 
-    private ResponseEntity<PropertyPatchDTO> handleResponse(PropertyPatchDTO propertyPatchDTO){
-        if(isNull(propertyPatchDTO)){
+    private <T> ResponseEntity<T> handleResponse(T responseDTO){
+        if(isNull(responseDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(propertyPatchDTO);
+        return ResponseEntity.ok(responseDTO);
     }
 
-
-    private ResponseEntity<PropertyDTO> handleResponse(PropertyDTO propertyDTO){
-        if(isNull(propertyDTO)){
+    private <T> ResponseEntity<List<T>> handleResponse(List<T> responseListDTO){
+        if(isEmpty(responseListDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(propertyDTO);
-    }
-
-    private ResponseEntity<List<PropertyDTO>> handleResponse(List<PropertyDTO> propertyDTOList){
-        if(isEmpty(propertyDTOList)){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(propertyDTOList);
+        return ResponseEntity.ok(responseListDTO);
     }
 
     private ResponseEntity<Long> handleCreateResponse(Long id){
