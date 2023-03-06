@@ -51,11 +51,20 @@ public class PropertyService {
         return PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse.get());
     }
 
-    public PropertyPatchDTO patchProperty(Long propertyId, PropertyPatchDTO propertyPatchDTO){
+    public <T> T patchProperty(Long propertyId, T patch){
         Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
-        if(propertyToPatch.isEmpty()){ return null;}
-        updatePropertyFieldsWhenChanged(propertyToPatch.get(), propertyPatchDTO);
-        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        if(!propertyToPatch.isPresent()){ return null;}
+        switch (patch.getClass().getSimpleName()) {
+            case "PropertyPatchDTO":
+                return (T) patchPropertyBasicFields(propertyToPatch.get(), (PropertyPatchDTO)patch);
+            default:
+                return null;
+        }
+    }
+
+    public PropertyPatchDTO patchPropertyBasicFields(PropertyEntity propertyToPatch, PropertyPatchDTO propertyPatchDTO){
+        updatePropertyFieldsWhenChanged(propertyToPatch, propertyPatchDTO);
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
     }
 
