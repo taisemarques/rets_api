@@ -67,11 +67,10 @@ public class PropertyService {
         if(propertyToPatch.isEmpty()){ return null;}
         if(propertyToPatch.get().getViewData() == null) {
             propertyToPatch.get().setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO));
-            return viewDataDTO;
+        } else {
+            updateWhenViewDataChanged(propertyToPatch.get(), viewDataDTO);
         }
-        updateWhenViewDataChanged(propertyToPatch.get(), viewDataDTO);
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
         return ViewDataConverter.viewDataEntityToViewDataDTO.convert(propertyResponse.getViewData());
-
     }
 }

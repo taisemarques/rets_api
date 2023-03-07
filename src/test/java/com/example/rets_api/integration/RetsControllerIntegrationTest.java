@@ -264,7 +264,6 @@ public class RetsControllerIntegrationTest {
         assertEquals(404, responsePatchEntity.getStatusCodeValue());
     }
 
-
     private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
         Gson g = new Gson();
         Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
