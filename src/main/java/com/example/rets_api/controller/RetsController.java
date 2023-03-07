@@ -2,6 +2,7 @@ package com.example.rets_api.controller;
 
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import io.swagger.annotations.Api;
@@ -85,6 +86,28 @@ public class RetsController {
         return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
     }
 
+    @ApiOperation(value = "Patch roomList in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{id}/roomList")
+    public ResponseEntity<List<RoomDTO>> patchRoomList(@PathVariable("id") Long propertyId, @RequestBody List<RoomDTO> roomListToPatch){
+        return handleResponse(propertyService.patchProperty(propertyId, roomListToPatch));
+    }
+
+    @ApiOperation(value = "Patch a room in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{id}/room/{idRoom}")
+    public ResponseEntity<RoomDTO> patchRoom(@PathVariable("id") Long propertyId, @PathVariable("idRoom") Long roomId, @RequestBody RoomDTO roomToPatch){
+        return handleResponse(propertyService.patchRoom(propertyId, roomId, roomToPatch));
+    }
+
     private <T> ResponseEntity<T> handleResponse(T responseDTO){
         if(isNull(responseDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -101,7 +124,7 @@ public class RetsController {
 
     private ResponseEntity<Long> handleCreateResponse(Long id){
         if(isNull(id)){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity(id, HttpStatus.CREATED);
     }

@@ -13,6 +13,8 @@ import static com.example.rets_api.resource.Enums.*;
 @AllArgsConstructor
 public class RoomDTO {
 
+    private Long roomId;
+
     private RoomType type;
 
     private Indicator indicator;

@@ -29,6 +29,7 @@ public class RoomConverter {
     public static Converter<RoomEntity, RoomDTO> roomEntityToRoomDTO = in -> {
         if (isNull(in)) return null;
         return RoomDTO.builder()
+                .roomId(in.getRoomId())
                 .type(in.getRoomType())
                 .width(in.getWidth())
                 .length(in.getLength())

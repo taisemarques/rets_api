@@ -6,6 +6,7 @@ import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
+import com.example.rets_api.repository.RoomRepositoryJPA;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
@@ -37,10 +38,13 @@ public class PropertyServiceTest {
     private PropertyRepositoryJPA propertyRepositoryJPA;
 
     @Mock
+    private RoomRepositoryJPA roomRepositoryJPA;
+
+    @Mock
     private PropertyRepositoryQuerydsl propertyRepositoryQuerydsl;
 
     @InjectMocks
-    private PropertyService propertyService = new PropertyService(propertyRepositoryJPA, propertyRepositoryQuerydsl);
+    private PropertyService propertyService = new PropertyService(propertyRepositoryJPA, roomRepositoryJPA, propertyRepositoryQuerydsl);
 
     @Test
     public void shouldCreateProperty_createProperty() {
