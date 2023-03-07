@@ -95,8 +95,7 @@ public class RetsController {
     })
     @PatchMapping(value="{id}/viewData")
     public ResponseEntity<ViewDataDTO> patchViewData(@PathVariable("id") Long propertyId, @RequestBody ViewDataDTO viewDataDTO){
-
-        return handleResponse(propertyService.patchViewData(propertyId, viewDataDTO));
+        return handleResponse(propertyService.patchProperty(propertyId, viewDataDTO));
     }
 
     private <T> ResponseEntity<T> handleResponse(T responseDTO){

@@ -54,23 +54,32 @@ public class PropertyService {
         return PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse.get());
     }
 
-    public PropertyPatchDTO patchProperty(Long propertyId, PropertyPatchDTO propertyPatchDTO){
+    public <T> T patchProperty(Long propertyId, T patch){
         Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
-        if(propertyToPatch.isEmpty()){ return null;}
-        updatePropertyFieldsWhenChanged(propertyToPatch.get(), propertyPatchDTO);
-        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        if(!propertyToPatch.isPresent()){ return null;}
+        switch (patch.getClass().getSimpleName()) {
+            case "PropertyPatchDTO":
+                return (T) patchPropertyBasicFields(propertyToPatch.get(), (PropertyPatchDTO)patch);
+            case "ViewDataDTO":
+                return (T) patchViewData(propertyToPatch.get(), (ViewDataDTO)patch);
+            default:
+                return null;
+        }
+    }
+
+    private PropertyPatchDTO patchPropertyBasicFields(PropertyEntity propertyToPatch, PropertyPatchDTO propertyPatchDTO){
+        updatePropertyFieldsWhenChanged(propertyToPatch, propertyPatchDTO);
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
     }
 
-    public ViewDataDTO patchViewData(Long propertyId, ViewDataDTO viewDataDTO) {
-        Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
-        if(propertyToPatch.isEmpty()){ return null;}
-        if(propertyToPatch.get().getViewData() == null) {
-            propertyToPatch.get().setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO));
+    private ViewDataDTO patchViewData(PropertyEntity propertyToPatch, ViewDataDTO viewDataDTO) {
+        if(propertyToPatch.getViewData() == null) {
+            propertyToPatch.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO));
         } else {
-            updateWhenViewDataChanged(propertyToPatch.get(), viewDataDTO);
+            updateWhenViewDataChanged(propertyToPatch, viewDataDTO);
         }
-        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return ViewDataConverter.viewDataEntityToViewDataDTO.convert(propertyResponse.getViewData());
     }
 }
