@@ -219,6 +219,7 @@ public class RetsControllerIntegrationTest {
         //Creating objects
         PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         ViewDataDTO viewDataDTORequest = createViewDataDTO();
+        propertyDTORequest.getViewData().setCityLight(null);
         String URL = "http://localhost:" + port + "/properties";
 
         //Request
