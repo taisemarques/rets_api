@@ -1,8 +1,10 @@
 package com.example.rets_api.service;
 
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.converter.ViewDataConverter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
+import static com.example.rets_api.resource.PatchUtils.updateWhenViewDataChanged;
 
 @Service
 public class PropertyService {
@@ -59,4 +62,16 @@ public class PropertyService {
         return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
     }
 
+    public ViewDataDTO patchViewData(Long propertyId, ViewDataDTO viewDataDTO) {
+        Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
+        if(propertyToPatch.isEmpty()){ return null;}
+        if(propertyToPatch.get().getViewData() == null) {
+            propertyToPatch.get().setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO));
+            return viewDataDTO;
+        }
+        updateWhenViewDataChanged(propertyToPatch.get(), viewDataDTO);
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        return ViewDataConverter.viewDataEntityToViewDataDTO.convert(propertyResponse.getViewData());
+
+    }
 }

@@ -219,7 +219,7 @@ public class DtoUtilsTest {
 
     public static ViewDataDTO createViewDataDTO(){
         return ViewDataDTO.builder()
-                .cityLight("light")
+                .cityLight(null)
                 .cityLightIndicator(Indicator.NO)
                 .mountain("mountain")
                 .mountainIndicator(Indicator.NO)

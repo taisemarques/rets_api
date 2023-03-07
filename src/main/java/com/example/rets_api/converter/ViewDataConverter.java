@@ -17,7 +17,7 @@ public class ViewDataConverter {
         retsEntity.setRiver(in.getRiver());
         retsEntity.setRiverIndicator(in.getRiverIndicator());
         retsEntity.setLake(in.getLake());
-        retsEntity.setLakeIndicator(in.getRiverIndicator());
+        retsEntity.setLakeIndicator(in.getLakeIndicator());
         retsEntity.setGolfCourse(in.getGolfCourse());
         retsEntity.setGolfCourseIndicator(in.getGolfCourseIndicator());
         retsEntity.setWater(in.getWater());
