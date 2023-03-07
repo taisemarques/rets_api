@@ -1,9 +1,12 @@
 package com.example.rets_api.service;
 
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.converter.ViewDataConverter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.ViewDataEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import com.example.rets_api.resource.PropertyFilter;
@@ -20,8 +23,8 @@ import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithAllFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTO;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.compareViewData;
+import static com.example.rets_api.utils.DtoUtilsTest.*;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
 import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
@@ -185,6 +188,39 @@ public class PropertyServiceTest {
 
         //Request
         PropertyPatchDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789),propertyPatchDTO);
+
+        //Validation
+        assertNull(propertyResponse);
+    }
+
+    @Test
+    public void shouldPatchProperty_updateViewData(){
+        //Creating objects
+        ViewDataDTO viewDataDTOToPatch = createViewDataDTO();
+        ViewDataEntity viewDataEntityToPatch = ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTOToPatch);
+        PropertyEntity propertyToPatch = createPropertyEntityWithDifferentBasicFields();
+        propertyToPatch.setViewData(viewDataEntityToPatch);
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+
+        //Mocking calls
+        when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
+        when(propertyRepositoryJPA.saveAndFlush(any())).thenReturn(propertyToPatch);
+
+        //Request
+        ViewDataDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789), viewDataDTOToPatch);
+
+        //Validation
+        compareViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(propertyResponse),
+                ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTOToPatch));
+    }
+
+    @Test
+    public void shouldReturnNull_patchViewData(){
+        //Creating objects
+        ViewDataDTO viewDataDTO = createViewDataDTO();
+
+        //Request
+        ViewDataDTO propertyResponse = propertyService.patchProperty(Long.valueOf(123456789),viewDataDTO);
 
         //Validation
         assertNull(propertyResponse);

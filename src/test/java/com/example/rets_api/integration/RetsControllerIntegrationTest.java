@@ -215,11 +215,40 @@ public class RetsControllerIntegrationTest {
     }
 
     @Test
-    public void patchViewData_updateViewData() {
+    public void patchViewData_updateViewData_havingNullFields() {
         //Creating objects
         PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
         ViewDataDTO viewDataDTORequest = createViewDataDTO();
         propertyDTORequest.getViewData().setCityLight(null);
+        String URL = "http://localhost:" + port + "/properties";
+
+        //Request
+        ResponseEntity<Long> responseEntity = this.restTemplate
+                .postForEntity(URL, propertyDTORequest, Long.class);
+
+        //Creating objects
+        String URLviewData = URL
+                .concat("/")
+                .concat(String.valueOf(responseEntity.getBody()))
+                .concat("/viewData");
+
+        //Request
+        ResponseEntity<ViewDataDTO> responsePatchEntity = this.restTemplate
+                .exchange(URLviewData, HttpMethod.PATCH, new HttpEntity<>(viewDataDTORequest), ViewDataDTO.class);
+
+        ViewDataEntity response = ViewDataConverter.viewDataDTOToViewDataEntity.convert(responsePatchEntity.getBody());
+
+        //Validation
+        assertEquals(200, responsePatchEntity.getStatusCodeValue());
+        assertNotNull(responsePatchEntity.getBody());
+        compareViewData(response, ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTORequest));
+    }
+
+    @Test
+    public void patchViewData_updateViewData_withoutNullFields() {
+        //Creating objects
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
+        ViewDataDTO viewDataDTORequest = createViewDataDTO();
         String URL = "http://localhost:" + port + "/properties";
 
         //Request

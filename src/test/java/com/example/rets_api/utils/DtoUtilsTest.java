@@ -147,6 +147,23 @@ public class DtoUtilsTest {
                 .build();
     }
 
+    public static ViewDataDTO createPatchViewDataDTO(){
+        return ViewDataDTO.builder()
+                .cityLight("light1")
+                .cityLightIndicator(Indicator.YES)
+                .mountain("mountain1")
+                .mountainIndicator(Indicator.UNKNOWN)
+                .river("river1")
+                .riverIndicator(Indicator.YES)
+                .lake("lake1")
+                .lakeIndicator(Indicator.UNKNOWN)
+                .golfCourse("golfCourse1")
+                .golfCourseIndicator(Indicator.NO)
+                .water("water1")
+                .waterIndicator(Indicator.YES)
+                .build();
+    }
+
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
                 .indicator(Indicator.YES)

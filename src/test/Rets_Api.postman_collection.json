@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d2ada7e8-2ddd-4528-ab3c-eaf2b7b11fe5",
+		"_postman_id": "c828aaa5-fa83-44bc-b8c8-c01bd50fe8e0",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13137083"
 	},
 	"item": [
 		{
@@ -538,6 +539,35 @@
 					"path": [
 						"properties",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch property viewData by id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"cityLight\": \"cityLight1\",\r\n        \"cityLightIndicator\": \"NO\",\r\n        \"mountain\": \"mountain1\",\r\n        \"mountainIndicator\": \"UNKNOWN\",\r\n        \"river\": \"river1\",\r\n        \"riverIndicator\": \"UNKNOWN\",\r\n        \"lake\": \"lake1\",\r\n        \"lakeIndicator\": \"NO\",\r\n        \"golfCourse\": \"golfCourse1\",\r\n        \"golfCourseIndicator\": \"YES\",\r\n        \"water\": \"water1\",\r\n        \"waterIndicator\": \"NO\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/properties/{{id}}/viewData",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"properties",
+						"{{id}}",
+						"viewData"
 					]
 				}
 			},
