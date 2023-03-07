@@ -50,7 +50,50 @@
             propertyEntity.setBasementLengthUnits(LengthWidthUnit.METERS);
             propertyEntity.setParkingTotal(2);
             propertyEntity.setParkingTotalOperator(Operator.DEFAULT_ENUM_VALUE);
+            return propertyEntity;
+        }
 
+        public static PropertyEntity createPropertyEntityWithDifferentBasicFields(){
+            PropertyEntity propertyEntity = new PropertyEntity();
+            propertyEntity.setAge(10);
+            propertyEntity.setHorseFacilities("horseFacilities2");
+            propertyEntity.setHorseFacilitiesIndicator(Indicator.YES);
+            propertyEntity.setHotTub("HotTub2");
+            propertyEntity.setHotTubIndicator(Indicator.NO);
+            propertyEntity.setTennisCourt("Tennis court");
+            propertyEntity.setTennisCourtIndicator(Indicator.NO);
+            propertyEntity.setInclusions("Inclusions");
+            propertyEntity.setEnergyInformation("Gas");
+            propertyEntity.setConstructionMaterial("Material");
+            propertyEntity.setDisabilityFeatures("Disability2");
+            propertyEntity.setDisabilityFeaturesIndicator(Indicator.NO);
+            propertyEntity.setSecurityFeatures("Security features");
+            propertyEntity.setSecurityFeaturesIndicator(Indicator.NO);
+            propertyEntity.setPropertyTypeRental(false);
+            propertyEntity.setPropertyTypeFarm(false);
+            propertyEntity.setPropertyTypeCondo(false);
+            propertyEntity.setPropertyTypeTownHouse(true);
+            propertyEntity.setBedroomsQty(2);
+            propertyEntity.setFirePlaceFuelType("Gas");
+            propertyEntity.setFirePlaceDetails("details");
+            propertyEntity.setFloorsHardwood("Hardwood 2");
+            propertyEntity.setFloorsHardwoodIndicator(Indicator.NO);
+            propertyEntity.setDisplayFlagListing(false);
+            propertyEntity.setDisplayFlagAddress(true);
+            propertyEntity.setLotSizeRange("range2");
+            propertyEntity.setLotSizeRangeUnits(AreaUnit.SQ_FEET);
+            propertyEntity.setLotSizeWidthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setDiningRoomWidthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setFamilyRoomWidthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setLivingRoomWidthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setBasementWidthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setLotSizeLengthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setDiningRoomLengthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setLivingRoomLengthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setFamilyRoomLengthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setBasementLengthUnits(LengthWidthUnit.FEET);
+            propertyEntity.setParkingTotal(3);
+            propertyEntity.setParkingTotalOperator(Operator.DEFAULT_ENUM_VALUE);
             return propertyEntity;
         }
 

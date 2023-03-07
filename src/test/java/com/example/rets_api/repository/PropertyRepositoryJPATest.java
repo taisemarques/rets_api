@@ -1,5 +1,6 @@
 package com.example.rets_api.repository;
 
+import com.example.rets_api.converter.PropertyConverter;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
@@ -117,6 +118,26 @@ public class PropertyRepositoryJPATest {
         assertTrue(properties.isEmpty());
     }
 
+    @Test
+    public void should_update_a_Property() {
+        //Creating
+        PropertyEntity propertyToPatch = EntityUtilsTest.createPropertyEntityWithDifferentBasicFields();
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
+        propertyEntity = propertyRepository.saveAndFlush(propertyEntity);
+
+        //Updating
+        PropertyEntity propertyToSave = updatePropertyValues(propertyEntity, propertyToPatch);
+
+        //Patching
+        PropertyEntity responseEntity = propertyRepository.saveAndFlush(propertyToSave);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(responseEntity);
+        comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyPatchDTO.convert(responseEntity), PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyToPatch));
+    }
+
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
 
         assertNotNull(property.getPropertyId());
@@ -160,4 +181,48 @@ public class PropertyRepositoryJPATest {
         assertThat(property).hasFieldOrPropertyWithValue("parkingTotal", property.getParkingTotal());
         assertThat(property).hasFieldOrPropertyWithValue("parkingTotalOperator", property.getParkingTotalOperator());
    }
+
+    public static PropertyEntity updatePropertyValues(PropertyEntity property1, PropertyEntity property2){
+        property1.setAge(property2.getAge());
+        property1.setHorseFacilities(property2.getHorseFacilities());
+        property1.setHorseFacilitiesIndicator(property2.getHorseFacilitiesIndicator());
+        property1.setHotTub(property2.getHotTub());
+        property1.setHotTubIndicator(property2.getHotTubIndicator());
+        property1.setTennisCourt(property2.getTennisCourt());
+        property1.setTennisCourtIndicator(property2.getTennisCourtIndicator());
+        property1.setInclusions(property2.getInclusions());
+        property1.setEnergyInformation(property2.getEnergyInformation());
+        property1.setConstructionMaterial(property2.getConstructionMaterial());
+        property1.setDisabilityFeatures(property2.getDisabilityFeatures());
+        property1.setDisabilityFeaturesIndicator(property2.getDisabilityFeaturesIndicator());
+        property1.setSecurityFeatures(property2.getSecurityFeatures());
+        property1.setSecurityFeaturesIndicator(property2.getSecurityFeaturesIndicator());
+        property1.setPropertyTypeRental(property2.getPropertyTypeRental());
+        property1.setPropertyTypeFarm(property2.getPropertyTypeFarm());
+        property1.setPropertyTypeCondo(property2.getPropertyTypeCondo());
+        property1.setPropertyTypeTownHouse(property2.getPropertyTypeTownHouse());
+        property1.setBedroomsQty(property2.getBedroomsQty());
+        property1.setFirePlaceFuelType(property2.getFirePlaceFuelType());
+        property1.setFirePlaceDetails(property2.getFirePlaceDetails());
+        property1.setFloorsHardwood(property2.getFloorsHardwood());
+        property1.setFloorsHardwoodIndicator(property2.getFloorsHardwoodIndicator());
+        property1.setDisplayFlagListing(property2.getDisplayFlagListing());
+        property1.setDisplayFlagAddress(property2.getDisplayFlagAddress());
+        property1.setLotSizeRange(property2.getLotSizeRange());
+        property1.setLotSizeRangeUnits(property2.getLotSizeRangeUnits());
+        property1.setLotSizeWidthUnits(property2.getLotSizeWidthUnits());
+        property1.setDiningRoomWidthUnits(property2.getDiningRoomWidthUnits());
+        property1.setFamilyRoomWidthUnits(property2.getFamilyRoomWidthUnits());
+        property1.setLivingRoomWidthUnits(property2.getLivingRoomWidthUnits());
+        property1.setBasementWidthUnits(property2.getBasementWidthUnits());
+        property1.setLotSizeLengthUnits(property2.getLotSizeLengthUnits());
+        property1.setDiningRoomLengthUnits(property2.getDiningRoomLengthUnits());
+        property1.setLivingRoomLengthUnits(property2.getLivingRoomLengthUnits());
+        property1.setFamilyRoomLengthUnits(property2.getFamilyRoomLengthUnits());
+        property1.setBasementLengthUnits(property2.getBasementLengthUnits());
+        property1.setParkingTotal(property2.getParkingTotal());
+        property1.setParkingTotalOperator(property2.getParkingTotalOperator());
+
+        return property1;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.rets_api.converter;
 
 import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import org.springframework.core.convert.converter.Converter;
 
@@ -94,6 +95,50 @@ public class PropertyConverter {
                 .contactInformation(ContactInformationConverter.contactInformationEntityToContactInformationDTO.convert(in.getContactInformation()))
                 .community(CommunityConverter.communityEntityToCommunityDTO.convert(in.getCommunity()))
                 .listingPrice(ListingPriceConverter.listingPriceEntityToListingPriceDTO.convert(in.getListingPrice()))
+                .firePlaceFuelType(in.getFirePlaceFuelType())
+                .firePlaceDetails(in.getFirePlaceDetails())
+                .floorsHardwood(in.getFloorsHardwood())
+                .floorsHardwoodIndicator(in.getFloorsHardwoodIndicator())
+                .displayFlagListing(in.getDisplayFlagListing())
+                .displayFlagAddress(in.getDisplayFlagAddress())
+                .lotSizeRange(in.getLotSizeRange())
+                .lotSizeRangeUnits(in.getLotSizeRangeUnits())
+                .lotSizeWidthUnits(in.getLotSizeWidthUnits())
+                .diningRoomWidthUnits(in.getDiningRoomWidthUnits())
+                .familyRoomWidthUnits(in.getFamilyRoomWidthUnits())
+                .livingRoomWidthUnits(in.getLivingRoomWidthUnits())
+                .basementWidthUnits(in.getBasementWidthUnits())
+                .lotSizeLengthUnits(in.getLotSizeLengthUnits())
+                .diningRoomLengthUnits(in.getDiningRoomLengthUnits())
+                .livingRoomLengthUnits(in.getLivingRoomLengthUnits())
+                .familyRoomLengthUnits(in.getFamilyRoomLengthUnits())
+                .basementLengthUnits(in.getBasementLengthUnits())
+                .parkingTotal(in.getParkingTotal())
+                .parkingTotalOperator(in.getParkingTotalOperator())
+                .build();
+    };
+
+    public static Converter<PropertyEntity, PropertyPatchDTO> propertyEntityToPropertyPatchDTO = in -> {
+        if (isNull(in)) return null;
+        return PropertyPatchDTO.builder()
+                .age(in.getAge())
+                .horseFacilities(in.getHorseFacilities())
+                .horseFacilitiesIndicator(in.getHorseFacilitiesIndicator())
+                .hotTub(in.getHotTub())
+                .hotTubIndicator(in.getHotTubIndicator())
+                .tennisCourt(in.getTennisCourt())
+                .tennisCourtIndicator(in.getTennisCourtIndicator())
+                .inclusions((in.getInclusions()))
+                .energyInformation(in.getEnergyInformation())
+                .constructionMaterial(in.getConstructionMaterial())
+                .disabilityFeatures(in.getDisabilityFeatures())
+                .disabilityFeaturesIndicator(in.getDisabilityFeaturesIndicator())
+                .securityFeatures(in.getSecurityFeatures())
+                .securityFeaturesIndicator(in.getSecurityFeaturesIndicator())
+                .propertyTypeRental(in.getPropertyTypeRental())
+                .propertyTypeFarm(in.getPropertyTypeFarm())
+                .propertyTypeCondo(in.getPropertyTypeCondo())
+                .propertyTypeTownHouse(in.getPropertyTypeTownHouse())
                 .firePlaceFuelType(in.getFirePlaceFuelType())
                 .firePlaceDetails(in.getFirePlaceDetails())
                 .floorsHardwood(in.getFloorsHardwood())

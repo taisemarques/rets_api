@@ -1,5 +1,6 @@
 package com.example.rets_api.utils;
 
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.*;
 
 public class CompareEntitiesUtilsTest {
@@ -117,6 +118,46 @@ public class CompareEntitiesUtilsTest {
                 entity1.getLowAmountCurrencyCode().equals(entity2.getLowAmountCurrencyCode()) &&
                 entity1.getHighAmountCurrencyCode().equals(entity2.getHighAmountCurrencyCode()) &&
                 entity1.getUnits().equals(entity2.getUnits());
+    }
+
+    public static boolean comparePropertyPatchDTOBasicFields(PropertyPatchDTO entity1, PropertyPatchDTO entity2){
+        return  entity1.getAge()==entity2.getAge() &&
+                entity1.getHorseFacilities().equals(entity2.getHorseFacilities()) &&
+                entity1.getHotTub().equals(entity2.getHotTub()) &&
+                entity1.getHotTubIndicator().equals(entity2.getHotTubIndicator()) &&
+                entity1.getTennisCourt().equals(entity2.getTennisCourt()) &&
+                entity1.getTennisCourtIndicator().equals(entity2.getTennisCourtIndicator()) &&
+                entity1.getInclusions().equals(entity2.getInclusions()) &&
+                entity1.getEnergyInformation().equals(entity2.getEnergyInformation()) &&
+                entity1.getConstructionMaterial().equals(entity2.getConstructionMaterial()) &&
+                entity1.getDisabilityFeatures().equals(entity2.getDisabilityFeatures()) &&
+                entity1.getDisabilityFeaturesIndicator().equals(entity2.getDisabilityFeaturesIndicator()) &&
+                entity1.getSecurityFeatures().equals(entity2.getSecurityFeatures()) &&
+                entity1.getSecurityFeaturesIndicator().equals(entity2.getSecurityFeaturesIndicator()) &&
+                entity1.getPropertyTypeRental().equals(entity2.getPropertyTypeRental()) &&
+                entity1.getPropertyTypeFarm().equals(entity2.getPropertyTypeFarm()) &&
+                entity1.getPropertyTypeCondo().equals(entity2.getPropertyTypeCondo()) &&
+                entity1.getPropertyTypeTownHouse().equals(entity2.getPropertyTypeTownHouse()) &&
+                entity1.getFirePlaceFuelType().equals(entity2.getFirePlaceFuelType()) &&
+                entity1.getFirePlaceDetails().equals(entity2.getFirePlaceDetails()) &&
+                entity1.getFloorsHardwood().equals(entity2.getFloorsHardwood()) &&
+                entity1.getFloorsHardwoodIndicator().equals(entity2.getFloorsHardwoodIndicator()) &&
+                entity1.getDisplayFlagListing().equals(entity2.getDisplayFlagListing()) &&
+                entity1.getDisplayFlagAddress().equals(entity2.getDisplayFlagAddress()) &&
+                entity1.getLotSizeRange().equals(entity2.getLotSizeRange()) &&
+                entity1.getLotSizeRangeUnits().equals(entity2.getLotSizeRangeUnits()) &&
+                entity1.getLotSizeWidthUnits().equals(entity2.getLotSizeWidthUnits()) &&
+                entity1.getDiningRoomWidthUnits().equals(entity2.getDiningRoomWidthUnits()) &&
+                entity1.getFamilyRoomWidthUnits().equals(entity2.getFamilyRoomWidthUnits()) &&
+                entity1.getLivingRoomWidthUnits().equals(entity2.getLivingRoomWidthUnits()) &&
+                entity1.getBasementWidthUnits().equals(entity2.getBasementWidthUnits()) &&
+                entity1.getLotSizeLengthUnits().equals(entity2.getLotSizeLengthUnits()) &&
+                entity1.getDiningRoomLengthUnits().equals(entity2.getDiningRoomLengthUnits()) &&
+                entity1.getLivingRoomLengthUnits().equals(entity2.getLivingRoomLengthUnits()) &&
+                entity1.getFamilyRoomLengthUnits().equals(entity2.getFamilyRoomLengthUnits()) &&
+                entity1.getBasementLengthUnits().equals(entity2.getBasementLengthUnits()) &&
+                entity1.getParkingTotal() == entity2.getParkingTotal() &&
+                entity1.getParkingTotalOperator().equals(entity2.getParkingTotalOperator());
     }
 
 }
