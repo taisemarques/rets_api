@@ -81,6 +81,7 @@ public class PropertyService {
         } else {
             updateWhenViewDataChanged(propertyToPatch, viewDataDTO);
         }
+        propertyToPatch.setUpdateFlag(Math.random());
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return ViewDataConverter.viewDataEntityToViewDataDTO.convert(propertyResponse.getViewData());
     }

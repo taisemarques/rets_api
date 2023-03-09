@@ -101,6 +101,8 @@ public class PropertyEntity {
 
     private int bathroomsQty;
 
+    private double updateFlag = 0;
+
     @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
     private FinancialDataEntity financialData;
 
