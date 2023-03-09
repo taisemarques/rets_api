@@ -75,7 +75,9 @@ public class PropertyService {
 
     private ViewDataDTO patchViewData(PropertyEntity propertyToPatch, ViewDataDTO viewDataDTO) {
         if(propertyToPatch.getViewData() == null) {
+
             propertyToPatch.setViewData(ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTO));
+
         } else {
             updateWhenViewDataChanged(propertyToPatch, viewDataDTO);
         }
