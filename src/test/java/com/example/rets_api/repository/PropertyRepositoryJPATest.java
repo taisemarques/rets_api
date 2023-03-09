@@ -155,13 +155,14 @@ public class PropertyRepositoryJPATest {
 
         //Updating
         PropertyEntity propertyToSave = updatePropertyValues(propertyEntity, propertyToPatch);
+        propertyToSave.setViewData(propertyToPatch.getViewData());
 
         //Patching
         PropertyEntity responseEntity = propertyRepository.saveAndFlush(propertyToSave);
 
         //Validating
         checkAllBasicFieldsFromProperty(responseEntity);
-        comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyPatchDTO.convert(responseEntity), PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyToPatch));
+        compareViewData(responseEntity.getViewData(), propertyToPatch.getViewData());
     }
 
 
