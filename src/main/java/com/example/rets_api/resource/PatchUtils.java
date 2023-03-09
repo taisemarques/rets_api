@@ -1,13 +1,14 @@
 package com.example.rets_api.resource;
 
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.RoomDTO;
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.RoomEntity;
 
 public class PatchUtils {
 
 
     public static PropertyEntity updatePropertyFieldsWhenChanged(PropertyEntity propertyToUpdate, PropertyPatchDTO propertyPatchDTO){
-
         NullUtils.updateIfChanged(propertyToUpdate::setAge, propertyPatchDTO.getAge(), propertyToUpdate::getAge);
         NullUtils.updateIfChanged(propertyToUpdate::setHorseFacilities, propertyPatchDTO.getHorseFacilities(), propertyToUpdate::getHorseFacilities);
         NullUtils.updateIfChanged(propertyToUpdate::setHorseFacilitiesIndicator, propertyPatchDTO.getHorseFacilitiesIndicator(), propertyToUpdate::getHorseFacilitiesIndicator);
@@ -46,9 +47,23 @@ public class PatchUtils {
         NullUtils.updateIfChanged(propertyToUpdate::setBasementLengthUnits, propertyPatchDTO.getBasementLengthUnits(), propertyToUpdate::getBasementLengthUnits);
         NullUtils.updateIfChanged(propertyToUpdate::setParkingTotal, propertyPatchDTO.getParkingTotal(), propertyToUpdate::getParkingTotal);
         NullUtils.updateIfChanged(propertyToUpdate::setParkingTotalOperator, propertyPatchDTO.getParkingTotalOperator(), propertyToUpdate::getParkingTotalOperator);
-
         return propertyToUpdate;
-
     }
+
+    public static RoomEntity updateRoomFieldsWhenChanged(RoomEntity roomToUpdate, RoomDTO roomPatchDTO) {
+        NullUtils.updateIfChanged(roomToUpdate::setRoomType, roomPatchDTO.getType(), roomToUpdate::getRoomType);
+        NullUtils.updateIfChanged(roomToUpdate::setIndicator, roomPatchDTO.getIndicator(), roomToUpdate::getIndicator);
+        NullUtils.updateIfChanged(roomToUpdate::setDimensions, roomPatchDTO.getDimensions(), roomToUpdate::getDimensions);
+        NullUtils.updateIfChanged(roomToUpdate::setLength, roomPatchDTO.getLength(), roomToUpdate::getLength);
+        NullUtils.updateIfChanged(roomToUpdate::setLengthUnit, roomPatchDTO.getLengthUnit(), roomToUpdate::getLengthUnit);
+        NullUtils.updateIfChanged(roomToUpdate::setWidth, roomPatchDTO.getWidth(), roomToUpdate::getWidth);
+        NullUtils.updateIfChanged(roomToUpdate::setWidthUnit, roomPatchDTO.getWidthUnit(), roomToUpdate::getWidthUnit);
+        NullUtils.updateIfChanged(roomToUpdate::setArea, roomPatchDTO.getArea(), roomToUpdate::getArea);
+        NullUtils.updateIfChanged(roomToUpdate::setAreaUnit, roomPatchDTO.getAreaUnit(), roomToUpdate::getAreaUnit);
+        NullUtils.updateIfChanged(roomToUpdate::setAreaType, roomPatchDTO.getAreaType(), roomToUpdate::getAreaType);
+        NullUtils.updateIfChanged(roomToUpdate::setBathSize, roomPatchDTO.getBathSize(), roomToUpdate::getBathSize);
+        return roomToUpdate;
+    }
+
 
 }

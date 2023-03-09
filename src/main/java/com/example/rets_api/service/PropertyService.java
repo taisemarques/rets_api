@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
+import static com.example.rets_api.resource.PatchUtils.updateRoomFieldsWhenChanged;
 
 @Service
 public class PropertyService {
@@ -85,15 +86,10 @@ public class PropertyService {
     public RoomDTO patchRoom(Long propertyId, Long roomId, RoomDTO patch) {
         Optional<RoomEntity> roomEntity = roomRepositoryJPA.findRoomEntityByRoomIdAndPropertyPropertyId(roomId, propertyId);
         if(!roomEntity.isPresent()) {return null;}
-        return RoomConverter.roomEntityToRoomDTO.convert(roomEntity.get());
+        RoomEntity roomToPatch = roomEntity.get();
+        updateRoomFieldsWhenChanged(roomToPatch, patch);
+        RoomEntity roomResponse = roomRepositoryJPA.saveAndFlush(roomToPatch);
+        return RoomConverter.roomEntityToRoomDTO.convert(roomResponse);
     }
 
-    private RoomEntity getRoomById(List<RoomEntity> roomList, Long id){
-        for (RoomEntity room: roomList) {
-            if(room.getRoomId().equals(id)){
-                return room;
-            }
-        }
-        return null;
-    }
 }
