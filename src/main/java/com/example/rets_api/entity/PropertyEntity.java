@@ -3,6 +3,7 @@ package com.example.rets_api.entity;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static com.example.rets_api.resource.Enums.*;
@@ -101,7 +102,9 @@ public class PropertyEntity {
 
     private int bathroomsQty;
 
-    private double updateFlag = 0;
+    private Date creationDate;
+
+    private Date modificationDate;
 
     @OneToOne(mappedBy= "property", cascade = CascadeType.ALL)
     private FinancialDataEntity financialData;
@@ -134,8 +137,8 @@ public class PropertyEntity {
     private ListingPriceEntity listingPrice;
 
     @PrePersist
-    @PreUpdate
     void updateBeforeSave(){
+        creationDate = new Date();
         updateRoomQuantity();
         updateNestedObjects();
     }

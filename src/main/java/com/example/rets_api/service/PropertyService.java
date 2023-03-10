@@ -10,6 +10,8 @@ import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +59,7 @@ public class PropertyService {
     public <T> T patchProperty(Long propertyId, T patch){
         Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
         if(!propertyToPatch.isPresent()){ return null;}
+        propertyToPatch.get().setModificationDate(new Date());
         switch (patch.getClass().getSimpleName()) {
             case "PropertyPatchDTO":
                 return (T) patchPropertyBasicFields(propertyToPatch.get(), (PropertyPatchDTO)patch);
@@ -81,7 +84,6 @@ public class PropertyService {
         } else {
             updateWhenViewDataChanged(propertyToPatch, viewDataDTO);
         }
-        propertyToPatch.setUpdateFlag(Math.random());
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return ViewDataConverter.viewDataEntityToViewDataDTO.convert(propertyResponse.getViewData());
     }

@@ -4,6 +4,8 @@ package com.example.rets_api.utils;
 import com.example.rets_api.dto.*;
 import com.example.rets_api.resource.Enums.*;
 
+import java.util.Date;
+
 import static java.util.Arrays.asList;
 
 public class DtoUtilsTest {
@@ -58,6 +60,7 @@ public class DtoUtilsTest {
             .contactInformation(createContactInformationDTO())
             .community(createCommunityDTO())
             .listingPrice(createListingPriceDTO())
+                .creationDate(new Date())
             .build();
     }
 
@@ -166,11 +169,17 @@ public class DtoUtilsTest {
 
     public static RoomDTO createRoomDTO(RoomType roomType){
         return RoomDTO.builder()
+                .dimensions("dimentions")
                 .indicator(Indicator.YES)
                 .area(45)
+                .areaUnit(AreaUnit.SQ_METERS)
+                .areaType(AreaType.FLOAT)
                 .type(roomType)
                 .length(5)
+                .lengthUnit(LengthWidthUnit.METERS)
                 .width(9)
+                .widthUnit(LengthWidthUnit.METERS)
+                .bathSize(BathSize.THREE_QUARTER)
                 .build();
     }
 

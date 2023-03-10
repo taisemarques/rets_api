@@ -9,6 +9,8 @@ import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.entity.ViewDataEntity;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.bind.DateTypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -19,8 +21,11 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
+import com.google.gson.internal.bind.*;
 
+import static com.example.rets_api.utils.CompareDTOUtilsTest.comparePropertyDTO;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.compareViewData;
 import static com.example.rets_api.utils.DtoUtilsTest.*;
@@ -55,6 +60,7 @@ public class RetsControllerIntegrationTest {
         //Validation
         assertEquals(201, responseEntity.getStatusCodeValue());
         assertNotNull(responseEntity.getBody());
+
     }
 
     @Test
@@ -90,7 +96,8 @@ public class RetsControllerIntegrationTest {
 
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
-        assertEquals(propertyDTORequest, responseEntityGet.getBody());
+        comparePropertyDTO(propertyDTORequest, responseEntityGet.getBody());
+        assertNotNull(responseEntityGet.getBody().getCreationDate());
     }
 
     @Test
@@ -111,7 +118,7 @@ public class RetsControllerIntegrationTest {
 
         //Validation
         assertEquals(200, responseEntityGet.getStatusCodeValue());
-        assertEquals(propertyDTORequest, getPropertyDTOFromResponse(responseEntityGet, 0));
+        comparePropertyDTO(propertyDTORequest, getPropertyDTOFromResponse(responseEntityGet, 0));
     }
 
     @Test
@@ -294,9 +301,9 @@ public class RetsControllerIntegrationTest {
     }
 
     private PropertyDTO getPropertyDTOFromResponse(ResponseEntity<String> response, int propertyIndex){
-        Gson g = new Gson();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new JsonDateDeserializer()).create();
         Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
-        List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
+        List<PropertyDTO> propertyDTOList = gson.fromJson(response.getBody(), collectionType);
         return propertyDTOList.get(propertyIndex);
     }
 
