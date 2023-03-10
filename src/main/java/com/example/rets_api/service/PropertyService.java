@@ -12,14 +12,12 @@ import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.resource.PatchUtils.*;
-import static java.util.Objects.isNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
@@ -105,10 +103,8 @@ public class PropertyService {
         Optional<PropertyEntity> propertyEntity = propertyRepositoryJPA.findById(propertyId);
         if(!propertyEntity.isPresent()) return null;
 
-        Optional<SchoolEntity> schoolEntity = schoolRepositoryJPA.findById(schoolId);
-        if(!schoolEntity.isPresent()) return null;
-
-        Optional<SchoolEntity> schoolToPatch = propertyEntity.get().getSchoolList().stream().filter(school -> school.getSchoolId() == schoolId).findFirst();
+        Optional<SchoolEntity> schoolToPatch = propertyEntity.get().getSchoolList().stream().filter(school -> school.getSchoolId() == schoolId).findAny();
+        if(schoolToPatch.isEmpty()) return null;
         updateSchoolFieldsWhenChanged(schoolToPatch.get(), patch);
         SchoolEntity schoolResponse = schoolRepositoryJPA.saveAndFlush(schoolToPatch.get());
         return SchoolConverter.schoolEntityToSchoolDTO.convert(schoolResponse);

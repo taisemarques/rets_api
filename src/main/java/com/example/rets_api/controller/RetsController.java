@@ -3,7 +3,6 @@ package com.example.rets_api.controller;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.dto.SchoolDTO;
-import com.example.rets_api.entity.SchoolEntity;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import io.swagger.annotations.Api;
