@@ -2,6 +2,8 @@ package com.example.rets_api.controller;
 
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.SchoolDTO;
+import com.example.rets_api.entity.SchoolEntity;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import io.swagger.annotations.Api;
@@ -83,6 +85,28 @@ public class RetsController {
     @PatchMapping(value="/{id}")
     public ResponseEntity<PropertyPatchDTO> patchProperty(@PathVariable("id") Long propertyId, @RequestBody PropertyPatchDTO propertyPatchDTO){
         return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
+    }
+
+    @ApiOperation(value = "Patch schoolList in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{idProperty}/schoolList")
+    public ResponseEntity<List<SchoolDTO>> patchSchoolList(@PathVariable("idProperty") Long propertyId, @RequestBody List<SchoolDTO> schoolListDTO){
+        return handleResponse(propertyService.patchProperty(propertyId, schoolListDTO));
+    }
+
+    @ApiOperation(value = "Patch a School in a property by propertyId and by schoolID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Property patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{idProperty}/school/{idSchool}")
+    public ResponseEntity<SchoolDTO> patchSchool(@PathVariable("idProperty") Long propertyId, @PathVariable("idSchool") Long schoolId, @RequestBody SchoolDTO schoolToPatch){
+        return handleResponse(propertyService.patchSchool(propertyId, schoolId, schoolToPatch));
     }
 
     private <T> ResponseEntity<T> handleResponse(T responseDTO){

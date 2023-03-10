@@ -1,27 +1,38 @@
 package com.example.rets_api.service;
 
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.converter.SchoolConverter;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.SchoolEntity;
+import com.example.rets_api.repository.SchoolRepositoryJPA;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
+import static com.example.rets_api.resource.PatchUtils.*;
+import static java.util.Objects.isNull;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 public class PropertyService {
 
+    private SchoolRepositoryJPA schoolRepositoryJPA;
     private PropertyRepositoryJPA propertyRepositoryJPA;
     private PropertyRepositoryQuerydsl propertyRepositoryQuerydsl;
 
-    public PropertyService(PropertyRepositoryJPA propertyRepositoryJPA, PropertyRepositoryQuerydsl propertyRepositoryQuerydsl){
+    public PropertyService(PropertyRepositoryJPA propertyRepositoryJPA, SchoolRepositoryJPA schoolRepositoryJPA, PropertyRepositoryQuerydsl propertyRepositoryQuerydsl){
         this.propertyRepositoryJPA = propertyRepositoryJPA;
         this.propertyRepositoryQuerydsl = propertyRepositoryQuerydsl;
+        this.schoolRepositoryJPA = schoolRepositoryJPA;
     }
 
     public Long createProperty(PropertyDTO propertyDTO) {
@@ -57,15 +68,46 @@ public class PropertyService {
         switch (patch.getClass().getSimpleName()) {
             case "PropertyPatchDTO":
                 return (T) patchPropertyBasicFields(propertyToPatch.get(), (PropertyPatchDTO)patch);
+            case "ArrayList":
+                List<T> listToPatch = (ArrayList)patch;
+                if(isEmpty(listToPatch)) return null;
+                switch (listToPatch.get(0).getClass().getSimpleName()){
+                    case "SchoolDTO":
+                        return (T) patchSchoolList(propertyToPatch.get(), (List<SchoolDTO>)patch);
+                    default:
+                        return null;
+                }
             default:
                 return null;
         }
     }
 
-    public PropertyPatchDTO patchPropertyBasicFields(PropertyEntity propertyToPatch, PropertyPatchDTO propertyPatchDTO){
+    private PropertyPatchDTO patchPropertyBasicFields(PropertyEntity propertyToPatch, PropertyPatchDTO propertyPatchDTO){
         updatePropertyFieldsWhenChanged(propertyToPatch, propertyPatchDTO);
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
+    }
+
+    private List<SchoolDTO> patchSchoolList(PropertyEntity propertyToPatch, List<SchoolDTO> schoolListToPatch){
+
+        propertyToPatch.getSchoolList().forEach(school -> school.getPropertyList().clear());
+
+
+        propertyToPatch.setSchoolList(SchoolConverter.listSchoolDTOToListSchoolEntity(schoolListToPatch));
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
+
+        return SchoolConverter.listSchoolEntityToListSchoolDTO(propertyResponse.getSchoolList());
+    }
+
+    public SchoolDTO patchSchool(Long propertyId, Long schoolId, SchoolDTO patch){
+        List<SchoolEntity> schoolList = propertyRepositoryJPA.findSchoolListByPropertyId(propertyId);
+        Optional<SchoolEntity> schoolEntity = schoolList.stream().filter(school -> school.getSchoolId() == schoolId).findFirst();
+        if(!schoolEntity.isPresent()) return null;
+
+        SchoolEntity schoolToPatch = schoolEntity.get();
+        updateSchoolFieldsWhenChanged(schoolToPatch, patch);
+        SchoolEntity schoolResponse = schoolRepositoryJPA.saveAndFlush(schoolToPatch);
+        return SchoolConverter.schoolEntityToSchoolDTO.convert(schoolResponse);
     }
 
 }

@@ -1,7 +1,12 @@
 package com.example.rets_api.resource;
 
+import com.example.rets_api.converter.SchoolConverter;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.SchoolDTO;
 import com.example.rets_api.entity.PropertyEntity;
+import com.example.rets_api.entity.SchoolEntity;
+
+import java.util.List;
 
 public class PatchUtils {
 
@@ -49,6 +54,13 @@ public class PatchUtils {
 
         return propertyToUpdate;
 
+    }
+
+    public static SchoolEntity updateSchoolFieldsWhenChanged(SchoolEntity schoolToUpdate, SchoolDTO schoolPatchDTO){
+        NullUtils.updateIfChanged(schoolToUpdate::setPrimarySchool, schoolPatchDTO.getPrimary(), schoolToUpdate::getPrimarySchool);
+        NullUtils.updateIfChanged(schoolToUpdate::setJrHigh, schoolPatchDTO.getJrHigh(), schoolToUpdate::getJrHigh);
+
+        return schoolToUpdate;
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
+import com.example.rets_api.repository.SchoolRepositoryJPA;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.utils.FilterUtilsTest;
 import org.junit.Test;
@@ -34,13 +35,15 @@ import static org.mockito.Mockito.*;
 public class PropertyServiceTest {
 
     @Mock
+    private SchoolRepositoryJPA schoolRepositoryJPA;
+    @Mock
     private PropertyRepositoryJPA propertyRepositoryJPA;
 
     @Mock
     private PropertyRepositoryQuerydsl propertyRepositoryQuerydsl;
 
     @InjectMocks
-    private PropertyService propertyService = new PropertyService(propertyRepositoryJPA, propertyRepositoryQuerydsl);
+    private PropertyService propertyService = new PropertyService(propertyRepositoryJPA, schoolRepositoryJPA, propertyRepositoryQuerydsl);
 
     @Test
     public void shouldCreateProperty_createProperty() {

@@ -1,10 +1,12 @@
 package com.example.rets_api.dto;
 
-import com.example.rets_api.resource.Enums;
+import com.example.rets_api.resource.Enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -16,15 +18,15 @@ public class PropertyPatchDTO {
 
     private String horseFacilities;
 
-    private Enums.Indicator horseFacilitiesIndicator;
+    private Indicator horseFacilitiesIndicator;
 
     private String hotTub;
 
-    private Enums.Indicator hotTubIndicator;
+    private Indicator hotTubIndicator;
 
     private String tennisCourt;
 
-    private Enums.Indicator tennisCourtIndicator;
+    private Indicator tennisCourtIndicator;
 
     private String inclusions;
 
@@ -34,11 +36,11 @@ public class PropertyPatchDTO {
 
     private String disabilityFeatures;
 
-    private Enums.Indicator disabilityFeaturesIndicator;
+    private Indicator disabilityFeaturesIndicator;
 
     private String securityFeatures;
 
-    private Enums.Indicator securityFeaturesIndicator;
+    private Indicator securityFeaturesIndicator;
 
     private Boolean propertyTypeRental;
 
@@ -54,7 +56,7 @@ public class PropertyPatchDTO {
 
     private String floorsHardwood;
 
-    private Enums.Indicator floorsHardwoodIndicator;
+    private Indicator floorsHardwoodIndicator;
 
     private Boolean displayFlagListing;
 
@@ -62,29 +64,31 @@ public class PropertyPatchDTO {
 
     private String lotSizeRange;
 
-    private Enums.AreaUnit lotSizeRangeUnits;
+    private AreaUnit lotSizeRangeUnits;
 
-    private Enums.LengthWidthUnit lotSizeWidthUnits;
+    private LengthWidthUnit lotSizeWidthUnits;
 
-    private Enums.LengthWidthUnit diningRoomWidthUnits;
+    private LengthWidthUnit diningRoomWidthUnits;
 
-    private Enums.LengthWidthUnit familyRoomWidthUnits;
+    private LengthWidthUnit familyRoomWidthUnits;
 
-    private Enums.LengthWidthUnit livingRoomWidthUnits;
+    private LengthWidthUnit livingRoomWidthUnits;
 
-    private Enums.LengthWidthUnit basementWidthUnits;
+    private LengthWidthUnit basementWidthUnits;
 
-    private Enums.LengthWidthUnit lotSizeLengthUnits;
+    private LengthWidthUnit lotSizeLengthUnits;
 
-    private Enums.LengthWidthUnit diningRoomLengthUnits;
+    private LengthWidthUnit diningRoomLengthUnits;
 
-    private Enums.LengthWidthUnit livingRoomLengthUnits;
+    private LengthWidthUnit livingRoomLengthUnits;
 
-    private Enums.LengthWidthUnit familyRoomLengthUnits;
+    private LengthWidthUnit familyRoomLengthUnits;
 
-    private Enums.LengthWidthUnit basementLengthUnits;
+    private LengthWidthUnit basementLengthUnits;
 
     private int parkingTotal;
 
-    private Enums.Operator parkingTotalOperator;
+    private Operator parkingTotalOperator;
+
+    private List<SchoolDTO> schoolList;
 }

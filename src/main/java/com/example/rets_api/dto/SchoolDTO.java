@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SchoolDTO {
 
+    private Long schoolId;
+
     private String primary;
 
     private String jrHigh;

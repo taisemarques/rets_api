@@ -13,6 +13,7 @@ public class SchoolConverter {
     public static Converter<SchoolDTO, SchoolEntity> schoolDTOToSchoolEntity = in -> {
         if(isNull(in)) return null;
         SchoolEntity retsEntity = new SchoolEntity();
+        retsEntity.setSchoolId(in.getSchoolId());
         retsEntity.setPrimarySchool(in.getPrimary());
         retsEntity.setJrHigh(in.getJrHigh());
         return retsEntity;
@@ -21,6 +22,7 @@ public class SchoolConverter {
     public static Converter<SchoolEntity, SchoolDTO> schoolEntityToSchoolDTO = in -> {
         if (isNull(in)) return null;
         return SchoolDTO.builder()
+                .schoolId(in.getSchoolId())
                 .primary(in.getPrimarySchool())
                 .jrHigh(in.getJrHigh())
                 .build();

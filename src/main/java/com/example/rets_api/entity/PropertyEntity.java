@@ -132,6 +132,7 @@ public class PropertyEntity {
     private ListingPriceEntity listingPrice;
 
     @PrePersist
+    @PreUpdate
     void updateBeforeSave(){
         updateRoomQuantity();
         updateNestedObjects();
