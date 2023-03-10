@@ -99,15 +99,20 @@ public class PropertyService {
         return SchoolConverter.listSchoolEntityToListSchoolDTO(propertyResponse.getSchoolList());
     }
 
+
     public SchoolDTO patchSchool(Long propertyId, Long schoolId, SchoolDTO patch){
-        List<SchoolEntity> schoolList = propertyRepositoryJPA.findSchoolListByPropertyId(propertyId);
-        Optional<SchoolEntity> schoolEntity = schoolList.stream().filter(school -> school.getSchoolId() == schoolId).findFirst();
+
+        Optional<PropertyEntity> propertyEntity = propertyRepositoryJPA.findById(propertyId);
+        if(!propertyEntity.isPresent()) return null;
+
+        Optional<SchoolEntity> schoolEntity = schoolRepositoryJPA.findById(schoolId);
         if(!schoolEntity.isPresent()) return null;
 
-        SchoolEntity schoolToPatch = schoolEntity.get();
-        updateSchoolFieldsWhenChanged(schoolToPatch, patch);
-        SchoolEntity schoolResponse = schoolRepositoryJPA.saveAndFlush(schoolToPatch);
+        Optional<SchoolEntity> schoolToPatch = propertyEntity.get().getSchoolList().stream().filter(school -> school.getSchoolId() == schoolId).findFirst();
+        updateSchoolFieldsWhenChanged(schoolToPatch.get(), patch);
+        SchoolEntity schoolResponse = schoolRepositoryJPA.saveAndFlush(schoolToPatch.get());
         return SchoolConverter.schoolEntityToSchoolDTO.convert(schoolResponse);
+
     }
 
 }
