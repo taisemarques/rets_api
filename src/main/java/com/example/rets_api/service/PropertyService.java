@@ -1,6 +1,8 @@
 package com.example.rets_api.service;
 
+import com.example.rets_api.converter.FinancialDataConverter;
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.rets_api.resource.PatchUtils.updateFinancialDataFieldsWhenChanged;
 import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
 
 @Service
@@ -66,6 +69,18 @@ public class PropertyService {
         updatePropertyFieldsWhenChanged(propertyToPatch, propertyPatchDTO);
         PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch);
         return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
+    }
+
+    public FinancialDataDTO patchFinancialData(Long propertyId, FinancialDataDTO financialDataDTO){
+        Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
+        if(propertyToPatch.isEmpty()){ return null;}
+        if(propertyToPatch.get().getFinancialData().equals(null)){
+            propertyToPatch.get().setFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(financialDataDTO));
+            return financialDataDTO;
+        }
+        updateFinancialDataFieldsWhenChanged(propertyToPatch.get().getFinancialData(), financialDataDTO);
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        return FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(propertyResponse.getFinancialData());
     }
 
 }

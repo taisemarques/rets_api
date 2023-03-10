@@ -1,9 +1,12 @@
 package com.example.rets_api.integration;
 
 import com.example.rets_api.RetsApiApplication;
+import com.example.rets_api.converter.FinancialDataConverter;
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.entity.FinancialDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,6 +21,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.compareFinancialData;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
 import static com.example.rets_api.utils.DtoUtilsTest.*;
 import static com.example.rets_api.utils.FilterUtilsTest.createURLVariablesOperatorAgeBedroomBathroom;
@@ -186,6 +190,36 @@ public class RetsControllerIntegrationTest {
         Type collectionType = new TypeToken<List<PropertyDTO>>(){}.getType();
         List<PropertyDTO> propertyDTOList = g.fromJson(response.getBody(), collectionType);
         return propertyDTOList.get(propertyIndex);
+    }
+
+    @Test
+    public void patchFinancialData() {
+        //Creating objects
+        PropertyDTO propertyDTORequest = createPropertyDTOWithAllFields();
+        FinancialDataDTO financialDataDTO = createDifferentFinancialDataDTO();
+        String URL = "http://localhost:" + port + "/properties";
+
+        //Request
+        ResponseEntity<Long> responseEntity = this.restTemplate
+                .postForEntity(URL, propertyDTORequest, Long.class);
+
+        //Creating objects
+        String URLWithID = URL
+                .concat("/")
+                .concat(String.valueOf(responseEntity.getBody()))
+                .concat("/financialData");
+
+        //Request
+        ResponseEntity<FinancialDataDTO> responsePatchEntity = this.restTemplate
+                .exchange(URLWithID,HttpMethod.PATCH, new HttpEntity<>(financialDataDTO), FinancialDataDTO.class);
+
+        FinancialDataEntity response = FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(responsePatchEntity.getBody());
+        FinancialDataEntity financialDataEntity = FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(financialDataDTO);
+
+        //Validation
+        assertEquals(200, responsePatchEntity.getStatusCodeValue());
+        assertNotNull(responsePatchEntity.getBody());
+        compareFinancialData(response, financialDataEntity);
     }
 
 }

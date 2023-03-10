@@ -1,5 +1,6 @@
 package com.example.rets_api.controller;
 
+import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.resource.PropertyFilter;
@@ -83,6 +84,17 @@ public class RetsController {
     @PatchMapping(value="/{id}")
     public ResponseEntity<PropertyPatchDTO> patchProperty(@PathVariable("id") Long propertyId, @RequestBody PropertyPatchDTO propertyPatchDTO){
         return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
+    }
+
+    @ApiOperation(value = "Patch financial data fields in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Financial data patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="/{id}/financialData")
+    public ResponseEntity<FinancialDataDTO> patchFinancialData(@PathVariable("id") Long propertyId, @RequestBody FinancialDataDTO financialDataDTO){
+        return handleResponse(propertyService.patchFinancialData(propertyId, financialDataDTO));
     }
 
     private <T> ResponseEntity<T> handleResponse(T responseDTO){

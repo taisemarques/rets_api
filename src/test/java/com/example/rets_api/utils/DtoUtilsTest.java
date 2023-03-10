@@ -209,11 +209,26 @@ public class DtoUtilsTest {
                 .leaseOption("leaseOption")
                 .leaseIndicator(Indicator.NO)
                 .tradeOption("tradeOption")
+                .tradeIndicator(Indicator.YES)
                 .rentalAmount(Long.valueOf(1000))
                 .rentalAmountType(NumberType.INTEGER)
                 .rentalAmountCurrencyCode("rentalAmountCurrencyCode")
                 .rentalAmountPeriod(RentalPeriod.YEAR)
                 .rentalAmountUnit(AreaUnit.SQ_METERS)
+                .build();
+    }
+
+    public static FinancialDataDTO createDifferentFinancialDataDTO(){
+        return FinancialDataDTO.builder()
+                .leaseOption("leaseOption2")
+                .leaseIndicator(Indicator.YES)
+                .tradeOption("tradeOption2")
+                .tradeIndicator(Indicator.YES)
+                .rentalAmount(Long.valueOf(2000))
+                .rentalAmountType(NumberType.INTEGER)
+                .rentalAmountCurrencyCode("rentalAmountCurrencyCode")
+                .rentalAmountPeriod(RentalPeriod.YEAR)
+                .rentalAmountUnit(AreaUnit.SQ_FEET)
                 .build();
     }
 

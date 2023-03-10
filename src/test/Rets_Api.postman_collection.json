@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "d2ada7e8-2ddd-4528-ab3c-eaf2b7b11fe5",
+		"_postman_id": "9137f287-ff6c-4de5-aa85-53eac3cdad44",
 		"name": "Rets_Api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -10,16 +10,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "localhost:8080/properties",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties"
-					]
-				}
+				"url": "localhost:8080/properties"
 			},
 			"response": []
 		},
@@ -28,17 +19,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "localhost:8080/properties/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						"1"
-					]
-				}
+				"url": "localhost:8080/properties/1"
 			},
 			"response": []
 		},
@@ -454,17 +435,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/properties/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						""
-					]
-				}
+				"url": "localhost:8080/properties/"
 			},
 			"response": []
 		},
@@ -482,17 +453,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/properties/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						""
-					]
-				}
+				"url": "localhost:8080/properties/"
 			},
 			"response": []
 		},
@@ -501,17 +462,7 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "localhost:8080/properties/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						"1"
-					]
-				}
+				"url": "localhost:8080/properties/1"
 			},
 			"response": []
 		},
@@ -529,17 +480,16 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/properties/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"properties",
-						"1"
-					]
-				}
+				"url": "localhost:8080/properties/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch financial data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": "localhost:8080/properties/1/financialData"
 			},
 			"response": []
 		}

@@ -255,6 +255,20 @@
             return financialDataEntity;
         }
 
+        public static FinancialDataEntity createFinancialDataEntityWithDifferentFields(){
+            FinancialDataEntity financialDataEntity = new FinancialDataEntity();
+            financialDataEntity.setLeaseOption("leaseOption2");
+            financialDataEntity.setLeaseIndicator(Indicator.YES);
+            financialDataEntity.setTradeOption("tradeOption2");
+            financialDataEntity.setTradeIndicator(Indicator.NO);
+            financialDataEntity.setRentalAmount(2000L);
+            financialDataEntity.setRentalAmountType(NumberType.INTEGER);
+            financialDataEntity.setRentalAmountCurrencyCode("rentalAmountCurrencyCode");
+            financialDataEntity.setRentalAmountPeriod(RentalPeriod.YEAR);
+            financialDataEntity.setRentalAmountUnit(AreaUnit.SQ_FEET);
+            return financialDataEntity;
+        }
+
         public static ViewDataEntity createViewDataEntity(){
             ViewDataEntity viewData = new ViewDataEntity();
             viewData.setCityLight("Light");

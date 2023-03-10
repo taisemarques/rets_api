@@ -1,8 +1,11 @@
 package com.example.rets_api.service;
 
+import com.example.rets_api.converter.FinancialDataConverter;
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.entity.FinancialDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
 import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
@@ -19,9 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.rets_api.converter.PropertyConverterTest.checkAllFields_Property;
+import static com.example.rets_api.utils.CompareEntitiesUtilsTest.compareFinancialData;
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.comparePropertyPatchDTOBasicFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyDTOWithAllFields;
-import static com.example.rets_api.utils.DtoUtilsTest.createPropertyPatchDTO;
+import static com.example.rets_api.utils.DtoUtilsTest.*;
 import static com.example.rets_api.utils.EntityUtilsTest.*;
 import static com.example.rets_api.utils.FilterUtilsTest.createPropertyFilterAgeBedroomBathRoom;
 import static java.util.Arrays.asList;
@@ -188,6 +191,37 @@ public class PropertyServiceTest {
 
         //Validation
         assertNull(propertyResponse);
+    }
+
+    @Test
+    public void shouldPatchProperty_updateFinancialData(){
+        //Creating objects
+        PropertyEntity propertyToPatch = createPropertyEntityWithDifferentBasicFields();
+        PropertyEntity propertyEntity = createPropertyEntityResponseAndID(Long.valueOf(123456789));
+        FinancialDataEntity financialDataToPatch = createFinancialDataEntity();
+        propertyToPatch.setFinancialData(financialDataToPatch);
+
+        //Mocking calls
+        when(propertyRepositoryJPA.findById(any())).thenReturn(Optional.of(propertyEntity));
+        when(propertyRepositoryJPA.saveAndFlush(any())).thenReturn(propertyToPatch);
+
+        //Request
+        FinancialDataDTO serviceResponse = propertyService.patchFinancialData(Long.valueOf(123456789), FinancialDataConverter.financialDataEntityToFinancialDataDTO.convert(financialDataToPatch));
+
+        //Validation
+        compareFinancialData(FinancialDataConverter.financialDataDTOToFinancialDataEntity.convert(serviceResponse), financialDataToPatch);
+    }
+
+    @Test
+    public void shouldReturnNull_updateFinancialData(){
+        //Creating objects
+        FinancialDataDTO financialDataDTO = createFinancialDataDTO();
+
+        //Request
+        FinancialDataDTO serviceResponse = propertyService.patchFinancialData(Long.valueOf(123456789),financialDataDTO);
+
+        //Validation
+        assertNull(serviceResponse);
     }
 
 }

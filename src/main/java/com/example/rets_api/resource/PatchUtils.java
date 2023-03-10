@@ -1,6 +1,8 @@
 package com.example.rets_api.resource;
 
+import com.example.rets_api.dto.FinancialDataDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.entity.FinancialDataEntity;
 import com.example.rets_api.entity.PropertyEntity;
 
 public class PatchUtils {
@@ -50,5 +52,20 @@ public class PatchUtils {
         return propertyToUpdate;
 
     }
+
+    public static FinancialDataEntity updateFinancialDataFieldsWhenChanged(FinancialDataEntity financialDataToUpdate, FinancialDataDTO financialDataDTO){
+        if(financialDataDTO == null || financialDataToUpdate == null){ return null;}
+        NullUtils.updateIfChanged(financialDataToUpdate::setLeaseOption, financialDataDTO.getLeaseOption(), financialDataToUpdate::getLeaseOption);
+        NullUtils.updateIfChanged(financialDataToUpdate::setLeaseIndicator, financialDataDTO.getLeaseIndicator(), financialDataToUpdate::getLeaseIndicator);
+        NullUtils.updateIfChanged(financialDataToUpdate::setTradeOption, financialDataDTO.getTradeOption(), financialDataToUpdate::getTradeOption);
+        NullUtils.updateIfChanged(financialDataToUpdate::setTradeIndicator, financialDataDTO.getTradeIndicator(), financialDataToUpdate::getTradeIndicator);
+        NullUtils.updateIfChanged(financialDataToUpdate::setRentalAmount, financialDataDTO.getRentalAmount(), financialDataToUpdate::getRentalAmount);
+        NullUtils.updateIfChanged(financialDataToUpdate::setRentalAmountType, financialDataDTO.getRentalAmountType(), financialDataToUpdate::getRentalAmountType);
+        NullUtils.updateIfChanged(financialDataToUpdate::setRentalAmountCurrencyCode, financialDataDTO.getRentalAmountCurrencyCode(), financialDataToUpdate::getRentalAmountCurrencyCode);
+        NullUtils.updateIfChanged(financialDataToUpdate::setRentalAmountPeriod, financialDataDTO.getRentalAmountPeriod(), financialDataToUpdate::getRentalAmountPeriod);
+        NullUtils.updateIfChanged(financialDataToUpdate::setRentalAmountUnit, financialDataDTO.getRentalAmountUnit(), financialDataToUpdate::getRentalAmountUnit);
+        return financialDataToUpdate;
+    }
+
 
 }

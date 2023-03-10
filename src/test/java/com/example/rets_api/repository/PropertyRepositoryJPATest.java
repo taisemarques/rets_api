@@ -138,6 +138,27 @@ public class PropertyRepositoryJPATest {
         comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyPatchDTO.convert(responseEntity), PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyToPatch));
     }
 
+    @Test
+    public void should_update_financialData_in_a_property() {
+        //Creating
+        FinancialDataEntity financialDataToPatch = EntityUtilsTest.createFinancialDataEntityWithDifferentFields();
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithDifferentBasicFields();
+
+        //Saving
+        propertyRepository.saveAndFlush(propertyEntity);
+
+        //Updating
+        propertyEntity.setFinancialData(financialDataToPatch);
+
+        //Patching
+        PropertyEntity responseEntity = propertyRepository.saveAndFlush(propertyEntity);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(responseEntity);
+        compareFinancialData(responseEntity.getFinancialData(), financialDataToPatch);
+
+    }
+
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
 
         assertNotNull(property.getPropertyId());
@@ -222,6 +243,20 @@ public class PropertyRepositoryJPATest {
         property1.setBasementLengthUnits(property2.getBasementLengthUnits());
         property1.setParkingTotal(property2.getParkingTotal());
         property1.setParkingTotalOperator(property2.getParkingTotalOperator());
+
+        return property1;
+    }
+
+    public static PropertyEntity updateFinancialData(PropertyEntity property1, FinancialDataEntity property2){
+        property1.getFinancialData().setLeaseOption(property2.getLeaseOption());
+        property1.getFinancialData().setLeaseIndicator(property2.getLeaseIndicator());
+        property1.getFinancialData().setTradeOption(property2.getTradeOption());
+        property1.getFinancialData().setTradeIndicator(property2.getTradeIndicator());
+        property1.getFinancialData().setRentalAmount(property2.getRentalAmount());
+        property1.getFinancialData().setRentalAmountType(property2.getRentalAmountType());
+        property1.getFinancialData().setRentalAmountCurrencyCode(property2.getRentalAmountCurrencyCode());
+        property1.getFinancialData().setRentalAmountPeriod(property2.getRentalAmountPeriod());
+        property1.getFinancialData().setRentalAmountUnit(property2.getRentalAmountUnit());
 
         return property1;
     }
