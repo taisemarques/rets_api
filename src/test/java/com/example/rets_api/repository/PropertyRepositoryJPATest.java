@@ -1,6 +1,8 @@
 package com.example.rets_api.repository;
 
 import com.example.rets_api.converter.PropertyConverter;
+import com.example.rets_api.converter.ViewDataConverter;
+import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.entity.*;
 import com.example.rets_api.utils.EntityUtilsTest;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static com.example.rets_api.utils.CompareEntitiesUtilsTest.*;
+import static com.example.rets_api.utils.DtoUtilsTest.createViewDataDTO;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -137,6 +140,31 @@ public class PropertyRepositoryJPATest {
         checkAllBasicFieldsFromProperty(responseEntity);
         comparePropertyPatchDTOBasicFields(PropertyConverter.propertyEntityToPropertyPatchDTO.convert(responseEntity), PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyToPatch));
     }
+
+    @Test
+    public void should_update_a_Property_updateViewData() {
+        //Creating
+        ViewDataDTO viewDataDTOToPatch = createViewDataDTO();
+        ViewDataEntity viewDataEntityToPatch = ViewDataConverter.viewDataDTOToViewDataEntity.convert(viewDataDTOToPatch);
+        PropertyEntity propertyToPatch = EntityUtilsTest.createPropertyEntityWithDifferentBasicFields();
+        propertyToPatch.setViewData(viewDataEntityToPatch);
+        PropertyEntity propertyEntity = EntityUtilsTest.createPropertyEntityWithBasicFields();
+
+        //Saving
+        propertyEntity = propertyRepository.saveAndFlush(propertyEntity);
+
+        //Updating
+        PropertyEntity propertyToSave = updatePropertyValues(propertyEntity, propertyToPatch);
+        propertyToSave.setViewData(propertyToPatch.getViewData());
+
+        //Patching
+        PropertyEntity responseEntity = propertyRepository.saveAndFlush(propertyToSave);
+
+        //Validating
+        checkAllBasicFieldsFromProperty(responseEntity);
+        compareViewData(responseEntity.getViewData(), propertyToPatch.getViewData());
+    }
+
 
     public static void checkAllBasicFieldsFromProperty(PropertyEntity property){
 

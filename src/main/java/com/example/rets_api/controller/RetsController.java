@@ -2,6 +2,7 @@ package com.example.rets_api.controller;
 
 import com.example.rets_api.dto.PropertyDTO;
 import com.example.rets_api.dto.PropertyPatchDTO;
+import com.example.rets_api.dto.ViewDataDTO;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.service.PropertyService;
 import io.swagger.annotations.Api;
@@ -86,26 +87,29 @@ public class RetsController {
         return handleResponse(propertyService.patchProperty(propertyId, propertyPatchDTO));
     }
 
-    private ResponseEntity<PropertyPatchDTO> handleResponse(PropertyPatchDTO propertyPatchDTO){
-        if(isNull(propertyPatchDTO)){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(propertyPatchDTO);
+    @ApiOperation(value = "Patch view data in a property by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "View data patched", response = Long.class ),
+            @ApiResponse(code = 404, message = "Property not founded"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
+    @PatchMapping(value="{id}/viewData")
+    public ResponseEntity<ViewDataDTO> patchViewData(@PathVariable("id") Long propertyId, @RequestBody ViewDataDTO viewDataDTO){
+        return handleResponse(propertyService.patchProperty(propertyId, viewDataDTO));
     }
 
-
-    private ResponseEntity<PropertyDTO> handleResponse(PropertyDTO propertyDTO){
-        if(isNull(propertyDTO)){
+    private <T> ResponseEntity<T> handleResponse(T responseDTO){
+        if(isNull(responseDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(propertyDTO);
+        return ResponseEntity.ok(responseDTO);
     }
 
-    private ResponseEntity<List<PropertyDTO>> handleResponse(List<PropertyDTO> propertyDTOList){
-        if(isEmpty(propertyDTOList)){
+    private <T> ResponseEntity<List<T>> handleResponse(List<T> responseListDTO){
+        if(isEmpty(responseListDTO)){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(propertyDTOList);
+        return ResponseEntity.ok(responseListDTO);
     }
 
     private ResponseEntity<Long> handleCreateResponse(Long id){

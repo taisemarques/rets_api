@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -89,6 +90,10 @@ public class PropertyDTO {
     private int parkingTotal;
 
     private Operator parkingTotalOperator;
+
+    private Date creationDate;
+
+    private Date modificationDate;
 
     private FinancialDataDTO financialData;
 

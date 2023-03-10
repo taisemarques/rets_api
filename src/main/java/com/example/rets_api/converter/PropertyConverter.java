@@ -62,6 +62,8 @@ public class PropertyConverter {
         retsEntity.setBasementLengthUnits(in.getBasementLengthUnits());
         retsEntity.setParkingTotal(in.getParkingTotal());
         retsEntity.setParkingTotalOperator(in.getParkingTotalOperator());
+        retsEntity.setModificationDate(in.getModificationDate());
+        retsEntity.setCreationDate(in.getCreationDate());
         return retsEntity;
     };
 
@@ -115,6 +117,8 @@ public class PropertyConverter {
                 .basementLengthUnits(in.getBasementLengthUnits())
                 .parkingTotal(in.getParkingTotal())
                 .parkingTotalOperator(in.getParkingTotalOperator())
+                .creationDate(in.getCreationDate())
+                .modificationDate(in.getModificationDate())
                 .build();
     };
 
