@@ -2,6 +2,7 @@ package com.example.rets_api.service;
 
 import com.example.rets_api.converter.PropertyConverter;
 import com.example.rets_api.dto.PropertyDTO;
+import com.example.rets_api.dto.PropertyPatchDTO;
 import com.example.rets_api.entity.PropertyEntity;
 import com.example.rets_api.resource.PropertyFilter;
 import com.example.rets_api.repository.PropertyRepositoryJPA;
@@ -9,6 +10,8 @@ import com.example.rets_api.repository.PropertyRepositoryQuerydsl;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import static com.example.rets_api.resource.PatchUtils.updatePropertyFieldsWhenChanged;
 
 @Service
 public class PropertyService {
@@ -46,6 +49,14 @@ public class PropertyService {
         if(!propertyResponse.isPresent()) return null;
         propertyRepositoryJPA.delete(propertyResponse.get());
         return PropertyConverter.propertyEntityToPropertyDTO.convert(propertyResponse.get());
+    }
+
+    public PropertyPatchDTO patchProperty(Long propertyId, PropertyPatchDTO propertyPatchDTO){
+        Optional<PropertyEntity> propertyToPatch = propertyRepositoryJPA.findById(propertyId);
+        if(propertyToPatch.isEmpty()){ return null;}
+        updatePropertyFieldsWhenChanged(propertyToPatch.get(), propertyPatchDTO);
+        PropertyEntity propertyResponse = propertyRepositoryJPA.saveAndFlush(propertyToPatch.get());
+        return PropertyConverter.propertyEntityToPropertyPatchDTO.convert(propertyResponse);
     }
 
 }
